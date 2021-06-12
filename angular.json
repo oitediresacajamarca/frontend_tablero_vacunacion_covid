@@ -31,9 +31,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+            
+              "src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/@fortawesome/fontawesome-free/js/all.js"
+
+              
+            ]
           },
           "configurations": {
             "production": {
@@ -127,5 +137,8 @@
       }
     }
   },
-  "defaultProject": "vacunacion-covid-frontend"
+  "defaultProject": "vacunacion-covid-frontend",
+  "cli": {
+    "analytics": "8725ee3a-d228-4960-93b7-b0f464b7131d"
+  }
 }
