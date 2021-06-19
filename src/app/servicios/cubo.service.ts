@@ -9,6 +9,43 @@ var moment = require('moment'); // require
 })
 export class CuboService {
 
+  query_meta_cobertura:any={
+    "measures": [
+      "DISTRIBUCIONGeograficaMeta.meta"
+    ],
+    "timeDimensions": [],
+    "order": {},
+    "filters": [
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.provincia",
+        "operator": "contains",
+        "values": [
+          "cajamarca"
+        ]
+      },
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.grupoMeta",
+        "operator": "contains",
+        "values": [
+          "60-69"
+        ]
+      },
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.grupoRiesgo",
+        "operator": "contains",
+        "values": [
+          "Adulto Mayor"
+        ]
+      },
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.distrito",
+        "operator": "contains",
+        "values": [
+          "CAJAMARCA"
+        ]
+      }
+    ]
+  }
   query_meta:any={
     "measures": [
       "DISTRIBUCIONGeograficaMeta.meta"
@@ -424,6 +461,7 @@ export class CuboService {
       ]
     }
 
+    console.log(query)
     let params = new HttpParams().set('query', JSON.stringify(query));
     return this.http.get<any>(environment.url_cubo, { params })
   }
@@ -491,6 +529,14 @@ export class CuboService {
 
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta));
+    return this.http.get<any>(environment.url_cubo, { params })
+  }
+
+
+  devolver_meta_cobertura() {
+
+
+    let params = new HttpParams().set('query', JSON.stringify(this.query_meta_cobertura));
     return this.http.get<any>(environment.url_cubo, { params })
   }
 

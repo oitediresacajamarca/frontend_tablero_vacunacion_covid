@@ -306,6 +306,7 @@ export class BodyComponent implements OnInit {
 
   cargar_1ra_dosis() {
     this.cubo.devolver_total_por_dosis(['1ª dosis']).subscribe(respuesta => {
+      console.log(respuesta)
 
       this.total_1_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
@@ -554,6 +555,7 @@ console.log(dosis_1)
 
 
   selecciono_provincia() {
+    console.log(this.provincia_selecionada )
     let filtro: any[] = []
     if (this.provincia_selecionada != 'TODOS') {
       filtro = [this.provincia_selecionada]
@@ -771,7 +773,13 @@ console.log(  ( this.avance )/ (this.meta))
   }
 
 
+  mapa_seleciono(event:string){
+    console.log(event)
 
+    this.provincia_selecionada=event;
+    this.selecciono_provincia()
+
+  }
 
 
 

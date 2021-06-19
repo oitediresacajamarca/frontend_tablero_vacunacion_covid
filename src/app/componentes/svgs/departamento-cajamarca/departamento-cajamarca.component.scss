@@ -1,5 +1,33 @@
-.san_ignacio:hover{
+.san_ignacio:hover,
+.san_ignacio:focus {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
+  cursor: pointer;
+}
 
-    fill: #DA4567;
+icon-bike:focus {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
+}
 
+.activo {
+  filter:none;
+  cursor: pointer;
+}
+
+.desactivo {
+  cursor: pointer;
+  fill:red;
+  fill-opacity:0;
+  filter:grayscale(1)
+  
+}
+.todos {
+  cursor: pointer;
+ 
+  filter:none
+  
+}
+.PROVINCIA{
+  cursor: pointer;
 }
