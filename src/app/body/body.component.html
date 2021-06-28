@@ -1,528 +1,486 @@
-<div class="content-wrapper" style="min-height: 794px">
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-10">
-          <h1 class="m-0 text-dark">
-            <img
-              src="../../assets/Escudo_de_Cajamarca.svg"
-              alt=""
-              srcset=""
-              width="50px"
-            />
-            DOSIS APLICADAS CONTRA LA COVID REGION CAJAMARCA
-          </h1>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-2">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><a [routerLink]="['/vacunacion']">Vacunacion</a></li>
-            <li class="breadcrumb-item"><a [routerLink]="['/cobertura']">Cobertura</a></li>
-          </ol>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"
-              ><i class="fas fa-cog"></i
-            ></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">TOTAL PRIMERA DOSIS</span>
-              <span class="info-box-number">
-                {{ total_1_dosis }}
-                <small>dosis</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"
-              ><i class="fas fa-thumbs-up"></i
-            ></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">TOTAL SEGUNDA DOSIS</span>
-              <span class="info-box-number"
-                >{{ total_2_dosis }}
-                <small>dosis</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"
-              ><i class="fas fa-shopping-cart"></i
-            ></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">DOSIS TOTALES</span>
-              <span class="info-box-number"
-                >{{ total_dosis }}
-                <small>dosis</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"
-              ><i class="fas fa-users"></i
-            ></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">VACUNADOS HOY</span>
-              <span class="info-box-number">{{ vacunados_hoy }} </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <div class="row">
-        <div class="col-12 col-sm-6 col-md-2">
-          <div class="form-group">
-            <label>PROVINCIA</label>
-            <select
-              class="form-control"
-              [(ngModel)]="provincia_selecionada"
-              (change)="selecciono_provincia()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option
-                *ngFor="let provincia of provincias"
-                value="{{ provincia }}"
-              >
-                {{ provincia }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-2">
-          <div class="form-group">
-            <label>FABRICANTE</label>
-            <select
-              class="form-control"
-              [(ngModel)]="fabricante_selecionado"
-              (change)="seleciono_fabricante()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option value="PFIZER">PFIZER</option>
-              <option
-                value="VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA"
-              >
-                Sinopharm
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-2">
-          <div class="form-group">
-            <label>DOSIS</label>
-            <select
-              class="form-control"
-              [(ngModel)]="dosis_selecionada"
-              (change)="selecciono_dosis()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option value="1ª dosis">1ª dosis</option>
-              <option value="2ª dosis">2ª dosis</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-2">
-          <div class="form-group">
-            <label>GRUPO DE EDAD</label>
-
-            <select
-              class="form-control"
-              [(ngModel)]="grupo_edad_seleccionado"
-              (change)="selecciono_edad()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option value="0-9">0-9</option>
-              <option value="10-19">10-19</option>
-              <option value="20-29">20-29</option>
-              <option value="30-39">30-39</option>
-              <option value="40-49">40-49</option>
-              <option value="50-59">50-59</option>
-              <option value="60-69">60-69</option>
-              <option value="70-79">70-79</option>
-              <option value="mayor 80">mayor 80</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-2">
-          <div class="form-group">
-            <label>GRUPO DE VACUNACION</label>
-            <select
-              class="form-control"
-              [(ngModel)]="grupo_vacunacion_selecionado"
-              (change)="seleciono_grupo_vacunacion()"
-            >
-              <option>TODOS</option>
-              <option
-                value="{{ grupo }}"
-                *ngFor="let grupo of grupos_vacunacion"
-              >
-                {{ grupo }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h5 class="card-title">REGION CAJAMARCA</h5>
-
-              <div class="card-tools">
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="collapse"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-tool dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    <i class="fas fa-wrench"></i>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right" role="menu">
-                    <a href="#" class="dropdown-item">Action</a>
-                    <a href="#" class="dropdown-item">Another action</a>
-                    <a href="#" class="dropdown-item">Something else here</a>
-                    <a class="dropdown-divider"></a>
-                    <a href="#" class="dropdown-item">Separated link</a>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="remove"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
+          <section class="content">
+            <div class="container-fluid">
+              <!-- Info boxes -->
               <div class="row">
-                <div class="col-md-2">
-                  <app-departamento-cajamarca (selecciono_provincia)="mapa_seleciono($event)"></app-departamento-cajamarca>
-                </div>
-                <div class="col-md-4">
-                  <div [chart]="chart"></div>
-
-                  <!-- /.chart-responsive -->
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"
+                      ><i class="fas  fa-syringe"></i
+                    ></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">TOTAL PRIMERA DOSIS</span>
+                      <span class="info-box-number">
+                        <h3>{{ total_1_dosis }} dosis</h3>
+                       
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3">
-                  <table class="table table-striped table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col" style="font-size: 70%">
-                          <small>AMBITO</small>
-                        </th>
-                        <th style="font-size: 70%">
-                          <small>PRIMERA DOSIS</small>
-                        </th>
-                        <th style="font-size: 70%">
-                          <small>SEGUNDA DOSIS</small>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let lugar of datos_tablas">
-                        <td style="font-size: 70%">
-                          <a href="pages/examples/invoice.html"
-                            ><SMALL>{{ lugar.ambito }}</SMALL></a
-                          >
-                        </td>
-                        <td style="font-size: 70%">
-                          <SMALL class="text-center">{{
-                            lugar.primera_dosis
-                          }}</SMALL>
-                        </td>
-                        <td style="font-size: 70%">
-                          <small class="text-center">{{
-                            lugar.segunda_dosis
-                          }}</small>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <!-- /.progress-group -->
-                </div>
-
-                <div class="col-md-3">
-                  <p class="text-center">
-                    <strong>COBERTURA</strong>
-                  </p>
-                  <div class="row">
-                    <div class="col-md-8 cobertura">
-                      <div class="small-box">
-                        <div class="inner">
-                          <h3>
-                            {{ cobertura | number: "1.2-2"
-                            }}<sup style="font-size: 20px">%</sup>
-                          </h3>
-
-                          <p>Bounce Rate</p>
-                        </div>
-                        <div class="icon">
-                          <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                          More info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1"
+                      >
+                      <i class="fas " src=""></i>
+                    
+                    </span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">TOTAL SEGUNDA DOSIS</span>
+                      <span class="info-box-number"
+                        >
+                        <h3>{{ total_2_dosis }} Dosis</h3>
+                  
+                      </span>
                     </div>
-                    <div class="col-md-4">
-                      <div [style]="{ heigth: '300px' }">
-                        <app-jeringa></app-jeringa>
-                      </div>
-                    </div>
+                    <!-- /.info-box-content -->
                   </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+        
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+        
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"
+                      ><i class="fas fa-hand-holding-medical"></i
+                    ></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">DOSIS TOTALES</span>
+                      <span class="info-box-number"
+                        >
+                        <h3>{{ total_dosis }} Dosis</h3>
+                     
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1"
+                      ><i class="fas fa-users"></i
+                    ></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">VACUNADOS HOY</span>
+                      <span class="info-box-number">
+                      <h3>  {{ vacunados_hoy }} </h3>
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-            </div>
-            <!-- ./card-body -->
-            <div class="card-footer">
+        
               <div class="row">
-                <div class="col-sm-3 col-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-success"
-                      ><i class="fas fa-caret-up"></i> 17%</span
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
+                    <label>PROVINCIA</label>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="provincia_selecionada"
+                      (change)="selecciono_provincia()"
                     >
-                    <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">TOTAL REVENUE</span>
+                      <option value="TODOS">TODOS</option>
+                      <option
+                        *ngFor="let provincia of provincias"
+                        value="{{ provincia }}"
+                      >
+                        {{ provincia }}
+                      </option>
+                    </select>
                   </div>
-                  <!-- /.description-block -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-warning"
-                      ><i class="fas fa-caret-left"></i> 0%</span
+        
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
+                    <label>FABRICANTE</label>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="fabricante_selecionado"
+                      (change)="seleciono_fabricante()"
                     >
-                    <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">TOTAL COST</span>
+                      <option value="TODOS">TODOS</option>
+                      <option value="PFIZER">PFIZER</option>
+                      <option
+                        value="VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA"
+                      >
+                      VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA
+                      </option>
+                      <option
+                      value="SINOPHARM"
+                    >
+                    SINOPHARM
+                    </option>
+                    </select>
                   </div>
-                  <!-- /.description-block -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-success"
-                      ><i class="fas fa-caret-up"></i> 20%</span
+        
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
+                    <label>DOSIS</label>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="dosis_selecionada"
+                      (change)="selecciono_dosis()"
                     >
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">TOTAL PROFIT</span>
+                    <option value="TODOS">TODOS</option>
+                      <option value="1ª dosis">1ª dosis</option>
+                      <option value="2ª dosis">2ª dosis</option>
+                    </select>
                   </div>
-                  <!-- /.description-block -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-danger"
-                      ><i class="fas fa-caret-down"></i> 18%</span
+        
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
+                    <label>GRUPO DE EDAD</label>
+        
+                    <select
+                      class="form-control"
+                      [(ngModel)]="grupo_edad_seleccionado"
+                      (change)="selecciono_edad()"
                     >
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">GOAL COMPLETIONS</span>
+                      <option value="TODOS">TODOS</option>
+                      <option value="0-9">18-19</option>
+                      <option value="10-19">19-20</option>
+                      <option value="20-29">20-29</option>
+                      <option value="30-39">30-39</option>
+                      <option value="40-49">40-49</option>
+                      <option value="50-59">50-59</option>
+                      <option value="60-69">60-69</option>
+                      <option value="70-79">70-79</option>
+                      <option value="80 a mas">mayor 80</option>
+                    </select>
                   </div>
-                  <!-- /.description-block -->
+                </div>
+        
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
+                    <label>GRUPO DE VACUNACION</label>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="grupo_vacunacion_selecionado"
+                      (change)="seleciono_grupo_vacunacion()"
+                    >
+                      <option>TODOS</option>
+                      <option
+                        value="{{ grupo }}"
+                        *ngFor="let grupo of grupos_vacunacion"
+                      >
+                        {{ grupo }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.card-footer -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-8">
-          <!-- MAP & BOX PANE -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Velocidad de Vacunacion</h3>
-
-              <div class="card-tools">
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="collapse"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="remove"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <div class="d-md-flex">
-                <div class="p-1 flex-fill" style="overflow: hidden">
-                  <!-- Map will be created here -->
-                  <div
-                    id="world-map-markers"
-                    style="height: 525px; overflow: hidden"
-                    class="mapael"
-                  >
-                    <div class="map">
-                      <div [chart]="linea_tiempo"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
-                  <div class="description-block mb-4">
-                    <div class="sparkbar pad" data-color="#fff">
-                      90,70,90,70,75,80,70
-                    </div>
-                    <h5 class="description-header">8390</h5>
-                    <span class="description-text">Visits</span>
-                  </div>
-                  <!-- /.description-block -->
-                  <div class="description-block mb-4">
-                    <div class="sparkbar pad" data-color="#fff">
-                      90,50,90,70,61,83,63
-                    </div>
-                    <h5 class="description-header">30%</h5>
-                    <span class="description-text">Referrals</span>
-                  </div>
-                  <!-- /.description-block -->
-                  <div class="description-block">
-                    <div class="sparkbar pad" data-color="#fff">
-                      90,50,90,70,61,83,63
-                    </div>
-                    <h5 class="description-header">70%</h5>
-                    <span class="description-text">Organic</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.card-pane-right -->
-              </div>
-              <!-- /.d-md-flex -->
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-     
-          <!-- /.row -->
-
-      
-        </div>
-        <!-- /.col -->
-
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Browser Usage</h3>
-
-              <div class="card-tools">
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="collapse"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="remove"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
+        
               <div class="row">
                 <div class="col-md-12">
-                  <p class="text-center">
-                    <strong>Vacunados Grupo de Riesgo</strong>
-                  </p>
-                  <div [chart]="donut"></div>
-                  <!-- /.progress-group -->
-
-                  <!-- ./chart-responsive -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-title">REGION CAJAMARCA</h5>
+        
+                      <div class="card-tools">
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="collapse"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-tool dropdown-toggle"
+                            data-toggle="dropdown"
+                          >
+                            <i class="fas fa-wrench"></i>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <a href="#" class="dropdown-item">Action</a>
+                            <a href="#" class="dropdown-item">Another action</a>
+                            <a href="#" class="dropdown-item">Something else here</a>
+                            <a class="dropdown-divider"></a>
+                            <a href="#" class="dropdown-item">Separated link</a>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="remove"
+                        >
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="card caja-p">
+                            <app-departamento-cajamarca (selecciono_provincia)="mapa_seleciono($event)" #mapa_cajamarca></app-departamento-cajamarca>
+                          </div>
+                          
+                        </div>
+                        <div class="col-md-3">
+                          <div class="card caja-p">
+                            <div [chart]="chart"></div>
+                          </div>
+                       
+        
+                          <!-- /.chart-responsive -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-5">
+                          <div class="card caja-p">
+                            <table class="table table-striped table-sm caja-p">
+                              <thead>
+                                <tr>
+                                  <th scope="col" class="display-6">
+                              AMBITO
+                                  </th>
+                                  <th class="display-6">
+                            PRIMERA DOSIS
+                                  </th>
+                                  <th class="display-6">
+                                 SEGUNDA DOSIS
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let lugar of datos_tablas" >
+                                  <td  class="display-6">
+                                    <a href="pages/examples/invoice.html"
+                                      >{{ lugar.ambito }}</a>
+                                  </td>
+                                  <td class="display-6 text-center" >
+                                   {{
+                                      lugar.primera_dosis
+                                    }}
+                                  </td>
+                                  <td class="display-6 text-center">
+                                  {{
+                                      lugar.segunda_dosis
+                                    }}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+          
+                          </div>
+                         
+                          <!-- /.progress-group -->
+                        </div>
+        
+                        <div class="col-md-2">
+        
+                          <div class="card caja-p">
+                            <p class="text-center">
+                              <strong>VACUNOMETRO</strong>
+                            </p>
+                            <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6 ">
+                                <div class="small-box">
+                                  <a href="#" class="small-box-footer bg-success tex">
+                                    COBERTURA <i class="fas fa-arrow-circle-right"></i>
+                                   </a>
+                                  <div class="inner text-center">
+                                    <h6>
+                                      {{ cobertura | number: "1.2-2"
+                                      }} %
+                                    </h6>
+          
+                              
+                                  </div>
+                                  <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                  </div>
+                             
+                                </div>
+                                <div class="small-box">
+                                  <a href="#" class="small-box-footer bg-info">
+                                    AVANCE <i class="fas fa-arrow-circle-right"></i>
+                                  </a>
+                                  <div class="inner text-center">
+                                    <h6>
+                                      {{ avance   }}
+                                    </h6>
+          
+                                  
+                                  </div>
+                                  <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                  </div>
+                             
+                                </div>
+                                <div class="small-box">
+                                  <a href="#" class="small-box-footer bg-primary">
+                                    META <i class="fas fa-arrow-circle-right"></i>
+                                     </a>
+                                  <div class="inner text-center">
+                                    <h6>
+                                      {{ meta 
+                                      }}
+                                    </h6>
+          
+                                  
+                                  </div>
+                                  <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                  </div>
+                           
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div [style]="{ heigth: '300px' }">
+                                  <app-jeringa #jeringa></app-jeringa>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+        
+                          </div>
+                      
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                   
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.card-footer -->
+                  </div>
+                  <!-- /.card -->
                 </div>
-
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+        
+              <!-- Main row -->
+              <div class="row">
+                <!-- Left col -->
+                <div class="col-md-8">
+                  <!-- MAP & BOX PANE -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Vacunacion Diaria Segun Dosis</h3>
+        
+                      <div class="card-tools">
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="collapse"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="remove"
+                        >
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                      <div class="d-md-flex">
+                        <div class="p-1 flex-fill" style="overflow: hidden">
+                          <!-- Map will be created here -->
+                          <div
+                            id="world-map-markers"
+                            style="height: 525px; overflow: hidden"
+                            class="mapael"
+                          >
+                            <div class="map">
+                              <div [chart]="linea_tiempo"></div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        <!-- /.card-pane-right -->
+                      </div>
+                      <!-- /.d-md-flex -->
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+             
+                  <!-- /.row -->
+        
+              
+                </div>
+                <!-- /.col -->
+        
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Vacunados Segun Grupo de Riesgo</h3>
+        
+                      <div class="card-tools">
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="collapse"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-tool"
+                          data-card-widget="remove"
+                        >
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                       
+                          <div [chart]="donut"></div>
+                          <!-- /.progress-group -->
+        
+                          <!-- ./chart-responsive -->
+                        </div>
+        
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+        
+                    <!-- /.footer -->
+                  </div>
+                  <!-- /.card -->
+        
+                  <!-- PRODUCT LIST -->
+               
+                  <!-- /.card -->
+                </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
             </div>
-            <!-- /.card-body -->
-
-            <!-- /.footer -->
-          </div>
-          <!-- /.card -->
-
-          <!-- PRODUCT LIST -->
+            <!--/. container-fluid -->
+          </section>
        
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!--/. container-fluid -->
-  </section>
-  <!-- /.content -->
-</div>

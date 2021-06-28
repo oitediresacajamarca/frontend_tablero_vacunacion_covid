@@ -22,6 +22,7 @@ import * as exporting from 'highcharts/modules/exporting.src';
 import { JeringaComponent } from './componentes/svgs/jeringa/jeringa.component';
 import { CoberturasComponent } from './coberturas/coberturas.component';
 import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
+import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
     JeringaComponent,
     CoberturasComponent,
     MapaSelectorDirective,
+    ContenerdorTableroComponent,
   
   ],
   imports: [

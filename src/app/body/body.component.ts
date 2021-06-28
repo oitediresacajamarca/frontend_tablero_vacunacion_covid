@@ -1,7 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { CuboService } from '../servicios/cubo.service';
 import * as Highcharts from 'highcharts';
 import { Chart } from 'angular-highcharts';
+import { JeringaComponent } from '../componentes/svgs/jeringa/jeringa.component';
+import * as moment from 'moment';
+import { DepartamentoCajamarcaComponent } from '../componentes/svgs/departamento-cajamarca/departamento-cajamarca.component';
 
 
 
@@ -13,7 +16,7 @@ import { Chart } from 'angular-highcharts';
 export class BodyComponent implements OnInit {
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
-  total_dosis: number = 0
+  total_dosis: number = 0;
   vacunados_hoy: number = 0;
   Highcharts: typeof Highcharts = Highcharts;
   updateFlag = true
@@ -25,7 +28,12 @@ export class BodyComponent implements OnInit {
 
   meta: number = 0
   avance: number = 0
-  cobertura: string='0'
+  cobertura: string = '0'
+
+  @ViewChild('jeringa')
+  jeringa: JeringaComponent = new JeringaComponent();
+  @ViewChild('mapa_cajamarca')
+  mapa_cajamarca!: DepartamentoCajamarcaComponent ;
 
 
   datos_tablas: any[] = []
@@ -33,7 +41,7 @@ export class BodyComponent implements OnInit {
   //filtros
   provincia_selecionada: string = ''
   dosis_selecionada: string = ''
-  grupo_edad_seleccionado = ''
+  grupo_edad_seleccionado = '1ª dosis'
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = ''
 
@@ -87,150 +95,43 @@ export class BodyComponent implements OnInit {
 
   opciones_linea_tiempo: any = {
     chart: {
-      type: 'spline',
-      scrollablePlotArea: {
-        minWidth: 600,
-        scrollPositionX: 1
-      }
+      type: 'line'
     },
     title: {
-      text: 'Vacunacion Diaria',
-      align: 'left'
-    },
-    subtitle: {
-      text: '13th & 14th of February, 2018 at two locations in Vik i Sogn, Norway',
-      align: 'left'
-    },
+      text: ''
+    }
+    ,
     xAxis: {
-      type: 'datetime',
-      labels: {
-        overflow: 'justify'
-      }
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
     yAxis: {
       title: {
-        text: 'Dosis Aplicadas por dia'
-      },
-      minorGridLineWidth: 0,
-      gridLineWidth: 0,
-      alternateGridColor: null,
-      plotBands: [{ // Light air
-        from: 0.3,
-        to: 1.5,
-        color: 'rgba(68, 170, 213, 0.1)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // Light breeze
-        from: 1.5,
-        to: 3.3,
-        color: 'rgba(0, 0, 0, 0)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // Gentle breeze
-        from: 3.3,
-        to: 5.5,
-        color: 'rgba(68, 170, 213, 0.1)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // Moderate breeze
-        from: 5.5,
-        to: 8,
-        color: 'rgba(0, 0, 0, 0)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // Fresh breeze
-        from: 8,
-        to: 11,
-        color: 'rgba(68, 170, 213, 0.1)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // Strong breeze
-        from: 11,
-        to: 14,
-        color: 'rgba(0, 0, 0, 0)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }, { // High wind
-        from: 14,
-        to: 15,
-        color: 'rgba(68, 170, 213, 0.1)',
-        label: {
-
-          style: {
-            color: '#606060'
-          }
-        }
-      }]
-    },
-    tooltip: {
-      valueSuffix: ' dosis/dia'
+        text: 'Cantidad de Dosis'
+      }
     },
     plotOptions: {
-      spline: {
-        lineWidth: 4,
-        states: {
-          hover: {
-            lineWidth: 5
-          }
+      line: {
+        dataLabels: {
+          enabled: true
         },
-        marker: {
-          enabled: false
-        },
-        pointInterval: 3600000 * 24, // one hour
-        pointStart: Date.UTC(2018, 1, 13, 0, 0, 0)
-      }
+        enableMouseTracking: false
+
+      },
+      lineWidth: 6
     },
     series: [{
-      name: '1ra Dosis',
-      data: [
-        3.7, 3.3, 3.9, 5.1, 3.5, 3.8, 4.0, 5.0, 6.1, 3.7, 3.3, 6.4,
-        6.9, 6.0, 6.8, 4.4, 4.0, 3.8, 5.0, 4.9, 9.2, 9.6, 9.5, 6.3,
-        9.5, 10.8, 14.0, 11.5, 10.0, 10.2, 10.3, 9.4, 8.9, 10.6, 10.5, 11.1,
-        10.4, 10.7, 11.3, 10.2, 9.6, 10.2, 11.1, 10.8, 13.0, 12.5, 12.5, 11.3,
-        10.1
-      ]
-
+      name: '1 dosis',
+      data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+      lineWidth: 4,
+      color: '#FF0000'
     }, {
-      name: '2da Dosis',
-      data: [
-        0.2, 0.1, 0.1, 0.1, 0.3, 0.2, 0.3, 0.1, 0.7, 0.3, 0.2, 0.2,
-        0.3, 0.1, 0.3, 0.4, 0.3, 0.2, 0.3, 0.2, 0.4, 0.0, 0.9, 0.3,
-        0.7, 1.1, 1.8, 1.2, 1.4, 1.2, 0.9, 0.8, 0.9, 0.2, 0.4, 1.2,
-        0.3, 2.3, 1.0, 0.7, 1.0, 0.8, 2.0, 1.2, 1.4, 3.7, 2.1, 2.0,
-        1.5
-      ]
-    }],
-    navigation: {
-      menuItemStyle: {
-        fontSize: '10px'
-      }
-    }
-  }
+      name: '2 dosis',
+      data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8],
+      color: '#0000ff',
+      lineWidth: 4,
 
+    }]
+  }
 
 
 
@@ -268,10 +169,14 @@ export class BodyComponent implements OnInit {
     series: [
       {
         name: 'PRIMERA DOSIS',
-        data: [5, 3, 4, 7, 2, 9]
+        data: [5, 3, 4, 7, 2, 9],
+        lineWidth: 4,
+        color: '#FF0000'
+
       }, {
         name: 'SEGUNDA DOSIS',
-        data: [2, 2, 3, 2, 1, 15]
+        data: [2, 2, 3, 2, 1, 15],
+        color: '#0000FF'
       }
     ]
   }
@@ -281,10 +186,14 @@ export class BodyComponent implements OnInit {
 
 
 
-  constructor(private cubo: CuboService) { }
+  constructor(private cubo: CuboService) {
+
+  }
 
   async ngOnInit(): Promise<void> {
 
+this.grupo_edad_seleccionado='1ª dosis'
+this.seleciono_grupo_vacunacion()
 
 
     this.cargar_1ra_dosis()
@@ -345,7 +254,7 @@ export class BodyComponent implements OnInit {
 
       this.donut = new Chart(this.opciones_pie)
 
-    
+
     })
 
 
@@ -355,36 +264,41 @@ export class BodyComponent implements OnInit {
 
   cargar_linea_tiempo() {
     let datos: any[] = []
-    let dosis_1:any[]=[]
-    let dosis_2:any[]=[]
+    let dosis_1: any[] = []
+    let dosis_2: any[] = []
+    let axis: any[] = []
 
-    
+
     this.cubo.devolver_linea_tiempo().subscribe(respuesta => {
-      datos = respuesta.data
-      dosis_1=   datos.filter(dato=>{
-return dato['VACUNADOSCovid.dosisAplicada']=='1ª dosis'
 
-      }).map(dato=>{
+      let dat: any[] = respuesta.data
 
-     return   dato['VACUNADOSCovid.count']
+
+      axis = dat.map(resp => {
+
+        return moment(new Date(resp['VACUNADOSCovid.fechaVacunacion.day'])).format('DD/MM/YYYY');
+
       })
 
-      dosis_2=   datos.filter(dato=>{
-        return dato['VACUNADOSCovid.dosisAplicada']=='2ª dosis'
-        
-              }).map(dato=>{
-        
-             return   dato['VACUNADOSCovid.count']
-              })
+      dosis_1 = dat.map(resp => {
 
-console.log(dosis_1)
+        return resp['VACUNADOSCovid.dosis_1']
 
-      this.opciones_linea_tiempo.series[0].data=dosis_1
-      this.opciones_linea_tiempo.series[1].data=dosis_2
+      })
+
+      dosis_2 = dat.map(resp => {
+
+        return resp['VACUNADOSCovid.dosis_2']
+
+      })
+
+      this.opciones_linea_tiempo.xAxis.categories = axis
+      this.opciones_linea_tiempo.series[0].data = dosis_1
+      this.opciones_linea_tiempo.series[1].data = dosis_2
+
+      this.linea_tiempo = new Chart(this.opciones_linea_tiempo)
 
 
-      this.linea_tiempo = new Chart(this.opciones_linea_tiempo)      
-      console.log(this.opciones_linea_tiempo)
     })
 
 
@@ -533,6 +447,10 @@ console.log(dosis_1)
 
 
 
+  ngAfterViewInit() {
+    console.log(this.jeringa)
+
+  }
 
 
 
@@ -555,12 +473,15 @@ console.log(dosis_1)
 
 
   selecciono_provincia() {
-    console.log(this.provincia_selecionada )
-    let filtro: any[] = []
-    if (this.provincia_selecionada != 'TODOS') {
-      filtro = [this.provincia_selecionada]
+  //  this.mapa_cajamarca.seleccionar_provincia(this.provincia_selecionada)
 
+    let filtro: any[] = []
+    if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+      filtro = []
+    } else {
+      filtro = [this.provincia_selecionada]
     }
+
     this.cubo.query_dosis.filters[0].values = filtro
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
@@ -570,11 +491,13 @@ console.log(dosis_1)
     this.cubo.query_dosis_grupo_riesgo.filters[0].values = filtro
     this.cargarDatosPie()
     this.cargar_stacked()
-    this.cubo.query_meta.filters[2].values=filtro
+    this.cubo.query_meta.filters[2].values = filtro
     this.cargar_cobertura()
 
+    this.cubo.query_time_line.filters[0].values = filtro
+
     this.cargar_linea_tiempo()
-  
+
 
   }
 
@@ -608,11 +531,12 @@ console.log(dosis_1)
 
 
     let filtro: any[] = []
-    if (this.grupo_edad_seleccionado != 'TODOS') {
-      filtro = [this.grupo_edad_seleccionado]
+    if (this.grupo_edad_seleccionado == 'TODOS' || this.grupo_edad_seleccionado == '') {
+      filtro = []
 
     } else {
-      filtro = []
+
+      filtro = [this.grupo_edad_seleccionado]
     }
 
 
@@ -627,8 +551,10 @@ console.log(dosis_1)
 
     this.cubo.query_stack_general.filters[0].values = filtro
     this.cargar_stacked()
-    this.cubo.query_meta.filters[1].values=filtro
+    this.cubo.query_meta.filters[1].values = filtro
     this.cargar_cobertura()
+    this.cubo.query_time_line.filters[1].values = filtro
+    this.cargar_linea_tiempo()
 
 
   }
@@ -637,12 +563,13 @@ console.log(dosis_1)
   seleciono_fabricante() {
 
     let filtro: any[] = []
-    if (this.fabricante_selecionado != 'TODOS') {
+    if (this.fabricante_selecionado == 'TODOS' || this.fabricante_selecionado == '') {
+
+      filtro = []
+    } else {
+
       filtro = [this.fabricante_selecionado]
 
-
-    } else {
-      filtro = []
     }
 
 
@@ -658,6 +585,10 @@ console.log(dosis_1)
 
     this.cubo.query_stack_general.filters[1].values = filtro
     this.cargar_stacked()
+
+    this.cargar_cobertura()
+    this.cubo.query_time_line.filters[2].values = filtro
+    this.cargar_linea_tiempo()
 
 
 
@@ -679,12 +610,13 @@ console.log(dosis_1)
   seleciono_grupo_vacunacion() {
 
     let filtro: any[] = []
-    if (this.grupo_vacunacion_selecionado != 'TODOS') {
-      filtro = [this.grupo_vacunacion_selecionado]
+    if (this.grupo_vacunacion_selecionado == 'TODOS' || this.grupo_vacunacion_selecionado == '') {
 
+      filtro = []
 
     } else {
-      filtro = []
+
+      filtro = [this.grupo_vacunacion_selecionado]
     }
 
 
@@ -693,13 +625,18 @@ console.log(dosis_1)
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_dosis_total()
-    this.cubo.query_vacunados_hoy.filters[4].values = filtro
+    this.cubo.query_vacunados_hoy.filters[5].values = filtro
     this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[5].values = filtro
+    this.cubo.query_dosis_grupo_riesgo.filters[4].values = filtro
     this.cargarDatosPie()
 
     this.cubo.query_stack_general.filters[2].values = filtro
     this.cargar_stacked()
+    this.cubo.query_meta.filters[0].values = filtro
+    console.log(this.cubo.query_meta)
+    this.cargar_cobertura()
+    this.cubo.query_time_line.filters[3].values = filtro
+    this.cargar_linea_tiempo()
 
 
   }
@@ -736,9 +673,8 @@ console.log(dosis_1)
   cargar_cobertura() {
     this.cubo.devolver_meta().subscribe(respuesta => {
 
-      console.log(respuesta)
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-      if (this.dosis_selecionada == 'TODOS') {
+      if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
         this.meta = this.meta * 2
 
       }
@@ -758,13 +694,10 @@ console.log(dosis_1)
 
       }
 
-      console.log ( this.avance )
-      console.log ( this.meta )
 
-console.log(  ( this.avance )/ (this.meta))
-      this.cobertura =  (( this.avance )*100/ (this.meta)).toPrecision(3)
+      this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
 
-
+      this.jeringa.setCobertura(parseFloat(this.cobertura))
 
 
 
@@ -773,10 +706,10 @@ console.log(  ( this.avance )/ (this.meta))
   }
 
 
-  mapa_seleciono(event:string){
+  mapa_seleciono(event: string) {
     console.log(event)
 
-    this.provincia_selecionada=event;
+    this.provincia_selecionada = event;
     this.selecciono_provincia()
 
   }

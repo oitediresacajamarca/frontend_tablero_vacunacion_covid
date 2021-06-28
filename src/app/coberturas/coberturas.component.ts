@@ -3,6 +3,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CuboService } from '../servicios/cubo.service';
 import * as Highcharts from 'highcharts';
 import { Chart } from 'angular-highcharts';
+import { CuboCoberturasService } from '../servicios/cubo-coberturas.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class CoberturasComponent implements OnInit {
 
   meta: number = 0
   avance: number = 0
-  cobertura: string='0'
+  cobertura: string = '0'
 
 
   datos_tablas: any[] = []
@@ -43,6 +45,13 @@ export class CoberturasComponent implements OnInit {
   //eventos
 
   @Output() seleciono_provincia = new EventEmitter<string>()
+  mapa_seleciono(event: string) {
+
+
+    this.provincia_selecionada = event;
+    this.selecciono_provincia()
+
+  }
 
   update() {
 
@@ -88,25 +97,16 @@ export class CoberturasComponent implements OnInit {
 
   opciones_linea_tiempo: any = {
     chart: {
-      type: 'spline',
-      scrollablePlotArea: {
-        minWidth: 600,
-        scrollPositionX: 1
-      }
+      type: 'line'
     },
+
     title: {
-      text: 'Vacunacion Diaria',
+      text: '',
       align: 'left'
     },
-    subtitle: {
-      text: '13th & 14th of February, 2018 at two locations in Vik i Sogn, Norway',
-      align: 'left'
-    },
+
     xAxis: {
-      type: 'datetime',
-      labels: {
-        overflow: 'justify'
-      }
+
     },
     yAxis: {
       title: {
@@ -191,18 +191,12 @@ export class CoberturasComponent implements OnInit {
       valueSuffix: ' dosis/dia'
     },
     plotOptions: {
-      spline: {
-        lineWidth: 4,
-        states: {
-          hover: {
-            lineWidth: 5
-          }
+      line: {
+        dataLabels: {
+          enabled: true
         },
-        marker: {
-          enabled: false
-        },
-        pointInterval: 3600000 * 24, // one hour
-        pointStart: Date.UTC(2018, 1, 13, 0, 0, 0)
+        enableMouseTracking: false
+
       }
     },
     series: [{
@@ -282,20 +276,21 @@ export class CoberturasComponent implements OnInit {
 
 
 
-  constructor(private cubo: CuboService) { }
+  constructor(private cubo: CuboCoberturasService, private cubo_mae: CuboService) { }
 
   async ngOnInit(): Promise<void> {
 
 
 
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
-    this.cargar_dosis_total()
-    this.cargar_vacunacion_hoy()
+    this.cargar_dosis()
+
+
     this.cargar_provincias()
     this.cargar_grupos_vacunacion()
 
     await this.cargar_Datos_stacked_provincias()
+
+
     this.cargarDatosPie()
     this.cargar_linea_tiempo()
     this.cargar_cobertura()
@@ -305,150 +300,222 @@ export class CoberturasComponent implements OnInit {
 
   }
 
-  cargar_1ra_dosis() {
-    this.cubo.devolver_total_por_dosis(['1ª dosis']).subscribe(respuesta => {
+  cargar_dosis() {
 
-      this.total_1_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
-    })
+    this.cubo.devolver_total_dosis_1().subscribe(
+      respuesta => {
+        console.log(this.cubo.query_avance_dosis_1)
+        console.log(respuesta)
+        let avance_1 = respuesta.data[0]['VACUNADOSCovid.dosis_1']
+        let avance_2 = respuesta.data[0]['VACUNADOSCovid.dosis_2']
+        let tot = respuesta.data[0]['VACUNADOSCovid.count']
+
+
+        this.cubo.devolver_meta_dosis().subscribe(respuesta_meta => {
+
+          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+          console.log(meta)
+
+          this.total_1_dosis = avance_1 / meta;
+          this.total_2_dosis = avance_2 / meta;
+          this.total_dosis = tot / (meta * 2);
+          this.meta = meta * 2
+
+
+        })
+
+
+
+
+
+      }
+    )
+
   }
+
 
 
   cargar_2da_dosis() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis']).subscribe(respuesta => {
 
-      this.total_2_dosis = respuesta.data[0]['VACUNADOSCovid.count']
-
-    })
   }
 
   cargar_dosis_total() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis']).subscribe(respuesta => {
 
-      this.total_dosis = respuesta.data[0]['VACUNADOSCovid.count']
-
-    })
   }
 
-  cargarDatosPie() {
-
-    this.donut = new Chart(this.opciones_pie)
-
-    this.cubo.devolver_dosis_por_grupo().subscribe(respuesta => {
-
-      let res: any[] = respuesta.data
-      this.opciones_pie.series[0].data = res.map(grupo => {
-        return [grupo['VACUNADOSCovid.gruporiesgo'], grupo['VACUNADOSCovid.count']]
-
+  cargar_vacunacion_hoy() {
+    this.cubo.devolver_dosis_hoy().subscribe(respuesta => {
+      let avance_hoy = respuesta.data[0]['VACUNADOSCovid.count']
+      this.cubo.devolver_meta_dosis().subscribe(met => {
+        let meta = met.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+        this.vacunados_hoy = avance_hoy / meta
       })
 
 
-      this.donut = new Chart(this.opciones_pie)
-
-    
     })
-
-
 
   }
 
-
-  cargar_linea_tiempo() {
-    let datos: any[] = []
-    let dosis_1:any[]=[]
-    let dosis_2:any[]=[]
-
-    
-    this.cubo.devolver_linea_tiempo().subscribe(respuesta => {
-      datos = respuesta.data
-      dosis_1=   datos.filter(dato=>{
-return dato['VACUNADOSCovid.dosisAplicada']=='1ª dosis'
-
-      }).map(dato=>{
-
-     return   dato['VACUNADOSCovid.count']
-      })
-
-      dosis_2=   datos.filter(dato=>{
-        return dato['VACUNADOSCovid.dosisAplicada']=='2ª dosis'
-        
-              }).map(dato=>{
-        
-             return   dato['VACUNADOSCovid.count']
-              })
-
-console.log(dosis_1)
-
-      this.opciones_linea_tiempo.series[0].data=dosis_1
-      this.opciones_linea_tiempo.series[1].data=dosis_2
-
-
-      this.linea_tiempo = new Chart(this.opciones_linea_tiempo)      
-      console.log(this.opciones_linea_tiempo)
-    })
-
-
-  }
 
   async cargar_Datos_stacked_provincias() {
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
+    let categ: any[] = []
+    let ambitos: any[]
+    console.log(this.cubo.query_meta_dosis)
+
+    let respuesta = await this.cubo.devolver_dosis_por_aambito().toPromise()
+
+    let datos: any[] = respuesta.data
 
 
-    await this.cubo.devolver_dosis_ambito('TODOS').subscribe(respuesta => {
+    categ = datos.map(dato => {
 
-      console.log(respuesta)
-      let categorias = []
-      let
-        datos: any[] = respuesta.data
-
-
-
-      categorias = datos.map(data => {
-
-        return data['VACUNADOSCovid.provinciaEstablecimiento']
-
-      }).filter(
-        (item, index, arr) => {
-          return arr.indexOf(item) == index
-        })
-      this.opciones.xAxis.categories = categorias
+      return dato['VACUNADOSCovid.provinciaEstablecimiento']
 
 
 
+    })
 
 
-      categorias.map(depa => {
-        primeras_dosis.push(datos.filter((dos) => {
-
-          return dos['VACUNADOSCovid.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '1ª dosis'
-
-        }).map(fil => {
-          return fil['VACUNADOSCovid.count']
-        }))
+    primeras_dosis = await Promise.all(datos.map(async dato => {
+      let filtro: any = {}
+      Object.assign(filtro, this.cubo.query_meta_dosis)
 
 
-        segunda_dosis.push(datos.filter((dos) => {
+      filtro.filters[0].values = [dato['VACUNADOSCovid.provinciaEstablecimiento']]
 
-          return dos['VACUNADOSCovid.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '2ª dosis'
-
-        }).map(fil => {
-          return fil['VACUNADOSCovid.count']
-        }))
+      let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
 
 
+      return dato['VACUNADOSCovid.dosis_1'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+
+
+
+    }))
+
+    segunda_dosis = await Promise.all(datos.map(async dato => {
+      let filtro: any = {}
+      Object.assign(filtro, this.cubo.query_meta_dosis)
+
+      filtro.filters[0].values = [dato['VACUNADOSCovid.provinciaEstablecimiento']]
+
+      let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
+
+      return dato['VACUNADOSCovid.dosis_2'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+
+
+
+    }))
+
+    this.opciones.xAxis.categories = categ
+    this.opciones.series[0].data = primeras_dosis
+    this.opciones.series[1].data = segunda_dosis
+
+    this.chart = new Chart(this.opciones)
+
+    await this.cargar_datos_tabla()
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+  async cargar_Datos_stacked_ambito(ambito_param: string, filtro: any) {
+    let primeras_dosis: any[] = []
+    let segunda_dosis: any[] = []
+    let categ: any[] = []
+
+
+
+
+    let respuesta = await this.cubo.devolver_dosis_por_aambito().toPromise()
+
+    let datos: any[] = respuesta.data
+
+
+
+    categ = datos.map(dato => {
+
+      return dato[ambito_param]
+
+
+    })
+
+    let dimesion_meta = '"DISTRIBUCIONGeograficaMeta.provincia"'
+
+    if (ambito_param == 'VACUNADOSCovid.distritoEstablecimiento') {
+      dimesion_meta = 'DISTRIBUCIONGeograficaMeta.distrito'
+    } else {
+
+    }
+
+
+    this.cubo.query_meta_dosis_ambito.dimensions[0] = dimesion_meta
+    this.cubo.query_meta_dosis_ambito.filters[0].values = filtro
+
+
+    let respuesta_ambitos = await this.cubo.devolver_meta_ambitos().toPromise()
+    let metas_ambitos: any[] = respuesta_ambitos.data
+
+
+    primeras_dosis = datos.map(dato => {
+
+
+      let fill = metas_ambitos.filter(meta => {
+
+
+        return meta[dimesion_meta] == dato[ambito_param] && meta[dimesion_meta] != undefined
       })
 
+      if (fill[0] != undefined) {
+        return dato['VACUNADOSCovid.dosis_1'] / fill[0]['DISTRIBUCIONGeograficaMeta.meta']
+      }
+      else {
+        return 0
+
+      }
 
 
-      this.opciones.series[1].data = segunda_dosis
-      this.opciones.series[0].data = primeras_dosis
+
+
+    })
 
 
 
 
-      this.chart = new Chart(this.opciones)
-      this.cargar_datos_tabla()
+
+    segunda_dosis = datos.map(dato => {
+
+
+      let fill = metas_ambitos.filter(meta => {
+
+
+        return meta[dimesion_meta] == dato[ambito_param] && meta[dimesion_meta] != undefined
+      })
+
+      if (fill[0] != undefined) {
+        return dato['VACUNADOSCovid.dosis_2'] / fill[0]['DISTRIBUCIONGeograficaMeta.meta']
+      }
+      else {
+        return 0
+
+      }
+
+
+
 
     })
 
@@ -457,7 +524,106 @@ console.log(dosis_1)
 
 
 
+      /*  primeras_dosis = await Promise.all(datos.map(async dato => {
+          let filtro :any= {}
+          Object.assign(filtro,this.cubo.query_meta_dosis)
+          console.log(this.cubo.query_meta_dosis)
+    
+          filtro.filters[0].values = [dato[ambito_param]]
+          console.log(filtro)
+    
+          let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
+    
+    
+          return dato['VACUNADOSCovid.dosis_1'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+    
+    
+    
+    
+        }))
+    
+        segunda_dosis = await Promise.all(datos.map(async dato => {
+          let filtro :any= {}
+          Object.assign(filtro,this.cubo.query_meta_dosis)
+    
+          filtro.filters[0].values = [dato[ambito_param]]
+    
+          let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
+    
+          return dato['VACUNADOSCovid.dosis_2'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+    
+    
+    
+    
+        }))
+    
+    */    this.opciones.xAxis.categories = categ
+    this.opciones.series[0].data = primeras_dosis
+    this.opciones.series[1].data = segunda_dosis
+
+    this.chart = new Chart(this.opciones)
+
+    await this.cargar_datos_tabla()
+
+
   }
+
+
+  async cargarDatosPie() {
+
+    let respuesta_avance = await this.cubo.devolver_pie().toPromise()
+    let datos: any[] = respuesta_avance.data
+
+    let serie = datos.map(data => {
+      return [data['VACUNADOSCovid.grupo_vacunacion'], data['VACUNADOSCovid.count']]
+
+    })
+    this.opciones_pie.series[0].data = serie
+
+    this.donut = new Chart(this.opciones_pie)
+
+
+  }
+
+
+  async cargar_linea_tiempo() {
+    let datos: any[] = []
+    let dosis_1: any[] = []
+    let dosis_2: any[] = []
+    let linea = await this.cubo.devolver_linea_tiempo_avance().toPromise()
+    let avances: any[] = linea.data
+
+    let resp = await this.cubo.devolver_meta_dosis().toPromise()
+    let meta = resp.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+    let categorias = avances.map(avance => {
+
+
+
+      return moment(avance['VACUNADOSCovid.fechaVacunacion.day']).format('DD MM YYYY');
+    })
+
+
+    console.log(categorias)
+    let cobertura_1 = avances.map(avance => {
+
+      return avance['VACUNADOSCovid.dosis_1'] * 100 / meta
+    })
+
+    let cobertura_2 = avances.map(avance => {
+      return avance['VACUNADOSCovid.dosis_2'] * 100 / meta
+    })
+
+    this.opciones_linea_tiempo.xAxis.categories = categorias
+    this.opciones_linea_tiempo.series[0].data = cobertura_1
+    this.opciones_linea_tiempo.series[1].data = cobertura_2
+    console.log(this.opciones_linea_tiempo)
+
+    this.linea_tiempo = new Chart(this.opciones_linea_tiempo)
+
+  }
+
+
 
 
   async cargar_Datos_stacked_distritos() {
@@ -465,64 +631,8 @@ console.log(dosis_1)
     let segunda_dosis: any[] = []
 
 
-    await this.cubo.devolver_dosis_ambito(this.provincia_selecionada).subscribe(respuesta => {
 
 
-      let categorias = []
-      let
-        datos: any[] = respuesta.data
-
-
-
-      categorias = datos.map(data => {
-
-        return data['VACUNADOSCovid.distritoEstablecimiento']
-
-      }).filter(
-        (item, index, arr) => {
-          return arr.indexOf(item) == index
-        })
-      this.opciones.xAxis.categories = categorias
-
-
-
-
-
-      categorias.map(depa => {
-        primeras_dosis.push(datos.filter((dos) => {
-
-          return dos['VACUNADOSCovid.distritoEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '1ª dosis'
-
-        }).map(fil => {
-          return fil['VACUNADOSCovid.count']
-        }))
-
-
-        segunda_dosis.push(datos.filter((dos) => {
-
-          return dos['VACUNADOSCovid.distritoEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '2ª dosis'
-
-        }).map(fil => {
-          return fil['VACUNADOSCovid.count']
-        }))
-
-
-      })
-
-
-
-      this.opciones.series[1].data = segunda_dosis
-      this.opciones.series[0].data = primeras_dosis
-
-
-
-      this.chart.destroy()
-      this.chart = new Chart(this.opciones)
-
-      this.cargar_datos_tabla()
-
-
-    })
 
 
 
@@ -536,14 +646,10 @@ console.log(dosis_1)
 
 
 
-  cargar_vacunacion_hoy() {
-    this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {
-      this.vacunados_hoy = respuesta.data[0]['VACUNADOSCovid.count']
-    })
-  }
+
 
   cargar_provincias() {
-    this.cubo.devolver_maestro_provincias().subscribe(respuesta => {
+    this.cubo_mae.devolver_maestro_provincias().subscribe(respuesta => {
 
       let prov: any[] = respuesta.data
       this.provincias = prov.map(p => {
@@ -551,29 +657,48 @@ console.log(dosis_1)
       })
 
     })
+
   }
 
 
-  selecciono_provincia() {
-    let filtro: any[] = []
-    if (this.provincia_selecionada != 'TODOS') {
-      filtro = [this.provincia_selecionada]
+  dimension: string = 'VACUNADOSCovid.provinciaEstablecimiento'
+  filtro: any = []
 
+  selecciono_provincia() {
+
+
+    let dimension: string = 'VACUNADOSCovid.provinciaEstablecimiento'
+    if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+      this.filtro = []
+      this.dimension = 'VACUNADOSCovid.provinciaEstablecimiento'
+
+    } else {
+      this.filtro = [this.provincia_selecionada]
+      this.dimension = 'VACUNADOSCovid.distritoEstablecimiento'
     }
-    this.cubo.query_dosis.filters[0].values = filtro
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
-    this.cargar_dosis_total()
-    this.cubo.query_vacunados_hoy.filters[0].values = filtro
-    this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[0].values = filtro
+    this.cubo.query_avance_dosis_1.filters[0].values = this.filtro
+    this.cubo.query_meta_dosis_ambito.filters[0].values = this.filtro
+    this.cubo.query_meta_dosis.filters[0].values = this.filtro
+
+    this.cargar_dosis()
+
+    this.cubo.query_pie_avance.filters[4].values = this.filtro
+
+
     this.cargarDatosPie()
-    this.cargar_stacked()
-    this.cubo.query_meta.filters[2].values=filtro
+    this.cubo.query_avance_stack.dimensions[0] = this.dimension
+    this.cubo.query_avance_stack.filters[1].values = this.filtro
+
+    console.log(this.cubo.query_avance_stack)
+
+    this.cargar_stacked(this.dimension, this.filtro)
+
     this.cargar_cobertura()
 
+
+
     this.cargar_linea_tiempo()
-  
+
 
   }
 
@@ -590,9 +715,9 @@ console.log(dosis_1)
 
 
 
-    this.cubo.query_vacunados_hoy.filters[2].values = filtro
+
     this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[1].values = filtro
+
 
 
     this.cargarDatosPie()
@@ -605,7 +730,7 @@ console.log(dosis_1)
 
   selecciono_edad() {
 
-
+let  filtro_provinica:any
     let filtro: any[] = []
     if (this.grupo_edad_seleccionado != 'TODOS') {
       filtro = [this.grupo_edad_seleccionado]
@@ -614,21 +739,33 @@ console.log(dosis_1)
       filtro = []
     }
 
+    this.cubo.query_avance_dosis_1.filters[2].values = filtro
+    this.cubo.query_meta_dosis.filters[2].values=filtro
 
-    this.cubo.query_dosis.filters[2].values = filtro
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
-    this.cargar_dosis_total()
-    this.cubo.query_vacunados_hoy.filters[3].values = filtro
-    this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[2].values = filtro
-    this.cargarDatosPie()
 
-    this.cubo.query_stack_general.filters[0].values = filtro
-    this.cargar_stacked()
-    this.cubo.query_meta.filters[1].values=filtro
-    this.cargar_cobertura()
+    
+    if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+      filtro_provinica = []
+    } else {
 
+      filtro_provinica = [this.fabricante_selecionado]
+    }
+
+    this.cubo.query_meta_dosis.filters[0].values = filtro_provinica
+
+
+    this.cargar_dosis()
+    /* this.cargar_2da_dosis()
+     this.cargar_dosis_total()
+ 
+     this.cargar_vacunacion_hoy()
+ 
+     this.cargarDatosPie()
+ 
+     this.cargar_stacked(this.dimension, this.filtro)
+ 
+     this.cargar_cobertura()
+ */
 
   }
 
@@ -636,27 +773,31 @@ console.log(dosis_1)
   seleciono_fabricante() {
 
     let filtro: any[] = []
-    if (this.fabricante_selecionado != 'TODOS') {
-      filtro = [this.fabricante_selecionado]
-
-
-    } else {
+    let filtro_provinica: any[] = []
+    if (this.fabricante_selecionado == 'TODOS' || this.fabricante_selecionado == '') {
       filtro = []
+    } else {
+
+      filtro = [this.fabricante_selecionado]
     }
 
+    this.cubo.query_avance_dosis_1.filters[1].values = filtro
+
+    if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+      filtro_provinica = []
+    } else {
+
+      filtro_provinica = [this.fabricante_selecionado]
+    }
+
+    this.cubo.query_meta_dosis.filters[0].values = filtro_provinica
+    this.cargar_dosis()
 
 
-    this.cubo.query_dosis.filters[3].values = filtro
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
-    this.cargar_dosis_total()
-    this.cubo.query_vacunados_hoy.filters[4].values = filtro
-    this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[3].values = filtro
-    this.cargarDatosPie()
 
-    this.cubo.query_stack_general.filters[1].values = filtro
-    this.cargar_stacked()
+
+
+    //this.cargar_stacked(this.dimension, this.filtro)
 
 
 
@@ -667,7 +808,7 @@ console.log(dosis_1)
 
     let datos: any[]
 
-    this.cubo.devolver_maestro_grupos_vacunacion().subscribe(respuesta => {
+    this.cubo_mae.devolver_maestro_grupos_vacunacion().subscribe(respuesta => {
       datos = respuesta.data
       this.grupos_vacunacion = datos.map(dato => {
         return dato['VACUNADOSCovid.grupo_vacunacion']
@@ -678,38 +819,49 @@ console.log(dosis_1)
   seleciono_grupo_vacunacion() {
 
     let filtro: any[] = []
-    if (this.grupo_vacunacion_selecionado != 'TODOS') {
-      filtro = [this.grupo_vacunacion_selecionado]
-
+    let filtro_provinica: any[] = []
+    if (this.grupo_vacunacion_selecionado == 'TODOS' || this.grupo_vacunacion_selecionado == '') {
+    
+      filtro = []
 
     } else {
-      filtro = []
+    
+      filtro = [this.grupo_vacunacion_selecionado]
     }
 
 
+    this.cubo.query_avance_dosis_1.filters[3].values = filtro
 
-    this.cubo.query_dosis.filters[4].values = filtro
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
+
+    if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+      filtro_provinica = []
+    } else {
+
+      filtro_provinica = [this.fabricante_selecionado]
+    }
+
+    this.cubo.query_meta_dosis.filters[0].values = filtro_provinica
+    this.cubo.query_meta_dosis.filters[3].values = filtro
+    
+
+    this.cargar_dosis()
+    /*this.cargar_2da_dosis()
     this.cargar_dosis_total()
-    this.cubo.query_vacunados_hoy.filters[4].values = filtro
+
     this.cargar_vacunacion_hoy()
-    this.cubo.query_dosis_grupo_riesgo.filters[5].values = filtro
+
     this.cargarDatosPie()
 
-    this.cubo.query_stack_general.filters[2].values = filtro
-    this.cargar_stacked()
+
+    this.cargar_stacked(this.dimension, this.filtro)*/
 
 
   }
 
-  async cargar_stacked() {
-    if (this.provincia_selecionada != 'TODOS' && this.provincia_selecionada != '') {
-      await this.cargar_Datos_stacked_distritos().then(() => { this.cargar_datos_tabla() })
+  async cargar_stacked(dimension: string, filtro: any) {
 
-    } else {
-      await this.cargar_Datos_stacked_provincias().then(() => { this.cargar_datos_tabla() })
-    }
+
+    this.cargar_Datos_stacked_ambito(dimension, filtro)
 
 
 
@@ -720,11 +872,15 @@ console.log(dosis_1)
   async cargar_datos_tabla() {
 
     let data: any[] = this.opciones.xAxis.categories
+    console.log(this.opciones.series[0].data)
+
     this.datos_tablas = data.map((dato, index) => {
 
-      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0] }
+
+      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index], segunda_dosis: this.opciones.series[1].data[index] }
     })
 
+    console.log(this.datos_tablas)
 
 
     return 1
@@ -733,7 +889,7 @@ console.log(dosis_1)
 
 
   cargar_cobertura() {
-    this.cubo.devolver_meta().subscribe(respuesta => {
+    this.cubo_mae.devolver_meta().subscribe(respuesta => {
 
       console.log(respuesta)
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
@@ -757,11 +913,9 @@ console.log(dosis_1)
 
       }
 
-      console.log ( this.avance )
-      console.log ( this.meta )
 
-console.log(  ( this.avance )/ (this.meta))
-      this.cobertura =  (( this.avance )*100/ (this.meta)).toPrecision(3)
+      console.log((this.avance) / (this.meta))
+      this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
 
 
 

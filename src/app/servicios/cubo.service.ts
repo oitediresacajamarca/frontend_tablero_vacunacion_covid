@@ -9,6 +9,76 @@ var moment = require('moment'); // require
 })
 export class CuboService {
 
+  query_meta_cobertura_fil_ambito:any={
+    "measures": [
+      "DISTRIBUCIONGeograficaMeta.meta"
+    ],
+    "timeDimensions": [],
+    "order": {},
+    "dimensions": ["DISTRIBUCIONGeograficaMeta.provincia"],
+    "filters": [
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.provincia",
+        "operator": "contains",
+        "values": [
+     
+        ]
+      },
+      {
+        "member": "DISTRIBUCIONGeograficaMeta.distrito",
+        "operator": "contains",
+        "values": [
+   
+        ]
+      }
+    ]
+  }
+
+
+  query_avance_cobertura_por_ambito:any={
+    "measures": [
+      "VACUNADOSCovid.dosis_1",
+      "VACUNADOSCovid.dosis_2"
+    ],
+    "timeDimensions": [],
+    "order": {
+      "VACUNADOSCovid.dosis_1": "desc"
+    },
+    "dimensions": [
+      "VACUNADOSCovid.provinciaEstablecimiento"
+    ],
+    "filters": [
+      {
+        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "operator": "contains",
+        "values": [
+    
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.grupo_edad",
+        "operator": "contains",
+        "values": [
+ 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.gruporiesgo",
+        "operator": "contains",
+        "values": [
+       
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.fabricante",
+        "operator": "contains",
+        "values": [
+
+        ]
+      }
+    ]
+  }
+
   query_meta_cobertura:any={
     "measures": [
       "DISTRIBUCIONGeograficaMeta.meta"
@@ -20,28 +90,28 @@ export class CuboService {
         "member": "DISTRIBUCIONGeograficaMeta.provincia",
         "operator": "contains",
         "values": [
-          "cajamarca"
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.grupoMeta",
         "operator": "contains",
         "values": [
-          "60-69"
+        
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.grupoRiesgo",
         "operator": "contains",
         "values": [
-          "Adulto Mayor"
+        
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.distrito",
         "operator": "contains",
         "values": [
-          "CAJAMARCA"
+         
         ]
       }
     ]
@@ -82,9 +152,10 @@ export class CuboService {
     ]
   }
 
-  query_time_line = {
+  query_time_line:any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovid.dosis_1",
+      "VACUNADOSCovid.dosis_2"
     ],
     "timeDimensions": [
       {
@@ -95,9 +166,36 @@ export class CuboService {
     "order": {
       "VACUNADOSCovid.fechaVacunacion": "asc"
     },
-    "filters": [],
-    "dimensions": [
-      "VACUNADOSCovid.dosisAplicada"
+    "dimensions": [],
+    "filters": [
+      {
+        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "operator": "contains",
+        "values": [
+     
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.grupo_edad",
+        "operator": "contains",
+        "values": [
+     
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.fabricante",
+        "operator": "contains",
+        "values": [
+       
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.gruporiesgo",
+        "operator": "contains",
+        "values": [
+       
+        ]
+      }
     ]
   }
   query_vacunados_hoy = {
@@ -141,7 +239,7 @@ export class CuboService {
         "member": "VACUNADOSCovid.fabricante",
         "operator": "contains",
         "values": [
-          "PFIZER"
+         
         ]
       }, {
         "member": "VACUNADOSCovid.grupo_vacunacion",
@@ -420,6 +518,7 @@ export class CuboService {
   }
 
   devolver_total_por_dosis(dosis: any) {
+
     this.query_dosis.filters[1].values = dosis
 
 
@@ -461,7 +560,7 @@ export class CuboService {
       ]
     }
 
-    console.log(query)
+    
     let params = new HttpParams().set('query', JSON.stringify(query));
     return this.http.get<any>(environment.url_cubo, { params })
   }
@@ -541,6 +640,21 @@ export class CuboService {
   }
 
 
+  devolver_meta_ambitos_fil(){
+
+    let params = new HttpParams().set('query', JSON.stringify(this.query_meta_cobertura_fil_ambito));
+    return this.http.get<any>(environment.url_cubo, { params })
+
+  }
+  devolver_avances_ambitos(){
+    let params = new HttpParams().set('query', JSON.stringify(this.query_avance_cobertura_por_ambito));
+    return this.http.get<any>(environment.url_cubo, { params })
+
+  }
+
+  }
 
 
-}
+
+
+

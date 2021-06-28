@@ -1,0 +1,61 @@
+
+
+<div class="content-wrapper" style="min-height: 100vh">
+
+    <div class="content-header ">
+      <div class="container-fluid">
+  
+        
+        <div class="row mb-2 ">
+          <div class="col-sm-11">
+            <h1 class="m-0 text-dark">
+              <img
+                src="../../assets/Escudo_de_Cajamarca.svg"
+                alt=""
+                srcset=""
+                width="80px"
+              />
+              TABLERO DE MONITOREO DE VACUNACION ANTICOVID REGION CAJAMARCA
+      
+            </h1>
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-1">
+     
+           <img src="../../assets/logo.png" class="logo" alt="" srcset="">
+          </div>
+          <!-- /.col -->
+        </div>
+        <div class="card card-primary card-tabs">
+     
+          <div class="card-header p-0 pt-1">
+            <ul class="nav nav-tabs justify-content-center" id="custom-tabs-one-tab " role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" [routerLink]="['/avance']" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="false">Dosis Aplicadas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " [routerLink]="['/cobertura']" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="true">Avance de Cobertura</a>
+              </li>
+           
+            </ul>
+          </div>
+          <div class="card-body">
+
+
+
+            <router-outlet></router-outlet>
+
+        </div>
+    </div>
+  
+  
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+
+<!-- /.content -->
+</div>
+            
