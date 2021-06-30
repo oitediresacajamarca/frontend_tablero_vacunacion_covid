@@ -617,7 +617,7 @@ export class CuboService {
       this.query_stack_general.dimensions[0] = 'VACUNADOSCovid.distritoEstablecimiento'
       this.query_stack_general.filters[3].values = [provincia]
     }
-    console.log(this.query_stack_general)
+
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_general));
     return this.http.get<any>(environment.url_cubo, { params })

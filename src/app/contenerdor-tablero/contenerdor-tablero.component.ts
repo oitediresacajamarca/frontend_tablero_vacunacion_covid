@@ -12,4 +12,6 @@ export class ContenerdorTableroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  active:string[]=['active','']
+
 }

@@ -283,6 +283,7 @@ export class CoberturasComponent implements OnInit {
 
 
     this.cargar_dosis()
+   
 
 
     this.cargar_provincias()
@@ -305,17 +306,30 @@ export class CoberturasComponent implements OnInit {
 
     this.cubo.devolver_total_dosis_1().subscribe(
       respuesta => {
-        console.log(this.cubo.query_avance_dosis_1)
-        console.log(respuesta)
+
+
+        let dimension: string = 'VACUNADOSCovid.provinciaEstablecimiento'
+        if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
+          this.filtro = []
+          this.dimension = 'VACUNADOSCovid.provinciaEstablecimiento'
+    
+        } else {
+          this.filtro = [this.provincia_selecionada]
+          this.dimension = 'VACUNADOSCovid.distritoEstablecimiento'
+        }
+   
         let avance_1 = respuesta.data[0]['VACUNADOSCovid.dosis_1']
         let avance_2 = respuesta.data[0]['VACUNADOSCovid.dosis_2']
         let tot = respuesta.data[0]['VACUNADOSCovid.count']
 
+        this.cubo.query_meta_dosis.filters[0].values=this.filtro
+
 
         this.cubo.devolver_meta_dosis().subscribe(respuesta_meta => {
 
+
           let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-          console.log(meta)
+     
 
           this.total_1_dosis = avance_1 / meta;
           this.total_2_dosis = avance_2 / meta;
@@ -363,7 +377,7 @@ export class CoberturasComponent implements OnInit {
     let segunda_dosis: any[] = []
     let categ: any[] = []
     let ambitos: any[]
-    console.log(this.cubo.query_meta_dosis)
+
 
     let respuesta = await this.cubo.devolver_dosis_por_aambito().toPromise()
 
@@ -524,40 +538,7 @@ export class CoberturasComponent implements OnInit {
 
 
 
-      /*  primeras_dosis = await Promise.all(datos.map(async dato => {
-          let filtro :any= {}
-          Object.assign(filtro,this.cubo.query_meta_dosis)
-          console.log(this.cubo.query_meta_dosis)
-    
-          filtro.filters[0].values = [dato[ambito_param]]
-          console.log(filtro)
-    
-          let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
-    
-    
-          return dato['VACUNADOSCovid.dosis_1'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-    
-    
-    
-    
-        }))
-    
-        segunda_dosis = await Promise.all(datos.map(async dato => {
-          let filtro :any= {}
-          Object.assign(filtro,this.cubo.query_meta_dosis)
-    
-          filtro.filters[0].values = [dato[ambito_param]]
-    
-          let ambito = await this.cubo.devolver_meta_dosis_filtro(filtro).toPromise()
-    
-          return dato['VACUNADOSCovid.dosis_2'] * 100 / ambito.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-    
-    
-    
-    
-        }))
-    
-    */    this.opciones.xAxis.categories = categ
+   this.opciones.xAxis.categories = categ
     this.opciones.series[0].data = primeras_dosis
     this.opciones.series[1].data = segunda_dosis
 
@@ -575,6 +556,8 @@ export class CoberturasComponent implements OnInit {
     let datos: any[] = respuesta_avance.data
 
     let serie = datos.map(data => {
+
+      
       return [data['VACUNADOSCovid.grupo_vacunacion'], data['VACUNADOSCovid.count']]
 
     })
@@ -604,7 +587,7 @@ export class CoberturasComponent implements OnInit {
     })
 
 
-    console.log(categorias)
+   
     let cobertura_1 = avances.map(avance => {
 
       return avance['VACUNADOSCovid.dosis_1'] * 100 / meta
@@ -617,7 +600,7 @@ export class CoberturasComponent implements OnInit {
     this.opciones_linea_tiempo.xAxis.categories = categorias
     this.opciones_linea_tiempo.series[0].data = cobertura_1
     this.opciones_linea_tiempo.series[1].data = cobertura_2
-    console.log(this.opciones_linea_tiempo)
+   
 
     this.linea_tiempo = new Chart(this.opciones_linea_tiempo)
 
@@ -689,7 +672,7 @@ export class CoberturasComponent implements OnInit {
     this.cubo.query_avance_stack.dimensions[0] = this.dimension
     this.cubo.query_avance_stack.filters[1].values = this.filtro
 
-    console.log(this.cubo.query_avance_stack)
+
 
     this.cargar_stacked(this.dimension, this.filtro)
 
@@ -872,7 +855,7 @@ let  filtro_provinica:any
   async cargar_datos_tabla() {
 
     let data: any[] = this.opciones.xAxis.categories
-    console.log(this.opciones.series[0].data)
+
 
     this.datos_tablas = data.map((dato, index) => {
 
@@ -880,7 +863,6 @@ let  filtro_provinica:any
       return { ambito: dato, primera_dosis: this.opciones.series[0].data[index], segunda_dosis: this.opciones.series[1].data[index] }
     })
 
-    console.log(this.datos_tablas)
 
 
     return 1
@@ -891,7 +873,7 @@ let  filtro_provinica:any
   cargar_cobertura() {
     this.cubo_mae.devolver_meta().subscribe(respuesta => {
 
-      console.log(respuesta)
+
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS') {
         this.meta = this.meta * 2
@@ -914,7 +896,7 @@ let  filtro_provinica:any
       }
 
 
-      console.log((this.avance) / (this.meta))
+
       this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
 
 

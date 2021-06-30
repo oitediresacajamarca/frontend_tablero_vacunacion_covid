@@ -215,7 +215,7 @@ this.seleciono_grupo_vacunacion()
 
   cargar_1ra_dosis() {
     this.cubo.devolver_total_por_dosis(['1ª dosis']).subscribe(respuesta => {
-      console.log(respuesta)
+
 
       this.total_1_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
@@ -311,7 +311,7 @@ this.seleciono_grupo_vacunacion()
 
     await this.cubo.devolver_dosis_ambito('TODOS').subscribe(respuesta => {
 
-      console.log(respuesta)
+
       let categorias = []
       let
         datos: any[] = respuesta.data
@@ -448,7 +448,7 @@ this.seleciono_grupo_vacunacion()
 
 
   ngAfterViewInit() {
-    console.log(this.jeringa)
+    
 
   }
 
@@ -473,7 +473,7 @@ this.seleciono_grupo_vacunacion()
 
 
   selecciono_provincia() {
-  //  this.mapa_cajamarca.seleccionar_provincia(this.provincia_selecionada)
+    this.mapa_cajamarca.seleccionar_provincia(this.provincia_selecionada)
 
     let filtro: any[] = []
     if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
@@ -633,7 +633,7 @@ this.seleciono_grupo_vacunacion()
     this.cubo.query_stack_general.filters[2].values = filtro
     this.cargar_stacked()
     this.cubo.query_meta.filters[0].values = filtro
-    console.log(this.cubo.query_meta)
+
     this.cargar_cobertura()
     this.cubo.query_time_line.filters[3].values = filtro
     this.cargar_linea_tiempo()
@@ -693,12 +693,15 @@ this.seleciono_grupo_vacunacion()
         this.avance = this.total_2_dosis + this.total_1_dosis
 
       }
-
-
+if(this.meta!=0){
       this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
 
       this.jeringa.setCobertura(parseFloat(this.cobertura))
-
+}
+else{
+  this.cobertura='0'
+  this.jeringa.setCobertura(parseFloat('0'))
+}
 
 
     })
@@ -707,8 +710,7 @@ this.seleciono_grupo_vacunacion()
 
 
   mapa_seleciono(event: string) {
-    console.log(event)
-
+  
     this.provincia_selecionada = event;
     this.selecciono_provincia()
 

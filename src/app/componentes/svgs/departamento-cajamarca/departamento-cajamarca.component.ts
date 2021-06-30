@@ -41,32 +41,34 @@ export class DepartamentoCajamarcaComponent implements OnInit {
 
 
 
-  seleccionar_provincia(provincia:string) {
+  seleccionar_provincia(provincia: string) {
     console.log(provincia)
     let provincias: ElementRef[] =
       this.elementRef.nativeElement.querySelectorAll('.PROVINCIA')
-    provincias.forEach(provincia => {
-      this.renderer.removeClass(provincia, 'activo')
-      this.renderer.addClass(provincia, 'desactivo')
-    })
+    if (provincia != 'TODOS' && provincia != '') {
+      provincias.forEach(provincia => {
 
-
- /*   this.renderer.removeClass(provincia, 'desactivo')
-    this.renderer.addClass(provincia, 'activo')*/
-
-    /*  this.renderer.setAttribute(event.target.parentNode, 'class','activo')*/
+        this.renderer.removeClass(provincia, 'activo')
+        this.renderer.addClass(provincia, 'desactivo')
+      })
 
 
 
-    // 
-    console.log(this.elementRef.nativeElement)
-    let provincias_ele: ElementRef[] = this.elementRef.nativeElement.querySelectorAll('#'+provincia)
-    console.log(provincias_ele)
-    provincias_ele.forEach(provincia => {
-      this.renderer.removeClass(provincia.nativeElement.target, 'activo')
-      this.renderer.addClass(provincia.nativeElement.target, 'desactivo')
-    })
+      let provincias_ele = this.elementRef.nativeElement.querySelector('#' + provincia.replace(' ', '_'))
 
+
+
+      this.renderer.removeClass(provincias_ele, 'desactivo')
+      this.renderer.addClass(provincias_ele, 'activo')
+
+    }
+    else {
+      provincias.forEach(provincia => {
+   
+        this.renderer.removeClass(provincia, 'desactivo')
+        this.renderer.addClass(provincia, 'activo')
+      })
+    }
 
   }
 
