@@ -7,12 +7,12 @@
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"
+            <span class="info-box-icon bg-warning elevation-1"
               ><i class="fas fa-syringe"></i
             ></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TOTAL PRIMERA DOSIS</span>
+              <span class="info-box-text">COBERTURA PRIMERA DOSIS</span>
               <span class="info-box-number">
                 <h3>{{ total_1_dosis | percent: "1.2-2" }}</h3>
               </span>
@@ -24,12 +24,12 @@
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1">
-              <i class="fas" src=""></i>
+            <span class="info-box-icon bg-success elevation-1">
+              <i class="fas fa-syringe" src=""></i>
             </span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TOTAL SEGUNDA DOSIS</span>
+              <span class="info-box-text">COBERTURA SEGUNDA DOSIS</span>
               <span class="info-box-number">
                 <h3>{{ total_2_dosis | percent: "1.2-2" }}</h3>
               </span>
@@ -45,12 +45,12 @@
 
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"
+            <span class="info-box-icon bg-info elevation-1"
               ><i class="fas fa-hand-holding-medical"></i
             ></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">DOSIS TOTALES</span>
+              <span class="info-box-text">COBERTURA TOTAL</span>
               <span class="info-box-number">
                 <h3>{{ total_dosis | percent: "1.2-2" }}</h3>
               </span>
@@ -62,15 +62,17 @@
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"
+            <span class="info-box-icon bg-danger elevation-1"
               ><i class="fas fa-users"></i
             ></span>
 
             <div class="info-box-content">
               <span class="info-box-text">VACUNADOS HOY</span>
               <span class="info-box-number">
-                <h3>{{ vacunados_hoy | percent: "1.2-2" }}</h3>
+          <h6>      Primera Dosis:{{ avance_hoy_1 }}</h6>
+         <h6>       Segunda Dosis:{{ avance_hoy_2  }}</h6>
               </span>
+              
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -223,7 +225,7 @@
               <div class="row">
                 <div class="col-md-2">
                   <div class="card caja-p">
-                    <app-departamento-cajamarca
+                    <app-departamento-cajamarca #mapa_cajamarca
                       (selecciono_provincia)="mapa_seleciono($event)"
                     ></app-departamento-cajamarca>
                   </div>
@@ -277,11 +279,11 @@
                         <div class="col-md-6">
                           <div class="small-box">
                             <a href="#" class="small-box-footer bg-success tex">
-                              COBERTURA
+                              PRIMERA DOSIS
                               <i class="fas fa-arrow-circle-right"></i>
                             </a>
                             <div class="inner text-center">
-                              <h6>{{ cobertura | number: "1.2-2" }} %</h6>
+                              <h6>{{ avance_1  }}</h6>
                             </div>
                             <div class="icon">
                               <i class="ion ion-stats-bars"></i>
@@ -289,11 +291,11 @@
                           </div>
                           <div class="small-box">
                             <a href="#" class="small-box-footer bg-info">
-                              AVANCE <i class="fas fa-arrow-circle-right"></i>
+                              SEGUNDA DOSIS <i class="fas fa-arrow-circle-right"></i>
                             </a>
                             <div class="inner text-center">
                               <h6>
-                                {{ avance }}
+                                {{ avance_2 }}
                               </h6>
                             </div>
                             <div class="icon">

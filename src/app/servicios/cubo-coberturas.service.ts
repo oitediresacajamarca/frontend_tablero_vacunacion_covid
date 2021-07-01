@@ -188,7 +188,7 @@ export class CuboCoberturasService {
       },
       {
         "member": "VACUNADOSCovid.fechaVacunacion",
-        "operator": "contains",
+        "operator": "equals",
         "values": [
           moment(new Date()).format('yyyy-MM-DD')
         ]

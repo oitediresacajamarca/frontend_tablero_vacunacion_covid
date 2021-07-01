@@ -171,12 +171,12 @@ export class BodyComponent implements OnInit {
         name: 'PRIMERA DOSIS',
         data: [5, 3, 4, 7, 2, 9],
         lineWidth: 4,
-        color: '#FF0000'
+        color: '#ffc107'
 
       }, {
         name: 'SEGUNDA DOSIS',
         data: [2, 2, 3, 2, 1, 15],
-        color: '#0000FF'
+        color: '#37ff08'
       }
     ]
   }

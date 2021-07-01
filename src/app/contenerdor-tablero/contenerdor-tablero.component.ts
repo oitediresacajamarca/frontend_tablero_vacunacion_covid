@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contenerdor-tablero',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContenerdorTableroComponent implements OnInit {
 
-  constructor() { }
+  constructor( private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+   
+    console.log(this.route.snapshot.children[0].routeConfig?.path=='cobertura')
+    if(this.route.snapshot.children[0].routeConfig?.path=='cobertura'){
+    
+this.active[0]=''
+this.active[1]='active'
+
+    }
+    else{
+      this.active[0]='active'
+this.active[1]=''
+
+
+    }
+
+
   }
 
   active:string[]=['active','']
