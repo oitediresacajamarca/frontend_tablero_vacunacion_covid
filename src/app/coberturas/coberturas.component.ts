@@ -284,14 +284,15 @@ export class CoberturasComponent implements OnInit {
     },
     series: [
       {
-        name: 'PRIMERA DOSIS',
+        name: 'SEGUNDA DOSIS',
         data: [5, 3, 4, 7, 2, 9],
-        color: '#ffc107'
+        color: '#00FF00'
+       
 
       }, {
-        name: 'SEGUNDA DOSIS',
+        name: 'PRIMERA DOSIS',
         data: [2, 2, 3, 2, 1, 15],
-        color: '#00FF00'
+        color: '#ffc107'
       },
       {
         name: 'SIN VACUNAS',
@@ -372,7 +373,7 @@ export class CoberturasComponent implements OnInit {
           this.total_2_dosis = avance_2 / meta;
           this.total_dosis = tot / (meta * 2);
           this.meta = meta
-          console.log(this.total_dosis)
+     
           this.jeringa.setCobertura(this.total_dosis*100)
 
 
@@ -624,8 +625,8 @@ export class CoberturasComponent implements OnInit {
 
 
     this.opciones.xAxis.categories = categ
-    this.opciones.series[0].data = primeras_dosis
-    this.opciones.series[1].data = segunda_dosis
+    this.opciones.series[0].data = segunda_dosis
+    this.opciones.series[1].data =  primeras_dosis
     this.opciones.series[2].data = no_vacunados
 
     console.log(this.opciones.xAxis.categories)
