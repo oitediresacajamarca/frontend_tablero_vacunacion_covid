@@ -45,7 +45,7 @@ export class BodyComponent implements OnInit {
 
   //filtros
   provincia_selecionada: string = ''
-  dosis_selecionada: string = '1ª dosis'
+  dosis_selecionada: string = ''
   grupo_edad_seleccionado = '1ª dosis'
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = ''
