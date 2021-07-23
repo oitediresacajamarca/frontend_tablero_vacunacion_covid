@@ -681,7 +681,7 @@ export class BodyComponent implements OnInit {
 
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
-        this.meta = this.meta * 2
+    //    this.meta = this.meta * 2
 
       }
 
@@ -696,7 +696,8 @@ export class BodyComponent implements OnInit {
 
       }
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
-        this.avance = this.total_2_dosis + this.total_1_dosis
+        console.log(this.dosis_selecionada)
+        this.avance = this.total_2_dosis
 
       }
       if (this.meta != 0) {
