@@ -15,6 +15,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 
 
+
+
+
 import { FormsModule } from '@angular/forms';
 
 import * as more from 'highcharts/highcharts-more.src';
@@ -23,6 +26,11 @@ import { JeringaComponent } from './componentes/svgs/jeringa/jeringa.component';
 import { CoberturasComponent } from './coberturas/coberturas.component';
 import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
+
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import { NgxDateRangeModule } from 'ngx-daterange';
 
 
 @NgModule({
@@ -47,7 +55,10 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
     HighchartsChartModule,
     ChartModule,
     FormsModule,
-    
+    BsDatepickerModule.forRoot(),
+    NgxDateRangeModule
+
+ 
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }

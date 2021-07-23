@@ -5,6 +5,9 @@ import { Chart } from 'angular-highcharts';
 import { JeringaComponent } from '../componentes/svgs/jeringa/jeringa.component';
 import * as moment from 'moment';
 import { DepartamentoCajamarcaComponent } from '../componentes/svgs/departamento-cajamarca/departamento-cajamarca.component';
+import Litepicker from 'litepicker';
+declare const $: any;
+import tinyDatePicker from 'tiny-date-picker';
 
 
 
@@ -14,6 +17,8 @@ import { DepartamentoCajamarcaComponent } from '../componentes/svgs/departamento
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
+
+  rangeDates!: Date[];
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
   total_dosis: number = 0;
@@ -33,14 +38,14 @@ export class BodyComponent implements OnInit {
   @ViewChild('jeringa')
   jeringa: JeringaComponent = new JeringaComponent();
   @ViewChild('mapa_cajamarca')
-  mapa_cajamarca!: DepartamentoCajamarcaComponent ;
+  mapa_cajamarca!: DepartamentoCajamarcaComponent;
 
 
   datos_tablas: any[] = []
 
   //filtros
   provincia_selecionada: string = ''
-  dosis_selecionada: string = ''
+  dosis_selecionada: string = '1ª dosis'
   grupo_edad_seleccionado = '1ª dosis'
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = ''
@@ -192,8 +197,8 @@ export class BodyComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-this.grupo_edad_seleccionado='1ª dosis'
-this.seleciono_grupo_vacunacion()
+    this.grupo_edad_seleccionado = '1ª dosis'
+    this.seleciono_grupo_vacunacion()
 
 
     this.cargar_1ra_dosis()
@@ -215,6 +220,7 @@ this.seleciono_grupo_vacunacion()
 
   cargar_1ra_dosis() {
     this.cubo.devolver_total_por_dosis(['1ª dosis']).subscribe(respuesta => {
+
 
 
       this.total_1_dosis = respuesta.data[0]['VACUNADOSCovid.count']
@@ -448,7 +454,7 @@ this.seleciono_grupo_vacunacion()
 
 
   ngAfterViewInit() {
-    
+
 
   }
 
@@ -693,15 +699,15 @@ this.seleciono_grupo_vacunacion()
         this.avance = this.total_2_dosis + this.total_1_dosis
 
       }
-if(this.meta!=0){
-      this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
+      if (this.meta != 0) {
+        this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
 
-      this.jeringa.setCobertura(parseFloat(this.cobertura))
-}
-else{
-  this.cobertura='0'
-  this.jeringa.setCobertura(parseFloat('0'))
-}
+        this.jeringa.setCobertura(parseFloat(this.cobertura))
+      }
+      else {
+        this.cobertura = '0'
+        this.jeringa.setCobertura(parseFloat('0'))
+      }
 
 
     })
@@ -710,10 +716,18 @@ else{
 
 
   mapa_seleciono(event: string) {
-  
+
     this.provincia_selecionada = event;
     this.selecciono_provincia()
 
+  }
+
+
+  seleciono_fechas(e:any) {
+
+
+    console.log(e.start.toDate())
+console.log(this.rangeDates)
   }
 
 

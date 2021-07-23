@@ -968,8 +968,7 @@ export class CoberturasComponent implements OnInit {
 
     this.datos_tablas = data.map((dato, index) => {
 
-
-      return { ambito: dato, primera_dosis: this.opciones.series[1].data[index], segunda_dosis: this.opciones.series[0].data[index] }
+      return { ambito: dato, primera_dosis: this.opciones.series[1].data[index]+this.opciones.series[0].data[index], segunda_dosis: this.opciones.series[0].data[index] }
     })
 
 

@@ -138,7 +138,7 @@
                       [(ngModel)]="dosis_selecionada"
                       (change)="selecciono_dosis()"
                     >
-                    <option value="TODOS">TODOS</option>
+             
                       <option value="1ª dosis">1ª dosis</option>
                       <option value="2ª dosis">2ª dosis</option>
                     </select>
@@ -170,6 +170,13 @@
         
                 <div class="col-12 col-sm-6 col-md-2">
                   <div class="form-group">
+             
+                    <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS'}" [controlName]="'myDateRange'" (rangeSelected)="seleciono_fechas($event)"></date-range-picker>
+                  </div>
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-2">
+                  <div class="form-group">
                     <label>GRUPO DE VACUNACION</label>
                     <select
                       class="form-control"
@@ -186,6 +193,8 @@
                     </select>
                   </div>
                 </div>
+
+          
 
           
               </div>
