@@ -75,6 +75,13 @@ export class CuboService {
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
       }
     ]
   }
@@ -195,7 +202,14 @@ export class CuboService {
         "values": [
        
         ]
+      }, {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
       }
+
     ]
   }
   query_vacunados_hoy = {
@@ -246,6 +260,13 @@ export class CuboService {
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
         ]
       }
 
@@ -327,6 +348,13 @@ export class CuboService {
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
       }
 
     ]
@@ -378,6 +406,13 @@ export class CuboService {
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
       }
     ]
   }
@@ -415,6 +450,13 @@ export class CuboService {
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2020-06-01', '2022-12-30'
         ]
       }
 
@@ -460,7 +502,15 @@ export class CuboService {
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
       }
+
     ],
     "dimensions": [
       "VACUNADOSCovid.distritoEstablecimiento",
@@ -503,6 +553,13 @@ export class CuboService {
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovid.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2020-01-01', '2030-12-30'
         ]
       }
     ],

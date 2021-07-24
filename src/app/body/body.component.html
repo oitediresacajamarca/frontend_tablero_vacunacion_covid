@@ -171,7 +171,7 @@
                 <div class="col-12 col-sm-6 col-md-2">
                   <div class="form-group">
              
-                    <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS'}" [controlName]="'myDateRange'" (rangeSelected)="seleciono_fechas($event)"></date-range-picker>
+                    <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS',autoApply:true}"  (rangeSelected)="seleciono_fechas($event)"></date-range-picker>
                   </div>
                 </div>
                 

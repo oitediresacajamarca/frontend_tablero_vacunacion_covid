@@ -31,6 +31,7 @@ export class BodyComponent implements OnInit {
   chart: any
   donut: any
 
+
   meta: number = 0
   avance: number = 0
   cobertura: string = '0'
@@ -46,9 +47,12 @@ export class BodyComponent implements OnInit {
   //filtros
   provincia_selecionada: string = ''
   dosis_selecionada: string = ''
-  grupo_edad_seleccionado = '1ª dosis'
+  grupo_edad_seleccionado = ''
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = ''
+  fecha_inicio = new Date(2021, 1, 1)
+  fecha_fin = new Date(2025, 1, 1)
+
 
 
 
@@ -681,7 +685,7 @@ export class BodyComponent implements OnInit {
 
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
-    //    this.meta = this.meta * 2
+        //    this.meta = this.meta * 2
 
       }
 
@@ -724,11 +728,29 @@ export class BodyComponent implements OnInit {
   }
 
 
-  seleciono_fechas(e:any) {
+  seleciono_fechas(e: any) {
+let filtro=[e.start.format('YYYY-MM-DD'),e.end.format('YYYY-MM-DD')]
+
+    console.log(e.start.format('YYYY-MM-DD'))
+this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.format('YYYY-MM-DD')]
+    this.cargar_1ra_dosis()
+    this.cargar_2da_dosis()
+    this.cargar_dosis_total()
 
 
-    console.log(e.start.toDate())
-console.log(this.rangeDates)
+    this.cubo.query_dosis_grupo_riesgo.filters[5].values = filtro
+    this.cargarDatosPie()
+
+    this.cubo.query_stack_general.filters[4].values=filtro
+    this.cargar_stacked()
+
+    this.cargar_cobertura()
+
+    this.cubo.query_time_line.filters[4].values = filtro
+
+    this.cargar_linea_tiempo()
+
+
   }
 
 
