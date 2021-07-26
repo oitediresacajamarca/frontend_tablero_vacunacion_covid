@@ -28,9 +28,10 @@ import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
 
 
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 import { NgxDateRangeModule } from 'ngx-daterange';
+
 
 
 @NgModule({
@@ -55,8 +56,9 @@ import { NgxDateRangeModule } from 'ngx-daterange';
     HighchartsChartModule,
     ChartModule,
     FormsModule,
-    BsDatepickerModule.forRoot(),
-    NgxDateRangeModule
+
+    NgxDateRangeModule,
+ 
 
  
   ],

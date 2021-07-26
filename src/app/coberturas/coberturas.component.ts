@@ -97,15 +97,7 @@ export class CoberturasComponent implements OnInit {
     series: [{
       name: 'Grupo de Riesgo',
       data: [
-        ['Bananas', 8],
-        ['Kiwi', 3],
-        ['Mixed nuts', 1],
-        ['Oranges', 6],
-        ['Apples', 8],
-        ['Pears', 4],
-        ['Clementines', 4],
-        ['Reddish (bag)', 1],
-        ['Grapes (bunch)', 1]
+      
       ]
     }]
   }
