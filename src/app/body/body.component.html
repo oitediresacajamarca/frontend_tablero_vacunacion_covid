@@ -173,7 +173,10 @@
             
              
                     <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS',autoApply:true}" 
-                     (rangeSelected)="seleciono_fechas($event)" (datepickerReset)="reseteoFechas()"></date-range-picker>
+                     (rangeSelected)="seleciono_fechas($event)" (datepickerReset)="reseteoFechas()" [instanceId]="'secondDateRange'"> 
+                    
+                 
+                    </date-range-picker>
                   </div>
                 </div>
                 

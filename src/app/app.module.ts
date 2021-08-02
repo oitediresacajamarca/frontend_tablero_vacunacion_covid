@@ -14,6 +14,8 @@ import { DepartamentoCajamarcaComponent } from './componentes/svgs/departamento-
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 
+import {MultiSelectModule} from 'primeng/multiselect';
+
 
 
 
@@ -58,6 +60,7 @@ import { NgxDateRangeModule } from 'ngx-daterange';
     FormsModule,
 
     NgxDateRangeModule,
+    MultiSelectModule
  
 
  
