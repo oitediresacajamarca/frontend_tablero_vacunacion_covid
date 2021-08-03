@@ -174,7 +174,7 @@
              
                     <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS',autoApply:true}" 
                      (rangeSelected)="seleciono_fechas($event)" (datepickerReset)="reseteoFechas()" [instanceId]="'secondDateRange'"> 
-                    
+              
                  
                     </date-range-picker>
                   </div>
@@ -183,19 +183,12 @@
                 <div class="col-12 col-sm-6 col-md-2">
                   <div class="form-group">
                     <label>GRUPO DE VACUNACION</label>
-                    <select
-                      class="form-control"
-                      [(ngModel)]="grupo_vacunacion_selecionado"
-                      (change)="seleciono_grupo_vacunacion()"
-                    >
-                      <option>TODOS</option>
-                      <option
-                        value="{{ grupo }}"
-                        *ngFor="let grupo of grupos_vacunacion"
-                      >
-                        {{ grupo }}
-                      </option>
-                    </select>
+                    <p-multiSelect   [options]="grupos_vacunacion"  optionLabel="name" optionValue="name" 
+                    defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
+                    width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+                    (onChange)="seleciono_grupo_vacunacion()" [(ngModel)]="grupo_vacunacion_selecionado"></p-multiSelect>
+                 
+                   
                   </div>
                 </div>
 

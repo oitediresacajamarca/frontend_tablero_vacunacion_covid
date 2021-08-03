@@ -10,6 +10,11 @@ declare const $: any;
 
 
 import Tabulator from 'tabulator-tables';
+interface City {
+    name: string
+
+}
+
 
 
 
@@ -34,6 +39,9 @@ export class BodyComponent implements OnInit {
   donut: any
 
 
+  
+
+
   meta: number = 0
   avance: number = 0
   cobertura: string = '0'
@@ -51,7 +59,7 @@ export class BodyComponent implements OnInit {
   dosis_selecionada: string = ''
   grupo_edad_seleccionado = ''
   fabricante_selecionado = ''
-  grupo_vacunacion_selecionado = ''
+  grupo_vacunacion_selecionado = []
   fecha_inicio = new Date(2021, 1, 1)
   fecha_fin = new Date(2025, 1, 1)
 
@@ -207,8 +215,18 @@ export class BodyComponent implements OnInit {
    tabledata = [
 
 ];
+
+cities!: City[];
+
+    selectedCities!: City[];
 table!:Tabulator
   async ngOnInit(): Promise<void> {
+
+
+
+    this.cities = [
+     
+  ];
 
      this.table = new Tabulator("#example-table", {
       data:this.tabledata,           //load row data from array
@@ -225,13 +243,13 @@ table!:Tabulator
           {column:"name", dir:"asc"},
       ],
       columns:[                 //define the table columns
-          {title:"AMBITO", field:"ambito",formatter:function(cell, formatterParams){
+          {title:"AMBITO", field:"ambito",formatter:function(cell:any, formatterParams:any){
             var value = cell.getValue();
           
                  return "<span style=' font-weight:bold;font-size:14px;color:blue'>" + value + "</span>";
           
          }},
-          {title:"PRIMERA DOSIS", field:"primera_dosis", hozAlign:"center",formatter:function(cell, formatterParams){
+          {title:"PRIMERA DOSIS", field:"primera_dosis", hozAlign:"center",formatter:function(cell:any, formatterParams:any){
             var value = cell.getValue();
             if(value !=undefined){
           
@@ -245,7 +263,7 @@ table!:Tabulator
                  }
           
          }},
-          {title:"SEGUNDA DOSIS", field:"segunda_dosis", hozAlign:"center",formatter:function(cell, formatterParams){
+          {title:"SEGUNDA DOSIS", field:"segunda_dosis", hozAlign:"center",formatter:function(cell:any, formatterParams:any){
             var value = cell.getValue();
             if(value !=undefined){
           
@@ -675,21 +693,24 @@ table!:Tabulator
     this.cubo.devolver_maestro_grupos_vacunacion().subscribe(respuesta => {
       datos = respuesta.data
       this.grupos_vacunacion = datos.map(dato => {
-        return dato['VACUNADOSCovid.grupo_vacunacion']
+        return {name:dato['VACUNADOSCovid.grupo_vacunacion']}
       })
+
+      console.log(this.grupos_vacunacion)
     })
 
   }
   seleciono_grupo_vacunacion() {
+    console.log(this.grupo_vacunacion_selecionado)
 
     let filtro: any[] = []
-    if (this.grupo_vacunacion_selecionado == 'TODOS' || this.grupo_vacunacion_selecionado == '') {
+    if (this.grupo_vacunacion_selecionado == [] || this.grupo_vacunacion_selecionado == ['']) {
 
       filtro = []
 
     } else {
 
-      filtro = [this.grupo_vacunacion_selecionado]
+      filtro = this.grupo_vacunacion_selecionado
     }
 
 
@@ -771,7 +792,7 @@ table!:Tabulator
 
       }
       if (this.meta != 0) {
-        this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(3)
+        this.cobertura = ((this.avance) * 100 / (this.meta)).toPrecision(4)
 
         this.jeringa.setCobertura(parseFloat(this.cobertura))
       }
