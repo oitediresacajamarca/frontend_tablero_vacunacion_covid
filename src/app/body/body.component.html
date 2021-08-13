@@ -86,116 +86,131 @@
               </div>
               <!-- /.row -->
         
-              <div class="row">
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-                    <label>PROVINCIA</label>
-                    <select
-                      class="form-control"
-                      [(ngModel)]="provincia_selecionada"
-                      (change)="selecciono_provincia()"
-                    >
-                      <option value="TODOS">TODOS</option>
-                      <option
-                        *ngFor="let provincia of provincias"
-                        value="{{ provincia }}"
+          
+             <div class="row">
+               <div class="col-6">
+                 <div class="row">
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>PROVINCIA</label>
+                      <select
+                        class="form-control"
+                        [(ngModel)]="provincia_selecionada"
+                        (change)="selecciono_provincia()"
                       >
-                        {{ provincia }}
-                      </option>
-                    </select>
+                        <option value="TODOS">TODOS</option>
+                        <option
+                          *ngFor="let provincia of provincias"
+                          value="{{ provincia }}"
+                        >
+                          {{ provincia }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-        
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-                    <label>FABRICANTE</label>
-                    <select
-                      class="form-control"
-                      [(ngModel)]="fabricante_selecionado"
-                      (change)="seleciono_fabricante()"
-                    >
-                      <option value="TODOS">TODOS</option>
-                      <option value="PFIZER">PFIZER</option>
-                      <option
-                        value="VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA"
+          
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>FABRICANTE</label>
+                      <select
+                        class="form-control"
+                        [(ngModel)]="fabricante_selecionado"
+                        (change)="seleciono_fabricante()"
                       >
-                      VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA
+                        <option value="TODOS">TODOS</option>
+                        <option value="PFIZER">PFIZER</option>
+                        <option
+                          value="VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA"
+                        >
+                        VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA
+                        </option>
+                        <option
+                        value="SINOPHARM"
+                      >
+                      SINOPHARM
                       </option>
-                      <option
-                      value="SINOPHARM"
-                    >
-                    SINOPHARM
-                    </option>
-                    </select>
+                      </select>
+                    </div>
                   </div>
-                </div>
-        
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-                    <label>DOSIS</label>
-                    <select
-                      class="form-control"
-                      [(ngModel)]="dosis_selecionada"
-                      (change)="selecciono_dosis()"
-                    >
-                    <option value="TODOS">TODOS</option>
-                      <option value="1ª dosis">1ª dosis</option>
-                      <option value="2ª dosis">2ª dosis</option>
-                    </select>
-                  </div>
-                </div>
-        
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-                    <label>GRUPO DE EDAD</label>
-        
-                    <select
-                      class="form-control"
-                      [(ngModel)]="grupo_edad_seleccionado"
-                      (change)="selecciono_edad()"
-                    >
+          
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>DOSIS</label>
+                      <select
+                        class="form-control"
+                        [(ngModel)]="dosis_selecionada"
+                        (change)="selecciono_dosis()"
+                      >
                       <option value="TODOS">TODOS</option>
-                      <option value="0-9">18-19</option>
-                      <option value="10-19">19-20</option>
-                      <option value="20-29">20-29</option>
-                      <option value="30-39">30-39</option>
-                      <option value="40-49">40-49</option>
-                      <option value="50-59">50-59</option>
-                      <option value="60-69">60-69</option>
-                      <option value="70-79">70-79</option>
-                      <option value="80 a mas">mayor 80</option>
-                    </select>
+                        <option value="1ª dosis">1ª dosis</option>
+                        <option value="2ª dosis">2ª dosis</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-        
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-            
+          
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+  
+  
+                      <label>GRUPO DE EDAD</label>
+                      <p-multiSelect   [options]="grupos_etareos"  optionLabel="name" optionValue="name" 
+                      defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
+                      width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+                      (onChange)="selecciono_edad()" [(ngModel)]="grupo_edad_seleccionado"></p-multiSelect>
+                 
+          
+                    
+                    </div>
+                  </div>
+                 </div>
+
+               </div>
+
+               <div class="col-6">
+                <div class="row">
              
-                    <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS',autoApply:true}" 
-                     (rangeSelected)="seleciono_fechas($event)" (datepickerReset)="reseteoFechas()" [instanceId]="'secondDateRange'"> 
+        
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
               
-                 
-                    </date-range-picker>
-                  </div>
-                </div>
+               
+                      <date-range-picker [options]="{format:'DD/MM/YYYY',position:'left',labelText:'FECHAS',autoApply:true}" 
+                       (rangeSelected)="seleciono_fechas($event)" (datepickerReset)="reseteoFechas()" [instanceId]="'secondDateRange'"> 
                 
-                <div class="col-12 col-sm-6 col-md-2">
-                  <div class="form-group">
-                    <label>GRUPO DE VACUNACION</label>
-                    <p-multiSelect   [options]="grupos_vacunacion"  optionLabel="name" optionValue="name" 
-                    defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
-                    width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
-                    (onChange)="seleciono_grupo_vacunacion()" [(ngModel)]="grupo_vacunacion_selecionado"></p-multiSelect>
-                 
                    
+                      </date-range-picker>
+                    </div>
                   </div>
+                  
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>GRUPO DE VACUNACION</label>
+                      <p-multiSelect   [options]="grupos_vacunacion"  optionLabel="name" optionValue="name" 
+                      defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
+                      width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+                      (onChange)="seleciono_grupo_vacunacion()" [(ngModel)]="grupo_vacunacion_selecionado"></p-multiSelect>
+                   
+                     
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>URBANIDAD</label>
+                      <p-multiSelect   [options]="urbanidades"  optionLabel="name" optionValue="name" 
+                      defaultLabel="Seleccione Urbanidad" style=" min-width: 15rem; 
+                      width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+                      (onChange)="seleciono_urbanidad()" [(ngModel)]="grupo_urbanidad"></p-multiSelect>
+                   
+                     
+                    </div>
+                  </div>
+            
+  
+            
                 </div>
-
-          
-
-          
               </div>
+             </div>
         
               <div class="row">
                 <div class="col-md-12">

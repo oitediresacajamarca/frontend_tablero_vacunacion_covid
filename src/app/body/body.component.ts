@@ -18,6 +18,8 @@ interface City {
 
 
 
+
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -35,9 +37,14 @@ export class BodyComponent implements OnInit {
   DEPARTAMENTOS_FILTRO: string[] = []
   provincias: any[] = []
   grupos_vacunacion: any[] = []
+  grupos_etareos:any[]=[]
+
+  urbanidades:any[]=[]
   chart: any
   donut: any
 
+  
+  grupo_urbanidad:any;
 
   
 
@@ -57,11 +64,15 @@ export class BodyComponent implements OnInit {
   //filtros
   provincia_selecionada: string = ''
   dosis_selecionada: string = ''
-  grupo_edad_seleccionado = ''
+  grupo_edad_seleccionado:any[] = []
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = []
   fecha_inicio = new Date(2021, 1, 1)
   fecha_fin = new Date(2025, 1, 1)
+  tipo_ambito_seleccionado='PROVINCIA'
+
+  
+
 
 
 
@@ -223,6 +234,20 @@ table!:Tabulator
   async ngOnInit(): Promise<void> {
 
 
+this.urbanidades=this.cubo.devolver_urbanidades()
+
+    
+this.grupos_etareos=[{name:'18-19',value:'18-19'},
+{name:'19-20',value:'19-20'},
+{name:'20-29',value:'20-29'},
+{name:'30-39',value:'30-39'},
+{name:'40-49',value:'40-49'},
+{name:'50-59',value:'50-59'},
+{name:'60-69',value:'60-69'},
+{name:'70-79',value:'70-79'},
+{name:'80 a mas',value:'80 a mas'}
+
+]
 
     this.cities = [
      
@@ -282,7 +307,7 @@ table!:Tabulator
       ]
   });
 
-    this.grupo_edad_seleccionado = '1ª dosis'
+
     this.seleciono_grupo_vacunacion()
 
 
@@ -407,7 +432,7 @@ table!:Tabulator
       let
         datos: any[] = respuesta.data
 
-
+this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
 
       categorias = datos.map(data => {
 
@@ -469,6 +494,7 @@ table!:Tabulator
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
 
+    this.opciones.title.text='DOSIS APLICADAS POR DISTRITO'
 
     await this.cubo.devolver_dosis_ambito(this.provincia_selecionada).subscribe(respuesta => {
 
@@ -525,6 +551,7 @@ table!:Tabulator
       this.chart = new Chart(this.opciones)
 
       this.cargar_datos_tabla()
+      
 
 
     })
@@ -569,8 +596,10 @@ table!:Tabulator
     let filtro: any[] = []
     if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
       filtro = []
+      this.tipo_ambito_seleccionado='PROVINCIA'
     } else {
       filtro = [this.provincia_selecionada]
+      this.tipo_ambito_seleccionado='DISTRITO'
     }
 
     this.cubo.query_dosis.filters[0].values = filtro
@@ -602,9 +631,6 @@ table!:Tabulator
     }
 
 
-
-
-
     this.cubo.query_vacunados_hoy.filters[2].values = filtro
     this.cargar_vacunacion_hoy()
     this.cubo.query_dosis_grupo_riesgo.filters[1].values = filtro
@@ -622,12 +648,12 @@ table!:Tabulator
 
 
     let filtro: any[] = []
-    if (this.grupo_edad_seleccionado == 'TODOS' || this.grupo_edad_seleccionado == '') {
+    if ( this.grupo_edad_seleccionado == []) {
       filtro = []
 
     } else {
 
-      filtro = [this.grupo_edad_seleccionado]
+      filtro = this.grupo_edad_seleccionado
     }
 
 
@@ -639,7 +665,6 @@ table!:Tabulator
     this.cargar_vacunacion_hoy()
     this.cubo.query_dosis_grupo_riesgo.filters[2].values = filtro
     this.cargarDatosPie()
-
     this.cubo.query_stack_general.filters[0].values = filtro
     this.cargar_stacked()
     this.cubo.query_meta.filters[1].values = filtro
@@ -696,7 +721,7 @@ table!:Tabulator
         return {name:dato['VACUNADOSCovid.grupo_vacunacion']}
       })
 
-      console.log(this.grupos_vacunacion)
+     
     })
 
   }
@@ -746,6 +771,7 @@ table!:Tabulator
 
 
 
+
   }
 
 
@@ -756,7 +782,27 @@ table!:Tabulator
 
       return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0] }
     })
+
+   /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
+
+      console.log(vacunados_fuera)
+      this.datos_tablas.map(elemento=>{
+
+        return{...elemento,otros_campos:}
+      })
+   
+    }
+
+    
+    )
+*/
+  
+
     this.table.setData(this.datos_tablas)
+
+
+
+    
 
  
 
@@ -859,6 +905,44 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
     this.cubo.query_time_line.filters[4].values = filtro
 
     this.cargar_linea_tiempo()
+  }
+
+
+  seleciono_urbanidad(){
+
+
+    let filtro: any[] = []
+
+  
+    if ( this.grupo_urbanidad == []) {
+      filtro = []
+
+    } else {
+
+      filtro = this.grupo_urbanidad
+    }
+
+
+    this.cubo.query_dosis.filters[6].values = filtro
+
+    
+    this.cargar_1ra_dosis()
+    this.cargar_2da_dosis()
+    this.cargar_dosis_total()
+
+    this.cubo.query_vacunados_hoy.filters[7].values = filtro
+    this.cargar_vacunacion_hoy()
+    this.cubo.query_dosis_grupo_riesgo.filters[6].values = filtro
+    this.cargarDatosPie()
+    this.cubo.query_stack_general.filters[5].values = filtro
+    this.cargar_stacked()
+   /* this.cubo.query_meta.filters[3].values = filtro
+    this.cargar_cobertura()*/
+
+    this.cubo.query_time_line.filters[5].values = filtro
+    this.cargar_linea_tiempo()
+
+
   }
 
 

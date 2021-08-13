@@ -15,11 +15,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 
 import {MultiSelectModule} from 'primeng/multiselect';
-
-
-
-
-
 import { FormsModule } from '@angular/forms';
 
 import * as more from 'highcharts/highcharts-more.src';
@@ -58,12 +53,8 @@ import { NgxDateRangeModule } from 'ngx-daterange';
     HighchartsChartModule,
     ChartModule,
     FormsModule,
-
     NgxDateRangeModule,
-    MultiSelectModule
- 
-
- 
+    MultiSelectModule 
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }
