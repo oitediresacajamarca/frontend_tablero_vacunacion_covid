@@ -23,11 +23,14 @@ import { JeringaComponent } from './componentes/svgs/jeringa/jeringa.component';
 import { CoberturasComponent } from './coberturas/coberturas.component';
 import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 
 
 import { NgxDateRangeModule } from 'ngx-daterange';
+import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
 
 
 
@@ -42,6 +45,7 @@ import { NgxDateRangeModule } from 'ngx-daterange';
     CoberturasComponent,
     MapaSelectorDirective,
     ContenerdorTableroComponent,
+    ProvinciaSelectorComponent,
   
   ],
   imports: [
@@ -54,7 +58,10 @@ import { NgxDateRangeModule } from 'ngx-daterange';
     ChartModule,
     FormsModule,
     NgxDateRangeModule,
-    MultiSelectModule 
+    MultiSelectModule,
+    DropdownModule
+    
+    
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }
