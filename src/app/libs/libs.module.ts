@@ -6,6 +6,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {InputTextModule} from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
 
 
@@ -14,7 +15,9 @@ import {TableModule} from 'primeng/table';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, PanelModule, CalendarModule, InputNumberModule, InputTextareaModule, ConfirmDialogModule,TableModule
-  ], exports: [PanelModule, CalendarModule, InputNumberModule, InputTextareaModule, ConfirmDialogModule,TableModule]
+    CommonModule, PanelModule, CalendarModule, InputNumberModule,
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule
+  ], exports: [PanelModule, CalendarModule, InputNumberModule,
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule]
 })
 export class LibsModule { }
