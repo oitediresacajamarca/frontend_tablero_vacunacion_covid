@@ -7,7 +7,9 @@ import { EscudoCajamarcaComponent } from './componentes/svgs/escudo-cajamarca/es
 import { JeringaComponent } from './componentes/svgs/jeringa/jeringa.component';
 import { VacunometroSvgComponent } from './componentes/vacunometro-svg/vacunometro-svg.component';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
+import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
+import { RegistroDisponiblidadComponent } from './disponibilidad-vacunacion/registro-disponiblidad/registro-disponiblidad.component';
 import { PrimeroComponent } from './primero/primero.component';
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
   {path:'departamento',component:DepartamentoCajamarcaComponent},
   {path:'jeringa',component:JeringaComponent},
 
-  {path:'controles',component:ProvinciaSelectorComponent},
+  {path:'controles',component:DistritoSelectorComponent},
+  
+  {path:'modulos',component:RegistroDisponiblidadComponent},
 
 ];
 

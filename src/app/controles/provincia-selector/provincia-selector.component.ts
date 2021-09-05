@@ -1,33 +1,64 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { url } from 'inspector';
+import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-provincia-selector',
   templateUrl: './provincia-selector.component.html',
-  styleUrls: ['./provincia-selector.component.scss']
+  styleUrls: ['./provincia-selector.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ProvinciaSelectorComponent),
+      multi: true
+    }
+  ]
 })
-export class ProvinciaSelectorComponent implements OnInit {
+export class ProvinciaSelectorComponent implements OnInit, ControlValueAccessor {
+
+  isDisabled: boolean = false;
+  onChange = (_: any) => { }
+  onTouch = () => { }
+@Output('seleciono')
+  seleciono  = new EventEmitter();
 
   constructor(private http: HttpClient) { }
+
+  writeValue(obj: any): void {
+    this.provincia = obj;
+  }
+  registerOnChange(fn: any): void {
+
+    this.onChange=fn;
+  }
+  registerOnTouched(fn: any): void {
+   this.onTouch=fn;
+  }
 
   ngOnInit(): void {
     this.devolverProvincia()
   }
 
   provincias!: any[]
-  provincia:any
+  provincia: any
   devolverProvincia() {
-    this.http.get<any[]>(environment.url__backend+'provincias').subscribe(respuesta => {
+    this.http.get<any[]>(environment.url__backend + 'provincias').subscribe(respuesta => {
 
 
+      console.log(respuesta)
+      this.provincias = respuesta;
 
-      this.provincias=respuesta;
-
-  //  this.provincias=  respuesta
+     
     })
   }
+
+  seleccionoProvincia() {
+
+
+    this.seleciono.emit(this.provincia)
+  }
+
 
 
 }

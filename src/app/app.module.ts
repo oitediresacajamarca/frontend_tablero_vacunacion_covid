@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -14,6 +14,7 @@ import { DepartamentoCajamarcaComponent } from './componentes/svgs/departamento-
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 
+
 import {MultiSelectModule} from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 
@@ -24,6 +25,7 @@ import { CoberturasComponent } from './coberturas/coberturas.component';
 import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
 import {DropdownModule} from 'primeng/dropdown';
+import {TranslateModule} from '@ngx-translate/core'
 
 
 
@@ -31,6 +33,8 @@ import {DropdownModule} from 'primeng/dropdown';
 
 import { NgxDateRangeModule } from 'ngx-daterange';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
+import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
+import { DisponibilidadVacunacionModule } from './disponibilidad-vacunacion/disponibilidad-vacunacion.module';
 
 
 
@@ -45,7 +49,7 @@ import { ProvinciaSelectorComponent } from './controles/provincia-selector/provi
     CoberturasComponent,
     MapaSelectorDirective,
     ContenerdorTableroComponent,
-    ProvinciaSelectorComponent,
+
   
   ],
   imports: [
@@ -59,10 +63,14 @@ import { ProvinciaSelectorComponent } from './controles/provincia-selector/provi
     FormsModule,
     NgxDateRangeModule,
     MultiSelectModule,
-    DropdownModule
-    
-    
+    DropdownModule,
+    DisponibilidadVacunacionModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'es_ES'
+  })
+       
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }
   ],

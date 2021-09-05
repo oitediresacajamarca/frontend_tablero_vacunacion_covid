@@ -1,0 +1,5 @@
+<div class="p-field p-col-12 ">
+    <label for="state">ESTABLECIMIENTO</label>
+    <p-dropdown inputId="state" [options]="establecimientos" (click)="cargar_establecimientos()" 
+    optionLabel="Nombre_del_establecimiento" (onChange)="seleccionoIpress($event)"></p-dropdown>
+</div>
