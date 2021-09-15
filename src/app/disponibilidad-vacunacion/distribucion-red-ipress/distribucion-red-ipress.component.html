@@ -1,0 +1,101 @@
+<p-dialog
+header="DISTRIBUCION DE RED A IPRESS"
+[(visible)]="display"
+[style]="{ width: '50vw' }"
+>
+<form  [formGroup]="form">
+<div class="row justify-content-center  m-2">
+    <div class="col-auto">
+        DESDE
+      
+    </div>
+
+    <div class="col-auto">
+        <app-provincia-selector></app-provincia-selector>
+      
+    </div>
+</div>
+    <div class="row justify-content-center  m-2">
+    <div class="col-auto">
+        HACIA
+      
+    </div>
+
+    <div class="col-auto">
+        <app-establecimientos-selector [UBIGEO]="'060101'" formControlName="IPRESS"></app-establecimientos-selector>
+     
+    </div>
+    </div>
+    <div class="row justify-content-center  m-2">
+    <div class="col-auto">
+        <app-fabricante></app-fabricante>
+       
+    </div>
+</div>
+
+
+<div class="row justify-content-center p-2 m-5">
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname1">FECHA DE DISTRIBUCION</label>
+            <p-calendar formControlName="FECHA_DISTRIBUCION" ></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="lastname">CANTIDAD DISTRIBUIDA EN VIALES</label>
+            <p-inputNumber formControlName='CANTIDAD_VIALES'></p-inputNumber>
+        </div>
+        <div class="p-field p-col-12">
+            <label for="lastname">CANTIDAD DISTRIBUIDA EN DOSIS</label>
+            <p-inputNumber formControlName='CANTIDAD_DOSIS'></p-inputNumber>
+          
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname1">FECHA VENCIMIENTO</label>
+            <p-calendar formControlName='FECHA_VENCIMIENTO'></p-calendar>
+            
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname1">FECHA DE DESCONGELAMIENTO</label>
+            <p-calendar formControlName='FECHA_DESCONGELAMIENTO'></p-calendar>
+
+            
+        </div>
+
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname1">TIPO DE DOCUMENTO</label>
+            <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="name" formControlName='TIPO_DOCUMENTO'></p-dropdown>
+            
+        </div>
+
+
+        
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname1">NUMERO DE DOCUMENTO</label>
+            <p-inputNumber formControlName='NUMERO_DOCUMENTO' ></p-inputNumber>  
+        </div>
+       
+
+        <div class="p-field p-col-12 p-md-6">
+            <div class="row botones m-4">
+                <div class="col"> <button pButton type="button" label="ACEPTAR" (click)="GUARDAR()"></button> </div>
+                <div class="col"><button pButton type="button" label="CANCELAR" ></button>  </div> 
+            </div>
+     
+        </div>
+       
+       
+    </div>
+
+
+
+
+</div>
+</form>
+</p-dialog>
+
+
+
+
+

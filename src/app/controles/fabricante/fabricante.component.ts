@@ -1,14 +1,32 @@
-import { EventEmitter, Output } from '@angular/core';
+import { EventEmitter, forwardRef, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-fabricante',
   templateUrl: './fabricante.component.html',
-  styleUrls: ['./fabricante.component.scss']
+  styleUrls: ['./fabricante.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FabricanteComponent),
+      multi: true
+    }
+  ]
 })
-export class FabricanteComponent implements OnInit {
+export class FabricanteComponent implements OnInit,ControlValueAccessor {
 
+  onChange = (_: any) => { }
   constructor() { }
+  writeValue(obj: any): void {
+   this.FABRICANTE=obj
+  }
+  registerOnChange(fn: any): void {
+   this.onChange=fn
+  }
+  registerOnTouched(fn: any): void {
+    throw new Error('Method not implemented.');
+  }
 
   @Output('selecciono')
 
@@ -20,7 +38,7 @@ export class FabricanteComponent implements OnInit {
   ngOnInit(): void {
   }
   seleccionoFabricante(event:any){
-
+this.onChange(this.FABRICANTE)
     this.selecciono.emit(event.value.NOMBRE)
   }
 

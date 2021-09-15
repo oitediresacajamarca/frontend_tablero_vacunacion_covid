@@ -20,20 +20,21 @@ export class ProvinciaSelectorComponent implements OnInit, ControlValueAccessor 
   isDisabled: boolean = false;
   onChange = (_: any) => { }
   onTouch = () => { }
-@Output('seleciono')
-  seleciono  = new EventEmitter();
+  @Output('seleciono')
+  seleciono = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
   writeValue(obj: any): void {
+    console.log(obj)
     this.provincia = obj;
   }
   registerOnChange(fn: any): void {
 
-    this.onChange=fn;
+    this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-   this.onTouch=fn;
+    this.onTouch = fn;
   }
 
   ngOnInit(): void {
@@ -46,16 +47,16 @@ export class ProvinciaSelectorComponent implements OnInit, ControlValueAccessor 
     this.http.get<any[]>(environment.url__backend + 'provincias').subscribe(respuesta => {
 
 
-      console.log(respuesta)
+
       this.provincias = respuesta;
 
-     
+
     })
   }
 
   seleccionoProvincia() {
 
-
+    this.onChange(this.provincia)
     this.seleciono.emit(this.provincia)
   }
 

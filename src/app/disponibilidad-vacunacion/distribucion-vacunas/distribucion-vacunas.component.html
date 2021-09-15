@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>FORMULARIO REGISTRO DISTRIBUCION</h1>
+
+  <div class="row">
+    <div class="col-4">
+      <button
+        pButton
+        type="button"
+        (click)="open_almacen_red()"
+        label="AGREGAR DISTRIBUCION DE ALMACEN A RED"
+      ></button>
+    </div>
+    <div class="col-4">
+      <button
+        pButton
+        type="button"
+        (click)="open_red_ipress()"
+        label=" AGREGAR DISTRIBUCION DE RED A ESTABLECIMIENTO"
+      ></button>
+    </div>
+  </div>
+
+    <app-distribucion-red-ipress #dis_ipress></app-distribucion-red-ipress>
+    <app-distribucion-almacen-red #dis_almacen></app-distribucion-almacen-red>
+ 
+</div>
+<p-confirmDialog header="CONFIRMAR" acceptLabel="ACEPTAR" rejectLabel="CANCELAR" icon="pi pi-exclamation-triangle"></p-confirmDialog>

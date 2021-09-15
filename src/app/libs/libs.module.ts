@@ -8,16 +8,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
 
-
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule, PanelModule, CalendarModule, InputNumberModule,
-     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,DropdownModule
   ], exports: [PanelModule, CalendarModule, InputNumberModule,
-     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule]
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,DropdownModule]
 })
 export class LibsModule { }

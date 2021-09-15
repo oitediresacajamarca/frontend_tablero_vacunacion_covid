@@ -26,6 +26,8 @@ import { MapaSelectorDirective } from './directivas/mapa-selector.directive';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {TranslateModule} from '@ngx-translate/core'
+import {DialogModule} from 'primeng/dialog';
+
 
 
 
@@ -35,6 +37,9 @@ import { NgxDateRangeModule } from 'ngx-daterange';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
 import { DisponibilidadVacunacionModule } from './disponibilidad-vacunacion/disponibilidad-vacunacion.module';
+import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
+import { ConteoRapidoModule } from './conteo-rapido/conteo-rapido.module';
+import { LayoutsModule } from './layouts/layouts.module';
 
 
 
@@ -49,6 +54,8 @@ import { DisponibilidadVacunacionModule } from './disponibilidad-vacunacion/disp
     CoberturasComponent,
     MapaSelectorDirective,
     ContenerdorTableroComponent,
+    ConteoRapidoComponent,
+
 
   
   ],
@@ -65,6 +72,9 @@ import { DisponibilidadVacunacionModule } from './disponibilidad-vacunacion/disp
     MultiSelectModule,
     DropdownModule,
     DisponibilidadVacunacionModule,
+    ConteoRapidoModule,LayoutsModule,
+    DialogModule
+    ,
     TranslateModule.forRoot({
       defaultLanguage: 'es_ES'
   })

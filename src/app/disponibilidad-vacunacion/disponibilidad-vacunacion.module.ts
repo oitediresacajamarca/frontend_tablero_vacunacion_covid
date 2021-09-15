@@ -8,6 +8,10 @@ import { LibsModule } from '../libs/libs.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { DetalleDistribucionComponent } from './detalle-distribucion/detalle-distribucion.component';
+import { DistribucionVacunasComponent } from './distribucion-vacunas/distribucion-vacunas.component';
+import { DistribucionAlmacenRedComponent } from './distribucion-almacen-red/distribucion-almacen-red.component';
+import { DistribucionRedIpressComponent } from './distribucion-red-ipress/distribucion-red-ipress.component';
+import { DetalleDistribucionPorIpressComponent } from './detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
 
 
 
@@ -15,7 +19,11 @@ import { DetalleDistribucionComponent } from './detalle-distribucion/detalle-dis
 @NgModule({
   declarations: [
     RegistroDisponiblidadComponent,
-    DetalleDistribucionComponent
+    DetalleDistribucionComponent,
+    DistribucionVacunasComponent,
+    DistribucionAlmacenRedComponent,
+    DistribucionRedIpressComponent,
+    DetalleDistribucionPorIpressComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +31,9 @@ import { DetalleDistribucionComponent } from './detalle-distribucion/detalle-dis
     ReactiveFormsModule,
     LibsModule,
 
-  ],
+  ],exports:[  RegistroDisponiblidadComponent,
+    DetalleDistribucionComponent,
+    DistribucionVacunasComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ConfirmationService]
 })
