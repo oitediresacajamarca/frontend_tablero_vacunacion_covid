@@ -12,9 +12,10 @@ import { DistritoSelectorComponent } from './controles/distrito-selector/distrit
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
 import { DistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/distribucion-almacen-red/distribucion-almacen-red.component';
 import { DistribucionVacunasComponent } from './disponibilidad-vacunacion/distribucion-vacunas/distribucion-vacunas.component';
+import { RecepcionAlmacenEspecialComponent } from './disponibilidad-vacunacion/recepcion-almacen-especial/recepcion-almacen-especial.component';
 import { RegistroDisponiblidadComponent } from './disponibilidad-vacunacion/registro-disponiblidad/registro-disponiblidad.component';
-import { AdminDistribucionVacunasComponent } from './layouts/admin-distribucion-vacunas/admin-distribucion-vacunas.component';
-import { PrimeroComponent } from './primero/primero.component';
+import { RegistroStockComponent } from './disponibilidad-vacunacion/registro-stock/registro-stock.component';
+
 
 const routes: Routes = [
 
@@ -38,7 +39,10 @@ const routes: Routes = [
   { path: 'conteo', component: ConteoRapidoComponent },
 
   { path: 'distribucion', component: DistribucionVacunasComponent },
-  { path: 'almacen-red', component: DistribucionAlmacenRedComponent }
+  { path: 'almacen-red', component: DistribucionAlmacenRedComponent },
+  {path:'stock-disponible',component:RegistroStockComponent},
+  {path:'recepcion-almacen-especial',component:RecepcionAlmacenEspecialComponent}
+
 
 
 

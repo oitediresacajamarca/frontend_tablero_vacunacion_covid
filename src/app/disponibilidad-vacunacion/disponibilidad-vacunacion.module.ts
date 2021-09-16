@@ -12,6 +12,8 @@ import { DistribucionVacunasComponent } from './distribucion-vacunas/distribucio
 import { DistribucionAlmacenRedComponent } from './distribucion-almacen-red/distribucion-almacen-red.component';
 import { DistribucionRedIpressComponent } from './distribucion-red-ipress/distribucion-red-ipress.component';
 import { DetalleDistribucionPorIpressComponent } from './detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
+import { RegistroStockComponent } from './registro-stock/registro-stock.component';
+import { RecepcionAlmacenEspecialComponent } from './recepcion-almacen-especial/recepcion-almacen-especial.component';
 
 
 
@@ -23,7 +25,9 @@ import { DetalleDistribucionPorIpressComponent } from './detalle-distribucion-po
     DistribucionVacunasComponent,
     DistribucionAlmacenRedComponent,
     DistribucionRedIpressComponent,
-    DetalleDistribucionPorIpressComponent
+    DetalleDistribucionPorIpressComponent,
+    RegistroStockComponent,
+    RecepcionAlmacenEspecialComponent
   ],
   imports: [
     CommonModule,
