@@ -97,4 +97,14 @@ this.conteos=respuesta
     });
   }
 
+  ELIMINAR(id:any){
+
+    console.log(id)
+this.conteo_rapido.eliminarDetalle(id).subscribe(respuesta=>{
+
+console.log(respuesta)
+this.cargarDetalle()
+
+})
+  }
 }

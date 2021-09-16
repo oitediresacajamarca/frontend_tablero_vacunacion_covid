@@ -21,4 +21,9 @@ export class ConteoRapidoService {
     return this.http.get<any>(environment.url__backend + 'conteo_rapido/detalle/'+ubigeo)
   }
 
+  
+  eliminarDetalle(id:any){
+    return this.http.get<any>(environment.url__backend + 'conteo_rapido/detalle/eliminar/'+id)
+  }
+
 }
