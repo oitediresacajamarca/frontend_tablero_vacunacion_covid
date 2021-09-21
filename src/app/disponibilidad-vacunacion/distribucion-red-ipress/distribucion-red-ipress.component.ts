@@ -1,7 +1,9 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { FabricanteComponent } from 'src/app/controles/fabricante/fabricante.component';
+import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress.service';
+
 
 @Component({
   selector: 'app-distribucion-red-ipress',
@@ -18,13 +20,19 @@ import { FabricanteComponent } from 'src/app/controles/fabricante/fabricante.com
 export class DistribucionRedIpressComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private confirmationService: ConfirmationService) { }
+  constructor(private fb: FormBuilder,
+     private confirmationService: ConfirmationService,
+     private distribucions:DistribucionIpressService) { }
 
   almacenes: any[] = []
   almacen: any
   display: boolean = false
 
   TIPOS_DOCUMENTOS: any[] = []
+
+
+@Output('agrego_distribucion')
+  agrego_distribucion:EventEmitter<any>= new EventEmitter()
 
 
   ngOnInit(): void {
@@ -41,7 +49,7 @@ export class DistribucionRedIpressComponent implements OnInit {
 
 
     this.form = this.fb.group({
-      almacen: '',
+ 
       provincia: '',
       IPRESS: '',
       fabricante: '',
@@ -56,15 +64,29 @@ export class DistribucionRedIpressComponent implements OnInit {
     })
 
   }
+  open(){
+
+    this.display=true
+  }
+
+  close(){
+    this.display=false
+  }
 
 
   GUARDAR() {
 
 
     this.confirmationService.confirm({
-      message: 'Estaa seguro de Guardar los datos?',
+      message: 'Esta seguro de Guardar los datos?',
       accept: () => {
         console.log(this.form.value)
+
+        this.distribucions.registroDisponibilidad(this.form.value).subscribe(data=>{
+          this.agrego_distribucion.emit('emitio')
+          this.close()
+      
+        })
       }
     });
     

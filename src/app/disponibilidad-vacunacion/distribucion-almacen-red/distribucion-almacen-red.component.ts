@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Console } from 'console';
+import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 import { ConfirmationService } from 'primeng/api';
+import { DistribucionRedService } from 'src/app/servicios/distribucion-red.service';
+
 
 @Component({
   selector: 'app-distribucion-almacen-red',
@@ -9,7 +13,7 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class DistribucionAlmacenRedComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private confirmation:ConfirmationService) { }
+  constructor(private fb: FormBuilder, private confirmation: ConfirmationService, private distribucion: DistribucionRedService) { }
   almacenes: any[] = []
   almacen: any
 
@@ -18,13 +22,16 @@ export class DistribucionAlmacenRedComponent implements OnInit {
 
   form!: FormGroup;
 
+  @Output('registro_distribucion')
+  registro_distribucion: EventEmitter<any[]> = new EventEmitter()
+
   ngOnInit(): void {
 
-    
+
 
     this.almacenes = [
-      { name: 'ALMACEN ESPECIEALISADO JAEN', code: 'ALMACEN ESPECIEALISADO JAEN' },
-      { name: 'ALMACEN ESPECIEALISADO CAJAMARCA', code: 'ALMACEN ESPECIEALISADO CAJAMARCA' },
+      { name: 'ALMACEN ESPECIALIZADO JAEN', code: 'ALMACEN ESPECIALIZADO JAEN' },
+      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: 'ALMACEN ESPECIALIZADO CAJAMARCA' },
     ];
 
     this.TIPOS_DOCUMENTOS = [
@@ -34,15 +41,15 @@ export class DistribucionAlmacenRedComponent implements OnInit {
 
     this.form = this.fb.group({
       almacen: '',
-      provincia:'',
-      fabricante:'',
-      FECHA_DISTRIBUCION:'',
-      CANTIDAD_DOSIS:'',
-      CANTIDAD_VIALES:'',
-      FECHA_VENCIMIENTO:'',
-      FECHA_DESCONGELAMIENTO:'',
-      TIPO_DOCUMENTO:'',
-      NUMERO_DOCUMENTO:''
+      provincia: '',
+      fabricante: '',
+      FECHA_DISTRIBUCION: '',
+      CANTIDAD_DOSIS: '',
+      CANTIDAD_VIALES: '',
+      FECHA_VENCIMIENTO: '',
+      FECHA_DESCONGELAMIENTO: '',
+      TIPO_DOCUMENTO: '',
+      NUMERO_DOCUMENTO: ''
 
 
     })
@@ -61,17 +68,25 @@ export class DistribucionAlmacenRedComponent implements OnInit {
     this.display = false;
   }
 
-  guardar(){
+  guardar() {
 
-
+    console.log(this.form.value)
     this.confirmation.confirm({
-      message: 'Estaa seguro de Guardar los datos?',
+      message: 'Esta seguro de Guardar los datos?',
       accept: () => {
- 
+        this.distribucion.nuevoDistribucionRed(this.form.value).subscribe(data => {
+
+        
+
+          this.registro_distribucion.emit(data)
+          
+
+
+        })
       }
     });
 
-    console.log(this.form.value)
+
   }
 
 }

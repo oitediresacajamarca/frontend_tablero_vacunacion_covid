@@ -11,7 +11,7 @@ header="DISTRIBUCION DE RED A IPRESS"
     </div>
 
     <div class="col-auto">
-        <app-provincia-selector></app-provincia-selector>
+        <app-provincia-selector formControlName="provincia" ></app-provincia-selector>
       
     </div>
 </div>
@@ -28,7 +28,7 @@ header="DISTRIBUCION DE RED A IPRESS"
     </div>
     <div class="row justify-content-center  m-2">
     <div class="col-auto">
-        <app-fabricante></app-fabricante>
+        <app-fabricante formControlName="fabricante"></app-fabricante>
        
     </div>
 </div>
@@ -65,7 +65,7 @@ header="DISTRIBUCION DE RED A IPRESS"
 
         <div class="p-field p-col-12 p-md-6">
             <label for="firstname1">TIPO DE DOCUMENTO</label>
-            <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="name" formControlName='TIPO_DOCUMENTO'></p-dropdown>
+            <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="name" formControlName="TIPO_DOCUMENTO"></p-dropdown>
             
         </div>
 

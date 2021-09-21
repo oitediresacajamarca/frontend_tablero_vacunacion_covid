@@ -14,31 +14,32 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class FabricanteComponent implements OnInit,ControlValueAccessor {
+export class FabricanteComponent implements OnInit, ControlValueAccessor {
 
   onChange = (_: any) => { }
   constructor() { }
   writeValue(obj: any): void {
-   this.FABRICANTE=obj
+    this.FABRICANTE = obj
   }
   registerOnChange(fn: any): void {
-   this.onChange=fn
+    this.onChange = fn
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+
   }
 
   @Output('selecciono')
 
-  selecciono=new EventEmitter()
+  selecciono = new EventEmitter()
 
-  FABRICANTES:any=[{NOMBRE:'SINOPHARM'},{NOMBRE:'PFIZER'},{NOMBRE:'ASTRAZENECA'}]
-  FABRICANTE:any;
+  FABRICANTES: any = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'ASTRAZENECA' }]
+  FABRICANTE: any;
 
   ngOnInit(): void {
   }
-  seleccionoFabricante(event:any){
-this.onChange(this.FABRICANTE)
+  seleccionoFabricante(event: any) {
+    console.log(this.FABRICANTE)
+    this.onChange(this.FABRICANTE)
     this.selecciono.emit(event.value.NOMBRE)
   }
 

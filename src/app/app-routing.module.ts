@@ -10,6 +10,10 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
+import { DetalleDistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/detalle-distribucion-almacen-red/detalle-distribucion-almacen-red.component';
+import { DetalleDistribucionPorIpressComponent } from './disponibilidad-vacunacion/detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
+import { DetalleEnvioIpressComponent } from './disponibilidad-vacunacion/detalle-envio-ipress/detalle-envio-ipress.component';
+import { DetalleEnvioRedComponent } from './disponibilidad-vacunacion/detalle-envio-red/detalle-envio-red.component';
 import { DistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/distribucion-almacen-red/distribucion-almacen-red.component';
 import { DistribucionVacunasComponent } from './disponibilidad-vacunacion/distribucion-vacunas/distribucion-vacunas.component';
 import { RecepcionAlmacenEspecialComponent } from './disponibilidad-vacunacion/recepcion-almacen-especial/recepcion-almacen-especial.component';
@@ -41,6 +45,11 @@ const routes: Routes = [
   { path: 'distribucion', component: DistribucionVacunasComponent },
   { path: 'almacen-red', component: DistribucionAlmacenRedComponent },
   {path:'stock-disponible',component:RegistroStockComponent},
+  {path:'detalle/almacen-red',component:DetalleDistribucionAlmacenRedComponent},
+  {path:'detalle/red-ipress',component:DetalleDistribucionPorIpressComponent},
+  {path:'detalle/envio-ipress',component:DetalleEnvioIpressComponent},
+  {path:'detalle/envio-red',component:DetalleEnvioRedComponent},
+  {path:'detalle/envio-red/:id',component:DetalleEnvioRedComponent},
   {path:'recepcion-almacen-especial',component:RecepcionAlmacenEspecialComponent}
 
 

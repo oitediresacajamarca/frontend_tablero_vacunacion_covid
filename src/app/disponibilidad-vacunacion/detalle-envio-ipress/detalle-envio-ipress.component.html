@@ -1,7 +1,6 @@
 <div class="content">
-
     <div class="container">
-        <h1>DISTRIBUCION DE RED A IPRESS</h1>
+        <h1>ENVIO DE RED A IPRESS</h1>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -20,24 +19,24 @@
                       <table class="table table-striped table-valign-middle">
                         <thead>
                         <tr>
-                          <th>DESDE</th>
-                          <th>IPRESS</th>
+                            <th>DESDE</th>
+                          <th>RED</th>
                           <th>FABRICANTE</th>
                           <th>CANTIDAD DE DOSIS</th>
                           <th>CANTIDAD DE VIALES</th>
-                          <th>FECHA DE DISTRIBUCION</th>
-                          <th>FECHA DE VENCIMIENTO</th>
+                          <th>FECHA DE ENVIO</th>
+                          <th>FECHA MAXIMA DE USO</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor='let distri of ditribucion_ipress'>
+                        <tr *ngFor='let distri of envios_ipress'>
     
                             <td>
-                                {{distri.DESDE}}
+                                {{distri.DESDE_ALMACEN}}
                              
                                    </td>
                           <td>
-                       {{distri.est.Nombre_del_establecimiento}}
+                       {{distri.NOMBRE}}
                     
                           </td>
                           <td> {{distri.FABRICANTE}}</td>
@@ -49,7 +48,7 @@
                           </td>
     
                           <td>
-                            {{distri.FECHA_DISTRIBUCION|date:'dd/MM/YYYY'}}
+                            {{distri.FECHA_ENVIO|date:'dd/MM/YYYY'}}
                           </td>
                           <td>
                             {{distri.FECHA_VENCIMIENTO|date:'dd/MM/YYYY'}}
@@ -62,10 +61,10 @@
                       </table>
                     </div>
     
-                    <app-distribucion-red-ipress #nuevo_dis  (agrego_distribucion)="agrego_dis()"></app-distribucion-red-ipress>
+                    <app-distribucion-red-ipress #nuevo_dis></app-distribucion-red-ipress>
     
                     <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-info float-right"  (click)="open_red_ipress()"><i class="fas fa-plus"></i> AGREGAR DISTRIBUCION</button>
+                        <button type="button" class="btn btn-info float-right"  ><i class="fas fa-plus"></i> AGREGAR ENVIO</button>
                       </div>
                   </div>
                 
@@ -81,3 +80,9 @@
     </div>
     
     <p-confirmDialog header="CONFIRMAR" acceptLabel="ACEPTAR" rejectLabel="CANCELAR" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+
+
+
+
+

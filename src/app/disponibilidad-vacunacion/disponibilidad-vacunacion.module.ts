@@ -14,8 +14,10 @@ import { DistribucionRedIpressComponent } from './distribucion-red-ipress/distri
 import { DetalleDistribucionPorIpressComponent } from './detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
 import { RegistroStockComponent } from './registro-stock/registro-stock.component';
 import { RecepcionAlmacenEspecialComponent } from './recepcion-almacen-especial/recepcion-almacen-especial.component';
-
-
+import { DetalleDistribucionAlmacenRedComponent } from './detalle-distribucion-almacen-red/detalle-distribucion-almacen-red.component';
+import { DetalleEnvioIpressComponent } from './detalle-envio-ipress/detalle-envio-ipress.component';
+import { DetalleEnvioRedComponent } from './detalle-envio-red/detalle-envio-red.component';
+import { NuevoEnvioRedComponent } from './nuevo-envio-red/nuevo-envio-red.component';
 
 
 @NgModule({
@@ -27,7 +29,11 @@ import { RecepcionAlmacenEspecialComponent } from './recepcion-almacen-especial/
     DistribucionRedIpressComponent,
     DetalleDistribucionPorIpressComponent,
     RegistroStockComponent,
-    RecepcionAlmacenEspecialComponent
+    RecepcionAlmacenEspecialComponent,
+    DetalleDistribucionAlmacenRedComponent,
+    DetalleEnvioIpressComponent,
+    DetalleEnvioRedComponent,
+    NuevoEnvioRedComponent
   ],
   imports: [
     CommonModule,

@@ -22,5 +22,10 @@ export class DistribucionIpressService {
 
   }
 
+  cargarDetalleTotal(){
+    return this.http.get<any>(environment.url__backend + 'distribucion-ipress/listar/')
+
+  }
+
 
 }
