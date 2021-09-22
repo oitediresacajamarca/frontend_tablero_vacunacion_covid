@@ -30,7 +30,7 @@ export class EstablecimientosSelectorComponent implements OnInit,ControlValueAcc
    this.onChange=fn
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+   
   }
 
   @Input('UBIGEO')

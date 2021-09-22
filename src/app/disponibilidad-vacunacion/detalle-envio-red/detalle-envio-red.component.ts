@@ -52,15 +52,19 @@ export class DetalleEnvioRedComponent implements OnInit {
     this.distribuciones_red.listarDistribucionRedId(this.id).subscribe(data => {
 
       this.distribucion_cabecera = data[0];
-      console.log(data[0])
+
 
     })
   }
 
 
 
-  eliminar_envios() {
+  eliminar_envios(id: any) {
 
+    this.envio_red.eliminar_envio(id).subscribe(data=>{
+      this.cargar_envios()
+    })
+ 
   }
 
 
