@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { ConteoRapidoService } from '../servicios/conteo-rapido.service';
@@ -19,9 +19,9 @@ export class ConteoRapidoComponent implements OnInit {
   UBIGEO!: string;
   constructor(private fb: FormBuilder, private confirmationService: ConfirmationService,
     private config: PrimeNGConfig, private translateService: TranslateService, private distribucion_ipress: DistribucionIpressService,
-    private conteo_rapido:ConteoRapidoService) { }
+    private conteo_rapido: ConteoRapidoService) { }
   es_ES: any
-  conteos!:any[]
+  conteos!: any[]
 
 
   ngOnInit(): void {
@@ -30,11 +30,11 @@ export class ConteoRapidoComponent implements OnInit {
 
 
   formGroup = this.fb.group({
-    PROVINCIA:'',
-    DISTRITO:'',
-    FABRICANTE:'',
-    CANTIDAD: '',
-    FECHA: '',
+    PROVINCIA: ['', Validators.required],
+    DISTRITO: ['', Validators.required],
+    FABRICANTE: ['',],
+    CANTIDAD: ['', Validators.required],
+    FECHA: ['', Validators.required],
 
   })
 
@@ -69,11 +69,11 @@ export class ConteoRapidoComponent implements OnInit {
     this.CODIGO_UNICO = event.value.Codigo_Unico
 
 
-  
+
   }
-  cargarDetalle(){
-    this.conteo_rapido.cargarDetalle(this.formGroup.controls['DISTRITO'].value).subscribe(data=>{
-      this.conteos=data
+  cargarDetalle() {
+    this.conteo_rapido.cargarDetalle(this.formGroup.controls['DISTRITO'].value).subscribe(data => {
+      this.conteos = data
 
       console.log(data)
     })
@@ -81,30 +81,32 @@ export class ConteoRapidoComponent implements OnInit {
 
 
   GUARGAR() {
-    console.log(this.formGroup.value)
+    console.log(this.formGroup.valid)
+
+    if (this.formGroup.valid) {
+
+      this.confirmationService.confirm({
+        message: 'Estaa seguro de Guardar los datos?',
+        accept: () => {
+          this.conteo_rapido.nuevoConteo(this.formGroup.value).subscribe(respuesta => {
+            this.conteos = respuesta
 
 
-    this.confirmationService.confirm({
-      message: 'Estaa seguro de Guardar los datos?',
-      accept: () => {
-        this.conteo_rapido.nuevoConteo(this.formGroup.value).subscribe(respuesta => {
-this.conteos=respuesta
-
-
-          console.log(respuesta)
-        })
-      }
-    });
+            console.log(respuesta)
+          })
+        }
+      });
+    }
   }
 
-  ELIMINAR(id:any){
+  ELIMINAR(id: any) {
 
     console.log(id)
-this.conteo_rapido.eliminarDetalle(id).subscribe(respuesta=>{
+    this.conteo_rapido.eliminarDetalle(id).subscribe(respuesta => {
 
-console.log(respuesta)
-this.cargarDetalle()
+      console.log(respuesta)
+      this.cargarDetalle()
 
-})
+    })
   }
 }
