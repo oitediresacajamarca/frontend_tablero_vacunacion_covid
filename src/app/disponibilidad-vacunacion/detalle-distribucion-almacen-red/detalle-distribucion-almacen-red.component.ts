@@ -10,37 +10,45 @@ import { DistribucionAlmacenRedComponent } from '../distribucion-almacen-red/dis
 })
 export class DetalleDistribucionAlmacenRedComponent implements OnInit {
 
-  constructor(private distribucion_red:DistribucionRedService,private router:Router) { }
-  ditribucion_red!:any[]
+  constructor(private distribucion_red: DistribucionRedService, private router: Router) { }
+  ditribucion_red!: any[]
   @ViewChild('dis_almacen')
-  dis_almacen!:DistribucionAlmacenRedComponent
+  dis_almacen!: DistribucionAlmacenRedComponent
 
 
   ngOnInit(): void {
- this.cargarDistribuciones()
+    this.cargarDistribuciones()
   }
 
-  cargarDistribuciones(){
-    this.distribucion_red.listarDistribucionRed().subscribe(respuesta=>{
+  cargarDistribuciones() {
+    this.distribucion_red.listarDistribucionRed().subscribe(respuesta => {
       console.log(respuesta)
-      this.ditribucion_red=respuesta
+      this.ditribucion_red = respuesta
 
     })
   }
 
-  open_almacen_red(){
+  open_almacen_red() {
 
     this.dis_almacen.open();
   }
-  Nueva_Distri(){
-    console.log('hello')
+  Nueva_Distri() {
+
     this.cargarDistribuciones()
     this.dis_almacen.close()
   }
 
-  modificar_envios(val:any){
-    console.log(val)
-    this.router.navigate(['/detalle/envio-red/'+val])
+  modificar_envios(val: any) {
+
+    this.router.navigate(['/detalle/envio-red/' + val])
+  }
+
+
+  eliminar_distribucion(val: any) {
+
+    this.distribucion_red.eliminarDistribucion(val).subscribe(data => {
+      this.cargarDistribuciones()
+    })
   }
 
 

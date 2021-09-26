@@ -15,31 +15,37 @@ import { environment } from 'src/environments/environment';
     }
   ]
 })
-export class EstablecimientosSelectorComponent implements OnInit,ControlValueAccessor {
+export class EstablecimientosSelectorComponent implements OnInit, ControlValueAccessor {
 
   constructor(private http: HttpClient) { }
 
 
-  establecimiento:any
+  establecimiento: any
 
   onChange = (_: any) => { }
   writeValue(obj: any): void {
-  this.establecimiento=obj
+    this.establecimiento = obj
   }
   registerOnChange(fn: any): void {
-   this.onChange=fn
+    this.onChange = fn
   }
   registerOnTouched(fn: any): void {
-   
+
   }
 
   @Input('UBIGEO')
   UBIGEO!: string;
 
+  @Input('UBIGEO_PROVINCIA')
+  UBIGEO_PROVINCIA!: string;
+
   establecimientos: any[] = []
 
   @Output('selecciono')
   selecciono = new EventEmitter();
+
+  @Output('click')
+  click = new EventEmitter();
 
 
   ngOnInit(): void {
@@ -55,11 +61,23 @@ export class EstablecimientosSelectorComponent implements OnInit,ControlValueAcc
     })
   }
 
+  cargar_establecimientos_por_provincia() {
+
+    this.http.get<any[]>(environment.url__backend + 'establecimiento/ubigeo_provincia/' + this.UBIGEO_PROVINCIA).subscribe(data => {
+      this.establecimientos = data;
+    })
+  }
+
   seleccionoIpress(event: any) {
     this.onChange(event.value)
     this.selecciono.emit(event)
 
   }
+
+  click_() {
+    this.click.emit('click')
+  }
+
 
 
 }

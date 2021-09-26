@@ -38,7 +38,7 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
   seleccionoFabricante(event: any) {
-    console.log(this.FABRICANTE)
+
     this.onChange(this.FABRICANTE)
     this.selecciono.emit(event.value.NOMBRE)
   }

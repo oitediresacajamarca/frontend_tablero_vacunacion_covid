@@ -22,5 +22,9 @@ export class DistribucionRedService {
   listarDistribucionRedId(id:any) {
     return this.http.get<any[]>(environment.url__backend + 'distribucion_red/listar_id/'+id)
   }
+
+ eliminarDistribucion(id:any) {
+    return this.http.get<any[]>(environment.url__backend + 'distribucion_red/eliminar/'+id)
+  }
 }
 

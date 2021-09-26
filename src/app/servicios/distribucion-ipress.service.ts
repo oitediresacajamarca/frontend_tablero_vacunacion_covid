@@ -26,6 +26,9 @@ export class DistribucionIpressService {
     return this.http.get<any>(environment.url__backend + 'distribucion-ipress/listar/')
 
   }
+  eliminarDistribucion(id:any){
+    return this.http.get<any>(environment.url__backend + 'distribucion-red-ipress/eliminar/'+id)
+  }
 
 
 }

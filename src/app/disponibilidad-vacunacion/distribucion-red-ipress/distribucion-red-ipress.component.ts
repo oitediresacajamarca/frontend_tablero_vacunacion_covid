@@ -1,6 +1,8 @@
-import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
+import { Calendar } from 'primeng/calendar';
+import { EstablecimientosSelectorComponent } from 'src/app/controles/establecimientos-selector/establecimientos-selector.component';
 import { FabricanteComponent } from 'src/app/controles/fabricante/fabricante.component';
 import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress.service';
 
@@ -20,9 +22,10 @@ import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress
 export class DistribucionRedIpressComponent implements OnInit {
   form!: FormGroup;
 
+  disabled_fec_desc:boolean=false;
   constructor(private fb: FormBuilder,
-     private confirmationService: ConfirmationService,
-     private distribucions:DistribucionIpressService) { }
+    private confirmationService: ConfirmationService,
+    private distribucions: DistribucionIpressService) { }
 
   almacenes: any[] = []
   almacen: any
@@ -31,9 +34,14 @@ export class DistribucionRedIpressComponent implements OnInit {
   TIPOS_DOCUMENTOS: any[] = []
 
 
-@Output('agrego_distribucion')
-  agrego_distribucion:EventEmitter<any>= new EventEmitter()
+  @Output('agrego_distribucion')
+  agrego_distribucion: EventEmitter<any> = new EventEmitter()
 
+  @ViewChild('establecimientos_selector')
+  establecimientos_selector!: EstablecimientosSelectorComponent
+
+  @ViewChild('FECHA_DESCONGE')
+  FECHA_DESCONGE!: Calendar
 
   ngOnInit(): void {
 
@@ -49,7 +57,7 @@ export class DistribucionRedIpressComponent implements OnInit {
 
 
     this.form = this.fb.group({
- 
+
       provincia: '',
       IPRESS: '',
       fabricante: '',
@@ -64,13 +72,13 @@ export class DistribucionRedIpressComponent implements OnInit {
     })
 
   }
-  open(){
+  open() {
 
-    this.display=true
+    this.display = true
   }
 
-  close(){
-    this.display=false
+  close() {
+    this.display = false
   }
 
 
@@ -82,15 +90,41 @@ export class DistribucionRedIpressComponent implements OnInit {
       accept: () => {
         console.log(this.form.value)
 
-        this.distribucions.registroDisponibilidad(this.form.value).subscribe(data=>{
+        this.distribucions.registroDisponibilidad(this.form.value).subscribe(data => {
           this.agrego_distribucion.emit('emitio')
           this.close()
-      
+
         })
       }
     });
-    
- 
+
+
   }
+
+  selecciono_provincia() {
+    console.log('kkkkloll')
+  }
+
+  hizo_click() {
+
+    this.establecimientos_selector.UBIGEO_PROVINCIA = this.form.value.provincia.ID_PROVINCIA
+
+    this.establecimientos_selector.cargar_establecimientos_por_provincia()
+
+  }
+
+  selecciono_fabricante() {
+    console.log(this.form.value)
+    if (this.form.value.fabricante.NOMBRE =='PFIZER') {
+this.disabled_fec_desc=true
+    }
+    else{
+      this.disabled_fec_desc=false
+    }
+  }
+
+
+
+
 
 }

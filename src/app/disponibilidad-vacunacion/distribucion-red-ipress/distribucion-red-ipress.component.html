@@ -11,7 +11,7 @@ header="DISTRIBUCION DE RED A IPRESS"
     </div>
 
     <div class="col-auto">
-        <app-provincia-selector formControlName="provincia" ></app-provincia-selector>
+        <app-provincia-selector formControlName="provincia" (onChange)="selecciono_provincia()"></app-provincia-selector>
       
     </div>
 </div>
@@ -22,13 +22,13 @@ header="DISTRIBUCION DE RED A IPRESS"
     </div>
 
     <div class="col-auto">
-        <app-establecimientos-selector [UBIGEO]="'060101'" formControlName="IPRESS"></app-establecimientos-selector>
+        <app-establecimientos-selector  formControlName="IPRESS" (click) ="hizo_click()" #establecimientos_selector></app-establecimientos-selector>
      
     </div>
     </div>
     <div class="row justify-content-center  m-2">
     <div class="col-auto">
-        <app-fabricante formControlName="fabricante"></app-fabricante>
+        <app-fabricante formControlName="fabricante" (selecciono)="selecciono_fabricante()"></app-fabricante>
        
     </div>
 </div>
@@ -57,7 +57,7 @@ header="DISTRIBUCION DE RED A IPRESS"
 
         <div class="p-field p-col-12 p-md-6">
             <label for="firstname1">FECHA DE DESCONGELAMIENTO</label>
-            <p-calendar formControlName='FECHA_DESCONGELAMIENTO'></p-calendar>
+            <p-calendar formControlName='FECHA_DESCONGELAMIENTO' [disabled]="disabled_fec_desc" #FECHA_DESCONGE></p-calendar>
 
             
         </div>
@@ -72,8 +72,9 @@ header="DISTRIBUCION DE RED A IPRESS"
 
         
         <div class="p-field p-col-12 p-md-6">
-            <label for="firstname1">NUMERO DE DOCUMENTO</label>
-            <p-inputNumber formControlName='NUMERO_DOCUMENTO' ></p-inputNumber>  
+            <label for="NUMERO_DOCUMENTO">NUMERO DE DOCUMENTO</label>
+            <input type="text" pInputText formControlName='NUMERO_DOCUMENTO' />
+         
         </div>
        
 

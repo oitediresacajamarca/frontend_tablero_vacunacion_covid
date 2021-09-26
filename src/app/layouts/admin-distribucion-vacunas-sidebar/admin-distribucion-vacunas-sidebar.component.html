@@ -25,7 +25,7 @@
         
           <li class="nav-header">DISTRIBUCION DE VACUNAS</li>
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a [routerLink]="['recepcion-almacen-especial']"  class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 RECEPCION ALMACEN
@@ -34,10 +34,27 @@
             </a>
           </li>
           <li class="nav-item">
+            <a [routerLink]="['estrategia-red']" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+             DISTRIBUCION HACIA LA RED
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a [routerLink]="['almacen-red']" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
              DISTRIBUCION DE ALMACEN A RED
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a [routerLink]="['comparacion-almacen-red']" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+            CUADRO DE COMPARACION ALMACEN RED
               </p>
             </a>
           </li>

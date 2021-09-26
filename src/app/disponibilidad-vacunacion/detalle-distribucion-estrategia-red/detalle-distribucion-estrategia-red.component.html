@@ -1,0 +1,123 @@
+
+
+
+<div class="content">
+    <div class="container">
+        <h1>ENVIO A RED</h1>
+        <div class="row m-2">
+          <div class="col-lg-8">
+
+            <div class="card bg-light">
+              <div class="card-header text-muted border-bottom-0">
+               DETALLE DE DISTRIBUCION
+              </div>
+              <div class="card-body pt-0">
+                <div class="row">
+            
+                </div>
+              </div>
+              <div class="card-footer">
+           
+              </div>
+            </div>
+     
+
+
+
+          </div>
+
+       
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header border-0">
+                      <h3 class="card-title">Distribuciones</h3>
+                      <div class="card-tools">
+                        <a href="#" class="btn btn-tool btn-sm">
+                          <i class="fas fa-download"></i>
+                        </a>
+                        <a href="#" class="btn btn-tool btn-sm">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-striped table-valign-middle">
+                        <thead>
+                        <tr>
+                          <th>FECHA</th>
+                          <th>PROVINCIA</th>
+                          <th>FABRICANTE</th>
+                          <th>CANTIDAD EN VIALES</th>
+                          <th>CANTIDAD EN DOSIS</th>
+                
+                          <th>TIPO DOCUMENTO</th>
+                          <th>NUMERO DE DOCUMENTO</th>
+                          <th>ACCION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let distris of distribuciones_listado">
+    
+                            <td>
+          
+                             {{distris.FECHA|date:'dd-MM-yyyy'}}
+                                   </td>
+                                   <td>
+              
+                                    {{distris.NOMBRE}}
+                            
+                                  </td>
+                          <td>
+              
+                            {{distris.FABRICANTE}}
+                    
+                          </td>
+                          <td>     {{distris.CANTIDAD_VIALES}}</td>
+                          <td>
+                            {{distris.CANTIDAD_DOSIS}}
+                          </td>
+                         
+    
+                          <td>
+                            {{distris.TIPO_DOCUMENTO}}
+                          
+                          </td>
+                          <td>
+                            {{distris.NUMERO_DOCUMENTO}}
+                          </td>
+    
+                          <td>
+                            <button pButton type="button" label="ELIMINAR" (click)="eliminar(distris.ID)" ></button>
+                          </td>
+    
+                          
+                        </tr>
+                      
+                        </tbody>
+                      </table>
+                    </div>
+                    <app-distribucion-estrategia-red #nuevo_envio (creo_nuevo)="creo_nuevo()"></app-distribucion-estrategia-red>
+       
+    
+                    <div class="card-footer clearfix">
+                        <button type="button" class="btn btn-info float-right"  (click)="open_nuevo()" ><i class="fas fa-plus"></i> AGREGAR DISTRIBUCION</button>
+                      </div>
+                  </div>             
+    
+    
+            </div>
+    
+        </div>
+    
+        
+    
+    </div>
+    </div>
+
+    <app-distribucion-estrategia-red #nuevo></app-distribucion-estrategia-red>
+    
+    <p-confirmDialog header="CONFIRMAR" acceptLabel="ACEPTAR" rejectLabel="CANCELAR" icon="pi pi-exclamation-triangle"></p-confirmDialog>

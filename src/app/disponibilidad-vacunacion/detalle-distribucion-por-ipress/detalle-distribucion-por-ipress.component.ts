@@ -24,7 +24,7 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   cargarDistribucion() {
     this.distribu.cargarDetalleTotal().subscribe((dat) => {
 
-
+      console.log(dat)
       this.ditribucion_ipress = dat
     })
 
@@ -33,8 +33,20 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   open_red_ipress() {
     this.nuevo_dis.open();
   }
-  agrego_dis(){
+  agrego_dis() {
     this.cargarDistribucion()
+  }
+
+  deleteDistri(id: any) {
+
+
+    this.distribu.eliminarDistribucion(id).subscribe(data => {
+      this.cargarDistribucion()
+      return data;
+    })
+
+
+
   }
 
 }

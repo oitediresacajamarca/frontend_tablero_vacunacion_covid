@@ -10,7 +10,9 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
+import { CuadroComparacionAlmacenRedComponent } from './disponibilidad-vacunacion/cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
 import { DetalleDistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/detalle-distribucion-almacen-red/detalle-distribucion-almacen-red.component';
+import { DetalleDistribucionEstrategiaRedComponent } from './disponibilidad-vacunacion/detalle-distribucion-estrategia-red/detalle-distribucion-estrategia-red.component';
 import { DetalleDistribucionPorIpressComponent } from './disponibilidad-vacunacion/detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
 import { DetalleEnvioIpressComponent } from './disponibilidad-vacunacion/detalle-envio-ipress/detalle-envio-ipress.component';
 import { DetalleEnvioRedComponent } from './disponibilidad-vacunacion/detalle-envio-red/detalle-envio-red.component';
@@ -57,8 +59,10 @@ const routes: Routes = [
 
     {path:'recepcion-almacen-especial',component:RecepcionAlmacenEspecialComponent},
     {path:'almacen-red',component:DetalleDistribucionAlmacenRedComponent},
+    {path:'estrategia-red',component:DetalleDistribucionEstrategiaRedComponent},
     {path:'red-ipress',component:DetalleDistribucionPorIpressComponent},
-    {path:'stock-disponible',component:RegistroStockComponent}
+    {path:'stock-disponible',component:RegistroStockComponent},
+    {path:'comparacion-almacen-red',component:CuadroComparacionAlmacenRedComponent}
 
   ]
 

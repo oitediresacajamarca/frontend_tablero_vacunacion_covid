@@ -18,6 +18,9 @@ import { DetalleDistribucionAlmacenRedComponent } from './detalle-distribucion-a
 import { DetalleEnvioIpressComponent } from './detalle-envio-ipress/detalle-envio-ipress.component';
 import { DetalleEnvioRedComponent } from './detalle-envio-red/detalle-envio-red.component';
 import { NuevoEnvioRedComponent } from './nuevo-envio-red/nuevo-envio-red.component';
+import { DistribucionEstrategiaRedComponent } from './distribucion-estrategia-red/distribucion-estrategia-red.component';
+import { DetalleDistribucionEstrategiaRedComponent } from './detalle-distribucion-estrategia-red/detalle-distribucion-estrategia-red.component';
+import { CuadroComparacionAlmacenRedComponent } from './cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { NuevoEnvioRedComponent } from './nuevo-envio-red/nuevo-envio-red.compon
     DetalleDistribucionAlmacenRedComponent,
     DetalleEnvioIpressComponent,
     DetalleEnvioRedComponent,
-    NuevoEnvioRedComponent
+    NuevoEnvioRedComponent,
+    DistribucionEstrategiaRedComponent,
+    DetalleDistribucionEstrategiaRedComponent,
+    CuadroComparacionAlmacenRedComponent
   ],
   imports: [
     CommonModule,
