@@ -48,22 +48,22 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>FECHA DE MOVIMIENTO</th>
-                <th>Tipo Documento</th>
-                <th>Numero de Documento</th>
+                <th>TIPO DE DOCUMENTO</th>
+                <th>NUMERO DE DOCUMENTO</th>
                 <th>LOTE</th>
+                <th>FABRICANTE</th>
                 <th>CANTIDAD EN VIALES</th>
                 <th>CATIDAD EN DOSIS</th>
-                <th>Status</th>
+                <th>ESTADO</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
-                <td>{{product.MEDFECHVTO|date:'dd-MM-yyyy'}}</td>
+                <td>{{product.MOVFECHREG|date:'dd-MM-yyyy'}}</td>
                 <td>{{product.DOCDESTINO}}</td>
                 <td>{{product.MOVNUMEDCO}}</td>
                 <td>{{product.MEDLOTE}}</td>
-                
-
+                <td>{{product.FABRICANTE}}</td>
                 <td>{{product.MOVCANTID}}</td>
                 <td>{{product.CANTIDAD_DOSIS}}</td>
                 <td></td>

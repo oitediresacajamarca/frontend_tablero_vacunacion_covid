@@ -28,7 +28,6 @@ export class DetalleDistribucionEstrategiaRedComponent implements OnInit {
     this.distribuciones.listar().subscribe((data) => {
       this.distribuciones_listado = data;
 
-      console.log(data)
     })
   }
 

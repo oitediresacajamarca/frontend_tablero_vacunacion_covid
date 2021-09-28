@@ -19,6 +19,7 @@ import { DetalleEnvioRedComponent } from './disponibilidad-vacunacion/detalle-en
 import { DistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/distribucion-almacen-red/distribucion-almacen-red.component';
 import { DistribucionVacunasComponent } from './disponibilidad-vacunacion/distribucion-vacunas/distribucion-vacunas.component';
 import { RecepcionAlmacenEspecialComponent } from './disponibilidad-vacunacion/recepcion-almacen-especial/recepcion-almacen-especial.component';
+import { RecepcionAnexosComponent } from './disponibilidad-vacunacion/recepcion-anexos/recepcion-anexos.component';
 import { RegistroDisponiblidadComponent } from './disponibilidad-vacunacion/registro-disponiblidad/registro-disponiblidad.component';
 import { RegistroStockComponent } from './disponibilidad-vacunacion/registro-stock/registro-stock.component';
 import { AdminDistribucionVacunasComponent } from './layouts/admin-distribucion-vacunas/admin-distribucion-vacunas.component';
@@ -62,7 +63,8 @@ const routes: Routes = [
     {path:'estrategia-red',component:DetalleDistribucionEstrategiaRedComponent},
     {path:'red-ipress',component:DetalleDistribucionPorIpressComponent},
     {path:'stock-disponible',component:RegistroStockComponent},
-    {path:'comparacion-almacen-red',component:CuadroComparacionAlmacenRedComponent}
+    {path:'comparacion-almacen-red',component:CuadroComparacionAlmacenRedComponent},
+    {path:'recepcion-anexos',component:RecepcionAnexosComponent}
 
   ]
 

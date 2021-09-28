@@ -106,6 +106,7 @@ export class DistribucionRedIpressComponent implements OnInit {
   }
 
   hizo_click() {
+    console.log('kkll')
 
     this.establecimientos_selector.UBIGEO_PROVINCIA = this.form.value.provincia.ID_PROVINCIA
 
@@ -114,7 +115,7 @@ export class DistribucionRedIpressComponent implements OnInit {
   }
 
   selecciono_fabricante() {
-    console.log(this.form.value)
+  
     if (this.form.value.fabricante.NOMBRE =='PFIZER') {
 this.disabled_fec_desc=true
     }

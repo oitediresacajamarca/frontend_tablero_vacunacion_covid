@@ -53,7 +53,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
       data => {
   
-        
+        console.log(data)
       this.movimientos_sismed = data
 
       }
