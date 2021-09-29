@@ -1,37 +1,112 @@
+
+  <p-dialog
+  header="NUEVO REGISTRO"
+ 
+  [style]="{ width: '50vw' }"
+  [(visible)]="VISIBLE"
+>
 <div class="container">
 
 <h3>ANEXOS</h3>
-<form action="">
-    <div class="card">
-        <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-col-12 p-md-6">
-                <label for="firstname6">Firstname</label>
-                <input id="firstname6" type="text" pInputText> 
+<form action="" [formGroup]="form">
+   
+        <div class="row justify-content-center p-2 m-5">
+            <div class="p-fluid p-formgrid p-grid">
+
+                
+                <div class="p-field p-col-12 p-md-6">
+                   
+
+                    <app-provincia-selector formControlName='PROVINCIA'></app-provincia-selector>
+                </div>
+
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">CANTIDAD ENVIADA EN VIALES</label>
+
+                    <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="NOMBRE" formControlName='TIPO_DOCUMENTO'></p-dropdown>
+                </div>
+               
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">NUMERO DE DOCUMENTO</label>
+                    <input type="text" pInputText formControlName='NUMERO_DOCUMENTO'>
+         
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">TEMPERATURA MAXIMA</label>
+                   <p-inputNumber  formControlName='TEMPERATUR_MAXIMA' mode="decimal" [minFractionDigits]="2" suffix="℃"></p-inputNumber>
+         
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">TEMPERATURA MINIMA</label>
+                    <p-inputNumber formControlName='TEMPERATURA_MINIMA' mode="decimal" [minFractionDigits]="2" suffix="℃"></p-inputNumber>
+         
+                
+                </div>
+                
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO </label>
+                    <p-fileUpload name="file" (onUpload)="anexo1($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo1"></p-fileUpload>        
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO</label>
+                    <p-fileUpload name="file" (onUpload)="anexo2($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo2"></p-fileUpload>        
+                
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO</label>
+                    <p-fileUpload name="file" (onUpload)="anexo3($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo3"></p-fileUpload>        
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">OBSERVACIONES</label>
+                    <textarea pInputTextarea formControlName='OBSERVACIONES'></textarea>         
+                
+                </div>
+
+    
+               
+          
+        
+        
+         
+               
+        
+                <div class="p-field p-col-12 p-md-6">
+                    <div class="row botones m-4">
+                        <div class="col"> <button pButton type="button" label="ACEPTAR" (click)="guardar()"></button> </div>
+                        <div class="col"><button pButton type="button" label="CANCELAR" ></button>  </div> 
+                    </div>
+             
+                </div>
+               
+               
             </div>
-            <div class="p-field p-col-12 p-md-6">
-                <label for="lastname6">Lastname</label>
-                <input id="lastname6" type="text" pInputText> 
-            </div>
-            <div class="p-field p-col-12">
-                <label for="address">Address</label>
-                <textarea id="address" type="text" rows="4" pInputTextarea></textarea>
-            </div>
-            <div class="p-field p-col-12 p-md-6">
-                <label for="city">City</label>
-                <input id="city" type="text" pInputText> 
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <label for="state">State</label>
-              
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <label for="zip">Zip</label>
-                <input id="zip" type="text" pInputText> 
-            </div>
+        
+        
+        
+        
         </div>
-    </div>
+
 
 
 </form>
 
 </div>
+  </p-dialog>
+
+  
+<p-confirmDialog
+header="CONFIRMAR"
+acceptLabel="ACEPTAR"
+rejectLabel="CANCELAR"
+icon="pi pi-exclamation-triangle"
+></p-confirmDialog>
+

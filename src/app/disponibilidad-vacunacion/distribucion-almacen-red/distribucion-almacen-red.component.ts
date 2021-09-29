@@ -70,7 +70,6 @@ export class DistribucionAlmacenRedComponent implements OnInit {
 
   guardar() {
 
-    console.log(this.form.value)
     this.confirmation.confirm({
       message: 'Esta seguro de Guardar los datos?',
       accept: () => {

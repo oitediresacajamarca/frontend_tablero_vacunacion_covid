@@ -15,6 +15,8 @@ export class DetalleEnvioIpressComponent implements OnInit {
   }
 
 
+
+
   envios_ipress: any[] = []
   cargar_envios() {
     this.detalle.listar_envios().subscribe(data => {

@@ -59,7 +59,7 @@ export class ProvinciaSelectorComponent implements OnInit, ControlValueAccessor 
 
   seleccionoProvincia() {
 
-console.log('b')
+
     this.onChange(this.provincia)
     this.selecciono.emit(this.provincia)
   }

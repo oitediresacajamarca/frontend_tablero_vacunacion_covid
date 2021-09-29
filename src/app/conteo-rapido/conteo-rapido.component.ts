@@ -44,7 +44,7 @@ export class ConteoRapidoComponent implements OnInit {
 
   selecionoProvincia(event: any) {
 
-
+console.log(event)
     this.CODIGO_PROVINCIA = event.ID_PROVINCIA
 
   }

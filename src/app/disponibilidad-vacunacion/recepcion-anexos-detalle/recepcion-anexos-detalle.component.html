@@ -5,6 +5,41 @@
   <div class="row">
 
 
-    
+    <p-table [value]="anexos" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>TIPO DOCUMENTO</th>
+                <th>NUMERO DOCUMENTO</th>
+                <th>TEMPERATURA MAXIMA</th>
+                <th>TEMPERATURA MINIMA</th>
+                <th>OBSERVACIONES</th>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.TIPO_DOCUMENTO}}</td>
+                <td>{{product.NUMERO_DOCUMENTO}}</td>
+                <td>{{product.TEMPERATURA_MAXIMA}}</td>
+                <td>{{product.TEMPERATURA_MINIMA}}</td>
+                <td>{{product.OBSERVACIONES}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+  </div>
+  <app-recepcion-anexos #nuevo></app-recepcion-anexos>
+  <div class="card-footer clearfix">
+    <button type="button" class="btn btn-info float-right" (click)="ANIADIR()">
+      <i class="fas fa-plus"></i> AÑADIR
+    </button>
   </div>
 </div>

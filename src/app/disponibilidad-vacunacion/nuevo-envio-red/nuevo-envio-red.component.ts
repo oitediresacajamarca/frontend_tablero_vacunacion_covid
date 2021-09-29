@@ -49,7 +49,7 @@ export class NuevoEnvioRedComponent implements OnInit {
     this.form.controls['ID_DISTRIBUCION'].setValue(this.ID_DISTRIBUCION)
 
     this.envios_red.nuevo_envio(this.form.value).subscribe(data=>{
-      console.log(data)
+
       this.creo_nuevo.emit('nuevo')
 
       this.close();
