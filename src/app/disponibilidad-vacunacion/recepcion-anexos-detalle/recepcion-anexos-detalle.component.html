@@ -36,7 +36,7 @@
     <div class="col-4"></div>
     <div class="col-4"></div>
   </div>
-  <app-recepcion-anexos #nuevo></app-recepcion-anexos>
+  <app-recepcion-anexos #nuevo (nuevo_registro)="creo_nuevo()"></app-recepcion-anexos>
   <div class="card-footer clearfix">
     <button type="button" class="btn btn-info float-right" (click)="ANIADIR()">
       <i class="fas fa-plus"></i> AÑADIR

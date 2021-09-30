@@ -32,4 +32,8 @@ export class RecepcionAnexosDetalleComponent implements OnInit {
     this.nuevo.VISIBLE=true;
   }
 
+
+  creo_nuevo(){
+    this.cargar_anexos()
+  }
 }

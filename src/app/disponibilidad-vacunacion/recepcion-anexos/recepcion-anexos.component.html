@@ -22,7 +22,7 @@
 
 
                 <div class="p-field p-col-12 p-md-6">
-                    <label for="lastname">CANTIDAD ENVIADA EN VIALES</label>
+                    <label for="lastname">TIPO DE DOCUMENTO</label>
 
                     <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="NOMBRE" formControlName='TIPO_DOCUMENTO'></p-dropdown>
                 </div>
@@ -49,19 +49,19 @@
                 </div>
                 
                 <div class="p-field p-col-12 p-md-6">
-                    <label for="lastname">ANEXO </label>
-                    <p-fileUpload name="file" (onUpload)="anexo1($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo1"></p-fileUpload>        
+                    <label for="lastname">ANEXO 10</label>
+                    <p-fileUpload name="file10" (onUpload)="anexo1($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo1"></p-fileUpload>        
                 
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
-                    <label for="lastname">ANEXO</label>
-                    <p-fileUpload name="file" (onUpload)="anexo2($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo2"></p-fileUpload>        
+                    <label for="lastname">ANEXO 13</label>
+                    <p-fileUpload name="file13" (onUpload)="anexo2($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo2"></p-fileUpload>        
                 
                 </div>
                 <div class="p-field p-col-12 p-md-6">
-                    <label for="lastname">ANEXO</label>
-                    <p-fileUpload name="file" (onUpload)="anexo3($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo3"></p-fileUpload>        
+                    <label for="lastname">ANEXO 14</label>
+                    <p-fileUpload name="file14" (onUpload)="anexo3($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo3"></p-fileUpload>        
                 
                 </div>
 
