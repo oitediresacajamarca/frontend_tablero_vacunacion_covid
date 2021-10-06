@@ -53,7 +53,7 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
 
   cargar_establecimientos() {
 
-    this.http.get<any[]>(environment.url__backend + 'establecimiento_ubigeo/' + this.UBIGEO).subscribe(data => {
+    this.http.get<any[]>(environment.url__backend + 'establecimiento/ubigeo_distrito_np/' + this.UBIGEO).subscribe(data => {
       this.establecimientos = data;
 
 
@@ -69,6 +69,7 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
   }
 
   seleccionoIpress(event: any) {
+    console.log(event)
     this.onChange(event.value)
     this.selecciono.emit(event)
 

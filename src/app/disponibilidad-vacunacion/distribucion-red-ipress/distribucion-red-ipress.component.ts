@@ -2,6 +2,7 @@ import { Component, EventEmitter, forwardRef, OnInit, Output, ViewChild } from '
 import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { Calendar } from 'primeng/calendar';
+import { DistritoSelectorComponent } from 'src/app/controles/distrito-selector/distrito-selector.component';
 import { EstablecimientosSelectorComponent } from 'src/app/controles/establecimientos-selector/establecimientos-selector.component';
 import { FabricanteComponent } from 'src/app/controles/fabricante/fabricante.component';
 import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress.service';
@@ -22,7 +23,7 @@ import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress
 export class DistribucionRedIpressComponent implements OnInit {
   form!: FormGroup;
 
-  disabled_fec_desc:boolean=false;
+  disabled_fec_desc: boolean = false;
   constructor(private fb: FormBuilder,
     private confirmationService: ConfirmationService,
     private distribucions: DistribucionIpressService) { }
@@ -33,9 +34,15 @@ export class DistribucionRedIpressComponent implements OnInit {
 
   TIPOS_DOCUMENTOS: any[] = []
 
+  dosis_aplicadas: number = 0;
+  dosis_recibidas:number=0;
+
 
   @Output('agrego_distribucion')
   agrego_distribucion: EventEmitter<any> = new EventEmitter()
+
+  @ViewChild('selector_distrito')
+  selector_distrito!: DistritoSelectorComponent
 
   @ViewChild('establecimientos_selector')
   establecimientos_selector!: EstablecimientosSelectorComponent
@@ -101,12 +108,14 @@ export class DistribucionRedIpressComponent implements OnInit {
 
   }
 
-  selecciono_provincia() {
-    console.log('kkkkloll')
+  selecciono_provincia(event: any) {
+    this.selector_distrito.cod_provincia = event.ID_PROVINCIA
+    this.selector_distrito.cargar_distritos()
+
   }
 
   hizo_click() {
-    console.log('kkll')
+
 
     this.establecimientos_selector.UBIGEO_PROVINCIA = this.form.value.provincia.ID_PROVINCIA
 
@@ -114,14 +123,57 @@ export class DistribucionRedIpressComponent implements OnInit {
 
   }
 
-  selecciono_fabricante() {
+  selecciono_fabricante(event: any) {
+
+    if (this.form.value.fabricante.NOMBRE == 'PFIZER') {
+      this.disabled_fec_desc = false
+    }
+    else {
+      this.disabled_fec_desc = true
+    }
+
+    this.distribucions.query_avances.filters[1].values = [this.form.value.fabricante.NOMBRE]
+    this.cargar_dosis_aplicadas()
+
+    this.distribucions.query_cantidad_asiganda.filters[1].values = [this.form.value.fabricante.NOMBRE]
+    this.cargar_dosis_recibidas()
+
+
+  }
+
+  selecciono_establecimiento(event: any) {
   
-    if (this.form.value.fabricante.NOMBRE =='PFIZER') {
-this.disabled_fec_desc=true
-    }
-    else{
-      this.disabled_fec_desc=false
-    }
+
+    console.log(event.value.Codigo_Unico)
+    this.distribucions.query_avances.filters[0].values = [parseInt(event.value.Codigo_Unico).toString()]
+    this.cargar_dosis_aplicadas()
+    this.distribucions.query_cantidad_asiganda.filters[0].values = [event.value.Codigo_Unico]
+    this.cargar_dosis_recibidas()
+
+  }
+
+  cargar_dosis_aplicadas() {
+
+    this.distribucions.cargarDosisAplicadas().subscribe(data => {
+      this.dosis_aplicadas = data
+
+
+    })
+  }
+
+  selecciono_distrito(event: any) {
+
+    this.establecimientos_selector.UBIGEO = event
+    this.establecimientos_selector.cargar_establecimientos()
+
+
+  }
+
+  cargar_dosis_recibidas() {
+    this.distribucions.cargarDosisRecibidas().subscribe(data => {
+
+      this.dosis_recibidas=data
+    })
   }
 
 
