@@ -4,9 +4,12 @@ import { ControlesModule } from '../controles/controles.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibsModule } from '../libs/libs.module';
 import { ConfirmationService } from 'primeng/api';
+import { ConteoRapidoNhisComponent } from './conteo-rapido-nhis/conteo-rapido-nhis.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConteoRapidoNhisComponent
+  ],
   imports: [
     CommonModule,
     ControlesModule,

@@ -7,6 +7,7 @@ import { EscudoCajamarcaComponent } from './componentes/svgs/escudo-cajamarca/es
 import { JeringaComponent } from './componentes/svgs/jeringa/jeringa.component';
 import { VacunometroSvgComponent } from './componentes/vacunometro-svg/vacunometro-svg.component';
 import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-tablero.component';
+import { ConteoRapidoNhisComponent } from './conteo-rapido/conteo-rapido-nhis/conteo-rapido-nhis.component';
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
@@ -42,12 +43,10 @@ const routes: Routes = [
   { path: 'escudo', component: EscudoCajamarcaComponent },
   { path: 'departamento', component: DepartamentoCajamarcaComponent },
   { path: 'jeringa', component: JeringaComponent },
-
   { path: 'controles', component: DistritoSelectorComponent },
-
   { path: 'modulos', component: RegistroDisponiblidadComponent },
   { path: 'conteo', component: ConteoRapidoComponent },
-
+  { path: 'conteos', component: ConteoRapidoNhisComponent },
   { path: 'distribucion', component: DistribucionVacunasComponent },
   { path: 'almacen-red', component: DistribucionAlmacenRedComponent },
   {path:'stock-disponible',component:RegistroStockComponent},
@@ -59,7 +58,6 @@ const routes: Routes = [
   {path:'recepcion-almacen-especial',component:RecepcionAlmacenEspecialComponent},
   {path:'admin-distribucion',component:AdminDistribucionVacunasComponent,
   children:[
-
     {path:'recepcion-almacen-especial',component:RecepcionAlmacenEspecialComponent},
     {path:'almacen-red',component:DetalleDistribucionAlmacenRedComponent},
     {path:'estrategia-red',component:DetalleDistribucionEstrategiaRedComponent},
