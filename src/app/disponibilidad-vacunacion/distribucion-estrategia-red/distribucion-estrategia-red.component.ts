@@ -36,8 +36,8 @@ DOSIS_SUMINISTRADAS:number=0
       CANTIDAD_VIALES: '',
       CANTIDAD_DOSIS: '',
       FECHA: '',
-      TIPO_DOCUMENTO: '',
-      NUMERO_DOCUMENTO: ''
+   /*   TIPO_DOCUMENTO: '',
+      NUMERO_DOCUMENTO: ''*/
     })
   }
 
@@ -76,6 +76,7 @@ DOSIS_SUMINISTRADAS:number=0
   }
 
   cargar_dosis_asignadas(){
+    this.DOSIS_RECIBIDAS=0;
     this.distris.dosis_asignadas_().subscribe(data=>{
   
       this.DOSIS_RECIBIDAS=data;
@@ -94,6 +95,7 @@ DOSIS_SUMINISTRADAS:number=0
 
 
   cargar_dosis_suministradas(){
+    this.DOSIS_SUMINISTRADAS=0;
     this.distris.dosis_suministradas().subscribe(data=>{
 
    
@@ -104,6 +106,10 @@ DOSIS_SUMINISTRADAS:number=0
   cargar_stock(){
     this.cargar_dosis_asignadas()
     this.cargar_dosis_suministradas()
+  }
+
+  cancelar(){
+    this.display=false;
   }
 
 }

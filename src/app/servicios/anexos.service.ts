@@ -20,5 +20,10 @@ export class AnexosService {
 
     return this.http.post(environment.url__backend + 'recepcion-anexos/nuevo', body)
 
+
+  }
+  Eliminar(ID:any){
+
+    return this.http.post(environment.url__backend + 'recepcion-anexos/eliminar', ID)
   }
 }

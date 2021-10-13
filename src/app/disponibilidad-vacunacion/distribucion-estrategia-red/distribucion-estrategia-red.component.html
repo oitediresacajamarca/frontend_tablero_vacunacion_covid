@@ -1,5 +1,5 @@
 <p-dialog
-  header="NUEVA DISTRIBUCION A RED"
+  header="DISTRIBUCION A RED - ESTRATEGIA"
   [(visible)]="display"
   [style]="{ width: '50vw' }"
 >
@@ -7,16 +7,8 @@
     <div class="row justify-content-center p-2 m-5">
       <div class="col-12">
         <p-card>
-            <div class="row">
-                <div class="col-4">        <div class="info-box ">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cog"></i></span>
-      
-                    <div class="info-box-content">
-                      <span class="info-box-text">Dosis Aplicadas</span>
-                      <span class="info-box-number">{{DOSIS_SUMINISTRADAS}}</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div></div>
+            <div class="row" *ngIf="DOSIS_SUMINISTRADAS>0">
+         
                 <div class="col-4"> <div class="info-box ">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
       
@@ -26,6 +18,16 @@
                     </div>
                     <!-- /.info-box-content -->
                   </div></div>
+                  <div class="col-4">        <div class="info-box ">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cog"></i></span>
+      
+                    <div class="info-box-content">
+                      <span class="info-box-text">Dosis Aplicadas</span>
+                      <span class="info-box-number">{{DOSIS_SUMINISTRADAS}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                </div>
                 <div class="col-4"><div class="info-box ">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
       
@@ -69,7 +71,7 @@
           <p-inputNumber formControlName="CANTIDAD_DOSIS"></p-inputNumber>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
+        <!-- <div class="p-field p-col-12 p-md-6">
           <label for="lastname">TIPO DOCUMENTO</label>
           <p-dropdown
             [options]="TIPO_DOCUMENTOS"
@@ -80,7 +82,7 @@
         <div class="p-field p-col-12">
           <label for="lastname">NUMERO DOCUMENTO</label>
           <input type="text" pInputText formControlName="NUMERO_DOCUMENTO" />
-        </div>
+        </div> -->
 
         <div class="p-field p-col-12 p-md-6">
           <div class="row botones m-4">
@@ -93,7 +95,7 @@
               ></button>
             </div>
             <div class="col">
-              <button pButton type="button" label="CANCELAR"></button>
+              <button pButton type="button" label="CANCELAR"        (click)="cancelar()"></button>
             </div>
           </div>
         </div>

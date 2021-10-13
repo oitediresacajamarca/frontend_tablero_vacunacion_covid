@@ -23,6 +23,8 @@ import { DetalleDistribucionEstrategiaRedComponent } from './detalle-distribucio
 import { CuadroComparacionAlmacenRedComponent } from './cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
 import { RecepcionAnexosComponent } from './recepcion-anexos/recepcion-anexos.component';
 import { RecepcionAnexosDetalleComponent } from './recepcion-anexos-detalle/recepcion-anexos-detalle.component';
+import { ReporteStockComponent } from './reporte-stock/reporte-stock.component';
+import { ReporteStockDetalleComponent } from './reporte-stock-detalle/reporte-stock-detalle.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { RecepcionAnexosDetalleComponent } from './recepcion-anexos-detalle/rece
     DetalleDistribucionEstrategiaRedComponent,
     CuadroComparacionAlmacenRedComponent,
     RecepcionAnexosComponent,
-    RecepcionAnexosDetalleComponent
+    RecepcionAnexosDetalleComponent,
+    ReporteStockComponent,
+    ReporteStockDetalleComponent
   ],
   imports: [
     CommonModule,

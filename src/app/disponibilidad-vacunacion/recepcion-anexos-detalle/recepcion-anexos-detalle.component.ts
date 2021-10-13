@@ -12,7 +12,7 @@ export class RecepcionAnexosDetalleComponent implements OnInit {
   constructor(private recepciones: AnexosService) { }
 
   @ViewChild('nuevo')
-  nuevo!:RecepcionAnexosComponent
+  nuevo!: RecepcionAnexosComponent
 
   anexos: any[] = []
 
@@ -21,19 +21,29 @@ export class RecepcionAnexosDetalleComponent implements OnInit {
   }
 
   cargar_anexos() {
-    this.recepciones.devolver_listado_anexos().subscribe(data => { console.log(data)
-    
-    this.anexos=data
+    this.recepciones.devolver_listado_anexos().subscribe(data => {
+      console.log(data)
+
+      this.anexos = data
     })
   }
 
-  ANIADIR(){
-  
-    this.nuevo.VISIBLE=true;
+  ANIADIR() {
+
+    this.nuevo.VISIBLE = true;
+  }
+
+  Eliminar(ID: any) {
+
+    this.recepciones.Eliminar(ID).subscribe(data => {
+      console.log(data)
+
+      this.cargar_anexos()
+    });
   }
 
 
-  creo_nuevo(){
+  creo_nuevo() {
     this.cargar_anexos()
   }
 }
