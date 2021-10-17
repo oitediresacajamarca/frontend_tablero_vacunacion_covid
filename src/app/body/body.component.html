@@ -1,88 +1,115 @@
-
-
     
             <div class="container-fluid">
               <!-- Info boxes -->
               <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-warning elevation-1"
-                      ><i class="fas  fa-syringe"></i
-                    ></span>
-        
-                    <div class="info-box-content">
-                      <span class="info-box-text">TOTAL PRIMERA DOSIS</span>
-                      <span class="info-box-number">
-                        <h3>{{ total_1_dosis }} dosis</h3>
-                       
-                      </span>
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-warning elevation-1"
+                          ><i class="fas  fa-syringe"></i
+                        ></span>
+            
+                        <div class="info-box-content">
+                          <span class="info-box-text">TOTAL PRIMERA DOSIS</span>
+                          <span class="info-box-number">
+                            <h3>{{ total_1_dosis }} dosis</h3>
+                           
+                          </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
                     </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"
-                      >
-                      <i class="fas fa-syringe" src=""></i>
-                    
-                    </span>
-        
-                    <div class="info-box-content">
-                      <span class="info-box-text">TOTAL SEGUNDA DOSIS</span>
-                      <span class="info-box-number"
-                        >
-                        <h3>{{ total_2_dosis }} Dosis</h3>
-                  
-                      </span>
+                    <!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-4">
+                      <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"
+                          >
+                          <i class="fas fa-syringe" src=""></i>
+                        
+                        </span>
+            
+                        <div class="info-box-content">
+                          <span class="info-box-text">TOTAL SEGUNDA DOSIS</span>
+                          <span class="info-box-number"
+                            >
+                            <h3>{{ total_2_dosis }} Dosis</h3>
+                      
+                          </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
                     </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-        
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-        
-                <div class="col-12 col-sm-6 col-md-3">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-info elevation-1"
-                      ><i class="fas fa-hand-holding-medical"></i
-                    ></span>
-        
-                    <div class="info-box-content">
-                      <span class="info-box-text">DOSIS TOTALES</span>
-                      <span class="info-box-number"
-                        >
-                        <h3>{{ total_dosis }} Dosis</h3>
-                     
-                      </span>
+    
+                    <div class="col-12 col-sm-6 col-md-4">
+                      <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"
+                          >
+                          <i class="fas fa-syringe" src=""></i>
+                        
+                        </span>
+            
+                        <div class="info-box-content">
+                          <span class="info-box-text">TOTAL TERCERA DOSIS</span>
+                          <span class="info-box-number"
+                            >
+                            <h3>{{ total_3_dosis }} Dosis</h3>
+                      
+                          </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.col -->
                   </div>
-                  <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                  <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"
-                      ><i class="fas fa-users"></i
-                    ></span>
-        
-                    <div class="info-box-content">
-                      <span class="info-box-text">VACUNADOS HOY</span>
-                      <span class="info-box-number">
-                      <h3>  {{ vacunados_hoy }} </h3>
-                      </span>
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col-12 col-sm-6 col-md-6">
+                      <div class="info-box mb-3">
+                        <span class="info-box-icon bg-info elevation-1"
+                          ><i class="fas fa-hand-holding-medical"></i>
+                        </span>
+            
+                        <div class="info-box-content">
+                          <span class="info-box-text">DOSIS TOTALES</span>
+                          <span class="info-box-number"
+                            >
+                            <h3>{{ total_dosis }} Dosis</h3>
+                         
+                          </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-6">
+                      <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"
+                          ><i class="fas fa-users"></i
+                        ></span>
+            
+                        <div class="info-box-content">
+                          <span class="info-box-text">VACUNADOS HOY</span>
+                          <span class="info-box-number">
+                          <h3>  {{ vacunados_hoy }} </h3>
+                          </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
                   </div>
-                  <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+               
+        
+        
+             
               </div>
               <!-- /.row -->
         
@@ -149,6 +176,7 @@
                       <option value="TODOS">TODOS</option>
                         <option value="1ª dosis">1ª dosis</option>
                         <option value="2ª dosis">2ª dosis</option>
+                        <option value="3ª dosis">3ª dosis</option>
                       </select>
                     </div>
                   </div>

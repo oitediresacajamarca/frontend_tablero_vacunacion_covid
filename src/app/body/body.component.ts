@@ -30,6 +30,7 @@ export class BodyComponent implements OnInit {
   rangeDates!: Date[];
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
+  total_3_dosis: number = 0;
   total_dosis: number = 0;
   vacunados_hoy: number = 0;
   Highcharts: typeof Highcharts = Highcharts;
@@ -313,6 +314,7 @@ this.grupos_etareos=[{name:'18-19',value:'18-19'},
 
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
+    this.cargar_3ra_dosis()
     this.cargar_dosis_total()
     this.cargar_vacunacion_hoy()
     this.cargar_provincias()
@@ -347,8 +349,16 @@ this.grupos_etareos=[{name:'18-19',value:'18-19'},
     })
   }
 
+  cargar_3ra_dosis() {
+    this.cubo.devolver_total_por_dosis(['3ª dosis']).subscribe(respuesta => {
+
+      this.total_3_dosis = respuesta.data[0]['VACUNADOSCovid.count']
+
+    })
+  }
+
   cargar_dosis_total() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis']).subscribe(respuesta => {
+    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis','3ª dosis']).subscribe(respuesta => {
 
       this.total_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
@@ -605,6 +615,7 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
     this.cubo.query_dosis.filters[0].values = filtro
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
+    this.cargar_3ra_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[0].values = filtro
     this.cargar_vacunacion_hoy()
@@ -829,6 +840,10 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
       }
 
       if (this.dosis_selecionada == '2ª dosis') {
+        this.avance = this.total_2_dosis
+
+      }
+      if (this.dosis_selecionada == '3ª dosis') {
         this.avance = this.total_2_dosis
 
       }
