@@ -10,6 +10,8 @@ declare const $: any;
 
 
 import Tabulator from 'tabulator-tables';
+import { Dropdown } from 'primeng/dropdown';
+import { MultiSelect } from 'primeng/multiselect';
 interface City {
   name: string
 
@@ -26,6 +28,9 @@ interface City {
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
+
+  @ViewChild('etareo_selector')
+  etareo_selector!:MultiSelect
 
   rangeDates!: Date[];
   total_1_dosis: number = 0;
@@ -233,6 +238,7 @@ export class BodyComponent implements OnInit {
   selectedCities!: City[];
   table!: Tabulator
   async ngOnInit(): Promise<void> {
+
 
 
     this.urbanidades = this.cubo.devolver_urbanidades()
@@ -666,12 +672,9 @@ export class BodyComponent implements OnInit {
     let filtro: any[] = []
     if (this.grupo_edad_seleccionado == []) {
       filtro = []
-
     } else {
-
       filtro = this.grupo_edad_seleccionado
     }
-
 
     this.cubo.query_dosis.filters[2].values = filtro
     this.cargar_1ra_dosis()
@@ -709,6 +712,7 @@ export class BodyComponent implements OnInit {
     this.cubo.query_dosis.filters[3].values = filtro
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
+    this.cargar_3ra_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[4].values = filtro
     this.cargar_vacunacion_hoy()

@@ -642,13 +642,9 @@ export class CuboService {
   }
 
   devolver_total_por_dosis(dosis: any) {
-
     this.query_dosis.filters[1].values = dosis
-
-
     let params = new HttpParams().set('query', JSON.stringify(this.query_dosis));
     return this.http.get<any>(environment.url_cubo, { params })
-
   }
 
 
