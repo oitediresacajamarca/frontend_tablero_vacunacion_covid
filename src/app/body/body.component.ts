@@ -11,7 +11,7 @@ declare const $: any;
 
 import Tabulator from 'tabulator-tables';
 interface City {
-    name: string
+  name: string
 
 }
 
@@ -38,16 +38,16 @@ export class BodyComponent implements OnInit {
   DEPARTAMENTOS_FILTRO: string[] = []
   provincias: any[] = []
   grupos_vacunacion: any[] = []
-  grupos_etareos:any[]=[]
+  grupos_etareos: any[] = []
 
-  urbanidades:any[]=[]
+  urbanidades: any[] = []
   chart: any
   donut: any
 
-  
-  grupo_urbanidad:any;
 
-  
+  grupo_urbanidad: any;
+
+
 
 
   meta: number = 0
@@ -65,14 +65,14 @@ export class BodyComponent implements OnInit {
   //filtros
   provincia_selecionada: string = ''
   dosis_selecionada: string = ''
-  grupo_edad_seleccionado:any[] = []
+  grupo_edad_seleccionado: any[] = []
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = []
   fecha_inicio = new Date(2021, 1, 1)
   fecha_fin = new Date(2025, 1, 1)
-  tipo_ambito_seleccionado='PROVINCIA'
+  tipo_ambito_seleccionado = 'PROVINCIA'
 
-  
+
 
 
 
@@ -111,7 +111,7 @@ export class BodyComponent implements OnInit {
     series: [{
       name: 'Grupo de Riesgo',
       data: [
-     
+
       ]
     }]
   }
@@ -162,13 +162,13 @@ export class BodyComponent implements OnInit {
     chart: {
       type: 'bar'
     },
- 
+
     labels: {
       items: [{
         html: undefined,
         style: {
           color: 'red'
-      }
+        }
       }],
       style: { "color": "#333333", "position": "absolute" }
     },
@@ -177,14 +177,14 @@ export class BodyComponent implements OnInit {
       style: {
         color: '#17a2b8',
         fontWeight: 'bold',
-        backgroundColor:'black'
-    }
+        backgroundColor: 'black'
+      }
     },
     xAxis: {
       categories: [],
       labels: {
 
-        style: { "color": "blue", "fontWeight": "bold",fontSize:'12px',"background-color":"red" }
+        style: { "color": "blue", "fontWeight": "bold", fontSize: '12px', "background-color": "red" }
       }
     },
     yAxis: {
@@ -224,89 +224,96 @@ export class BodyComponent implements OnInit {
   constructor(private cubo: CuboService) {
 
   }
-   tabledata = [
+  tabledata = [
 
-];
+  ];
 
-cities!: City[];
+  cities!: City[];
 
-    selectedCities!: City[];
-table!:Tabulator
+  selectedCities!: City[];
+  table!: Tabulator
   async ngOnInit(): Promise<void> {
 
 
-this.urbanidades=this.cubo.devolver_urbanidades()
+    this.urbanidades = this.cubo.devolver_urbanidades()
 
-    
-this.grupos_etareos=[{name:'18-19',value:'18-19'},
-{name:'19-20',value:'19-20'},
-{name:'20-29',value:'20-29'},
-{name:'30-39',value:'30-39'},
-{name:'40-49',value:'40-49'},
-{name:'50-59',value:'50-59'},
-{name:'60-69',value:'60-69'},
-{name:'70-79',value:'70-79'},
-{name:'80 a mas',value:'80 a mas'}
 
-]
+    this.grupos_etareos = [
+    { name: '18-19', value: '18-19' },
+    { name: '19-20', value: '19-20' },
+    { name: '20-29', value: '20-29' },
+    { name: '30-39', value: '30-39' },
+    { name: '40-49', value: '40-49' },
+    { name: '50-59', value: '50-59' },
+    { name: '60-69', value: '60-69' },
+    { name: '70-79', value: '70-79' },
+    { name: '80 a mas', value: '80 a mas' }
+
+    ]
 
     this.cities = [
-     
-  ];
 
-     this.table = new Tabulator("#example-table", {
-      data:this.tabledata,           //load row data from array
-      layout:"fitColumns",      //fit columns to width of table
-      responsiveLayout:"hide",  //hide columns that dont fit on the table
-      tooltips:true,            //show tool tips on cells
-      addRowPos:"top",          //when adding a new row, add it to the top of the table
-      history:true,   
-      clipboard:true,         //allow undo and redo actions on the table
-   
-      movableColumns:true,      //allow column order to be changed
-      resizableRows:true,       //allow row order to be changed
-      initialSort:[             //set the initial sort order of the data
-          {column:"name", dir:"asc"},
+    ];
+
+    this.table = new Tabulator("#example-table", {
+      data: this.tabledata,           //load row data from array
+      layout: "fitColumns",      //fit columns to width of table
+      responsiveLayout: "hide",  //hide columns that dont fit on the table
+      tooltips: true,            //show tool tips on cells
+      addRowPos: "top",          //when adding a new row, add it to the top of the table
+      history: true,
+      clipboard: true,         //allow undo and redo actions on the table
+
+      movableColumns: true,      //allow column order to be changed
+      resizableRows: true,       //allow row order to be changed
+      initialSort: [             //set the initial sort order of the data
+        { column: "name", dir: "asc" },
       ],
-      columns:[                 //define the table columns
-          {title:"AMBITO", field:"ambito",formatter:function(cell:any, formatterParams:any){
+      columns: [                 //define the table columns
+        {
+          title: "AMBITO", field: "ambito", formatter: function (cell: any, formatterParams: any) {
             var value = cell.getValue();
-          
-                 return "<span style=' font-weight:bold;font-size:14px;color:blue'>" + value + "</span>";
-          
-         }},
-          {title:"PRIMERA DOSIS", field:"primera_dosis", hozAlign:"center",formatter:function(cell:any, formatterParams:any){
+
+            return "<span style=' font-weight:bold;font-size:14px;color:blue'>" + value + "</span>";
+
+          }
+        },
+        {
+          title: "PRIMERA DOSIS", field: "primera_dosis", hozAlign: "center", formatter: function (cell: any, formatterParams: any) {
             var value = cell.getValue();
-            if(value !=undefined){
-          
-                 return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
-                }
-                 else{
-                   value=0
+            if (value != undefined) {
 
-                  return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
-          
-                 }
-          
-         }},
-          {title:"SEGUNDA DOSIS", field:"segunda_dosis", hozAlign:"center",formatter:function(cell:any, formatterParams:any){
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+            }
+            else {
+              value = 0
+
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+
+            }
+
+          }
+        },
+        {
+          title: "SEGUNDA DOSIS", field: "segunda_dosis", hozAlign: "center", formatter: function (cell: any, formatterParams: any) {
             var value = cell.getValue();
-            if(value !=undefined){
-          
-                 return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
-                }
-                 else{
-                   value=0
+            if (value != undefined) {
 
-                  return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
-          
-                 }
-          
-         }}
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+            }
+            else {
+              value = 0
 
-        
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+
+            }
+
+          }
+        }
+
+
       ]
-  });
+    });
 
 
     this.seleciono_grupo_vacunacion()
@@ -358,7 +365,7 @@ this.grupos_etareos=[{name:'18-19',value:'18-19'},
   }
 
   cargar_dosis_total() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis','3ª dosis']).subscribe(respuesta => {
+    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).subscribe(respuesta => {
 
       this.total_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
@@ -442,7 +449,7 @@ this.grupos_etareos=[{name:'18-19',value:'18-19'},
       let
         datos: any[] = respuesta.data
 
-this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
+      this.opciones.title.text = 'DOSIS APLICADAS POR PROVINCIA'
 
       categorias = datos.map(data => {
 
@@ -504,7 +511,7 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
 
-    this.opciones.title.text='DOSIS APLICADAS POR DISTRITO'
+    this.opciones.title.text = 'DOSIS APLICADAS POR DISTRITO'
 
     await this.cubo.devolver_dosis_ambito(this.provincia_selecionada).subscribe(respuesta => {
 
@@ -561,7 +568,7 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
       this.chart = new Chart(this.opciones)
 
       this.cargar_datos_tabla()
-      
+
 
 
     })
@@ -606,10 +613,10 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
     let filtro: any[] = []
     if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
       filtro = []
-      this.tipo_ambito_seleccionado='PROVINCIA'
+      this.tipo_ambito_seleccionado = 'PROVINCIA'
     } else {
       filtro = [this.provincia_selecionada]
-      this.tipo_ambito_seleccionado='DISTRITO'
+      this.tipo_ambito_seleccionado = 'DISTRITO'
     }
 
     this.cubo.query_dosis.filters[0].values = filtro
@@ -659,7 +666,7 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
 
 
     let filtro: any[] = []
-    if ( this.grupo_edad_seleccionado == []) {
+    if (this.grupo_edad_seleccionado == []) {
       filtro = []
 
     } else {
@@ -729,10 +736,10 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
     this.cubo.devolver_maestro_grupos_vacunacion().subscribe(respuesta => {
       datos = respuesta.data
       this.grupos_vacunacion = datos.map(dato => {
-        return {name:dato['VACUNADOSCovid.grupo_vacunacion']}
+        return { name: dato['VACUNADOSCovid.grupo_vacunacion'] }
       })
 
-     
+
     })
 
   }
@@ -794,28 +801,28 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
       return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0] }
     })
 
-   /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
-
-      console.log(vacunados_fuera)
-      this.datos_tablas.map(elemento=>{
-
-        return{...elemento,otros_campos:}
-      })
-   
-    }
-
+    /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
+ 
+       console.log(vacunados_fuera)
+       this.datos_tablas.map(elemento=>{
+ 
+         return{...elemento,otros_campos:}
+       })
     
-    )
-*/
-  
+     }
+ 
+     
+     )
+ */
+
 
     this.table.setData(this.datos_tablas)
 
 
 
-    
 
- 
+
+
 
 
 
@@ -877,10 +884,10 @@ this.opciones.title.text='DOSIS APLICADAS POR PROVINCIA'
 
 
   seleciono_fechas(e: any) {
-let filtro=[e.start.format('YYYY-MM-DD'),e.end.format('YYYY-MM-DD')]
+    let filtro = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
 
     console.log(e.start.format('YYYY-MM-DD'))
-this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.format('YYYY-MM-DD')]
+    this.cubo.query_dosis.filters[5].values = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_dosis_total()
@@ -889,7 +896,7 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
     this.cubo.query_dosis_grupo_riesgo.filters[5].values = filtro
     this.cargarDatosPie()
 
-    this.cubo.query_stack_general.filters[4].values=filtro
+    this.cubo.query_stack_general.filters[4].values = filtro
     this.cargar_stacked()
 
     this.cargar_cobertura()
@@ -901,9 +908,9 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
 
   }
 
-  reseteoFechas(){
-    let filtro:any[]=['2021-01-01','2024-01-01']
-    this.cubo.query_dosis.filters[5].values=filtro
+  reseteoFechas() {
+    let filtro: any[] = ['2021-01-01', '2024-01-01']
+    this.cubo.query_dosis.filters[5].values = filtro
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_dosis_total()
@@ -912,7 +919,7 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
     this.cubo.query_dosis_grupo_riesgo.filters[5].values = filtro
     this.cargarDatosPie()
 
-    this.cubo.query_stack_general.filters[4].values=filtro
+    this.cubo.query_stack_general.filters[4].values = filtro
     this.cargar_stacked()
 
     this.cargar_cobertura()
@@ -923,13 +930,13 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
   }
 
 
-  seleciono_urbanidad(){
+  seleciono_urbanidad() {
 
 
     let filtro: any[] = []
 
-  
-    if ( this.grupo_urbanidad == []) {
+
+    if (this.grupo_urbanidad == []) {
       filtro = []
 
     } else {
@@ -940,7 +947,7 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
 
     this.cubo.query_dosis.filters[6].values = filtro
 
-    
+
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_dosis_total()
@@ -951,8 +958,8 @@ this.cubo.query_dosis.filters[5].values=[e.start.format('YYYY-MM-DD'),e.end.form
     this.cargarDatosPie()
     this.cubo.query_stack_general.filters[5].values = filtro
     this.cargar_stacked()
-   /* this.cubo.query_meta.filters[3].values = filtro
-    this.cargar_cobertura()*/
+    /* this.cubo.query_meta.filters[3].values = filtro
+     this.cargar_cobertura()*/
 
     this.cubo.query_time_line.filters[5].values = filtro
     this.cargar_linea_tiempo()
