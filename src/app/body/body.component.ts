@@ -30,7 +30,7 @@ interface City {
 export class BodyComponent implements OnInit {
 
   @ViewChild('etareo_selector')
-  etareo_selector!:MultiSelect
+  etareo_selector!: MultiSelect
 
   rangeDates!: Date[];
   total_1_dosis: number = 0;
@@ -217,6 +217,11 @@ export class BodyComponent implements OnInit {
         name: 'SEGUNDA DOSIS',
         data: [],
         color: '#37ff08'
+      },
+      {
+        name: 'TERCERA DOSIS',
+        data: [],
+        color: '#064ea6'
       }
     ]
   }
@@ -245,13 +250,13 @@ export class BodyComponent implements OnInit {
 
 
     this.grupos_etareos = [
-    { name: '12-19', value: '12-19' },
-    { name: '20-29', value: '20-29' },
-    { name: '30-39', value: '30-39' },
-    { name: '40-49', value: '40-49' },
-    { name: '50-59', value: '50-59' },
-    { name: '60 a mas', value: '60 a mas' },
- 
+      { name: '12-19', value: '12-19' },
+      { name: '20-29', value: '20-29' },
+      { name: '30-39', value: '30-39' },
+      { name: '40-49', value: '40-49' },
+      { name: '50-59', value: '50-59' },
+      { name: '60 a mas', value: '60 a mas' },
+
 
     ]
 
@@ -313,6 +318,22 @@ export class BodyComponent implements OnInit {
             }
 
           }
+        },
+        {
+          title: "TERCERA DOSIS", field: "tercera_dosis", hozAlign: "center", formatter: function (cell: any, formatterParams: any) {
+            var value = cell.getValue();
+            if (value != undefined) {
+
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+            }
+            else {
+              value = 0
+
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+
+            }
+
+          }
         }
 
 
@@ -341,39 +362,32 @@ export class BodyComponent implements OnInit {
 
   }
 
-  cargar_1ra_dosis() {
-    this.cubo.devolver_total_por_dosis(['1ª dosis']).subscribe(respuesta => {
+  async cargar_1ra_dosis() {
+  let respuesta=await  this.cubo.devolver_total_por_dosis(['1ª dosis']).toPromise()
 
-
-
-      this.total_1_dosis = respuesta.data[0]['VACUNADOSCovid.count']
-
-    })
+  this.total_1_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
 
-  cargar_2da_dosis() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis']).subscribe(respuesta => {
+  async cargar_2da_dosis() {
+    let respuesta=await  this.cubo.devolver_total_por_dosis(['2ª dosis']).toPromise()
 
-      this.total_2_dosis = respuesta.data[0]['VACUNADOSCovid.count']
-
-    })
+    this.total_2_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
-  cargar_3ra_dosis() {
-    this.cubo.devolver_total_por_dosis(['3ª dosis']).subscribe(respuesta => {
+  async cargar_3ra_dosis() {
+    console.log(this.cubo.query_dosis)
+    let respuesta=await  this.cubo.devolver_total_por_dosis(['3ª dosis']).toPromise()
 
-      this.total_3_dosis = respuesta.data[0]['VACUNADOSCovid.count']
-
-    })
+    this.total_3_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
-  cargar_dosis_total() {
-    this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).subscribe(respuesta => {
+  async cargar_dosis_total() {
 
-      this.total_dosis = respuesta.data[0]['VACUNADOSCovid.count']
 
-    })
+    let respuesta=await  this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).toPromise()
+
+    this.total_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
   cargarDatosPie() {
@@ -384,7 +398,7 @@ export class BodyComponent implements OnInit {
 
       let res: any[] = respuesta.data
       this.opciones_pie.series[0].data = res.map(grupo => {
-        return [grupo['VACUNADOSCovid.gruporiesgo'], grupo['VACUNADOSCovid.count']]
+        return [grupo['VACUNADOSCovidFast.gruporiesgo'], grupo['VACUNADOSCovidFast.count']]
 
       })
 
@@ -413,19 +427,19 @@ export class BodyComponent implements OnInit {
 
       axis = dat.map(resp => {
 
-        return moment(new Date(resp['VACUNADOSCovid.fechaVacunacion.day'])).format('DD/MM/YYYY');
+        return moment(new Date(resp['VACUNADOSCovidFast.fechaVacunacion.day'])).format('DD/MM/YYYY');
 
       })
 
       dosis_1 = dat.map(resp => {
 
-        return resp['VACUNADOSCovid.dosis_1']
+        return resp['VACUNADOSCovidFast.dosis_1']
 
       })
 
       dosis_2 = dat.map(resp => {
 
-        return resp['VACUNADOSCovid.dosis_2']
+        return resp['VACUNADOSCovidFast.dosis_2']
 
       })
 
@@ -444,6 +458,7 @@ export class BodyComponent implements OnInit {
   async cargar_Datos_stacked_provincias() {
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
+    let tercera_dosis: any[] = []
 
 
     await this.cubo.devolver_dosis_ambito('TODOS').subscribe(respuesta => {
@@ -453,11 +468,15 @@ export class BodyComponent implements OnInit {
       let
         datos: any[] = respuesta.data
 
+        console.log(datos)
+
+
+
       this.opciones.title.text = 'DOSIS APLICADAS POR PROVINCIA'
 
       categorias = datos.map(data => {
 
-        return data['VACUNADOSCovid.provinciaEstablecimiento']
+        return data['VACUNADOSCovidFast.provinciaEstablecimiento']
 
       }).filter(
         (item, index, arr) => {
@@ -468,24 +487,35 @@ export class BodyComponent implements OnInit {
 
 
 
-
       categorias.map(depa => {
         primeras_dosis.push(datos.filter((dos) => {
 
-          return dos['VACUNADOSCovid.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '1ª dosis'
+          return dos['VACUNADOSCovidFast.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '1ª dosis'
 
         }).map(fil => {
-          return fil['VACUNADOSCovid.count']
+          return fil['VACUNADOSCovidFast.count']
         }))
 
 
         segunda_dosis.push(datos.filter((dos) => {
 
-          return dos['VACUNADOSCovid.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '2ª dosis'
+          return dos['VACUNADOSCovidFast.provinciaEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '2ª dosis'
 
         }).map(fil => {
-          return fil['VACUNADOSCovid.count']
+          return fil['VACUNADOSCovidFast.count']
         }))
+
+
+
+        
+        tercera_dosis.push(datos.filter((tres) => {
+
+          return tres['VACUNADOSCovidFast.provinciaEstablecimiento'] == depa && tres['VACUNADOSCovidFast.dosisAplicada'] == '3ª dosis'
+
+        }).map(fil => {
+          return fil['VACUNADOSCovidFast.count']
+        }))
+
 
 
       })
@@ -494,6 +524,7 @@ export class BodyComponent implements OnInit {
 
       this.opciones.series[1].data = segunda_dosis
       this.opciones.series[0].data = primeras_dosis
+      this.opciones.series[2].data = tercera_dosis
 
 
 
@@ -514,6 +545,7 @@ export class BodyComponent implements OnInit {
   async cargar_Datos_stacked_distritos() {
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
+    let tercera_dosis: any[] = []
 
     this.opciones.title.text = 'DOSIS APLICADAS POR DISTRITO'
 
@@ -528,7 +560,7 @@ export class BodyComponent implements OnInit {
 
       categorias = datos.map(data => {
 
-        return data['VACUNADOSCovid.distritoEstablecimiento']
+        return data['VACUNADOSCovidFast.distritoEstablecimiento']
 
       }).filter(
         (item, index, arr) => {
@@ -543,19 +575,27 @@ export class BodyComponent implements OnInit {
       categorias.map(depa => {
         primeras_dosis.push(datos.filter((dos) => {
 
-          return dos['VACUNADOSCovid.distritoEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '1ª dosis'
+          return dos['VACUNADOSCovidFast.distritoEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '1ª dosis'
 
         }).map(fil => {
-          return fil['VACUNADOSCovid.count']
+          return fil['VACUNADOSCovidFast.count']
         }))
 
 
         segunda_dosis.push(datos.filter((dos) => {
 
-          return dos['VACUNADOSCovid.distritoEstablecimiento'] == depa && dos['VACUNADOSCovid.dosisAplicada'] == '2ª dosis'
+          return dos['VACUNADOSCovidFast.distritoEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '2ª dosis'
 
         }).map(fil => {
-          return fil['VACUNADOSCovid.count']
+          return fil['VACUNADOSCovidFast.count']
+        }))
+
+        tercera_dosis.push(datos.filter((dos) => {
+
+          return dos['VACUNADOSCovidFast.distritoEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '3ª dosis'
+
+        }).map(fil => {
+          return fil['VACUNADOSCovidFast.count']
         }))
 
 
@@ -565,6 +605,7 @@ export class BodyComponent implements OnInit {
 
       this.opciones.series[1].data = segunda_dosis
       this.opciones.series[0].data = primeras_dosis
+      this.opciones.series[2].data = tercera_dosis
 
 
 
@@ -595,7 +636,8 @@ export class BodyComponent implements OnInit {
 
   cargar_vacunacion_hoy() {
     this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {
-      this.vacunados_hoy = respuesta.data[0]['VACUNADOSCovid.count']
+      console.log(respuesta)
+      this.vacunados_hoy = respuesta
     })
   }
 
@@ -679,6 +721,7 @@ export class BodyComponent implements OnInit {
     this.cubo.query_dosis.filters[2].values = filtro
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
+    this.cargar_3ra_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[3].values = filtro
     this.cargar_vacunacion_hoy()
@@ -738,7 +781,7 @@ export class BodyComponent implements OnInit {
     this.cubo.devolver_maestro_grupos_vacunacion().subscribe(respuesta => {
       datos = respuesta.data
       this.grupos_vacunacion = datos.map(dato => {
-        return { name: dato['VACUNADOSCovid.grupo_vacunacion'] }
+        return { name: dato['VACUNADOSCovidFast.grupo_vacunacion'] }
       })
 
 
@@ -800,7 +843,7 @@ export class BodyComponent implements OnInit {
     let data: any[] = this.opciones.xAxis.categories
     this.datos_tablas = data.map((dato, index) => {
 
-      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0] }
+      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0],tercera_dosis:this.opciones.series[2].data[index][0] }
     })
 
     /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
@@ -885,13 +928,13 @@ export class BodyComponent implements OnInit {
   }
 
 
-  seleciono_fechas(e: any) {
+  async seleciono_fechas(e: any) {
     let filtro = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
 
-    console.log(e.start.format('YYYY-MM-DD'))
     this.cubo.query_dosis.filters[5].values = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
+ await   this.cargar_1ra_dosis()
+   await this.cargar_2da_dosis()
+   await   this.cargar_3ra_dosis()
     this.cargar_dosis_total()
 
 
