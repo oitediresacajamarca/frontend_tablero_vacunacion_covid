@@ -788,7 +788,7 @@ export class BodyComponent implements OnInit {
     })
 
   }
-  seleciono_grupo_vacunacion() {
+  async seleciono_grupo_vacunacion() {
     console.log(this.grupo_vacunacion_selecionado)
 
     let filtro: any[] = []
@@ -804,9 +804,10 @@ export class BodyComponent implements OnInit {
 
 
     this.cubo.query_dosis.filters[4].values = filtro
-    this.cargar_1ra_dosis()
-    this.cargar_2da_dosis()
-    this.cargar_dosis_total()
+   await this.cargar_1ra_dosis()
+   await this.cargar_2da_dosis()
+   await this.cargar_3ra_dosis()
+   await this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[5].values = filtro
     this.cargar_vacunacion_hoy()
     this.cubo.query_dosis_grupo_riesgo.filters[4].values = filtro
