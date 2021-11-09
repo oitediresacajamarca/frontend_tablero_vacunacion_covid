@@ -250,6 +250,7 @@ export class BodyComponent implements OnInit {
 
 
     this.grupos_etareos = [
+      { name: 'menor 12', value: 'menor 12' },
       { name: '12-19', value: '12-19' },
       { name: '20-29', value: '20-29' },
       { name: '30-39', value: '30-39' },
