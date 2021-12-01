@@ -7,11 +7,13 @@ import { FormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import { FabricanteComponent } from './fabricante/fabricante.component';
 import { EstablecimientosSelectorComponent } from './establecimientos-selector/establecimientos-selector.component';
+import { RedSelectorComponent } from './red-selector/red-selector.component';
+import { MicroredSelectorComponent } from './microred-selector/microred-selector.component';
 
 
 
 @NgModule({
-  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent],
+  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent],
   imports: [
     CommonModule,
     DropdownModule,

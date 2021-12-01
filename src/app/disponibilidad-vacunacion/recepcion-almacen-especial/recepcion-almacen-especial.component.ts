@@ -37,6 +37,8 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
     this.movimientos.cargar_todos_movimientos().subscribe(data => {
 
       this.movimientos_sismed = data
+
+      console.log( this.movimientos_sismed)
      
     })
 

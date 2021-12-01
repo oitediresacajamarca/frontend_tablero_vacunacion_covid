@@ -10,11 +10,14 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
 import { ConteoRapidoNhisComponent } from './conteo-rapido/conteo-rapido-nhis/conteo-rapido-nhis.component';
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
+import { MicroredSelectorComponent } from './controles/microred-selector/microred-selector.component';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
+import { RedSelectorComponent } from './controles/red-selector/red-selector.component';
 import { CuadroComparacionAlmacenRedComponent } from './disponibilidad-vacunacion/cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
 import { DetalleDistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/detalle-distribucion-almacen-red/detalle-distribucion-almacen-red.component';
 import { DetalleDistribucionEstrategiaRedComponent } from './disponibilidad-vacunacion/detalle-distribucion-estrategia-red/detalle-distribucion-estrategia-red.component';
 import { DetalleDistribucionPorIpressComponent } from './disponibilidad-vacunacion/detalle-distribucion-por-ipress/detalle-distribucion-por-ipress.component';
+import { DetalleEnvioIpressIpressComponent } from './disponibilidad-vacunacion/detalle-envio-ipress-ipress/detalle-envio-ipress-ipress.component';
 import { DetalleEnvioIpressComponent } from './disponibilidad-vacunacion/detalle-envio-ipress/detalle-envio-ipress.component';
 import { DetalleEnvioRedComponent } from './disponibilidad-vacunacion/detalle-envio-red/detalle-envio-red.component';
 import { DistribucionAlmacenRedComponent } from './disponibilidad-vacunacion/distribucion-almacen-red/distribucion-almacen-red.component';
@@ -65,12 +68,14 @@ const routes: Routes = [
     {path:'stock-disponible',component:RegistroStockComponent},
     {path:'comparacion-almacen-red',component:CuadroComparacionAlmacenRedComponent},
     {path:'recepcion-anexos',component:RecepcionAnexosDetalleComponent},
-    {path:'reporte-stock-disponible',component:ReporteStockComponent}
-
+    {path:'reporte-stock-disponible',component:ReporteStockComponent},
+    {path:'microred-ipress',component:DetalleEnvioIpressIpressComponent}
   ]
+},
+
+{path:'pruebas',component:MicroredSelectorComponent}
 
 
-}
 
 
 

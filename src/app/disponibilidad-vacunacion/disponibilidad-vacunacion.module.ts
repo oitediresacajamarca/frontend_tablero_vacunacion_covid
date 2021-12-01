@@ -25,6 +25,7 @@ import { RecepcionAnexosComponent } from './recepcion-anexos/recepcion-anexos.co
 import { RecepcionAnexosDetalleComponent } from './recepcion-anexos-detalle/recepcion-anexos-detalle.component';
 import { ReporteStockComponent } from './reporte-stock/reporte-stock.component';
 import { ReporteStockDetalleComponent } from './reporte-stock-detalle/reporte-stock-detalle.component';
+import { DetalleEnvioIpressIpressComponent } from './detalle-envio-ipress-ipress/detalle-envio-ipress-ipress.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ReporteStockDetalleComponent } from './reporte-stock-detalle/reporte-st
     RecepcionAnexosComponent,
     RecepcionAnexosDetalleComponent,
     ReporteStockComponent,
-    ReporteStockDetalleComponent
+    ReporteStockDetalleComponent,
+    DetalleEnvioIpressIpressComponent
   ],
   imports: [
     CommonModule,

@@ -13,13 +13,13 @@
     </div>
     <div class="col-md-2">
       <label for="" >FECHA INICIO</label>  <br>
-        <p-calendar formControlName="desde"></p-calendar>
+        <p-calendar formControlName="desde" dateFormat="dd/mm/yy"></p-calendar>
       
     </div>
     <div class="col-md-2">
         <label for="" >FECHA FIN</label>
      <br>
-        <p-calendar formControlName="hasta"></p-calendar>
+        <p-calendar formControlName="hasta" dateFormat="dd/mm/yy"></p-calendar>
       
     </div>
 
@@ -48,6 +48,8 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>FECHA DE MOVIMIENTO</th>
+                <th>ORIGEN</th>
+
                 <th>TIPO DE DOCUMENTO</th>
                 <th>NUMERO DE DOCUMENTO</th>
                 <th>LOTE</th>
@@ -60,6 +62,8 @@
         <ng-template pTemplate="body" let-product>
             <tr>
                 <td>{{product.MOVFECHREG|date:'dd-MM-yyyy'}}</td>
+                <td>{{product.almdes}}</td>
+            
                 <td>{{product.DOCDESTINO}}</td>
                 <td>{{product.MOVNUMEDCO}}</td>
                 <td>{{product.MEDLOTE}}</td>
