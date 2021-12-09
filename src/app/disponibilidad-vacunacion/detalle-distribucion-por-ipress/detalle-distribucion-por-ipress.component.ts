@@ -68,6 +68,7 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   }
 
   MODIFICAR(ID_MOV: any) {
+    
 
     console.log(ID_MOV)
   }
