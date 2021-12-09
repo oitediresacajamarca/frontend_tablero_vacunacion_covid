@@ -19,6 +19,8 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
     this.cargarDistribucion()
   }
@@ -68,8 +70,8 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   }
 
   MODIFICAR(ID_MOV: any) {
-    
 
+    this.nuevo_dis.open()
     console.log(ID_MOV)
   }
 
