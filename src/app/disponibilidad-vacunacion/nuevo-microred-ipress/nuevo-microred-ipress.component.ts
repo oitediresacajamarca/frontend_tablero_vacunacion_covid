@@ -37,7 +37,7 @@ export class NuevoMicroredIpressComponent implements OnInit {
 
 
   @ViewChild('select_establec')
-  select_establec!: EstablecimientosSelectorComponent
+  select_establec!: IpressSelectorComponent
 
 
 
@@ -102,9 +102,9 @@ export class NuevoMicroredIpressComponent implements OnInit {
   ABRIR() {
     this.display = true
 
-    this.select_establec.CODIGO_MICRORED=this.MICRORED.ID_MICRORED
+    this.select_establec.ID_MICRORED=this.MICRORED.ID_MICRORED
 
-    this.select_establec.cargar_establecimientos_por_microred()
+    this.select_establec.cargar_establecimeintos_por_id_microred()
 
     console.log(this.MICRORED)
   }
