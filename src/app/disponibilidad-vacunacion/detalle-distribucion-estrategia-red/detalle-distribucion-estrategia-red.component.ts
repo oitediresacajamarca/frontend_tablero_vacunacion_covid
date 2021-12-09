@@ -15,6 +15,8 @@ export class DetalleDistribucionEstrategiaRedComponent implements OnInit {
 
   distribuciones_listado: any[] = []
 
+  filtro: any = { red: '1', fabricante: '1' }
+
   ngOnInit(): void {
     this.cargarDistribuciones()
   }
@@ -22,6 +24,20 @@ export class DetalleDistribucionEstrategiaRedComponent implements OnInit {
   open_nuevo() {
     this.nuevo.open()
 
+  }
+
+  selecciono_provincia(e: any) {
+
+    this.filtro.red = e.ID_PROVINCIA
+    this.cargar_distribuciones_filtro()
+
+  }
+
+  cargar_distribuciones_filtro() {
+    this.distribuciones.listar_filtrados(this.filtro).subscribe((data) => {
+      this.distribuciones_listado = data;
+
+    })
   }
 
   cargarDistribuciones() {
@@ -42,9 +58,17 @@ export class DetalleDistribucionEstrategiaRedComponent implements OnInit {
       this.cargarDistribuciones()
 
     });
+  }
+
+  selecciono_fabricante(e: any) {
 
 
-
+    this.filtro.fabricante = e;
+    this.cargar_distribuciones_filtro()
+  }
+  restablecer_filtro(){
+    this.filtro={ red: '1', fabricante: '1' }
+    this.cargarDistribuciones()
   }
 
 }

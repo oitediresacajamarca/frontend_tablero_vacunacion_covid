@@ -40,8 +40,9 @@ import { DisponibilidadVacunacionModule } from './disponibilidad-vacunacion/disp
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { ConteoRapidoModule } from './conteo-rapido/conteo-rapido.module';
 import { LayoutsModule } from './layouts/layouts.module';
-
-
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-distribucion-vacunas-cenares/reporte-distribucion-vacunas-cenares.component';
+import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,10 @@ import { LayoutsModule } from './layouts/layouts.module';
     MapaSelectorDirective,
     ContenerdorTableroComponent,
     ConteoRapidoComponent,
+    ReporteDistribucionVacunasCenaresComponent,
+    ReporteStockDisponiblePorProvinciaComponent,
+  
+ 
 
 
   
@@ -73,7 +78,8 @@ import { LayoutsModule } from './layouts/layouts.module';
     DropdownModule,
     DisponibilidadVacunacionModule,
     ConteoRapidoModule,LayoutsModule,
-    DialogModule
+    DialogModule,
+    UsuariosModule
     ,
     TranslateModule.forRoot({
       defaultLanguage: 'es_ES'

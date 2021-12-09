@@ -41,7 +41,7 @@
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image"></div>
             <div class="info">
-              <a href="#" class="d-block">Alexander Pierce</a>
+              <a href="#" class="d-block">Modulos de Monitoreo</a>
             </div>
           </div>
 
@@ -57,7 +57,8 @@
               <li class="nav-item">
                 <a
                   [routerLink]="['recepcion-almacen-especial']"
-                  class="nav-link"
+                  routerLinkActive="active"
+                  class="nav-link "
                 >
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
@@ -67,55 +68,53 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a [routerLink]="['estrategia-red']" class="nav-link">
+                <a [routerLink]="['estrategia-red']" class="nav-link"  routerLinkActive="active">
                   <i class="nav-icon far fa-image"></i>
-                  <p>DISTRIBUCION HACIA LA RED</p>
+                  <p>
+                    DISTRIBUCION DE VACUNAS DE ESTRATEGIA A ALMACEN
+                    ESPECIALIZADO
+                  </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a [routerLink]="['almacen-red']" class="nav-link">
+                <a [routerLink]="['almacen-red']" class="nav-link"  routerLinkActive="active">
                   <i class="nav-icon far fa-image"></i>
-                  <p>DISTRIBUCION DE ALMACEN A RED</p>
+                  <p>
+                    DISTRIBUCION DE VACUNAS DE ALMACEN ESPECIALIZADO A REDES DE
+                    SALUD
+                  </p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a [routerLink]="['comparacion-almacen-red']" class="nav-link">
+             <li class="nav-item">
+                <a [routerLink]="['recepcion-anexos']" class="nav-link"  routerLinkActive="active">
                   <i class="nav-icon far fa-image"></i>
-                  <p>CUADRO DE COMPARACION ALMACEN RED</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a [routerLink]="['recepcion-anexos']" class="nav-link">
-                  <i class="nav-icon far fa-image"></i>
-                  <p>SUBIR ANEXOS</p>
+                  <p>REGISTRO DE ANEXOS DE CADENA DE FRIO</p>
                 </a>
               </li>
               <li class="nav-item has-treeview">
-                <a [routerLink]="['red-ipress']" class="nav-link">
+                <a [routerLink]="['red-ipress']" class="nav-link"  routerLinkActive="active">
                   <i class="nav-icon far fa-envelope"></i>
                   <p>
-                    DISTRIBUCION DE RED A IPRESS
+                    DISTRIBUCION DE RED A MICRORED/IPRESS
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
               </li>
               <li class="nav-item has-treeview">
-                <a [routerLink]="['stock-disponible']" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
+                <a [routerLink]="['micored-ipress']" class="nav-link"  routerLinkActive="active">
+                  <i class="nav-icon far fa-envelope"></i>
                   <p>
-                    REGISTRO DE STOCK DISPONIBLE
+                    DISTRIBUCION DE (MICRORED/IPRESS) A IPRESS
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
               </li>
-
               <li class="nav-item has-treeview">
-                <a [routerLink]="['reporte-stock-disponible']" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
+                <a [routerLink]="['centro-vacunacion']" class="nav-link"  routerLinkActive="active">
+                  <i class="nav-icon far fa-envelope"></i>
                   <p>
-                    REPORTE DE STOCK DISPONIBLE
+                   REGISTRO DE LA GESTION DE INFORMACION DIARIA
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -123,6 +122,35 @@
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-header">REPORTES</li>
+              <li class="nav-item">
+                <a [routerLink]="['comparacion-almacen-red']" class="nav-link" routerLinkActive="active">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>CUADRO DE COMPARACION ALMACEN RED</p>
+                </a>
+              </li>
+            
+              <li class="nav-item">
+                <a [routerLink]="['distribucion-vacunas-cenares']" class="nav-link" routerLinkActive="active">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>DISTRIBUCION DE VACUNAS POR CENARES</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a [routerLink]="['stock-disponible-redes']" class="nav-link" routerLinkActive="active">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>REPORTE STOCK DISPONIBLE</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

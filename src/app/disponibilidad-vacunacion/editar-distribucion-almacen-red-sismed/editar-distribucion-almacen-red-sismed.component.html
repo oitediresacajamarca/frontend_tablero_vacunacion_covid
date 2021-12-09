@@ -1,0 +1,82 @@
+<p-dialog
+  [(visible)]="display"
+  [style]="{ width: '550px' }"
+  [header]="'EDITAR'"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <FORM [formGroup]="formGr">
+ 
+      <div class="p-field p-4">
+        <label for="name">Fecha</label>
+  
+     <div>{{distris.MOVFECHREG|date:'dd/MM/yy'}}</div>   
+
+  
+      </div>
+      <div class="p-field  p-4">
+        <label for="description">FABRICANTE</label>
+        <div>{{distris.FABRICANTE}}</div>   
+        
+    
+      </div>
+
+
+      <div class="p-field  p-4">
+        <label for="description">LOTE</label>
+     
+        <div>   {{distris.MEDLOTE}}</div>   
+      </div>
+      <div class="p-field  p-4">
+        <label for="description">CANTIDAD DOSIS</label>
+        <div>         {{distris.CANTIDAD_DOSIS}}</div>  
+  
+      </div>
+   
+
+      <div class="p-field  p-4">
+        <label for="description">FECHA VENCIMIENTO</label>
+
+        <p-calendar dateFormat='dd/MM/yy'
+          inputId="locale-user"
+          formControlName="FECHA_VENCIMIENTO"
+        ></p-calendar>
+      </div>
+
+      <div class="p-field  p-4">
+        <label for="description">FECHA DESCONGELAMIENTO</label>
+
+        <p-calendar
+          inputId="locale-user" dateFormat='dd/MM/yy'
+          formControlName="FECHA_DESCONGELAMIENTO"
+        ></p-calendar>
+      </div>
+
+      
+
+
+    </FORM>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="close()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+
+      (click)="asignar()"
+    
+    ></button>
+  </ng-template>
+</p-dialog>

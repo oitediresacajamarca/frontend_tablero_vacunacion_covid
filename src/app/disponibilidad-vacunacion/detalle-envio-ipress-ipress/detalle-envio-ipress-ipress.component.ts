@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NuevoMicroredIpressComponent } from '../nuevo-microred-ipress/nuevo-microred-ipress.component';
 
 @Component({
   selector: 'app-detalle-envio-ipress-ipress',
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class DetalleEnvioIpressIpressComponent implements OnInit {
 
   constructor() { }
+  @ViewChild('dialog_nuevo')
+  dialog_nuevo!:NuevoMicroredIpressComponent
 
   ngOnInit(): void {
   }
 
+  abrir_dialog(){
+    this.dialog_nuevo.ABRIR()
+  }
 }

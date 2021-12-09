@@ -1,0 +1,46 @@
+<h1>REPORTE STOCK DISPONIBLE</h1>
+
+<table class="table table-bordered table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">PROVINCIA</th>
+        <th scope="col">POBLACION</th>
+        <th scope="col"></th>
+        <th scope="col">DOSIS ASIGNADAS SINOPHARM</th>
+        <th scope="col">DOSIS ASIGNADAS PFIZER</th>
+        <th scope="col">DOSIS ASIGNADAS ASTRAZENECA</th>
+        <th scope="col">DOSIS ADMINISTRDAS SINOPHARM 1 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS SINOPHARM 2 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS SINOPHARM 3 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS PFIZER 1 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS PFIZER 2 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS PFIZER 3 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS ASTRAZENECA 1 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS ASTRAZENECA 2 DOSIS</th>
+        <th scope="col">DOSIS ADMINISTRDAS ASTRAZENECA 3 DOSIS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of datos">
+ 
+       
+        <td>{{data.PROVINICIA}}</td>
+        <td></td>
+        <td></td>
+        <td>{{data.CANT_ASIG_SINOPHARM}}</td>
+        <td>{{data.CANT_ASIG_PFIZER}}</td>
+        <td>{{data.CANT_ASIG_ASTRAZENECA}}</td>
+        <td>{{data.DOSIS_ADM_SINO_1}}</td>
+        <td>{{data.DOSIS_ADM_SINO_2}}</td>
+        <td>{{data.DOSIS_ADM_SINO_3}}</td>
+        <td>{{data.DOSIS_ADM_PFIZER_1}}</td>
+        <td>{{data.DOSIS_ADM_PFIZER_2}}</td>
+        <td>{{data.DOSIS_ADM_PFIZER_3}}</td>
+        <td>{{data.DOSIS_ADM_ASTRAZENECA_1}}</td>
+        <td>{{data.DOSIS_ADM_ASTRAZENECA_2}}</td>
+        <td>{{data.DOSIS_ADM_ASTRAZENECA_3}}</td>
+      </tr>
+    
+    </tbody>
+  </table>
+

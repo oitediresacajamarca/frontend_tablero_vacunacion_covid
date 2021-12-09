@@ -1,85 +1,91 @@
 <div class="content">
+  <div class="container">
+    <h3>DISTRIBUCION DE RED A IPRESS/MICRORED</h3>
 
-    <div class="container">
-        <h3>DISTRIBUCION DE RED A IPRESS</h3>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header border-0">
-                      <h3 class="card-title">....</h3>
-                      <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-sm">
-                          <i class="fas fa-download"></i>
-                        </a>
-                        <a href="#" class="btn btn-tool btn-sm">
-                          <i class="fas fa-bars"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card-body table-responsive p-0">
-
-                      <p-table [value]="ditribucion_ipress"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll">
-                        <ng-template pTemplate="header">
-                          <tr>
-                            <th>DESDE</th>
-                            <th>IPRESS</th>
-                            <th>FABRICANTE</th>
-                            <th>CANTIDAD DE DOSIS</th>
-                            <th>CANTIDAD DE VIALES</th>
-                            <th>FECHA DE DISTRIBUCION</th>
-                            <th>FECHA DE VENCIMIENTO</th>
-                            <th></th>
-                          </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-distri>
-                          <tr >
-    
-                            <td>
-                                {{distri.DESDE}}
-                             
-                                   </td>
-                          <td>
-                       {{distri.est.Nombre_del_establecimiento}}
-                    
-                          </td>
-                          <td> {{distri.FABRICANTE}}</td>
-                          <td>
-                            {{distri.CANTIDAD_RECIBIDA_DOSIS}}
-                          </td>
-                          <td>
-                            {{distri.CANTIDAD_RECIBIDA_VIALES}}
-                          </td>
-    
-                          <td>
-                            {{distri.FECHA_DISTRIBUCION|date:'dd/MM/YYYY'}}
-                          </td>
-                          <td>
-                            {{distri.FECHA_VENCIMIENTO|date:'dd/MM/YYYY'}}
-                          </td>
-    <td> <button pButton label="Eliminar"   (click)="deleteDistri(distri.id)"></button></td>
-                          
-                        </tr>
-                        </ng-template>
-                    </p-table>
-               
-                    </div>
-    
-                    <app-distribucion-red-ipress #nuevo_dis  (agrego_distribucion)="agrego_dis()"></app-distribucion-red-ipress>
-    
-                    <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-info float-right"  (click)="open_red_ipress()"><i class="fas fa-plus"></i> AGREGAR DISTRIBUCION</button>
-                      </div>
-                  </div>
-                
-    
-    
+    <div class="row p-4">
+      <div class="col"><app-provincia-selector (selecciono)="selecciono_red($event)"></app-provincia-selector></div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header border-0">
+            <h3 class="card-title">....</h3>
+            <div class="card-tools">
+              <a href="#" class="btn btn-tool btn-sm">
+                <i class="fas fa-download"></i>
+              </a>
+              <a href="#" class="btn btn-tool btn-sm">
+                <i class="fas fa-bars"></i>
+              </a>
             </div>
-    
+          </div>
+          <div class="card-body table-responsive p-0">
+            <p-table
+              [value]="salidas_sismed"
+              [paginator]="true"
+              [rows]="10"
+              [showCurrentPageReport]="true"
+              responsiveLayout="scroll"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>DESDE</th>
+                  <th>IPRESS</th>
+                  <th>FABRICANTE</th>
+                  <th>CANTIDAD DE DOSIS</th>
+                  <th>CANTIDAD DE VIALES</th>
+                  <th>FECHA DE DISTRIBUCION</th>
+                  <th>FECHA DE VENCIMIENTO</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-distri>
+                <tr>
+                  <td>
+                    {{ distri.almdes }}
+                  </td>
+                  <td>
+                    {{ distri.IPRESS_DESTINO }}
+                  </td>
+                  <td>{{ distri.FABRICANTE }}</td>
+                  <td>
+                    {{ distri.CANTIDAD_DOSIS }}
+                  </td>
+                  <td>
+                    {{ distri.MOVCANTID }}
+                  </td>
+
+                  <td>
+                    {{ distri.MOVFECHREG | date: "dd/MM/YYYY" }}
+                  </td>
+                  <td>
+                    {{ distri.MEDFECHVTO | date: "dd/MM/YYYY" }}
+                  </td>
+                  <td>
+                    <button
+                      pButton
+                      label="MODIFICAR"
+                      (click)="MODIFICAR(distri.MOVNUMERO)"
+                    ></button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+
+         
+
+         
         </div>
-    
-        
-    
+      </div>
     </div>
-    </div>
-    
-    <p-confirmDialog header="CONFIRMAR" acceptLabel="ACEPTAR" rejectLabel="CANCELAR" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  </div>
+</div>
+
+<p-confirmDialog
+  header="CONFIRMAR"
+  acceptLabel="ACEPTAR"
+  rejectLabel="CANCELAR"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>

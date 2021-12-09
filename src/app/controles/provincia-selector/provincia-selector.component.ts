@@ -41,7 +41,7 @@ export class ProvinciaSelectorComponent implements OnInit, ControlValueAccessor 
 
   ngOnInit(): void {
     this.devolverProvincia()
-    this.selecciono.emit()
+
   }
 
   provincias!: any[]

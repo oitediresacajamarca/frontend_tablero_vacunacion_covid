@@ -1,4 +1,5 @@
 <div class="p-field p-col-12">
     <label for="state">RED </label>
-    <p-dropdown inputId="state" [options]="redes"  placeholder="Select" optionLabel="NOMBRE" (onChange)="seleccionoRed($event)"></p-dropdown>
+    
+    <p-dropdown inputId="state" [options]="redes"  placeholder="Select"[(ngModel)]="red" optionLabel="NOMBRE" (onChange)="seleccionoRed($event)"></p-dropdown>
 </div>

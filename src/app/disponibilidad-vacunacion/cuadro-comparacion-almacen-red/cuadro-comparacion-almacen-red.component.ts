@@ -11,6 +11,7 @@ export class CuadroComparacionAlmacenRedComponent implements OnInit {
   constructor(private distrib: DistribucionEstrategiaRedService) { }
 
   reporte: any[] = []
+  fabricante=''
 
   ngOnInit(): void {
     this.cargar_cuadro()
@@ -23,6 +24,21 @@ export class CuadroComparacionAlmacenRedComponent implements OnInit {
       this.reporte = data;
 
     })
+  }
+
+  cargar_cuadro_por_fabricante(fabricante:any) {
+    this.distrib.reporte_cuadro_por_fabricante(fabricante).subscribe(data => {
+
+      console.log(data)
+      this.reporte = data;
+
+    })
+  }
+
+  selecciono_fabricante(e:any){
+
+this.cargar_cuadro_por_fabricante(e)
+    
   }
 
 }

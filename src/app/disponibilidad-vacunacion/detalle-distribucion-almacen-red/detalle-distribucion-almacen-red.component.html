@@ -2,7 +2,31 @@
 <div class="content">
 
 <div class="container">
-    <h1>DISTRIBUCION DE ALMACEN A RED</h1>
+
+    <h1>DISTRIBUCION DE VACUNAS DE ALMACEN ESPECIALIZADO A REDES DE SALUD</h1>
+
+    <form  [formGroup]="formGroup">
+    <div class="row filtros-administrativos">
+
+      <div class="col-4">
+
+
+        <app-red-selector (selecciono)="selecciono_red()" formControlName="RED"></app-red-selector>
+      
+     
+      </div>
+      <div class="col-4">
+        <app-microred-selector #MICRORED_SELECTOR formControlName="MICRORED" (selecciono)="selecciono_microred()"></app-microred-selector>
+      </div>
+      <div class="col-4">
+
+        <app-ipress-selector #IPRESS_SELECTOR formControlName="IPRESS" (selecciono)="selecciono_ipress()"></app-ipress-selector>
+        
+
+      </div>
+    </div>
+
+  </form>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">

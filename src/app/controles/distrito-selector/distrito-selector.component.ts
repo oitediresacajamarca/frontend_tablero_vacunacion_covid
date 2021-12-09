@@ -16,31 +16,31 @@ import { ProvinciaSelectorComponent } from '../provincia-selector/provincia-sele
     }
   ]
 })
-export class DistritoSelectorComponent implements OnInit,ControlValueAccessor {
+export class DistritoSelectorComponent implements OnInit, ControlValueAccessor {
 
 
-  distrito:any
+  distrito: any
   isDisabled: boolean = false;
   onChange = (_: any) => { }
 
   constructor(private http: HttpClient) { }
   writeValue(obj: any): void {
-  this.distrito=obj
+    this.distrito = obj
   }
   registerOnChange(fn: any): void {
-    this.onChange=fn
+    this.onChange = fn
   }
   registerOnTouched(fn: any): void {
 
   }
 
   distritos!: any[]
- 
+
   @Input('cod_provincia')
   cod_provincia: string = '0601'
 
   @Output('selecciono_distrito')
-  selecciono_distrito=new EventEmitter();
+  selecciono_distrito = new EventEmitter();
 
   ngOnInit(): void {
     this.cargar_distritos()
@@ -56,10 +56,12 @@ export class DistritoSelectorComponent implements OnInit,ControlValueAccessor {
   }
 
   seleccionoDistrito(event: any) {
+
+
     this.onChange(event.value.ID_DISTRITO)
 
-   
-this.selecciono_distrito.emit(event.value.ID_DISTRITO)
+
+    this.selecciono_distrito.emit(event.value.ID_DISTRITO)
 
   }
   cli() {

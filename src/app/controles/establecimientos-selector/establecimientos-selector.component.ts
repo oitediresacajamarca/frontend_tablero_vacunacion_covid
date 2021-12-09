@@ -39,6 +39,10 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
   @Input('UBIGEO_PROVINCIA')
   UBIGEO_PROVINCIA!: string;
 
+  @Input('CODIGO_MICRORED')
+  CODIGO_MICRORED!: string;
+
+
   establecimientos: any[] = []
 
   @Output('selecciono')
@@ -68,8 +72,16 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
     })
   }
 
+  cargar_establecimientos_por_microred() {
+
+    this.http.get<any[]>(environment.url__backend + 'establecimiento/codigo_microred/' + this.CODIGO_MICRORED).subscribe(data => {
+      this.establecimientos = data;
+    })
+  }
   seleccionoIpress(event: any) {
+
     console.log(event)
+
     this.onChange(event.value)
     this.selecciono.emit(event)
 

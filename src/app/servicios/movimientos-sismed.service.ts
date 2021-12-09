@@ -20,4 +20,25 @@ export class MovimientosSismedService {
 
     return this.http.post<MovimientoSismed[]>(environment.url__backend+'distribucion-sismed/filtro',filtro)
    }
+
+   cargar_movimientos_de_red(CODIGO_RED:string){
+
+    return this.http.get<MovimientoSismed[]>(environment.url__backend+'movimientos/red/'+CODIGO_RED)
+
+
+   }
+   cargar_movimientos_filtro(filtro:any){
+
+    return this.http.post<MovimientoSismed[]>(environment.url__backend+'movimientos/filtro/',filtro)
+
+
+   }
+   cargar_movimientos_cenares(){
+    return this.http.get<MovimientoSismed[]>(environment.url__backend_base+'movimientos-vacunas-sismed/dosis_distribuidas_cenares')
+   }
+
+   cargar_movimientos_distribuciones_de_red(CODIGO_RED:string){
+    return this.http.get<MovimientoSismed[]>(environment.url__backend_base+'movimientos-vacunas-sismed/distribuciones_red/'+CODIGO_RED)
+   }
+
 }

@@ -65,6 +65,10 @@ export class DistribucionEstrategiaRedService {
   listar() {
     return this.http.get<any>(environment.url__backend + 'distribucion-estrategia-red/listar')
   }
+  listar_filtrados(filtro:any) {
+   
+    return this.http.get<any>(environment.url__backend + 'distribucion-estrategia-red/listar_por_red_fabricante/'+filtro.red+'/'+filtro.fabricante)
+  }
 
   eliminar(id: any) {
     return this.http.get<any>(environment.url__backend + 'distribucion-estrategia-red/eliminar/' + id)
@@ -72,6 +76,10 @@ export class DistribucionEstrategiaRedService {
 
   reporte_cuadro() {
     return this.http.get<any>(environment.url__backend + 'distribucion-estrategia-red/cuadro_listar/')
+  }
+
+  reporte_cuadro_por_fabricante(fabricante:string) {
+    return this.http.get<any>(environment.url__backend + 'distribucion-estrategia-red/cuadro_listar_por_fabricante/'+fabricante)
   }
 
   dosis_asignadas_() {

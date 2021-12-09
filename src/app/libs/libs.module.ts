@@ -15,6 +15,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FileUploadModule} from 'primeng/fileupload';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {ToolbarModule} from 'primeng/toolbar';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { TagModule } from 'primeng/tag';
 
 
 
@@ -22,8 +25,14 @@ import {MessageModule} from 'primeng/message';
   declarations: [],
   imports: [
     CommonModule, PanelModule, CalendarModule, InputNumberModule,
-     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,
+     DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule,ToolbarModule,
+     RadioButtonModule,TagModule
   ], exports: [PanelModule, CalendarModule, InputNumberModule,
-     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule]
+     InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,
+     DialogModule,DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule,ToolbarModule,
+     RadioButtonModule,TagModule
+     ,
+    ]
 })
 export class LibsModule { }

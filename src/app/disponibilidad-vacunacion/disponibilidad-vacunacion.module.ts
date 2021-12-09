@@ -26,6 +26,12 @@ import { RecepcionAnexosDetalleComponent } from './recepcion-anexos-detalle/rece
 import { ReporteStockComponent } from './reporte-stock/reporte-stock.component';
 import { ReporteStockDetalleComponent } from './reporte-stock-detalle/reporte-stock-detalle.component';
 import { DetalleEnvioIpressIpressComponent } from './detalle-envio-ipress-ipress/detalle-envio-ipress-ipress.component';
+import { DetalleDistribucionAlmacenRedSismedComponent } from './detalle-distribucion-almacen-red-sismed/detalle-distribucion-almacen-red-sismed.component';
+import { RegistroCentroVacunacionComponent } from './registro-centro-vacunacion/registro-centro-vacunacion.component';
+import { DetalleRegistroCentroVacunacionComponent } from './detalle-registro-centro-vacunacion/detalle-registro-centro-vacunacion.component';
+import { NuevoMicroredIpressComponent } from './nuevo-microred-ipress/nuevo-microred-ipress.component';
+import { ReporteCabeceraRegionalComponent } from './reportes/reporte-cabecera-regional/reporte-cabecera-regional.component';
+import { EditarDistribucionAlmacenRedSismedComponent } from './editar-distribucion-almacen-red-sismed/editar-distribucion-almacen-red-sismed.component';
 
 
 @NgModule({
@@ -49,7 +55,13 @@ import { DetalleEnvioIpressIpressComponent } from './detalle-envio-ipress-ipress
     RecepcionAnexosDetalleComponent,
     ReporteStockComponent,
     ReporteStockDetalleComponent,
-    DetalleEnvioIpressIpressComponent
+    DetalleEnvioIpressIpressComponent,
+    DetalleDistribucionAlmacenRedSismedComponent,
+    RegistroCentroVacunacionComponent,
+    DetalleRegistroCentroVacunacionComponent,
+    NuevoMicroredIpressComponent,
+    ReporteCabeceraRegionalComponent,
+    EditarDistribucionAlmacenRedSismedComponent
   ],
   imports: [
     CommonModule,

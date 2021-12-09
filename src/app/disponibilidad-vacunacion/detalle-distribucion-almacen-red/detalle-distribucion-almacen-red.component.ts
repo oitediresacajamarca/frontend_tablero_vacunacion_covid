@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { EstablecimientosSelectorComponent } from 'src/app/controles/establecimientos-selector/establecimientos-selector.component';
+import { IpressSelectorComponent } from 'src/app/controles/ipress-selector/ipress-selector.component';
+import { MicroredSelectorComponent } from 'src/app/controles/microred-selector/microred-selector.component';
 import { DistribucionRedService } from 'src/app/servicios/distribucion-red.service';
 import { DistribucionAlmacenRedComponent } from '../distribucion-almacen-red/distribucion-almacen-red.component';
 
@@ -10,14 +14,27 @@ import { DistribucionAlmacenRedComponent } from '../distribucion-almacen-red/dis
 })
 export class DetalleDistribucionAlmacenRedComponent implements OnInit {
 
-  constructor(private distribucion_red: DistribucionRedService, private router: Router) { }
+  constructor(private distribucion_red: DistribucionRedService, private router: Router,private form :FormBuilder) { }
   ditribucion_red!: any[]
   @ViewChild('dis_almacen')
   dis_almacen!: DistribucionAlmacenRedComponent
+  formGroup!:FormGroup;
+  @ViewChild('MICRORED_SELECTOR')
+  MICRORED_SELECTOR!:MicroredSelectorComponent
+  @ViewChild('IPRESS_SELECTOR')
+  IPRESS_SELECTOR!:IpressSelectorComponent
+
 
 
   ngOnInit(): void {
     this.cargarDistribuciones()
+    this.formGroup=this.form.group({
+      RED:'',
+      MICRORED:'',
+      IPRESS:''
+
+    })
+    
   }
 
   cargarDistribuciones() {
@@ -51,5 +68,20 @@ export class DetalleDistribucionAlmacenRedComponent implements OnInit {
     })
   }
 
+  selecciono_red(){
 
+    this.MICRORED_SELECTOR.ID_RED=this.formGroup.value.RED.ID_RED
+    this.MICRORED_SELECTOR.cargarMicroredes()
+  }
+
+  selecciono_microred(){
+    
+    
+
+    this.IPRESS_SELECTOR.ID_MICRORED=this.formGroup.value.MICRORED.ID_MICRORED
+    this.IPRESS_SELECTOR.cargar_establecimeintos_por_id_microred()
+  }
+  selecciono_ipress(){
+
+  }
 }

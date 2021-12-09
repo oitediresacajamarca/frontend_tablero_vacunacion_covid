@@ -1,0 +1,90 @@
+<p-dialog
+  header="NUEVO ENVIO (MICRORED-IPRESS) HACIA IPRESS"
+  [(visible)]="display"
+  [style]="{ width: '50vw' }"
+>
+  <form [formGroup]="form">
+    <div class="row justify-content-center p-2 m-5">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="row">
+          <div class="col-5">
+            <div class="p-field p-col-12 p-md-6">
+              <H3>DESDE</H3>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <app-provincia-selector (selecciono)="selecciono_provincia_desde($event)"></app-provincia-selector>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+              <app-distrito-selector #desde_distrito (selecciono_distrito)="selecciono_distrito_desde($event)"></app-distrito-selector>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <app-establecimientos-selector #desde_ipress></app-establecimientos-selector>
+         
+            </div>
+          </div>
+          <div class="col-2">>></div>
+          <div class="col-5">
+            <div class="p-field p-col-12 p-md-6">
+                <H3>HACIA</H3>
+              </div>
+            <div class="p-field p-col-12 p-md-6">
+              <app-provincia-selector (selecciono)="selecciono_provincia_hacia($event)"></app-provincia-selector>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+
+              <app-distrito-selector #hacia_distrito (selecciono_distrito)="selecciono_distrito_hacia($event)"></app-distrito-selector>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <app-establecimientos-selector #hacia_ipress></app-establecimientos-selector>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <app-fabricante></app-fabricante>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA DE ENVIO</label>
+          <p-calendar formControlName="FECHA_ENVIO"></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="lastname">CANTIDAD ENVIADA EN VIALES</label>
+          <p-inputNumber formControlName="CANTIDAD_VIALES"></p-inputNumber>
+        </div>
+        <div class="p-field p-col-12">
+          <label for="lastname">CANTIDAD ENVIADA EN DOSIS</label>
+          <p-inputNumber formControlName="CANTIDAD_DOSIS"></p-inputNumber>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA DE DESCONGELAMIENTO</label>
+          <p-calendar formControlName="FECHA_DESCONGELAMIENTO"></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA MAXIMA DE USO</label>
+          <p-calendar formControlName="FECHA_VENCIMIENTO"></p-calendar>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <div class="row botones m-4">
+            <div class="col">
+              <button
+                pButton
+                type="button"
+                label="ACEPTAR"
+                (click)="GUARDAR()"
+              ></button>
+            </div>
+            <div class="col">
+              <button pButton type="button" label="CANCELAR"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>

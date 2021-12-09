@@ -9,17 +9,20 @@ import { FabricanteComponent } from './fabricante/fabricante.component';
 import { EstablecimientosSelectorComponent } from './establecimientos-selector/establecimientos-selector.component';
 import { RedSelectorComponent } from './red-selector/red-selector.component';
 import { MicroredSelectorComponent } from './microred-selector/microred-selector.component';
+import { IpressSelectorComponent } from './ipress-selector/ipress-selector.component';
+import { SemaforoComponent } from './semaforo/semaforo.component';
 
 
 
 @NgModule({
-  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent],
+  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent],
   imports: [
     CommonModule,
     DropdownModule,
     FormsModule,
     ButtonModule
 
-  ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent]
+  ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent,
+    RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent]
 })
 export class ControlesModule { }

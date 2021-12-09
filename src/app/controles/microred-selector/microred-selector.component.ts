@@ -1,11 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MicroRedService } from 'src/app/servicios/micro-red.service';
 
 @Component({
   selector: 'app-microred-selector',
   templateUrl: './microred-selector.component.html',
-  styleUrls: ['./microred-selector.component.scss']
+  styleUrls: ['./microred-selector.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MicroredSelectorComponent),
+    multi: true
+  }]
 })
 export class MicroredSelectorComponent implements OnInit, ControlValueAccessor {
 
@@ -19,8 +24,9 @@ export class MicroredSelectorComponent implements OnInit, ControlValueAccessor {
 
 
   seleccionoMicrored(e: any) {
-    this.microred = e.value;
-    this.selecciono.emit(e.value);
+  this.onChange(this.microred)
+    this.selecciono.emit(this.microred);
+  
 
   }
 
@@ -44,7 +50,7 @@ export class MicroredSelectorComponent implements OnInit, ControlValueAccessor {
     this.onChange = fn
   }
   registerOnTouched(fn: any): void {
-    this.onChange = fn
+    this.onTouch = fn
   }
 
 
