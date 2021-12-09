@@ -70,11 +70,11 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
     })
   }
 
-  MODIFICAR(ID_MOV: any) {
+  MODIFICAR(distris: any) {
 
-//this.nuevo_dis.distris=distris;
+    this.nuevo_dis.distris = distris;
     this.nuevo_dis.open()
-  
+
   }
 
 }

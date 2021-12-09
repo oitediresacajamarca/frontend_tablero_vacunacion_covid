@@ -36,6 +36,16 @@ export class NuevoMicroredIpressComponent implements OnInit {
   hacia_ipress!: EstablecimientosSelectorComponent
 
 
+  @ViewChild('select_establec')
+  select_establec!: EstablecimientosSelectorComponent
+
+
+
+
+
+  MICRORED:any={}
+
+
 
 
 
@@ -91,6 +101,12 @@ export class NuevoMicroredIpressComponent implements OnInit {
 
   ABRIR() {
     this.display = true
+
+    this.select_establec.CODIGO_MICRORED=this.MICRORED.ID_MICRORED
+
+    this.select_establec.cargar_establecimientos_por_microred()
+
+    console.log(this.MICRORED)
   }
 
   selecciono_provincia_desde(e: any) {

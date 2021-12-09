@@ -11,35 +11,24 @@
             <div class="p-field p-col-12 p-md-6">
               <H3>DESDE</H3>
             </div>
-
-            <div class="p-field p-col-12 p-md-6">
-              <app-provincia-selector (selecciono)="selecciono_provincia_desde($event)"></app-provincia-selector>
-            </div>
-            <div class="p-field p-col-12 p-md-6">
-              <app-distrito-selector #desde_distrito (selecciono_distrito)="selecciono_distrito_desde($event)"></app-distrito-selector>
+            <div class="p-field p-col-12 p-3">
+              <H5>{{MICRORED.NOMBRE}}</H5>
+              
             </div>
 
-            <div class="p-field p-col-12 p-md-6">
-              <app-establecimientos-selector #desde_ipress></app-establecimientos-selector>
-         
-            </div>
+            
           </div>
           <div class="col-2">>></div>
           <div class="col-5">
             <div class="p-field p-col-12 p-md-6">
                 <H3>HACIA</H3>
               </div>
-            <div class="p-field p-col-12 p-md-6">
-              <app-provincia-selector (selecciono)="selecciono_provincia_hacia($event)"></app-provincia-selector>
-            </div>
-            <div class="p-field p-col-12 p-md-6">
 
-              <app-distrito-selector #hacia_distrito (selecciono_distrito)="selecciono_distrito_hacia($event)"></app-distrito-selector>
-            </div>
-
-            <div class="p-field p-col-12 p-md-6">
-              <app-establecimientos-selector #hacia_ipress (selecciono)="selecciono_ipress_hacia($event)"></app-establecimientos-selector>
-            </div>
+              <div class="p-field p-col-12 p-3">
+                <H5><app-establecimientos-selector #select_establec></app-establecimientos-selector></H5>
+                
+              </div>
+           
           </div>
         </div>
 

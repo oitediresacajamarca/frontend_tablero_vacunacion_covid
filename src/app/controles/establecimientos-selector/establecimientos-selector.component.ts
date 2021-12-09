@@ -80,7 +80,6 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
   }
   seleccionoIpress(event: any) {
 
-    console.log(event)
 
     this.onChange(event.value)
     this.selecciono.emit(event)
@@ -88,7 +87,7 @@ export class EstablecimientosSelectorComponent implements OnInit, ControlValueAc
   }
 
   click_() {
-    this.click.emit('click')
+    
   }
 
 
