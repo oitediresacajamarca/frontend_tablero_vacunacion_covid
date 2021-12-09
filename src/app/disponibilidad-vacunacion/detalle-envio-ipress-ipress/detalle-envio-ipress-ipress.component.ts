@@ -1,4 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MicroredSelectorComponent } from 'src/app/controles/microred-selector/microred-selector.component';
+import { DitribucionMicroredIpressService } from 'src/app/servicios/ditribucion-microred-ipress.service';
 import { NuevoMicroredIpressComponent } from '../nuevo-microred-ipress/nuevo-microred-ipress.component';
 
 @Component({
@@ -8,9 +11,14 @@ import { NuevoMicroredIpressComponent } from '../nuevo-microred-ipress/nuevo-mic
 })
 export class DetalleEnvioIpressIpressComponent implements OnInit {
 
-  constructor() { }
+  constructor(private distribu_serv:DitribucionMicroredIpressService) { }
   @ViewChild('dialog_nuevo')
   dialog_nuevo!:NuevoMicroredIpressComponent
+
+  @ViewChild('microred_selector')
+  microred_selector!:MicroredSelectorComponent
+
+  
 
   ngOnInit(): void {
   }
@@ -18,4 +26,22 @@ export class DetalleEnvioIpressIpressComponent implements OnInit {
   abrir_dialog(){
     this.dialog_nuevo.ABRIR()
   }
+  selecciono_red(e:any){
+    console.log(e)
+    this.microred_selector.ID_RED=e.ID_RED
+    this.microred_selector.cargarMicroredes()
+  }
+  selecciono_microred(e:any){
+this.cargar_distribuciones(
+  parseInt(e.CABECERA))
+
+
+    console.log(e)
+  }
+  cargar_distribuciones(CABECERA:number){
+    this.distribu_serv.cargar_distribuciones_desde_microred(CABECERA).subscribe(data=>{
+      console.log(data)
+    })
+  }
+  
 }

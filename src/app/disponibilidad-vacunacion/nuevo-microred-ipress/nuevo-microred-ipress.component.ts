@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DistritoSelectorComponent } from 'src/app/controles/distrito-selector/distrito-selector.component';
 import { EstablecimientosSelectorComponent } from 'src/app/controles/establecimientos-selector/establecimientos-selector.component';
 import { IpressSelectorComponent } from 'src/app/controles/ipress-selector/ipress-selector.component';
+import { DitribucionMicroredIpressService } from 'src/app/servicios/ditribucion-microred-ipress.service';
 
 @Component({
   selector: 'app-nuevo-microred-ipress',
@@ -11,7 +12,7 @@ import { IpressSelectorComponent } from 'src/app/controles/ipress-selector/ipres
 })
 export class NuevoMicroredIpressComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dister: DitribucionMicroredIpressService) { }
 
   @Output()
   RegistroNuevo: EventEmitter<any> = new EventEmitter()
@@ -21,18 +22,18 @@ export class NuevoMicroredIpressComponent implements OnInit {
   form!: FormGroup;
 
   @ViewChild('desde_distrito')
-  desde_distrito!:DistritoSelectorComponent
+  desde_distrito!: DistritoSelectorComponent
 
   @ViewChild('desde_ipress')
-  desde_ipress!:EstablecimientosSelectorComponent
+  desde_ipress!: EstablecimientosSelectorComponent
 
 
   @ViewChild('hacia_distrito')
-  hacia_distrito!:DistritoSelectorComponent
+  hacia_distrito!: DistritoSelectorComponent
 
 
   @ViewChild('hacia_ipress')
-  hacia_ipress!:EstablecimientosSelectorComponent
+  hacia_ipress!: EstablecimientosSelectorComponent
 
 
 
@@ -46,15 +47,16 @@ export class NuevoMicroredIpressComponent implements OnInit {
 
 
 
-  
 
 
- 
+
+
 
   ngOnInit(): void {
 
-   this.form= this.fb.group({
+    this.form = this.fb.group({
       FECHA_ENVIO: '',
+
 
       CANTIDAD_VIALES: '',
       CANTIDAD_DOSIS: '',
@@ -64,9 +66,23 @@ export class NuevoMicroredIpressComponent implements OnInit {
     })
   }
 
+  selecciono_ipress_hacia(e:any){
+
+  }
+
   GUARDAR() {
+    this.dister.nuevo(this.form.value).subscribe((data) => {
+
+
+     
+
+    })
+
     this.RegistroNuevo.emit();
+
+
     this.display = false
+
 
   }
   cancelar() {
@@ -77,32 +93,32 @@ export class NuevoMicroredIpressComponent implements OnInit {
     this.display = true
   }
 
-  selecciono_provincia_desde(e:any){
+  selecciono_provincia_desde(e: any) {
 
-    this.desde_distrito.cod_provincia=e.ID_PROVINCIA
+    this.desde_distrito.cod_provincia = e.ID_PROVINCIA
     this.desde_distrito.cargar_distritos()
 
 
 
   }
 
-  selecciono_distrito_desde(e:any){
+  selecciono_distrito_desde(e: any) {
 
 
-    this.desde_ipress.UBIGEO=e
+    this.desde_ipress.UBIGEO = e
 
     this.desde_ipress.cargar_establecimientos()
 
   }
-  selecciono_provincia_hacia(e:any){
-this.hacia_distrito.cod_provincia=e.ID_PROVINCIA
-this.hacia_distrito.cargar_distritos()
+  selecciono_provincia_hacia(e: any) {
+    this.hacia_distrito.cod_provincia = e.ID_PROVINCIA
+    this.hacia_distrito.cargar_distritos()
   }
 
-  selecciono_distrito_hacia(e:any){
+  selecciono_distrito_hacia(e: any) {
 
 
-    this.hacia_ipress.UBIGEO=e
+    this.hacia_ipress.UBIGEO = e
 
     this.hacia_ipress.cargar_establecimientos()
   }
