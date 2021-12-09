@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DistribucionRedService } from 'src/app/servicios/distribucion-red.service';
 import { EnviosRedService } from 'src/app/servicios/envios-red.service';
+import { EditarDistribucionAlmacenRedSismedComponent } from '../editar-distribucion-almacen-red-sismed/editar-distribucion-almacen-red-sismed.component';
 import { NuevoEnvioRedComponent } from '../nuevo-envio-red/nuevo-envio-red.component';
 
 @Component({
@@ -16,7 +17,7 @@ export class DetalleEnvioRedComponent implements OnInit {
   envios_red: any[] = []
 
   @ViewChild('nuevo_envio')
-  nuevo_envio!: NuevoEnvioRedComponent
+  nuevo_envio!: EditarDistribucionAlmacenRedSismedComponent
   id: any
 
   distribucion_cabecera: any
@@ -73,7 +74,7 @@ export class DetalleEnvioRedComponent implements OnInit {
   }
 
   open_nuevo_envio() {
-    this.nuevo_envio.ID_DISTRIBUCION = this.id
+  //  this.nuevo_envio.ID_DISTRIBUCION = this.id
 
     this.nuevo_envio.open()
   }

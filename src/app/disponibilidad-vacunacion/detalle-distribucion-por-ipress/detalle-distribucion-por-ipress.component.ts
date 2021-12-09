@@ -4,6 +4,7 @@ import { timeStamp } from 'console';
 import { DistribucionIpressService } from 'src/app/servicios/distribucion-ipress.service';
 import { MovimientosSismedService } from 'src/app/servicios/movimientos-sismed.service';
 import { DistribucionRedIpressComponent } from '../distribucion-red-ipress/distribucion-red-ipress.component';
+import { EditarDistribucionAlmacenRedSismedComponent } from '../editar-distribucion-almacen-red-sismed/editar-distribucion-almacen-red-sismed.component';
 
 @Component({
   selector: 'app-detalle-distribucion-por-ipress',
@@ -14,7 +15,7 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
 
   constructor(private distribu: DistribucionIpressService, private movimientos_vac: MovimientosSismedService) { }
   @ViewChild('nuevo_dis')
-  nuevo_dis!: DistribucionRedIpressComponent
+  nuevo_dis!: EditarDistribucionAlmacenRedSismedComponent
   red: string = ''
 
 
@@ -71,8 +72,9 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
 
   MODIFICAR(ID_MOV: any) {
 
+//this.nuevo_dis.distris=distris;
     this.nuevo_dis.open()
-    console.log(ID_MOV)
+  
   }
 
 }
