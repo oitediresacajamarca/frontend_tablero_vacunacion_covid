@@ -69,26 +69,24 @@ export class RegistroCentroVacunacionComponent implements OnInit {
   calcula_pendientes_por_digitar(){
 
 
-
-
+if(this.centro_vacunacion.TIPO!='ESTABLECIMIENTO'){
    this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue( this.formG.controls['DOSIS_ADMINISTRADAS'].value
    -this.formG.controls['DOSIS_REGISTRADAS_HIS'].value-this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
 
    this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue( this.formG.controls['DOSIS_PERDIDAS_FP'].value
    /this.formG.controls['DOSIS_ADMINISTRADAS'].value)
 
-   this.formG.controls['STOCK_DOSIS'].patchValue( this.formG.controls['DOSIS_DISTRIBUIDAS'].value
+  
+
+   this.formG.controls['STOCK_DOSIS'].patchValue(
+      this.formG.controls['DOSIS_DISTRIBUIDAS'].value
    -this.formG.controls['DOSIS_ADMINISTRADAS'].value-this.formG.controls['DOSIS_PERDIDAS_FP'].value-
    this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value)
 
-   if(this.formG.controls['FACTOR_PERDIDA_CALCULADO'].value>=0.2){
-     console.log(this.formG.controls['FACTOR_PERDIDA_CALCULADO'].value)
-     this.semaforo='Danger'
 
-   }else{
-     this.semaforo='success'
-   }  
+
   }
+}
 
 
   semaforo:string='success'

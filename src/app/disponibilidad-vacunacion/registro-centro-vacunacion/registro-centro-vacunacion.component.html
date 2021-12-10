@@ -13,12 +13,13 @@
       <div class="p-field">
         <label for="name">Fecha</label>
 
-        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" formControlName='FECHA'></p-calendar>
       </div>
-      <div class="p-field">
+      <div class="p-field" *ngIf="centro_vacunacion.TIPO != 'ESTABLECIMIENTO'" >
         <label for="description">DOSIS DISTRIBUIDAS</label>
         <p-inputNumber
           inputId="locale-user"
+           formControlName="DOSIS_DISTRIBUIDAS"
          
         ></p-inputNumber>
       </div>
@@ -67,7 +68,7 @@
         <p-inputNumber
           inputId="locale-user"
           [value]="calcula_pendientes_por_digitar()"
-          formControlName="DOSIS_PENDIENTES_POR_DIGITAR"
+          formControlName="DOSIS_PENDIENTES_POR_DIGITAR" [disabled]="true"
         ></p-inputNumber>
       </div>
 
@@ -94,12 +95,12 @@
             <label for="description">CALCULO FACTOR PERDIDA</label>
             <p-inputNumber
               inputId="locale-user"
-              formControlName="FACTOR_PERDIDA_CALCULADO"
+              formControlName="FACTOR_PERDIDA_CALCULADO" [disabled]="true"
             ></p-inputNumber>
           </div>
           <div class="col-2">
         
-            <app-semaforo></app-semaforo>
+            <!-- <app-semaforo [valor]="formG.controls['FACTOR_PERDIDA_CALCULADO'].value"></app-semaforo> -->
       
           </div>
         </div>
@@ -109,7 +110,7 @@
         <label for="description">STOCK DE DOSIS</label>
         <p-inputNumber
           inputId="locale-user"
-          formControlName="STOCK_DOSIS"
+          formControlName="STOCK_DOSIS" [disabled]="true"
         ></p-inputNumber>
       </div>
     </FORM>
