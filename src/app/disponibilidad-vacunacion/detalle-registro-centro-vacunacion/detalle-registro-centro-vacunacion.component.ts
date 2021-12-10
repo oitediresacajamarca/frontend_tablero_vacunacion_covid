@@ -23,10 +23,11 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'FECHA', header: 'FECHA' },
-      { field: 'DOSIS_SUMINISTRADAS', header: 'DOSIS SUMINISTRADAS' },
-      { field: 'DOSIS_REGISTRADAS', header: 'DOSIS REGISTRADAS' },
-      { field: 'DOSIS_CON_PROBLEMAS_REGISTRO', header: 'DOSIS CON PROBLEMAS DE REGISTRO' },
+      { field: 'FECHA', header: 'FECHA', format: "'dd/MM/YY'", isdate: true },
+      { field: 'FABRICANTE', header: 'FABRICANTE', format: '' },
+      { field: 'DOSIS_ADMINISTRADAS', header: 'DOSIS ADMINISTRADAS', format: '' },
+      { field: 'DOSIS_REGISTRADAS_HIS', header: 'DOSIS REGISTRADAS HIS', format: '' },
+      { field: 'STOCK_DOSIS', header: 'STOCK DOSIS', format: '' },
 
     ];
     this.formGroupFiltroCentro = this.fb.group({
@@ -53,20 +54,29 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   BUSCAR() {
 
-    console.log(this.formGroupFiltroCentro)
+    
 
-    this.cargar_resgistros_por_centro()
+      this.cargar_resgistros_por_centro()
 
+ 
   }
   cargar_resgistros_por_centro() {
     this.detalle_regis.cargarResgistrosPorCentros(this.login.ID).subscribe(data => {
+
+  
       this.registros_centro = data
 
     })
   }
 
   openNew() {
-    this.dialog.open()
+
+
+      this.dialog.open()
+   
+
+
+   
 
 
   }

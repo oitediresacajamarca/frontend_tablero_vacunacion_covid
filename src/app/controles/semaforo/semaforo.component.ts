@@ -35,9 +35,29 @@ export class SemaforoComponent implements OnInit, OnChanges {
     this.st_red =this.style_apagado
     this.st_yeloww =this.style_apagado
     this.st_green =this.style_apagado
-    this.st_red = this.calcula_rojo()
-    this.st_yeloww = this.calcula_amarillo()
-    this.st_green = this.calcula_verde()
+
+    if(this.valor >= 0.2){
+
+      this.st_red = this.style_red
+    this.st_yeloww = this.style_apagado
+    this.st_green = this.style_apagado
+    }
+
+    if(this.valor < 0.2 &&  this.valor >= 0.1){
+
+      this.st_red = this.style_apagado
+    this.st_yeloww = this.style_yellow
+    this.st_green = this.style_apagado
+    }
+
+    if( this.valor < 0.1){
+
+      this.st_red = this.style_apagado
+    this.st_yeloww = this.style_apagado
+    this.st_green = this.style_green
+    }
+
+    
      
   }
 

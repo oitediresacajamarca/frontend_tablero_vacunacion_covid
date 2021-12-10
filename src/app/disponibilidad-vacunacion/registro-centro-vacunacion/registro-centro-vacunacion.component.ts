@@ -12,7 +12,7 @@ export class RegistroCentroVacunacionComponent implements OnInit {
   constructor(private registross: ResgistrosCentrosService, private fb: FormBuilder) { }
   visible: boolean = false;
 
-  centro_vacunacion: any = {}
+  centro_vacunacion: any ={}
   formG!: FormGroup
 
   @Output('registro_data')
@@ -86,6 +86,22 @@ if(this.centro_vacunacion.TIPO!='ESTABLECIMIENTO'){
 
 
   }
+
+  if(this.centro_vacunacion.TIPO=='ESTABLECIMIENTO'){
+    this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue( this.formG.controls['DOSIS_ADMINISTRADAS'].value
+    -this.formG.controls['DOSIS_REGISTRADAS_HIS'].value-this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
+ 
+    this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue( this.formG.controls['DOSIS_PERDIDAS_FP'].value
+    /this.formG.controls['DOSIS_ADMINISTRADAS'].value)
+ 
+   
+ 
+    this.formG.controls['STOCK_DOSIS'].patchValue(
+       this.formG.controls['STOCK_INICIAL'].value
+    -this.formG.controls['DOSIS_ADMINISTRADAS'].value-this.formG.controls['DOSIS_PERDIDAS_FP'].value-
+    this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value-this.formG.controls['DOSIS_DISTRIBUIDAS_A_CENTRO_VACUNACION'].value) 
+ 
+   }
 }
 
 

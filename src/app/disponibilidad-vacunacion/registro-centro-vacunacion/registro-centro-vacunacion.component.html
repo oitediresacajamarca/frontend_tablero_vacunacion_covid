@@ -13,14 +13,13 @@
       <div class="p-field">
         <label for="name">Fecha</label>
 
-        <p-calendar dateFormat="dd/mm/yy" formControlName='FECHA'></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" formControlName="FECHA"></p-calendar>
       </div>
-      <div class="p-field" *ngIf="centro_vacunacion.TIPO != 'ESTABLECIMIENTO'" >
+      <div class="p-field" *ngIf="centro_vacunacion.TIPO != 'ESTABLECIMIENTO'">
         <label for="description">DOSIS DISTRIBUIDAS</label>
         <p-inputNumber
           inputId="locale-user"
-           formControlName="DOSIS_DISTRIBUIDAS"
-         
+          formControlName="DOSIS_DISTRIBUIDAS"
         ></p-inputNumber>
       </div>
 
@@ -39,14 +38,16 @@
         ></p-inputNumber>
       </div>
       <div class="p-field">
-        <label for="description">DOSIS ADMINISTRADAS</label>
+        <label for="description"
+          >DOSIS ADMINISTRADAS(Segun Consentimiento Informado)</label
+        >
         <p-inputNumber
           inputId="locale-user"
           formControlName="DOSIS_ADMINISTRADAS"
         ></p-inputNumber>
       </div>
       <div class="p-field">
-        <label for="description">DOSIS REGISTRADAS EN HIS</label>
+        <label for="description">DOSIS REGISTRADAS EN HISMINSA</label>
         <p-inputNumber
           inputId="locale-user"
           formControlName="DOSIS_REGISTRADAS_HIS"
@@ -68,7 +69,8 @@
         <p-inputNumber
           inputId="locale-user"
           [value]="calcula_pendientes_por_digitar()"
-          formControlName="DOSIS_PENDIENTES_POR_DIGITAR" [disabled]="true"
+          formControlName="DOSIS_PENDIENTES_POR_DIGITAR"
+          [disabled]="true"
         ></p-inputNumber>
       </div>
 
@@ -95,13 +97,12 @@
             <label for="description">CALCULO FACTOR PERDIDA</label>
             <p-inputNumber
               inputId="locale-user"
-              formControlName="FACTOR_PERDIDA_CALCULADO" [disabled]="true"
+              formControlName="FACTOR_PERDIDA_CALCULADO"
+              [disabled]="true"
             ></p-inputNumber>
           </div>
           <div class="col-2">
-        
-            <!-- <app-semaforo [valor]="formG.controls['FACTOR_PERDIDA_CALCULADO'].value"></app-semaforo> -->
-      
+            <!-- <app-semaforo [valor]="formG.controls['FACTOR_PERDIDA_CALCULADO'].value"></app-semaforo>  -->
           </div>
         </div>
       </div>
@@ -110,7 +111,8 @@
         <label for="description">STOCK DE DOSIS</label>
         <p-inputNumber
           inputId="locale-user"
-          formControlName="STOCK_DOSIS" [disabled]="true"
+          formControlName="STOCK_DOSIS"
+          [disabled]="true"
         ></p-inputNumber>
       </div>
     </FORM>
