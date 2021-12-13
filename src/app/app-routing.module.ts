@@ -27,6 +27,7 @@ import { RecepcionAnexosDetalleComponent } from './disponibilidad-vacunacion/rec
 import { RecepcionAnexosComponent } from './disponibilidad-vacunacion/recepcion-anexos/recepcion-anexos.component';
 import { RegistroDisponiblidadComponent } from './disponibilidad-vacunacion/registro-disponiblidad/registro-disponiblidad.component';
 import { RegistroStockComponent } from './disponibilidad-vacunacion/registro-stock/registro-stock.component';
+import { DetalleCasosProblemasDigitacionComponent } from './disponibilidad-vacunacion/registros/detalle-casos-problemas-digitacion/detalle-casos-problemas-digitacion.component';
 import { ReporteStockComponent } from './disponibilidad-vacunacion/reporte-stock/reporte-stock.component';
 import { ReporteCabeceraRegionalComponent } from './disponibilidad-vacunacion/reportes/reporte-cabecera-regional/reporte-cabecera-regional.component';
 import { AdminDistribucionVacunasComponent } from './layouts/admin-distribucion-vacunas/admin-distribucion-vacunas.component';
@@ -79,19 +80,14 @@ const routes: Routes = [
       { path: 'distribucion-vacunas-cenares', component: ReporteDistribucionVacunasCenaresComponent },
       { path: 'stock-disponible-redes', component: ReporteStockDisponiblePorProvinciaComponent },     
       { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent },
-      {path: 'admin-user', component: AdminComponent }
+      {path: 'admin-user', component: AdminComponent },
+      {path: 'problemas', component: DetalleCasosProblemasDigitacionComponent }
+
     ]
   },
   { path: 'login', component: LoginComponent },
-
   { path: 'pruebas', component: AdminComponent },
   { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent }
-
-
-
-
-
-
 ];
 
 @NgModule({

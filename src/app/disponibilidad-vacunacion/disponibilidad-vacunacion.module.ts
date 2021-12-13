@@ -32,6 +32,8 @@ import { DetalleRegistroCentroVacunacionComponent } from './detalle-registro-cen
 import { NuevoMicroredIpressComponent } from './nuevo-microred-ipress/nuevo-microred-ipress.component';
 import { ReporteCabeceraRegionalComponent } from './reportes/reporte-cabecera-regional/reporte-cabecera-regional.component';
 import { EditarDistribucionAlmacenRedSismedComponent } from './editar-distribucion-almacen-red-sismed/editar-distribucion-almacen-red-sismed.component';
+import { CasosProblemasDigitacionComponent } from './registros/casos-problemas-digitacion/casos-problemas-digitacion.component';
+import { DetalleCasosProblemasDigitacionComponent } from './registros/detalle-casos-problemas-digitacion/detalle-casos-problemas-digitacion.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import { EditarDistribucionAlmacenRedSismedComponent } from './editar-distribuci
     DetalleRegistroCentroVacunacionComponent,
     NuevoMicroredIpressComponent,
     ReporteCabeceraRegionalComponent,
-    EditarDistribucionAlmacenRedSismedComponent
+    EditarDistribucionAlmacenRedSismedComponent,
+    CasosProblemasDigitacionComponent,
+    DetalleCasosProblemasDigitacionComponent
   ],
   imports: [
     CommonModule,

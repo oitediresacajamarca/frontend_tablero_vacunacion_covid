@@ -1,0 +1,70 @@
+<p-dialog
+  header="REGISTRO DE NUEVO CASO"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+<ng-template pTemplate="content">
+  <FORM >
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="NOMBRE">NUMERO DE DOCUMENTO</label></div>
+      <div class="col-6">  <input type="text" pInputText /></div>
+      
+    
+     
+    </div>
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="name">NOMBRES</label></div>
+      <div class="col-6">  <input type="text" pInputText /></div>
+    
+    </div>
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="name">APELLIDO PATERNO</label></div>
+      <div class="col-6">  <input type="text" pInputText /></div>
+
+    
+    </div>
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="name">APELLIDO MATERNO</label></div>
+      <div class="col-6">  <input type="text" pInputText /></div>
+
+    
+    </div>
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="name">DOSIS CON PROBLEMA DE DIGITACION</label></div>
+      <div class="col-6">  <p-dropdown [options]="DOSIS"  optionLabel="nombre"></p-dropdown></div>
+
+    
+    </div>
+    <div class="p-field row m-2">
+      <div class="col-6"><label for="name">DESCRIPCION DEL CASO</label></div>
+      <div class="col-6">  <textarea pInputTextarea></textarea></div>
+
+    
+    </div>
+   
+
+  </FORM>
+</ng-template>
+
+<ng-template pTemplate="footer">
+  <button
+    pButton
+    pRipple
+    label="Cancelar"
+    icon="pi pi-times"
+    class="p-button-text"
+    (click)="hideDialog()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    label="Guardar"
+    icon="pi pi-check"
+    class="p-button-text"
+    (click)="Guardar()"
+  ></button>
+</ng-template>
+</p-dialog>

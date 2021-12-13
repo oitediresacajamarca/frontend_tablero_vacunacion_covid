@@ -40,38 +40,13 @@
             <div class="image"></div>
             <div class="info">
               <a href="#" class="d-block"
-                >MODULOS DE ADMINISTRACION DE USUARIOS</a
+                >GESTION DE LA INFORMACION</a
               >
             </div>
           </div>
 
 
-          <nav class="mt-2">
-            <ul
-              class="nav nav-pills nav-sidebar flex-column"
-              data-widget="treeview"
-              role="menu"
-              data-accordion="false"
-            >
-            <li class="nav-item">
-              <a
-                [routerLink]="['admin-user']"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                 ADMINISTRACION DE USUARIOS
-               
-                </p>
-              </a>
-            </li>
-            
-            </ul>
-
-            
-          </nav>
-
+     
           <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul
@@ -90,6 +65,19 @@
                   <p>
                     REGISTRO DE LA GESTION DE INFORMACION DIARIA
                     <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['problemas']"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                  REGISTROS DE CASOS
+                 
                   </p>
                 </a>
               </li>
@@ -120,8 +108,7 @@
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                     RECEPCION ALMACEN
-                    <span class="badge badge-info right">2</span>
-                  </p>
+                      </p>
                 </a>
               </li>
               <li class="nav-item">
@@ -180,6 +167,15 @@
             </ul>
           </nav>
 
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="image"></div>
+              <div class="info">
+                <a href="#" class="d-block"
+                  >MODULO DE CADENO DE FRIO</a
+                >
+              </div>
+            </div>
           <nav class="mt-2">
             <ul
               class="nav nav-pills nav-sidebar flex-column"
@@ -187,7 +183,7 @@
               role="menu"
               data-accordion="false"
             >
-              <li class="nav-header">MODULO DE CADENO DE FRIO</li>
+            
               <li class="nav-item">
                 <a
                   [routerLink]="['recepcion-anexos']"
@@ -208,7 +204,7 @@
               role="menu"
               data-accordion="false"
             >
-              <li class="nav-header">REPORTES</li>
+              <li class="nav-header">MODULOS DE REPORTES</li>
               <li class="nav-item">
                 <a
                   [routerLink]="['comparacion-almacen-red']"
@@ -240,6 +236,34 @@
                   <p>REPORTE STOCK DISPONIBLE</p>
                 </a>
               </li>
+            </ul>
+          </nav>
+
+
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-header">MODULO DE ADMINISTRACION DE USUARIOS</li>
+              
+
+              <li class="nav-item">
+                <a
+                  [routerLink]="['admin-user']"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                   ADMINISTRACION DE USUARIOS
+                 
+                  </p>
+                </a>
+              </li>
+            
             </ul>
           </nav>
         </div>
