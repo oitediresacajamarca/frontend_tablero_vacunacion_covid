@@ -32,6 +32,7 @@ import { ReporteCabeceraRegionalComponent } from './disponibilidad-vacunacion/re
 import { AdminDistribucionVacunasComponent } from './layouts/admin-distribucion-vacunas/admin-distribucion-vacunas.component';
 import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-distribucion-vacunas-cenares/reporte-distribucion-vacunas-cenares.component';
 import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
+import { AdminComponent } from './usuarios/admin/admin.component';
 import { LoginComponent } from './usuarios/login/login.component';
 
 
@@ -76,15 +77,14 @@ const routes: Routes = [
       { path: 'reporte-stock-disponible', component: ReporteStockComponent },
       { path: 'micored-ipress', component: DetalleEnvioIpressIpressComponent },
       { path: 'distribucion-vacunas-cenares', component: ReporteDistribucionVacunasCenaresComponent },
-      { path: 'stock-disponible-redes', component: ReporteStockDisponiblePorProvinciaComponent },
-      
-      
-      { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent }
+      { path: 'stock-disponible-redes', component: ReporteStockDisponiblePorProvinciaComponent },     
+      { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent },
+      {path: 'admin-user', component: AdminComponent }
     ]
   },
   { path: 'login', component: LoginComponent },
 
-  { path: 'pruebas', component: ReporteCabeceraRegionalComponent },
+  { path: 'pruebas', component: AdminComponent },
   { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent }
 
 

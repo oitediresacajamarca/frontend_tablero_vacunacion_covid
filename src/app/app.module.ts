@@ -44,6 +44,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-distribucion-vacunas-cenares/reporte-distribucion-vacunas-cenares.component';
 import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-
     ConteoRapidoComponent,
     ReporteDistribucionVacunasCenaresComponent,
     ReporteStockDisponiblePorProvinciaComponent,
+
   
  
 

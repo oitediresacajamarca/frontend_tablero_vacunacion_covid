@@ -49,7 +49,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
   buscar() {
 
-    console.log(this.form.value)
+   
 
     this.movimientos.cargar_filtrados_movimientos(this.form.value).subscribe(
 

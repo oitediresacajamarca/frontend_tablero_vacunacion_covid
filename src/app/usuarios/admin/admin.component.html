@@ -1,0 +1,36 @@
+
+<div class="card" style="width: 100VH;height:20vh">
+	
+	<div class="card-body">
+	
+	
+	  <a  class="btn btn-primary" (click)="Nuevo()">NUEVO</a>
+	</div>
+  </div>
+
+
+
+<table class="table caption-top">
+	<caption>List of users</caption>
+	<thead>
+	  <tr>
+		<th scope="col">NUMERO DE DOCUMENTO</th>
+		<th scope="col">NOMBRES</th>
+		<th scope="col">APELLIDO PATERNO</th>
+		<th scope="col">APELLIDO MATERNO</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr *ngFor="let data of datos">
+		<th scope="row" >{{data.NUMERO_DOCUMENTO}}</th>
+		<td>{{data.NOMBRES}}</td>
+		<td>{{data.APELLIDO_PATERNO}}</td>
+		<td>{{data.APELLIDO_MATERNO}}</td>
+	  </tr>	
+	</tbody>
+  </table>
+
+<app-nuevo-usuario #nuevo_usu></app-nuevo-usuario>
+
+
+

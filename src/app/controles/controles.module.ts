@@ -11,11 +11,13 @@ import { RedSelectorComponent } from './red-selector/red-selector.component';
 import { MicroredSelectorComponent } from './microred-selector/microred-selector.component';
 import { IpressSelectorComponent } from './ipress-selector/ipress-selector.component';
 import { SemaforoComponent } from './semaforo/semaforo.component';
+import { RolesSelectorComponent } from './roles-selector/roles-selector.component';
+import { AmbitoSelectorComponent } from './ambito-selector/ambito-selector.component';
 
 
 
 @NgModule({
-  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent],
+  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent, RolesSelectorComponent, AmbitoSelectorComponent],
   imports: [
     CommonModule,
     DropdownModule,
@@ -23,6 +25,6 @@ import { SemaforoComponent } from './semaforo/semaforo.component';
     ButtonModule
 
   ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent,
-    RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent]
+    RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent,RolesSelectorComponent,AmbitoSelectorComponent]
 })
 export class ControlesModule { }
