@@ -28,12 +28,12 @@ export class LoginComponent implements OnInit {
      
       if (resp.mensaje == 'usuario logueado') {
 
-        if (resp.TIPO_AMBITO =="CENTRO DE VACUNACION") {
+     
 
           localStorage.setItem('login',JSON.stringify(resp))
 
          this.router.navigate(['/admin-distribucion/centro-vacunacion'])
-        }
+
 
 
 

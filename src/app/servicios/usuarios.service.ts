@@ -21,6 +21,12 @@ export class UsuariosService {
 
     return resp
   }
+  litar_por_ubigeo(ubigeo:any){
+    const resp = this.http.get<any>(environment.url__backend_base + 'usuarios/listar_por_ubigeo/' + ubigeo)
+
+    return resp
+
+  }
 
   litar_roles() {
 

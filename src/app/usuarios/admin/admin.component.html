@@ -18,6 +18,8 @@
 		<th scope="col">NOMBRES</th>
 		<th scope="col">APELLIDO PATERNO</th>
 		<th scope="col">APELLIDO MATERNO</th>
+		<th scope="col">TIPO AMBITO</th>
+		<th scope="col">AMBITO</th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -26,11 +28,13 @@
 		<td>{{data.NOMBRES}}</td>
 		<td>{{data.APELLIDO_PATERNO}}</td>
 		<td>{{data.APELLIDO_MATERNO}}</td>
+		<th scope="col">{{data.TIPO_AMBITO}}</th>
+		<th scope="col">{{data.AMBITO}}</th>
 	  </tr>	
 	</tbody>
   </table>
 
-<app-nuevo-usuario #nuevo_usu></app-nuevo-usuario>
+<app-nuevo-usuario #nuevo_usu (registro_nuevo)="registro_nuevo()"></app-nuevo-usuario>
 
 
 

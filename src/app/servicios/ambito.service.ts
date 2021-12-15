@@ -11,6 +11,10 @@ export class AmbitoService {
 
   cargar_ambito(nivel:string,raiz:string){
 
-    return this.http.get<any[]>(environment.url__backend_base+'ambito/'+nivel+'/'+raiz)
+    return this.http.get<any>(environment.url__backend_base+'ambito/'+nivel+'/'+raiz)
+  }
+  cargar_ambito_segun_ubigeo(nivel:string,ubigeo:string){
+
+    return this.http.get<any>(environment.url__backend_base+'ambito/por_ubigeo/'+nivel+'/'+ubigeo)
   }
 }

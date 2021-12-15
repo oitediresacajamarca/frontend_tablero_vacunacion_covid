@@ -82,7 +82,6 @@ const routes: Routes = [
       { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent },
       {path: 'admin-user', component: AdminComponent },
       {path: 'problemas', component: DetalleCasosProblemasDigitacionComponent }
-
     ]
   },
   { path: 'login', component: LoginComponent },

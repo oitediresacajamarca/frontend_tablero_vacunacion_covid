@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.login = JSON.parse(localStorage.getItem('login') || '')
 
-    console.log(this.login)
+    this.cargar_lista_usuarios_por_ubigeo()
   }
 
   cargar_lista_usuarios() {
@@ -32,8 +32,23 @@ export class AdminComponent implements OnInit {
 
   }
 
+
+  cargar_lista_usuarios_por_ubigeo() {
+
+    this.usuario_ser.litar_por_ubigeo(this.login.UBIGEO).subscribe(data => {
+     
+
+      this.datos = data
+    })
+
+  }
+
   Nuevo() {
     this.nuevo_usu.open()
+  }
+
+  registro_nuevo(){
+    this.cargar_lista_usuarios_por_ubigeo()
   }
 
 }
