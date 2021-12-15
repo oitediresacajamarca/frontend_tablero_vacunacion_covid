@@ -21,6 +21,8 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
   tipo_centro!: string;
   formGroupFiltroCentro!: FormGroup;
 
+  ID_CENTRO_FILTRAR!: string
+
   ngOnInit(): void {
     this.cols = [
       { field: 'FECHA', header: 'FECHA', format: "'dd/MM/YY'", isdate: true },
@@ -54,16 +56,16 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   BUSCAR() {
 
-    
 
-      this.cargar_resgistros_por_centro()
 
- 
+    this.cargar_resgistros_por_centro()
+
+
   }
   cargar_resgistros_por_centro() {
-    this.detalle_regis.cargarResgistrosPorCentros(this.login.ID).subscribe(data => {
+    this.detalle_regis.cargarResgistrosPorCentros(this.ID_CENTRO_FILTRAR).subscribe(data => {
 
-  
+
       this.registros_centro = data
 
     })
@@ -72,16 +74,19 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
   openNew() {
 
 
-      this.dialog.open()
-   
+    this.dialog.open()
 
 
-   
+
+
 
 
   }
 
   seleciono_centro(e: any) {
+
+
+    this.ID_CENTRO_FILTRAR = e.value.ID
 
 
     this.dialog.centro_vacunacion = e.value;
