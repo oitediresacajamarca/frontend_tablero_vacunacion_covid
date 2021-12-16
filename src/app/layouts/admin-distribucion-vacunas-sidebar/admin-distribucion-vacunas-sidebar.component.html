@@ -85,14 +85,14 @@
           </nav>
           <!-- /.sidebar-menu -->
           <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login=='CENTRO_VACUNACION'">
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
             <div class="image"></div>
             <div class="info">
               <a href="#" class="d-block">MODULO DE DISTRIBUCION DE VACUNAS</a>
             </div>
           </div>
 
-          <nav class="mt-2" *ngIf="login=='CENTRO_VACUNACION'">
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
             <ul
               class="nav nav-pills nav-sidebar flex-column"
               data-widget="treeview"
@@ -168,7 +168,7 @@
           </nav>
 
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login=='CENTRO_VACUNACION'">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
               <div class="image"></div>
               <div class="info">
                 <a href="#" class="d-block"
@@ -176,7 +176,7 @@
                 >
               </div>
             </div>
-          <nav class="mt-2" *ngIf="login=='CENTRO_VACUNACION'">
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
             <ul
               class="nav nav-pills nav-sidebar flex-column"
               data-widget="treeview"
@@ -197,7 +197,7 @@
             </ul>
           </nav>
 
-          <nav class="mt-2" *ngIf="login=='CENTRO_VACUNACION'">
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
             <ul
               class="nav nav-pills nav-sidebar flex-column"
               data-widget="treeview"
@@ -240,7 +240,7 @@
           </nav>
 
 
-          <nav class="mt-2">
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
             <ul
               class="nav nav-pills nav-sidebar flex-column"
               data-widget="treeview"
