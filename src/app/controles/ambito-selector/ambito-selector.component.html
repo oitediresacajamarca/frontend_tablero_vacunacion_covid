@@ -1,5 +1,5 @@
 <div class="p-field p-col-12">
     <label for="state">{{Nivel}} </label>
     
-    <p-dropdown inputId="state" [options]="ambitos"  placeholder="Select Ambito "[(ngModel)]="ambito" optionLabel="NOMBRE" (onChange)="selecciono_ambito($event)"></p-dropdown>
+    <p-dropdown inputId="state" [options]="ambitos" [filter]="true" filterBy="NOMBRE"  placeholder="Select Ambito "[(ngModel)]="ambito" optionLabel="NOMBRE" (onChange)="selecciono_ambito($event)"></p-dropdown>
 </div>
