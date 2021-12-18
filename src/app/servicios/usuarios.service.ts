@@ -40,4 +40,11 @@ export class UsuariosService {
     return resp
 
   }
+  eliminar(ID:any){
+ 
+    const resp = this.http.delete<any>(environment.url__backend_base + 'usuarios/eliminar/',{body:{ID}})
+
+    return resp
+
+  }
 }

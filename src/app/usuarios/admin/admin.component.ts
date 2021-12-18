@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit {
   cargar_lista_usuarios() {
 
     this.usuario_ser.litar_por_ambito(this.login.COD_AMBITO).subscribe(data => {
-      console.log(data)
+
 
       this.datos = data
     })
@@ -35,9 +35,10 @@ export class AdminComponent implements OnInit {
 
   cargar_lista_usuarios_por_ubigeo() {
 
-    this.usuario_ser.litar_por_ubigeo(this.login.UBIGEO).subscribe(data => {
-     
 
+    this.usuario_ser.litar_por_ubigeo(this.login.UBIGEO).subscribe(data => {
+
+      console.log(data)
       this.datos = data
     })
 
@@ -47,8 +48,16 @@ export class AdminComponent implements OnInit {
     this.nuevo_usu.open()
   }
 
-  registro_nuevo(){
+  registro_nuevo() {
     this.cargar_lista_usuarios_por_ubigeo()
+  }
+
+  eliminar(ID: any) {
+
+    console.log(ID)
+    this.usuario_ser.eliminar(ID).subscribe(data => {
+      this.cargar_lista_usuarios_por_ubigeo()
+    });
   }
 
 }

@@ -20,6 +20,7 @@
 		<th scope="col">APELLIDO MATERNO</th>
 		<th scope="col">TIPO AMBITO</th>
 		<th scope="col">AMBITO</th>
+		<th scope="col"></th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -30,6 +31,7 @@
 		<td>{{data.APELLIDO_MATERNO}}</td>
 		<th scope="col">{{data.TIPO_AMBITO}}</th>
 		<th scope="col">{{data.AMBITO}}</th>
+		<th><button pButton pRipple type="button" label="Eliminar" class="p-button-secondary" (click)="eliminar(data.ID)"></button></th>
 	  </tr>	
 	</tbody>
   </table>
