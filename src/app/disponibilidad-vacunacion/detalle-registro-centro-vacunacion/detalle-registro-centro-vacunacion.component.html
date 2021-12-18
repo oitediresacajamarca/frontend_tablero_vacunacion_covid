@@ -52,6 +52,9 @@
         <th *ngFor="let col of columns">
           {{ col.header }}
         </th>
+        <th >
+
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-car let-columns="columns">
@@ -62,6 +65,14 @@
           {{ 
               
             car[col.field]}}
+        </td>
+        <td >
+          <span class="p-buttonset">
+            <button pButton pRipple label="Modificar" icon="pi pi-cog"></button>
+            <button pButton pRipple label="Eliminar" icon="pi pi-trash"  class="p-button-danger" (click)="eliminar(car.ID)"></button>
+           
+        </span>
+
         </td>
       </tr>
     </ng-template>

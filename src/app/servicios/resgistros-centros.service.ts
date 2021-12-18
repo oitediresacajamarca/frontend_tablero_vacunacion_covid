@@ -16,6 +16,8 @@ export class ResgistrosCentrosService {
 
   nuevoResgistrosPorCentros(id_centro:string,datos:any){
     return this.http.post<any>(environment.url__backend_base+'registro-centro-vacunacion/nuevo/'+id_centro,datos)
-
+  }
+  eliminarRegistro(id:any){
+  return  this.http.delete(environment.url__backend_base+'registro-centro-vacunacion/eliminar',{body:{id}})
   }
 }

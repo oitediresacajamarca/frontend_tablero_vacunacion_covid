@@ -65,6 +65,7 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
   cargar_resgistros_por_centro() {
     this.detalle_regis.cargarResgistrosPorCentros(this.ID_CENTRO_FILTRAR).subscribe(data => {
 
+      console.log(data)
 
       this.registros_centro = data
 
@@ -104,6 +105,14 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   registros_centro: any[] = []
 
+
+  eliminar(id: any) {
+    console.log(id)
+    this.detalle_regis.eliminarRegistro(id).subscribe(data => {
+      this.cargar_resgistros_por_centro()
+    })
+  }
 }
+
 
 
