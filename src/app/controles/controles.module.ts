@@ -13,11 +13,12 @@ import { IpressSelectorComponent } from './ipress-selector/ipress-selector.compo
 import { SemaforoComponent } from './semaforo/semaforo.component';
 import { RolesSelectorComponent } from './roles-selector/roles-selector.component';
 import { AmbitoSelectorComponent } from './ambito-selector/ambito-selector.component';
+import { EstrategiaVacunacionSelectorComponent } from './estrategia-vacunacion-selector/estrategia-vacunacion-selector.component';
 
 
 
 @NgModule({
-  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent, RolesSelectorComponent, AmbitoSelectorComponent],
+  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent, RolesSelectorComponent, AmbitoSelectorComponent, EstrategiaVacunacionSelectorComponent],
   imports: [
     CommonModule,
     DropdownModule,
@@ -25,6 +26,7 @@ import { AmbitoSelectorComponent } from './ambito-selector/ambito-selector.compo
     ButtonModule
 
   ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent,
-    RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent,RolesSelectorComponent,AmbitoSelectorComponent]
+    RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent,RolesSelectorComponent,AmbitoSelectorComponent,
+  EstrategiaVacunacionSelectorComponent]
 })
 export class ControlesModule { }

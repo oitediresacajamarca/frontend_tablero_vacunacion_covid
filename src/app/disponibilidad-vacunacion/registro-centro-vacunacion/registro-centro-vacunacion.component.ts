@@ -12,7 +12,7 @@ export class RegistroCentroVacunacionComponent implements OnInit {
   constructor(private registross: ResgistrosCentrosService, private fb: FormBuilder) { }
   visible: boolean = false;
 
-  centro_vacunacion: any ={}
+  centro_vacunacion: any = {}
   formG!: FormGroup
 
   @Output('registro_data')
@@ -20,10 +20,11 @@ export class RegistroCentroVacunacionComponent implements OnInit {
 
   ngOnInit(): void {
 
- 
+
     this.formG = this.fb.group({
-      "ID": 13,
+      "ID": '',
       "FECHA": "",
+      ESTRATEGIA: '',
       "FABRICANTE": "PFYZER",
       "DOSIS_DISTRIBUIDAS": 0,
       "DOSIS_ADMINISTRADAS": 0,
@@ -45,11 +46,11 @@ export class RegistroCentroVacunacionComponent implements OnInit {
 
   open() {
     this.visible = true
-  /*  
-    this.formG.valueChanges.subscribe(data=>{
-
-     this.calcula_pendientes_por_digitar()
-    })*/
+    /*  
+      this.formG.valueChanges.subscribe(data=>{
+  
+       this.calcula_pendientes_por_digitar()
+      })*/
   }
 
   hideDialog() {
@@ -57,8 +58,7 @@ export class RegistroCentroVacunacionComponent implements OnInit {
   }
 
   Guardar() {
-
-
+    console.log(this.formG.value)
 
     this.registross.nuevoResgistrosPorCentros(this.centro_vacunacion.ID, this.formG.value).subscribe((data) => {
       this.registro_data.emit(data)
@@ -66,44 +66,44 @@ export class RegistroCentroVacunacionComponent implements OnInit {
     })
   }
 
-  calcula_pendientes_por_digitar(){
+  calcula_pendientes_por_digitar() {
 
 
-if(this.centro_vacunacion.TIPO!='ESTABLECIMIENTO'){
-   this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue( this.formG.controls['DOSIS_ADMINISTRADAS'].value
-   -this.formG.controls['DOSIS_REGISTRADAS_HIS'].value-this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
+    if (this.centro_vacunacion.TIPO != 'ESTABLECIMIENTO') {
+      this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue(this.formG.controls['DOSIS_ADMINISTRADAS'].value
+        - this.formG.controls['DOSIS_REGISTRADAS_HIS'].value - this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
 
-   this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue( this.formG.controls['DOSIS_PERDIDAS_FP'].value
-   /this.formG.controls['DOSIS_ADMINISTRADAS'].value)
-
-  
-
-   this.formG.controls['STOCK_DOSIS'].patchValue(
-      this.formG.controls['DOSIS_DISTRIBUIDAS'].value
-   -this.formG.controls['DOSIS_ADMINISTRADAS'].value-this.formG.controls['DOSIS_PERDIDAS_FP'].value-
-   this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value)
+      this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue(this.formG.controls['DOSIS_PERDIDAS_FP'].value
+        / this.formG.controls['DOSIS_ADMINISTRADAS'].value)
 
 
 
+      this.formG.controls['STOCK_DOSIS'].patchValue(
+        this.formG.controls['DOSIS_DISTRIBUIDAS'].value
+        - this.formG.controls['DOSIS_ADMINISTRADAS'].value - this.formG.controls['DOSIS_PERDIDAS_FP'].value -
+        this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value)
+
+
+
+    }
+
+    if (this.centro_vacunacion.TIPO == 'ESTABLECIMIENTO') {
+      this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue(this.formG.controls['DOSIS_ADMINISTRADAS'].value
+        - this.formG.controls['DOSIS_REGISTRADAS_HIS'].value - this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
+
+      this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue(this.formG.controls['DOSIS_PERDIDAS_FP'].value
+        / this.formG.controls['DOSIS_ADMINISTRADAS'].value)
+
+
+
+      this.formG.controls['STOCK_DOSIS'].patchValue(
+        this.formG.controls['STOCK_INICIAL'].value
+        - this.formG.controls['DOSIS_ADMINISTRADAS'].value - this.formG.controls['DOSIS_PERDIDAS_FP'].value -
+        this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value - this.formG.controls['DOSIS_DISTRIBUIDAS_A_CENTRO_VACUNACION'].value)
+
+    }
   }
 
-  if(this.centro_vacunacion.TIPO=='ESTABLECIMIENTO'){
-    this.formG.controls['DOSIS_PENDIENTES_POR_DIGITAR'].patchValue( this.formG.controls['DOSIS_ADMINISTRADAS'].value
-    -this.formG.controls['DOSIS_REGISTRADAS_HIS'].value-this.formG.controls['DOSIS_CON_PROBLEMAS_DIGITACION'].value)
- 
-    this.formG.controls['FACTOR_PERDIDA_CALCULADO'].patchValue( this.formG.controls['DOSIS_PERDIDAS_FP'].value
-    /this.formG.controls['DOSIS_ADMINISTRADAS'].value)
- 
-   
- 
-    this.formG.controls['STOCK_DOSIS'].patchValue(
-       this.formG.controls['STOCK_INICIAL'].value
-    -this.formG.controls['DOSIS_ADMINISTRADAS'].value-this.formG.controls['DOSIS_PERDIDAS_FP'].value-
-    this.formG.controls['MERMA_DOSIS_INCIDENTE_ADVERSO'].value-this.formG.controls['DOSIS_DISTRIBUIDAS_A_CENTRO_VACUNACION'].value) 
- 
-   }
-}
 
-
-  semaforo:string='success'
+  semaforo: string = 'success'
 }

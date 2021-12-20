@@ -1,0 +1,6 @@
+<div class="p-field p-col-12">
+    <label for="state">ESTRATEGIA DE VACUNACION </label>
+    
+    <p-dropdown inputId="state" [options]="estrategias" [filter]="true" filterBy="NOMBRE"  
+    placeholder="Seleccione estrategias "[(ngModel)]="estrategia" optionLabel="NOMBRE" (onChange)="selecciono_estartegia($event)"></p-dropdown>
+</div>
