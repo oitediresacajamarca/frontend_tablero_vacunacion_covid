@@ -59,11 +59,15 @@ export class RegistroCentroVacunacionComponent implements OnInit {
 
   Guardar() {
     console.log(this.formG.value)
+    if(this.formG.controls['STOCK_DOSIS'].value>=0){
 
     this.registross.nuevoResgistrosPorCentros(this.centro_vacunacion.ID, this.formG.value).subscribe((data) => {
       this.registro_data.emit(data)
 
     })
+  } else{
+    alert('EL STOCK DE DOSIS NO PUEDE SER UNA CANTIDAD NEGATIVA')
+  }
   }
 
   calcula_pendientes_por_digitar() {
