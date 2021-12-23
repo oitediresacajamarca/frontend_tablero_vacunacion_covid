@@ -63,24 +63,20 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   }
   cargar_resgistros_por_centro() {
-    this.detalle_regis.cargarResgistrosPorCentros(this.ID_CENTRO_FILTRAR).subscribe(data => {
 
+    if (this.ID_CENTRO_FILTRAR == undefined) { alert('DEBE DE SELECCIONAR UN ESTABLECIMIENTO O CENTRO DE VACUNACION') }
+    else {
+      this.detalle_regis.cargarResgistrosPorCentros(this.ID_CENTRO_FILTRAR).subscribe(data => {
+        this.registros_centro = data
+      })
+    }
 
-
-      this.registros_centro = data
-
-    })
   }
 
   openNew() {
 
-
-    this.dialog.open()
-
-
-
-
-
+    if (this.ID_CENTRO_FILTRAR == undefined) { alert('DEBE DE SELECCIONAR UN ESTABLECIMIENTO O CENTRO DE VACUNACION') }
+    else { this.dialog.open() }
 
   }
 
