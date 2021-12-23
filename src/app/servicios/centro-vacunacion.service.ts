@@ -14,4 +14,5 @@ export class CentroVacunacionService {
   cargar_centros_por_ubigeo_tipo_centro(ubigeo: string,tipo_centro:string) {
     return this.http.get<any[]>(environment.url__backend_base + 'centro-vacunacion/listar_por_ubigeo_tipo_centro/' + ubigeo+'/'+tipo_centro)
   }
+  
 }

@@ -10,6 +10,7 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
 import { ConteoRapidoNhisComponent } from './conteo-rapido/conteo-rapido-nhis/conteo-rapido-nhis.component';
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
+import { ReporteRegistroCentroVacunacionComponent } from './disponibilidad-vacunacion/centro-vacunacion/reporte-registro-centro-vacunacion/reporte-registro-centro-vacunacion.component';
 
 import { CuadroComparacionAlmacenRedComponent } from './disponibilidad-vacunacion/cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
 import { DetalleDistribucionAlmacenRedSismedComponent } from './disponibilidad-vacunacion/detalle-distribucion-almacen-red-sismed/detalle-distribucion-almacen-red-sismed.component';
@@ -80,12 +81,13 @@ const routes: Routes = [
       { path: 'distribucion-vacunas-cenares', component: ReporteDistribucionVacunasCenaresComponent },
       { path: 'stock-disponible-redes', component: ReporteStockDisponiblePorProvinciaComponent },     
       { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent },
+      { path: 'reporte-registro-diario-centro', component: ReporteRegistroCentroVacunacionComponent },
       {path: 'admin-user', component: AdminComponent },
       {path: 'problemas', component: DetalleCasosProblemasDigitacionComponent }
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'pruebas', component: AdminComponent },
+  { path: 'pruebas', component: ReporteRegistroCentroVacunacionComponent },
   { path: 'centro-vacunacion', component: DetalleRegistroCentroVacunacionComponent }
 ];
 

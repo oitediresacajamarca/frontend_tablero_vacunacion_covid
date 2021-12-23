@@ -14,19 +14,23 @@ import { SemaforoComponent } from './semaforo/semaforo.component';
 import { RolesSelectorComponent } from './roles-selector/roles-selector.component';
 import { AmbitoSelectorComponent } from './ambito-selector/ambito-selector.component';
 import { EstrategiaVacunacionSelectorComponent } from './estrategia-vacunacion-selector/estrategia-vacunacion-selector.component';
+import { FechaSelectorComponent } from './fecha-selector/fecha-selector.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
 @NgModule({
-  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent, RolesSelectorComponent, AmbitoSelectorComponent, EstrategiaVacunacionSelectorComponent],
+  declarations: [DistritoSelectorComponent,ProvinciaSelectorComponent, FabricanteComponent, EstablecimientosSelectorComponent, RedSelectorComponent, MicroredSelectorComponent, IpressSelectorComponent, SemaforoComponent, RolesSelectorComponent, AmbitoSelectorComponent, EstrategiaVacunacionSelectorComponent, FechaSelectorComponent],
   imports: [
     CommonModule,
     DropdownModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    CalendarModule
+
 
   ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent,
     RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent,RolesSelectorComponent,AmbitoSelectorComponent,
-  EstrategiaVacunacionSelectorComponent]
+  EstrategiaVacunacionSelectorComponent,FechaSelectorComponent]
 })
 export class ControlesModule { }

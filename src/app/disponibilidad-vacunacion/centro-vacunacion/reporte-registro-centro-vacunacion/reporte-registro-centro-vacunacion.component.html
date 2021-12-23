@@ -1,0 +1,16 @@
+
+<div class="row filtros">
+  
+  <div class="col-3"><app-provincia-selector (selecciono)="selecciono_provincia($event)"></app-provincia-selector></div>
+  <div class="col-3"><app-distrito-selector (selecciono_distrito)="selecciono_distrito($event)" #distrito_select></app-distrito-selector></div>
+  <div class="col-3"><label for="">FECHA</label>
+      <p-calendar (onSelect)="selecciono_fecha($event)" ></p-calendar>
+    </div>
+  <div class="col-3"></div>
+</div>
+
+
+
+<div class="row reporte">
+    <div id="table-reporte"></div>
+</div>

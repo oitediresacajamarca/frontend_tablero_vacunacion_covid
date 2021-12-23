@@ -17,11 +17,6 @@ interface City {
 
 }
 
-
-
-
-
-
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -377,7 +372,7 @@ export class BodyComponent implements OnInit {
   }
 
   async cargar_3ra_dosis() {
-    console.log(this.cubo.query_dosis)
+
     let respuesta=await  this.cubo.devolver_total_por_dosis(['3ª dosis']).toPromise()
 
     this.total_3_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
@@ -469,7 +464,7 @@ export class BodyComponent implements OnInit {
       let
         datos: any[] = respuesta.data
 
-        console.log(datos)
+     
 
 
 
