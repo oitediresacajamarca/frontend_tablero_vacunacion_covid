@@ -26,8 +26,8 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
     })
     this.almacenes = [
-      { name: 'ALMACEN ESPECIALIZADO JAEN', code: '060801' },
-      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: '060101' },
+      { name: 'ALMACEN ESPECIALIZADO JAEN', code: '060801' ,almcod:'007A01'},
+      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: '060101',almcod:'016A01' },
     ];
     this.cargar_movimientos()
   }
@@ -48,19 +48,13 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
 
   buscar() {
-
-   
-
-    this.movimientos.cargar_filtrados_movimientos(this.form.value).subscribe(
-
-      data => {
+    console.log(this.form.value)
   
-        console.log(data)
-      this.movimientos_sismed = data
+    this.movimientos.cargar_movimientos_vacunas_almacenes_especializados(this.form.value).subscribe(data=>{
+      this.movimientos_sismed=data;
+    })
 
-      }
 
-    )
   }
 
 }

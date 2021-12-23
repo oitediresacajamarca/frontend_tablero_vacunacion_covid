@@ -30,8 +30,8 @@ export class DistribucionAlmacenRedComponent implements OnInit {
 
 
     this.almacenes = [
-      { name: 'ALMACEN ESPECIALIZADO JAEN', code: 'ALMACEN ESPECIALIZADO JAEN' },
-      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: 'ALMACEN ESPECIALIZADO CAJAMARCA' },
+      { name: 'ALMACEN ESPECIALIZADO JAEN', code: 'ALMACEN ESPECIALIZADO JAEN',almcod:'007A01' },
+      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: 'ALMACEN ESPECIALIZADO CAJAMARCA',almcod:'016A01' },
     ];
 
     this.TIPOS_DOCUMENTOS = [
