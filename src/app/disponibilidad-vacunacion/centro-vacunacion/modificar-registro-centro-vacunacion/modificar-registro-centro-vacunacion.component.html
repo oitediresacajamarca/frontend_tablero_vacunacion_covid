@@ -1,0 +1,145 @@
+
+<p-dialog
+[(visible)]="visible"
+[style]="{ width: '550px' }"
+[header]="''"
+[modal]="true"
+styleClass="p-fluid"
+>
+<ng-template pTemplate="content">
+  <FORM [formGroup]="formG">
+    <div class="p-field">
+      <app-fabricante formControlName="FABRICANTE"></app-fabricante>
+    </div>
+    <div class="p-field">
+      <app-estrategia-vacunacion-selector formControlName="ESTRATEGIA"></app-estrategia-vacunacion-selector>
+
+    </div>
+    
+    <div class="p-field">
+      <label for="name">Fecha</label>
+
+      <p-calendar dateFormat="dd/mm/yy" formControlName="FECHA"></p-calendar>
+    </div>
+    <div class="p-field" *ngIf="centro_vacunacion.TIPO != 'ESTABLECIMIENTO'">
+      <label for="description">DOSIS DISTRIBUIDAS</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_DISTRIBUIDAS"
+      ></p-inputNumber>
+    </div>
+
+    <div class="p-field" *ngIf="centro_vacunacion.TIPO == 'ESTABLECIMIENTO'">
+      <label for="description">STOCK INICIAL</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="STOCK_INICIAL"
+      ></p-inputNumber>
+    </div>
+    <div class="p-field" *ngIf="centro_vacunacion.TIPO == 'ESTABLECIMIENTO'">
+      <label for="description">DOSIS DISTRIBUIDAS A CENTRO VACUNACION</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_DISTRIBUIDAS_A_CENTRO_VACUNACION"
+      ></p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="description"
+        >DOSIS ADMINISTRADAS(Segun Consentimiento Informado)</label
+      >
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_ADMINISTRADAS"
+      ></p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="description">DOSIS REGISTRADAS EN HISMINSA</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_REGISTRADAS_HIS"
+      ></p-inputNumber>
+    </div>
+
+    <div class="p-field">
+      <label for="description">DOSIS CON PROBLEMAS DE DIGITACION</label>
+
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_CON_PROBLEMAS_DIGITACION"
+      ></p-inputNumber>
+    </div>
+
+    <div class="p-field">
+      <label for="description">DOSIS PENDIENTES POR DIGITAR</label>
+
+      <p-inputNumber
+        inputId="locale-user"
+        [value]="calcula_pendientes_por_digitar()"
+        formControlName="DOSIS_PENDIENTES_POR_DIGITAR"
+        [disabled]="true"
+      ></p-inputNumber>
+    </div>
+
+    <div class="p-field">
+      <label for="description"
+        >DOSIS DE VACUNAS PERDIDAS(POR FACTOR PERDIDA)</label
+      >
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="DOSIS_PERDIDAS_FP"
+      ></p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="description">MERMA DE DOSIS(INCIDENTE ADVERSO)</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="MERMA_DOSIS_INCIDENTE_ADVERSO"
+      ></p-inputNumber>
+    </div>
+
+    <div class="p-field">
+      <div class="row">
+        <div class="col-10">
+          <label for="description">CALCULO FACTOR PERDIDA</label>
+          <p-inputNumber
+            inputId="locale-user"
+            formControlName="FACTOR_PERDIDA_CALCULADO"
+            [disabled]="true"
+          ></p-inputNumber>
+        </div>
+        <div class="col-2">
+          <!-- <app-semaforo [valor]="formG.controls['FACTOR_PERDIDA_CALCULADO'].value"></app-semaforo>  -->
+        </div>
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="description">STOCK DE DOSIS</label>
+      <p-inputNumber
+        inputId="locale-user"
+        formControlName="STOCK_DOSIS"
+        [disabled]="true"
+      ></p-inputNumber>
+    </div>
+  </FORM>
+</ng-template>
+
+<ng-template pTemplate="footer">
+  <button
+    pButton
+    pRipple
+    label="Cancelar"
+    icon="pi pi-times"
+    class="p-button-text"
+    (click)="hideDialog()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    label="Guardar"
+    icon="pi pi-check"
+    class="p-button-text"
+    (click)="Guardar()"
+  ></button>
+</ng-template>
+</p-dialog>

@@ -48,9 +48,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
 
   buscar() {
-    console.log(this.form.value)
-  
-    this.movimientos.cargar_movimientos_vacunas_almacenes_especializados(this.form.value).subscribe(data=>{
+     this.movimientos.cargar_movimientos_vacunas_almacenes_especializados(this.form.value).subscribe(data=>{
       this.movimientos_sismed=data;
     })
 

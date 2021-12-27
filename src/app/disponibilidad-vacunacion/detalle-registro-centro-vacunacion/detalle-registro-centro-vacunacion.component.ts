@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CentroVacunacionService } from 'src/app/servicios/centro-vacunacion.service';
 import { ResgistrosCentrosService } from 'src/app/servicios/resgistros-centros.service';
+import { ModificarRegistroCentroVacunacionComponent } from '../centro-vacunacion/modificar-registro-centro-vacunacion/modificar-registro-centro-vacunacion.component';
 import { RegistroCentroVacunacionComponent } from '../registro-centro-vacunacion/registro-centro-vacunacion.component';
 
 @Component({
@@ -17,6 +18,9 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
 
   @ViewChild('dialog')
   dialog!: RegistroCentroVacunacionComponent
+
+  @ViewChild('modificar_dialog')
+  modificar_dialog!:ModificarRegistroCentroVacunacionComponent
 
   tipo_centro!: string;
   formGroupFiltroCentro!: FormGroup;
@@ -107,6 +111,19 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
     this.detalle_regis.eliminarRegistro(id).subscribe(data => {
       this.cargar_resgistros_por_centro()
     })
+  }
+  modificar(dist: any) {
+   
+    this.centros_service.devolver_centro_por_id(dist.CENTRO_DE_VACUNACION).subscribe(data=>{
+  
+      this.modificar_dialog.centro_vacunacion=data
+      this.modificar_dialog.visible=true
+
+      this.modificar_dialog.cargarData(dist)
+    })
+
+
+ 
   }
 }
 

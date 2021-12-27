@@ -68,7 +68,7 @@
         </td>
         <td >
           <span class="p-buttonset">
-            <button pButton pRipple label="Modificar" icon="pi pi-cog"></button>
+            <button pButton pRipple label="Modificar" icon="pi pi-cog" (click)="modificar(car)"></button>
             <button pButton pRipple label="Eliminar" icon="pi pi-trash"  class="p-button-danger" (click)="eliminar(car.ID)"></button>
            
         </span>
@@ -80,5 +80,7 @@
 </div>
 
  <app-registro-centro-vacunacion #dialog  (registro_data)="registro_data()"></app-registro-centro-vacunacion> 
+
+ <app-modificar-registro-centro-vacunacion #modificar_dialog></app-modificar-registro-centro-vacunacion>
 
 

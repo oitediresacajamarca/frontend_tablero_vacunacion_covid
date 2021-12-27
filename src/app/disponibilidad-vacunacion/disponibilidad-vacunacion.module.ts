@@ -35,6 +35,7 @@ import { EditarDistribucionAlmacenRedSismedComponent } from './editar-distribuci
 import { CasosProblemasDigitacionComponent } from './registros/casos-problemas-digitacion/casos-problemas-digitacion.component';
 import { DetalleCasosProblemasDigitacionComponent } from './registros/detalle-casos-problemas-digitacion/detalle-casos-problemas-digitacion.component';
 import { ReporteRegistroCentroVacunacionComponent } from './centro-vacunacion/reporte-registro-centro-vacunacion/reporte-registro-centro-vacunacion.component';
+import { ModificarRegistroCentroVacunacionComponent } from './centro-vacunacion/modificar-registro-centro-vacunacion/modificar-registro-centro-vacunacion.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { ReporteRegistroCentroVacunacionComponent } from './centro-vacunacion/re
     EditarDistribucionAlmacenRedSismedComponent,
     CasosProblemasDigitacionComponent,
     DetalleCasosProblemasDigitacionComponent,
-    ReporteRegistroCentroVacunacionComponent
+    ReporteRegistroCentroVacunacionComponent,
+    ModificarRegistroCentroVacunacionComponent
   ],
   imports: [
     CommonModule,

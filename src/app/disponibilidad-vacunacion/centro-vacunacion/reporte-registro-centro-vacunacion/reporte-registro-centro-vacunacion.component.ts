@@ -67,7 +67,7 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
 
   }
   selecciono_fecha(e: any) {
-    console.log(e)
+   
     this.fecha = e
     this.cargar_data_registrada_centro_vacunacion()
 
@@ -76,7 +76,7 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
     this.regis.cargarRegistrosPorUbigeoyFecha(this.ubigeo, this.fecha).subscribe(datos => {
 
       this.tabledata = datos
-      console.log(datos)
+
       this.table.setData( this.tabledata)
     })
   }
