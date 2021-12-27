@@ -122,9 +122,8 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
       this.modificar_dialog.cargarData(dist)
     })
 
+ }
 
- 
-  }
 }
 
 

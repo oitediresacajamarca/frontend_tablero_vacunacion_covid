@@ -5,7 +5,7 @@
 <div class="row p-4">
   <div class="col-2 p-field-radiobutton">CENTRO DE VACUNACION  <p-radioButton inputId="city1" (onClick)="selecciono_tipo_centro($event)" name="tipo_centro" value="CENTRO VACUNACION"  formControlName="tipo_centro"></p-radioButton></div>
   <div class="col-2 p-field-radiobutton">ESTABLECIMIENTO <p-radioButton inputId="city2" (onClick)="selecciono_tipo_centro($event)" name="tipo_centro" value="ESTABLECIMIENTO"  formControlName="tipo_centro"></p-radioButton></div>
-  <div class="col-5">
+  <div class="col-4">
     <p-dropdown
       [options]="centros"
       optionLabel="CENTRO_VACUNACION"
@@ -27,6 +27,7 @@
   <div class="col-2">
     <button pButton type="button" label="BUSCAR"  (click)="BUSCAR()"></button>
   </div>
+ 
 </div>
 </form>
 <div class="row">

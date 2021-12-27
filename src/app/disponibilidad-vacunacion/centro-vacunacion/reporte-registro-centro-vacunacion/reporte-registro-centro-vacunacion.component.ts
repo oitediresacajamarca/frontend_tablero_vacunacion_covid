@@ -46,6 +46,7 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
         { title: "FABRICANTE", field: "FABRICANTE", hozAlign: "center" },
         { title: "DOSIS_DISTRIBUIDAS", field: "DOSIS_DISTRIBUIDAS", hozAlign: "center" },
         { title: "DOSIS_ADMINISTRADAS", field: "DOSIS_ADMINISTRADAS", hozAlign: "center" },
+        { title: "DOSIS REGISTRADAS EN HIS", field: "DOSIS_REGISTRADAS_HIS", hozAlign: "center" },
        
         { title: "STOCK_DOSIS", field: "STOCK_DOSIS", width: 90, hozAlign: "center" },
         { title: "ESTADO", field: "ESTADO", width: 90, hozAlign: "center", formatter: "tickCross", sorter: "boolean", editor: true },
@@ -79,6 +80,10 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
 
       this.table.setData( this.tabledata)
     })
+  }
+
+  DESCARGAR(){
+    this.table.download("xlsx", "data.xlsx", {});
   }
 
 }
