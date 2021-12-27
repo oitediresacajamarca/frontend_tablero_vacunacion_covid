@@ -43,6 +43,7 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
 
         { title: "CENTRO_VACUNACION", field: "CENTRO_VACUNACION", hozAlign: "center" },
         { title: "TIPO", field: "TIPO", hozAlign: "center" },
+        { title: "ESTRATEGIA", field: "ESTRATEGIA", hozAlign: "center" },
         { title: "FABRICANTE", field: "FABRICANTE", hozAlign: "center" },
         { title: "DOSIS_DISTRIBUIDAS", field: "DOSIS_DISTRIBUIDAS", hozAlign: "center" },
         { title: "DOSIS_ADMINISTRADAS", field: "DOSIS_ADMINISTRADAS", hozAlign: "center" },
