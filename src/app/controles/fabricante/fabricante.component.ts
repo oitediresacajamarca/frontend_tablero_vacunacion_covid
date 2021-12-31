@@ -19,7 +19,13 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor {
   onChange = (_: any) => { }
   constructor() { }
   writeValue(obj: any): void {
-    this.FABRICANTE = obj
+
+
+    let re = this.FABRICANTES.find(fab => { return fab.NOMBRE == obj })
+
+
+
+    this.FABRICANTE = re
   }
   registerOnChange(fn: any): void {
     this.onChange = fn
@@ -32,7 +38,7 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor {
 
   selecciono = new EventEmitter()
 
-  FABRICANTES: any = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'ASTRAZENECA' }]
+  FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'ASTRAZENECA' }]
   FABRICANTE: any;
 
   ngOnInit(): void {

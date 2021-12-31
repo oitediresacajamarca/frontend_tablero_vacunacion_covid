@@ -23,5 +23,9 @@ export class ResgistrosCentrosService {
   cargarRegistrosPorUbigeoyFecha(ubigeo:string,fecha:any) {
     return this.http.post<any[]>(environment.url__backend_base+'registro-centro-vacunacion/ubigeofecha/'+ubigeo,{fecha})
   }
+  modificarRegistro(id:any,data:any){
+    return this.http.post<any[]>(environment.url__backend_base+'registro-centro-vacunacion/actualizar/'+id,data)
+
+  }
 
 }

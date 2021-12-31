@@ -20,7 +20,9 @@ export class EstrategiaVacunacionSelectorComponent implements OnInit, ControlVal
   onChange = (_: any) => { }
   onTouch = () => { }
   writeValue(obj: any): void {
-    this.estrategia = obj
+
+    let resp = this.estrategias.find(est => { return est.NOMBRE == obj })
+    this.estrategia = resp;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn
@@ -37,7 +39,7 @@ export class EstrategiaVacunacionSelectorComponent implements OnInit, ControlVal
   @Output('selecciono')
   selecciono: EventEmitter<any> = new EventEmitter();
   selecciono_estartegia(e: any) {
-  
+
     this.estrategia = e.value
     this.selecciono.emit(e.value)
     this.onChange(e.value)

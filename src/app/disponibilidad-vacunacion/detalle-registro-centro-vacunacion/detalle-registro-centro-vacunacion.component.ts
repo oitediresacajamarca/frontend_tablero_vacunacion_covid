@@ -20,7 +20,7 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
   dialog!: RegistroCentroVacunacionComponent
 
   @ViewChild('modificar_dialog')
-  modificar_dialog!:ModificarRegistroCentroVacunacionComponent
+  modificar_dialog!: ModificarRegistroCentroVacunacionComponent
 
   tipo_centro!: string;
   formGroupFiltroCentro!: FormGroup;
@@ -113,16 +113,23 @@ export class DetalleRegistroCentroVacunacionComponent implements OnInit {
     })
   }
   modificar(dist: any) {
-   
-    this.centros_service.devolver_centro_por_id(dist.CENTRO_DE_VACUNACION).subscribe(data=>{
-  
-      this.modificar_dialog.centro_vacunacion=data
-      this.modificar_dialog.visible=true
+
+    this.centros_service.devolver_centro_por_id(dist.CENTRO_DE_VACUNACION).subscribe(data => {
+
+      this.modificar_dialog.centro_vacunacion = data
+      this.modificar_dialog.visible = true
 
       this.modificar_dialog.cargarData(dist)
     })
 
- }
+  }
+
+  actualizo_registro() {
+    this.modificar_dialog.visible = false
+    this.cargar_resgistros_por_centro()
+
+
+  }
 
 }
 
