@@ -50,7 +50,7 @@ export class ReporteRegistroCentroVacunacionComponent implements OnInit {
         { title: "DOSIS CON PROBLEMAS DIGITACION", field: "DOSIS_CON_PROBLEMAS_DIGITACION"},
         { title: "DOSIS PENDIENTES POR DIGITAR", field: "DOSIS_PENDIENTES_POR_DIGITAR"},
         { title: "DOSIS PERDIDAS FACTOR PERDIDA", field: "DOSIS_PERDIDAS_FP"},
-        { title: "FECHA", field: " FECHA"},             
+        { title: "FECHA", field: "FECHA"},             
         { title: "STOCK_DOSIS", field: "STOCK_DOSIS", width: 90, hozAlign: "center" },
         { title: "ESTADO", field: "ESTADO", width: 90, hozAlign: "center", formatter: "tickCross", sorter: "boolean", editor: true },
       ],
