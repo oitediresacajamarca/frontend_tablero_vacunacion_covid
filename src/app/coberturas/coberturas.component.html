@@ -48,9 +48,9 @@
             ></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">COBERTURA TOTAL</span>
+              <span class="info-box-text">COBERTURA TERCERA DOSIS</span>
               <span class="info-box-number">
-                <h3>{{ total_dosis | percent: "1.2-2" }}</h3>
+                <h3>{{ total_3_dosis | percent: "1.2-2" }}</h3>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -246,6 +246,7 @@
                           <th scope="col" class="display-6">AMBITO</th>
                           <th class="display-6">PRIMERA DOSIS</th>
                           <th class="display-6">SEGUNDA DOSIS</th>
+                          <th class="display-6">TERCERA DOSIS</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -260,6 +261,9 @@
                           </td>
                           <td class="display-6 text-center">
                             {{ lugar.segunda_dosis | number: "1.2-2" }}
+                          </td>
+                          <td class="display-6 text-center">
+                            {{ lugar.tercera_dosis | number: "1.2-2" }}
                           </td>
                         </tr>
                       </tbody>
