@@ -7,8 +7,6 @@ import { CuboCoberturasService } from '../servicios/cubo-coberturas.service';
 import * as moment from 'moment';
 import { DepartamentoCajamarcaComponent } from '../componentes/svgs/departamento-cajamarca/departamento-cajamarca.component';
 import { ActivatedRoute } from '@angular/router';
-import { pseudoRandomBytes } from 'crypto';
-import { sharedStylesheetJitUrl } from '@angular/compiler';
 import { JeringaComponent } from '../componentes/svgs/jeringa/jeringa.component';
 
 
@@ -338,8 +336,6 @@ export class CoberturasComponent implements OnInit {
     this.cubo.devolver_total_dosis_1().subscribe(
       respuesta => {
 
-        console.log(respuesta)
-
         let dimension: string = 'VACUNADOSCovidFast.provinciaEstablecimiento'
         if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
           this.filtro = []
@@ -355,7 +351,7 @@ export class CoberturasComponent implements OnInit {
         let avance_3 = respuesta.data[0]['VACUNADOSCovidFast.dosis_3']
 
         let tot = respuesta.data[0]['VACUNADOSCovidFast.count']
-        console.log(avance_3)
+      
 
         this.avance_1 = avance_1;
         this.avance_2 = avance_2;
@@ -397,7 +393,7 @@ export class CoberturasComponent implements OnInit {
 
   cargar_vacunacion_hoy() {
     this.cubo.devolver_dosis_hoy().subscribe(respuesta => {
-      console.log(respuesta)
+  
       this.avance_hoy_1 = respuesta.data[0]['VACUNADOSCovidFast.dosis_1']
       this.avance_hoy_2 = respuesta.data[0]['VACUNADOSCovidFast.dosis_2']
       this.cubo.devolver_meta_dosis().subscribe(met => {
@@ -526,14 +522,11 @@ export class CoberturasComponent implements OnInit {
     })
 
     let dimesion_meta = 'DISTRIBUCIONGeograficaMeta.provincia'
-
     if (ambito_param == 'VACUNADOSCovidFast.distritoEstablecimiento') {
       dimesion_meta = 'DISTRIBUCIONGeograficaMeta.distrito'
     } else {
 
     }
-
-
     this.cubo.query_meta_dosis_ambito.dimensions[0] = dimesion_meta
     this.cubo.query_meta_dosis_ambito.filters[0].values = filtro
 
@@ -548,9 +541,7 @@ export class CoberturasComponent implements OnInit {
 
     primeras_dosis = datos.map(dato => {
 
-
       let fill = metas_ambitos.filter(meta => {
-
 
         return meta[dimesion_meta] == dato[ambito_param] && meta[dimesion_meta] != undefined
       })
@@ -594,7 +585,7 @@ export class CoberturasComponent implements OnInit {
 
     })
     let tercera_dosis
-    console.log(datos)
+    
     tercera_dosis = datos.map(dato => {
 
 
@@ -797,10 +788,6 @@ export class CoberturasComponent implements OnInit {
 
     this.cargar_stacked(this.dimension, this.filtro)
 
-    // this.cargar_cobertura()
-
-
-
     this.cargar_linea_tiempo()
 
 
@@ -985,7 +972,6 @@ export class CoberturasComponent implements OnInit {
 
     let data: any[] = this.opciones.xAxis.categories
 
-    console.log(this.opciones.series_oculta.data)
     this.datos_tablas = data.map((dato, index) => {
 
       return {

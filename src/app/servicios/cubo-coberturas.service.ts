@@ -294,8 +294,7 @@ export class CuboCoberturasService {
       {
         "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
-        "values": [
-  
+        "values": [  
         ]
       },
       {
@@ -324,13 +323,13 @@ export class CuboCoberturasService {
 
   devolver_total_dosis_1(){
 
-console.log(this.query_avance_dosis_1)
+
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_dosis_1));
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
   devolver_meta_dosis(){
-    console.log(this.query_meta_dosis)
+    
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_dosis));
     return this.http.get<any>(environment.url_cubo, { params })
   }

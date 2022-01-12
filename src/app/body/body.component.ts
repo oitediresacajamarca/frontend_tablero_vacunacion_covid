@@ -893,8 +893,7 @@ export class BodyComponent implements OnInit {
 
       }
       if (this.dosis_selecionada == '3ª dosis') {
-        this.avance = this.total_2_dosis
-
+        this.avance = this.total_3_dosis
       }
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
 
