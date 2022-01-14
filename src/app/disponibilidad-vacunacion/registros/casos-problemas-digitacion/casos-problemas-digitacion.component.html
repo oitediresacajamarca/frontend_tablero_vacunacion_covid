@@ -7,40 +7,40 @@
   [resizable]="false"
 >
 <ng-template pTemplate="content">
-  <FORM >
+  <FORM [formGroup]="FG" >
     <div class="p-field row m-2">
       <div class="col-6"><label for="NOMBRE">NUMERO DE DOCUMENTO</label></div>
-      <div class="col-6">  <input type="text" pInputText /></div>
+      <div class="col-6">  <input type="text" formControlName="NUMERO_DOCUMENTO" pInputText /></div>
       
     
-     
+  
     </div>
     <div class="p-field row m-2">
       <div class="col-6"><label for="name">NOMBRES</label></div>
-      <div class="col-6">  <input type="text" pInputText /></div>
+      <div class="col-6">  <input type="text" pInputText  formControlName="NOMBRES"/></div>
     
     </div>
     <div class="p-field row m-2">
       <div class="col-6"><label for="name">APELLIDO PATERNO</label></div>
-      <div class="col-6">  <input type="text" pInputText /></div>
+      <div class="col-6">  <input type="text" pInputText  formControlName="APELLIDO_PATERNO"/></div>
 
     
     </div>
     <div class="p-field row m-2">
       <div class="col-6"><label for="name">APELLIDO MATERNO</label></div>
-      <div class="col-6">  <input type="text" pInputText /></div>
+      <div class="col-6">  <input type="text" pInputText formControlName="APELLIDO_MATERNO" /></div>
 
     
     </div>
     <div class="p-field row m-2">
       <div class="col-6"><label for="name">DOSIS CON PROBLEMA DE DIGITACION</label></div>
-      <div class="col-6">  <p-dropdown [options]="DOSIS"  optionLabel="nombre"></p-dropdown></div>
+      <div class="col-6">  <p-dropdown [options]="DOSIS"  optionLabel="nombre" placeholder="Indicar Dosis" formControlName="DOSIS_CON_PROBLEMAS"></p-dropdown></div>
 
     
     </div>
     <div class="p-field row m-2">
       <div class="col-6"><label for="name">DESCRIPCION DEL CASO</label></div>
-      <div class="col-6">  <textarea pInputTextarea></textarea></div>
+      <div class="col-6">  <textarea pInputTextarea formControlName='DESCRIPCION_DEL_CASO'></textarea></div>
 
     
     </div>

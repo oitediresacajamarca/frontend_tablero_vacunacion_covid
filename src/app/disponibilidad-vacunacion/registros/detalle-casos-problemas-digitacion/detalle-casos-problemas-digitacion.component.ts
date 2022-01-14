@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CasosProblemasDigitacionService } from 'src/app/servicios/casos-problemas-digitacion/casos-problemas-digitacion.service';
 import { CasosProblemasDigitacionComponent } from '../casos-problemas-digitacion/casos-problemas-digitacion.component';
 
 @Component({
@@ -8,16 +9,34 @@ import { CasosProblemasDigitacionComponent } from '../casos-problemas-digitacion
 })
 export class DetalleCasosProblemasDigitacionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private casos_ser: CasosProblemasDigitacionService) { }
   @ViewChild('nuevo_caso')
-  nuevo_caso!:CasosProblemasDigitacionComponent
+  nuevo_caso!: CasosProblemasDigitacionComponent
+
+  listado: any[] = []
 
   ngOnInit(): void {
+    this.cargar_registrados_por_ubigeo()
   }
 
-  abrir_dialogo(){
-    console.log('datos')
-    this.nuevo_caso.display=true;
+  cargar_registrados_por_ubigeo() {
 
+    const login: any = JSON.parse(localStorage.getItem('login') || '')
+
+    this.casos_ser.cargar_registrados_por_ubigeo(login.UBIGEO).subscribe((respuesta) => {
+
+
+      this.listado = respuesta
+    })
+
+  }
+
+  abrir_dialogo() {
+
+    this.nuevo_caso.display = true;
+
+  }
+  NuevoRegistro() {
+    this.cargar_registrados_por_ubigeo()
   }
 }

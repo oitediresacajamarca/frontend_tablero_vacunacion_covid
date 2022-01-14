@@ -2,4 +2,28 @@
 
 <button pButton type="button" label="NUEVO"  (click)="abrir_dialogo()"></button>
 
-<app-casos-problemas-digitacion #nuevo_caso></app-casos-problemas-digitacion>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">NUMERO DE DOCUMENTO</th>
+        <th scope="col">NOMBRES</th>
+        <th scope="col">APELLIDO PATERNO</th>
+        <th scope="col">APELLIDO MATERNO</th>
+        <th scope="col">DOSIS</th>
+        <th scope="col">DESCRIPCION DEL CASO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dato of listado ">
+        <th scope="row"> {{dato.NUMERO_DOCUMENTO}}</th>
+        <td>{{dato.NOMBRES}}</td>
+        <td>{{dato.APELLIDO_PATERNO}}</td>
+        <td>{{dato.APELLIDO_MATERNO}}</td>
+        <td>{{dato.DOSIS_CON_PROBLEMAS}}</td>
+        <td>{{dato.DESCRIPCION_DEL_CASO}}</td>
+      </tr>
+   
+    </tbody>
+  </table>
+
+<app-casos-problemas-digitacion #nuevo_caso (registrado)="NuevoRegistro()"></app-casos-problemas-digitacion>
