@@ -30,6 +30,7 @@ export class CoberturasComponent implements OnInit {
   DEPARTAMENTOS_FILTRO: string[] = []
   provincias: any[] = []
   grupos_vacunacion: any[] = []
+  grupos_etareos: any[] = []
   chart: any
   donut: any
 
@@ -50,7 +51,7 @@ export class CoberturasComponent implements OnInit {
   //filtros
   provincia_selecionada: string = ''
   dosis_selecionada: string = ''
-  grupo_edad_seleccionado = ''
+  grupo_edad_seleccionado = []
   fabricante_selecionado = ''
   grupo_vacunacion_selecionado = ''
 
@@ -308,6 +309,23 @@ export class CoberturasComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    this.grupos_etareos = [
+      { name: 'menor 5', value: 'menor 5' },
+      { name: '5', value: '5 años' },
+      { name: '6', value: '6 años' },
+      { name: '7', value: '7 años' },
+      { name: '8', value: '8 años' },
+      { name: '9', value: '9 años' },
+      { name: '10', value: '10 años' },
+      { name: '11', value: '11 años' },
+      { name: '12-19', value: '12-19' },
+      { name: '20-29', value: '20-29' },
+      { name: '30-39', value: '30-39' },
+      { name: '40-49', value: '40-49' },
+      { name: '50-59', value: '50-59' },
+      { name: '60 a mas', value: '60 a mas' }
+    ]
+
 
 
     this.cargar_dosis()
@@ -497,11 +515,11 @@ export class CoberturasComponent implements OnInit {
       fabri = [this.fabricante_selecionado]
     }
 
-    if (this.grupo_edad_seleccionado == 'TODOS' || this.grupo_edad_seleccionado == '') {
+    if (this.grupo_edad_seleccionado == [] ) {
       grupo_edad = []
     }
     else {
-      grupo_edad = [this.grupo_edad_seleccionado]
+      grupo_edad = this.grupo_edad_seleccionado
     }
 
 
@@ -822,15 +840,16 @@ export class CoberturasComponent implements OnInit {
   selecciono_edad() {
 
     let filtro_provinica: any
+    
+
+    console.log(this.grupo_edad_seleccionado)
+
     let filtro: any[] = []
-    if (this.grupo_edad_seleccionado == 'TODOS' || this.grupo_edad_seleccionado == '') {
+    if (this.grupo_edad_seleccionado == []) {
       filtro = []
-
     } else {
-
-      filtro = [this.grupo_edad_seleccionado]
+      filtro = this.grupo_edad_seleccionado
     }
-
     this.cubo.query_avance_dosis_1.filters[2].values = filtro
     this.cubo.query_meta_dosis.filters[2].values = filtro
 

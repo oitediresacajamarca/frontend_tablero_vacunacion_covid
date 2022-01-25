@@ -245,7 +245,14 @@ export class BodyComponent implements OnInit {
 
 
     this.grupos_etareos = [
-      { name: 'menor 12', value: 'menor 12' },
+      { name: 'menor 5', value: 'menor 5' },
+      { name: '5', value: '5 años' },
+      { name: '6', value: '6 años' },
+      { name: '7', value: '7 años' },
+      { name: '8', value: '8 años' },
+      { name: '9', value: '9 años' },
+      { name: '10', value: '10 años' },
+      { name: '11', value: '11 años' },
       { name: '12-19', value: '12-19' },
       { name: '20-29', value: '20-29' },
       { name: '30-39', value: '30-39' },

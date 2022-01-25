@@ -142,21 +142,13 @@
           <div class="form-group">
             <label>GRUPO DE EDAD</label>
 
-            <select
-              class="form-control"
-              [(ngModel)]="grupo_edad_seleccionado"
-              (change)="selecciono_edad()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option value="0-9">18-19</option>
-              <option value="10-19">19-20</option>
-              <option value="20-29">20-29</option>
-              <option value="30-39">30-39</option>
-              <option value="40-49">40-49</option>
-              <option value="50-59">50-59</option>
-              <option value="60-69">60 a mas</option>
-              
-            </select>
+            <label>GRUPO DE EDAD</label>
+            <p-multiSelect   [options]="grupos_etareos"  optionLabel="name" optionValue="value" 
+            defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
+            width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+            (onChange)="selecciono_edad()" [(ngModel)]="grupo_edad_seleccionado" #etareo_selector></p-multiSelect> 
+
+
           </div>
         </div>
 

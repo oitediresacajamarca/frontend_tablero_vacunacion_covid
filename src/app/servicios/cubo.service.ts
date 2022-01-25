@@ -469,7 +469,7 @@ export class CuboService {
     "filters": [
       {
         "member": "VACUNADOSCovidFast.grupo_edad",
-        "operator": "contains",
+        "operator": "equals",
         "values": [
 
         ]
@@ -513,7 +513,7 @@ export class CuboService {
     "filters": [
       {
         "member": "VACUNADOSCovidFast.grupo_edad",
-        "operator": "contains",
+        "operator": "equals",
         "values": [
 
         ]
