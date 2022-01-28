@@ -38,7 +38,7 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor {
 
   selecciono = new EventEmitter()
 
-  FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'ASTRAZENECA' }]
+  FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' },{ NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' }]
   FABRICANTE: any;
 
   ngOnInit(): void {
