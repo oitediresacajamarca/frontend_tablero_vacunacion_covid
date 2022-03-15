@@ -9,6 +9,11 @@ export const environment = {
   url__backend:'http://localhost:8003/distribucion-vacunas/',
   url__backend_base:'http://localhost:8003/'
 
+  //url__backend_base:'  http://sir.diresacajamarca.gob.pe:8003/'
+
+
+
+
   
 };
 

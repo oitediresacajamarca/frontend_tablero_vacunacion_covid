@@ -1,4 +1,5 @@
-import { EventEmitter, forwardRef, Output } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AfterViewInit, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -14,10 +15,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class FabricanteComponent implements OnInit, ControlValueAccessor {
+export class FabricanteComponent implements OnInit, ControlValueAccessor,AfterViewInit {
 
   onChange = (_: any) => { }
   constructor() { }
+  ngAfterViewInit(): void {
+    console.log( this.INFL )
+    if (this.INFL == true) {
+      this.FABRICANTES = this.FABRICANTES_ADD;
+    }
+
+  }
   writeValue(obj: any): void {
 
 
@@ -38,15 +46,29 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor {
 
   selecciono = new EventEmitter()
 
-  FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' },{ NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' }]
+  FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' },
+   { NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' },{ NOMBRE: 'INFLUENZA' }]
   FABRICANTE: any;
 
+  @Input('INFL')
+  INFL: Boolean = false;
+
+
   ngOnInit(): void {
+
+    if (this.INFL == true) {
+      this.FABRICANTES = this.FABRICANTES_ADD;
+    }
+
+
   }
+
   seleccionoFabricante(event: any) {
 
     this.onChange(this.FABRICANTE)
     this.selecciono.emit(event.value.NOMBRE)
   }
+  FABRICANTES_ADD: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' },
+  { NOMBRE: 'INFLUENZA ADULTO' }]
 
 }
