@@ -14,6 +14,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
     private fb: FormBuilder) { }
 
   almacenes: any[] = [];
+  
   movimientos_sismed: MovimientoSismed[] = [];
   form!: FormGroup;
 
@@ -21,13 +22,15 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
     this.form = this.fb.group({
       almacen: '',
+      fabricante:'',
       desde: '',
       hasta: ''
-
     })
-    this.almacenes = [
-      { name: 'ALMACEN ESPECIALIZADO JAEN', code: '060801' ,almcod:'007A01'},
-      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: '060101',almcod:'016A01' },
+      this.almacenes = [
+      { name: 'ALMACEN ESPECIALIZADO JAEN', code: '060801' ,almcod:'016A01'},
+      { name: 'ALMACEN ESPECIALIZADO CAJAMARCA', code: '060101',almcod:'007A01' },
+      { name: 'ALMACEN ESPECIALIZADO CHOTA', code: '060401',almcod:'010A01' },
+      { name: 'ALMACEN ESPECIALIZADO CUTERVO', code: '060601',almcod:'012A01' },
     ];
     this.cargar_movimientos()
   }
@@ -48,6 +51,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
 
   buscar() {
+    console.log(this.form.value)
      this.movimientos.cargar_movimientos_vacunas_almacenes_especializados(this.form.value).subscribe(data=>{
       this.movimientos_sismed=data;
     })
