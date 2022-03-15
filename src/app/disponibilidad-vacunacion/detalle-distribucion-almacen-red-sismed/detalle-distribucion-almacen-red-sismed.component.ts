@@ -13,6 +13,7 @@ export class DetalleDistribucionAlmacenRedSismedComponent implements OnInit {
   dialog!: EditarDistribucionAlmacenRedSismedComponent
 
   distris:any={}
+  filtro:any={}
 
   constructor(private distribuciones_sis: MovimientosSismedService) { }
 
@@ -37,12 +38,16 @@ export class DetalleDistribucionAlmacenRedSismedComponent implements OnInit {
   cargar_movimientos_sismed() {
 
     this.distribuciones_sis.cargar_movimientos_de_red(this.NOMBRE_RED).subscribe((data) => {
-      console.log(data)
+
       this.distribuciones_listado_red = data;
     })
   }
 
-  cargar_movimientos_filtros() {
+  cargar_movimientos_filtros(filtros:any) {
+    this.distribuciones_sis.cargar_movimientos_de_red_filtros(this.NOMBRE_RED,filtros).subscribe((data) => {
+
+      this.distribuciones_listado_red = data;
+    })
 
   }
 
@@ -54,6 +59,11 @@ export class DetalleDistribucionAlmacenRedSismedComponent implements OnInit {
     this.NOMBRE_RED = e.NOMBRE
 
     this.cargar_movimientos_sismed()
+  }
+
+  seleccciono_fabricante(e:any){
+  
+    this.cargar_movimientos_filtros({FABRICANTE:e})
   }
 
   abrir_dialog_editar(distris:any) {

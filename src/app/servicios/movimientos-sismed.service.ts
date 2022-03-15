@@ -27,6 +27,11 @@ export class MovimientosSismedService {
 
 
    }
+   cargar_movimientos_de_red_filtros(CODIGO_RED:string,filtro:any){
+
+    return this.http.put<MovimientoSismed[]>(environment.url__backend+'movimientos/red/'+CODIGO_RED,filtro)
+   }
+
    cargar_movimientos_filtro(filtro:any){
 
     return this.http.post<MovimientoSismed[]>(environment.url__backend+'movimientos/filtro/',filtro)
