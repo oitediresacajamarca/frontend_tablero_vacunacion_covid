@@ -1,0 +1,154 @@
+<p-dialog
+  header="DISTRIBUCION DE RED A IPRESS/MICRORED"
+  [(visible)]="display"
+  [style]="{ width: '50vw' }"
+>
+  <form [formGroup]="form">
+      <div class="card">
+        <div class="row justify-content-center m-2">
+            <div class="col-auto">DESDE</div>
+      
+            <div class="col-auto">
+              <app-provincia-selector
+                formControlName="provincia"
+                (selecciono)="selecciono_provincia($event)"
+              ></app-provincia-selector>
+            </div>
+          </div>
+          <div class="row justify-content-center m-2">
+            <div class="col-auto">HACIA</div>
+      
+            <div class="col-auto">
+              <app-distrito-selector #selector_distrito (selecciono_distrito)="selecciono_distrito($event)"></app-distrito-selector>
+            </div>
+          </div>
+
+          <div class="row justify-content-center m-2">
+          
+      
+            <div class="col-auto">
+              <app-establecimientos-selector
+                formControlName="IPRESS"
+               
+                (selecciono)="selecciono_establecimiento($event)"
+                #establecimientos_selector
+              ></app-establecimientos-selector>
+            </div>
+          </div>
+      
+          <div class="row justify-content-center m-2">
+            <div class="col-auto">
+              <app-fabricante
+                formControlName="fabricante"
+                (selecciono)="selecciono_fabricante($event)"
+              ></app-fabricante>
+            </div>
+          </div>
+      
+      </div>
+    
+    <div class="card">
+
+        <div class="row justify-content-center m-2">
+            <div class="col-auto">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+      
+                    <div class="info-box-content">
+                      <span class="info-box-text">Dosis Recibidas</span>
+                      <span class="info-box-number">{{dosis_recibidas}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+            </div>
+      
+            <div class="col-auto">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+      
+                    <div class="info-box-content">
+                      <span class="info-box-text">Dosis Aplicadas</span>
+                      <span class="info-box-number">{{dosis_aplicadas}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+             
+            </div>
+            <div class="col-auto">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+      
+                    <div class="info-box-content">
+                      <span class="info-box-text">Stock Teorico</span>
+                      <span class="info-box-number">{{dosis_recibidas-dosis_aplicadas}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+             
+            </div>
+          </div>
+    </div>
+
+ 
+
+    <div class="row justify-content-center p-2 m-5">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA DE DISTRIBUCION</label>
+          <p-calendar formControlName="FECHA_DISTRIBUCION"></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="lastname">CANTIDAD DISTRIBUIDA EN VIALES</label>
+          <p-inputNumber formControlName="CANTIDAD_VIALES"></p-inputNumber>
+        </div>
+        <div class="p-field p-col-12">
+          <label for="lastname">CANTIDAD DISTRIBUIDA EN DOSIS</label>
+          <p-inputNumber formControlName="CANTIDAD_DOSIS"></p-inputNumber>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA VENCIMIENTO</label>
+          <p-calendar formControlName="FECHA_VENCIMIENTO"></p-calendar>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">FECHA DE DESCONGELAMIENTO</label>
+          <p-calendar
+            formControlName="FECHA_DESCONGELAMIENTO"
+            [disabled]="disabled_fec_desc"
+            #FECHA_DESCONGE
+          ></p-calendar>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname1">TIPO DE DOCUMENTO</label>
+          <p-dropdown
+            [options]="TIPOS_DOCUMENTOS"
+            optionLabel="name"
+            formControlName="TIPO_DOCUMENTO"
+          ></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="NUMERO_DOCUMENTO">NUMERO DE DOCUMENTO</label>
+          <input type="text" pInputText formControlName="NUMERO_DOCUMENTO" />
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <div class="row botones m-4">
+            <div class="col">
+              <button
+                pButton
+                type="button"
+                label="ACEPTAR"
+                (click)="GUARDAR()"
+              ></button>
+            </div>
+            <div class="col">
+              <button pButton type="button" label="CANCELAR"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>

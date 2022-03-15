@@ -1,0 +1,82 @@
+
+<div class="container">
+<h3>RECEPCION DE ALMACEN</h3>
+<form [formGroup]="form">
+<div class="row justify-content-center  m-2">
+ 
+
+    <div class="col-md-4">
+      <LAbel>DESDE</LAbel>  
+        <BR>
+        <p-dropdown [options]="almacenes"  optionLabel="name"  formControlName="almacen"></p-dropdown>
+      
+    </div>
+    <div class="col-md-2">
+      <label for="" >FECHA INICIO</label>  <br>
+        <p-calendar formControlName="desde" dateFormat="dd/mm/yy"></p-calendar>
+      
+    </div>
+    <div class="col-md-2">
+        <label for="" >FECHA FIN</label>
+     <br>
+        <p-calendar formControlName="hasta" dateFormat="dd/mm/yy"></p-calendar>
+      
+    </div>
+
+    <div class="col-md-3">
+        <label for="" >.</label>   <br>
+ 
+<button pButton type="button" label="BUSCAR" (click)="buscar()" ></button>
+     <br>
+       
+      
+    </div>
+
+
+</div>
+</form>
+
+<div class="row justify-content-center  m-2">
+    <p-table [value]="movimientos_sismed" responsiveLayout="scroll"  [paginator]="true" [rows]="6" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+             </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>FECHA DE MOVIMIENTO</th>
+                <th>ORIGEN</th>
+
+                <th>TIPO DE DOCUMENTO</th>
+                <th>NUMERO DE DOCUMENTO</th>
+                <th>LOTE</th>
+                <th>FABRICANTE</th>
+                <th>CANTIDAD EN VIALES</th>
+                <th>CATIDAD EN DOSIS</th>
+              </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.MOVFECHREG|date:'dd-MM-yyyy'}}</td>
+                <td>{{product.almdes}}</td>
+            
+                <td>{{product.DOCDESTINO}}</td>
+                <td>{{product.MOVNUMEDCO}}</td>
+                <td>{{product.MEDLOTE}}</td>
+                <td>{{product.FABRICANTE}}</td>
+                <td>{{product.MOVCANTID}}</td>
+                <td>{{product.CANTIDAD_DOSIS}}</td>
+         
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+             Hay en total {{movimientos_sismed ? movimientos_sismed.length : 0 }} movimientos.
+            </div>
+        </ng-template>
+    </p-table>
+    
+
+
+</div>
+</div>

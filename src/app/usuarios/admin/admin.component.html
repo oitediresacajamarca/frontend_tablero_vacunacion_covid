@@ -1,0 +1,42 @@
+
+<div class="card" style="width: 100VH;height:20vh">
+	
+	<div class="card-body">
+	
+	
+	  <a  class="btn btn-primary" (click)="Nuevo()">NUEVO</a>
+	</div>
+  </div>
+
+
+
+<table class="table caption-top">
+	<caption>LISTA DE USUARIOS</caption>
+	<thead>
+	  <tr>
+		<th scope="col">NUMERO DE DOCUMENTO</th>
+		<th scope="col">NOMBRES</th>
+		<th scope="col">APELLIDO PATERNO</th>
+		<th scope="col">APELLIDO MATERNO</th>
+		<th scope="col">TIPO AMBITO</th>
+		<th scope="col">AMBITO</th>
+		<th scope="col"></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr *ngFor="let data of datos">
+		<th scope="row" >{{data.NUMERO_DOCUMENTO}}</th>
+		<td>{{data.NOMBRES}}</td>
+		<td>{{data.APELLIDO_PATERNO}}</td>
+		<td>{{data.APELLIDO_MATERNO}}</td>
+		<th scope="col">{{data.TIPO_AMBITO}}</th>
+		<th scope="col">{{data.AMBITO}}</th>
+		<th><button pButton pRipple type="button" label="Eliminar" class="p-button-secondary" (click)="eliminar(data.ID)"></button></th>
+	  </tr>	
+	</tbody>
+  </table>
+
+<app-nuevo-usuario #nuevo_usu (registro_nuevo)="registro_nuevo()"></app-nuevo-usuario>
+
+
+

@@ -1,0 +1,121 @@
+<div class="container">
+    <h1>FORMULARIO REGISTRO STOCK</h1>
+  
+   
+  
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+      <div class="col-4">
+       
+      </div>
+    </div>
+    <form [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-3">
+        <app-provincia-selector
+          (seleciono)="selecionoProvincia($event)"
+        ></app-provincia-selector>
+      </div>
+      <div class="col-3">
+        <app-distrito-selector
+          [cod_provincia]="CODIGO_PROVINCIA"
+          (selecciono_distrito)="selecionoDistrito($event)"
+        ></app-distrito-selector>
+      </div>
+      <div class="col-3">
+        <app-establecimientos-selector [UBIGEO]="UBIGEO" (selecciono)="seleccionoIpress($event)" formControlName='CODIGO_UNICO'></app-establecimientos-selector>
+      </div>
+      <div class="col-3">
+        <app-fabricante (selecciono)="selecionoFabricante($event)" formControlName='FABRICANTE'></app-fabricante>
+      </div>
+  
+      
+    </div>
+
+    <p-panel header="STOCKS DISPONIBLES" [toggleable]="true">
+      <ng-template pTemplate="icons">
+        <button pButton class="p-panel-header-icon p-link">
+          <span class="pi pi-cog"></span>
+        </button>
+      </ng-template>
+
+        <div class="p-fluid">
+          <div class="p-field">
+            <label for="firstname1">FECHA</label>
+            <p-calendar formControlName="FECHA" [locale]="es_ES"></p-calendar>
+          </div>
+          <div class="p-field">
+            <label for="firstname1">STOCK ACTUAL VIALES</label>
+            <p-inputNumber formControlName="STOCK_ACTUAL_VIALES"></p-inputNumber>
+          </div>
+          <div class="p-field">
+            <label for="firstname1">STOCK ACTUAL DOSIS</label>
+            <p-inputNumber formControlName="STOCK_ACTUAL_DOSIS"></p-inputNumber>
+          </div>
+  
+
+          <div class="p-field">
+            <label for="firstname1">FECHA DESCONGELAMIENTO</label>
+            <p-calendar formControlName="FECHA_DESCONGELAMIENTO" [locale]="es_ES"></p-calendar>
+          </div>
+    
+  
+          <div class="p-field">
+            <label for="firstname1">FECHA MAXIMA DE USO</label>
+  
+            <p-calendar formControlName="FECHA_VENCIMIENTO"></p-calendar>
+          </div>
+  
+          <div class="p-field">
+            <label for="firstname1">RESPONSABLE DE INFORMACION</label>
+  
+            <input type="text" pInputText formControlName="RESPONSABLE"/>
+          </div>
+  
+          <div class="p-field">
+            <label for="firstname1">OBSERVACION</label>
+            <textarea pInputTextarea formControlName="OBSERVACION"></textarea>
+          </div>
+        </div>
+
+  
+      <ng-template pTemplate="footer">  <button pButton pRipple type="button" label="AGREGAR" (click)="GUARGAR()"></button> </ng-template>
+    </p-panel>
+  
+  </form>
+  
+    <p-panel header="DETALLE DE DISTRIBUCION" [toggleable]="true">
+      <ng-template pTemplate="icons">
+        <button pButton class="p-panel-header-icon p-link">
+          <span class="pi pi-cog"></span>
+        </button>
+      </ng-template>
+  
+  
+      <p-table [value]="distribuciones">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>FECHA</th>
+                <th>STOCK VIALES</th>
+                <th>STOCK DOSIS</th>
+                <th>OBSERVACION</th>
+                <th>ACCCION</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-car>
+            <tr>
+                <td>{{car.FECHA|date: 'dd/MM/yyyy'}}</td>
+                <td>{{car.STOCK_VIALES}}</td>
+                <td>{{car.STOCK_DOSIS}}</td>
+                <td>{{car.OBSERVACION}}</td>
+                <td></td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    
+     
+    </p-panel>
+  </div>
+  <p-confirmDialog header="CONFIRMAR" acceptLabel="ACEPTAR" rejectLabel="CANCELAR" icon="pi pi-exclamation-triangle"></p-confirmDialog>

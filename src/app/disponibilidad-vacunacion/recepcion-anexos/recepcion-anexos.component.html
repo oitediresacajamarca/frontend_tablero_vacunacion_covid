@@ -1,0 +1,112 @@
+
+  <p-dialog
+  header="NUEVO REGISTRO"
+ 
+  [style]="{ width: '50vw' }"
+  [(visible)]="VISIBLE"
+>
+<div class="container">
+
+<h3>ANEXOS</h3>
+<form action="" [formGroup]="form">
+   
+        <div class="row justify-content-center p-2 m-5">
+            <div class="p-fluid p-formgrid p-grid">
+
+                
+                <div class="p-field p-col-12 p-md-6">
+                   
+
+                    <app-provincia-selector formControlName='PROVINCIA'></app-provincia-selector>
+                </div>
+
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">TIPO DE DOCUMENTO</label>
+
+                    <p-dropdown [options]="TIPOS_DOCUMENTOS"  optionLabel="NOMBRE" formControlName='TIPO_DOCUMENTO'></p-dropdown>
+                </div>
+               
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">NUMERO DE DOCUMENTO</label>
+                    <input type="text" pInputText formControlName='NUMERO_DOCUMENTO'>
+         
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">TEMPERATURA MAXIMA</label>
+                   <p-inputNumber  formControlName='TEMPERATUR_MAXIMA' mode="decimal" [minFractionDigits]="2" suffix="℃"></p-inputNumber>
+         
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">TEMPERATURA MINIMA</label>
+                    <p-inputNumber formControlName='TEMPERATURA_MINIMA' mode="decimal" [minFractionDigits]="2" suffix="℃"></p-inputNumber>
+         
+                
+                </div>
+                
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO 10</label>
+                    <p-fileUpload name="file10" (onUpload)="anexo1($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo1"></p-fileUpload>        
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO 13</label>
+                    <p-fileUpload name="file13" (onUpload)="anexo2($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo2"></p-fileUpload>        
+                
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">ANEXO 14</label>
+                    <p-fileUpload name="file14" (onUpload)="anexo3($event)" url="{{url_cargar}}recepcion-anexos/upload/anexo3"></p-fileUpload>        
+                
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="lastname">OBSERVACIONES</label>
+                    <textarea pInputTextarea formControlName='OBSERVACIONES'></textarea>         
+                
+                </div>
+
+    
+               
+          
+        
+        
+         
+               
+        
+                <div class="p-field p-col-12 p-md-6">
+                    <div class="row botones m-4">
+                        <div class="col"> <button pButton type="button" label="ACEPTAR" (click)="guardar()"></button> </div>
+                        <div class="col"><button pButton type="button" label="CANCELAR" ></button>  </div> 
+                    </div>
+             
+                </div>
+               
+               
+            </div>
+        
+        
+        
+        
+        </div>
+
+
+
+</form>
+
+</div>
+  </p-dialog>
+
+  
+<p-confirmDialog
+header="CONFIRMAR"
+acceptLabel="ACEPTAR"
+rejectLabel="CANCELAR"
+icon="pi pi-exclamation-triangle"
+></p-confirmDialog>
+

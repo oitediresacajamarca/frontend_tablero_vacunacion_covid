@@ -11,45 +11,47 @@ export class CuboCoberturasService {
 
   constructor( private http:HttpClient) { }
 
-  query_pie_avance:any={
+  query_pie_avance:any
+  =
+  {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
         
         ]
       },
       {
-        "member": "VACUNADOSCovid.dosisAplicada",
+        "member": "VACUNADOSCovidFast.dosisAplicada",
         "operator": "contains",
         "values": [
          
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
          
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
        
         ]
       },
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
        
@@ -57,47 +59,47 @@ export class CuboCoberturasService {
       }
     ],
     "dimensions": [
-      "VACUNADOSCovid.grupo_vacunacion"
+      "VACUNADOSCovidFast.grupo_vacunacion"
     ]
   }
   query_time_line_avance:any={
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2"
     ],
     "timeDimensions": [
       {
-        "dimension": "VACUNADOSCovid.fechaVacunacion",
+        "dimension": "VACUNADOSCovidFast.fechaVacunacion",
         "granularity": "day"
       }
     ],
     "order": {
-      "VACUNADOSCovid.fechaNacimiento": "asc"
+      "VACUNADOSCovidFast.fechaNacimiento": "asc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
          
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
           "PFIZER"
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
           "70-79"
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
           "Adulto Mayor"
@@ -107,38 +109,39 @@ export class CuboCoberturasService {
   }
  query_avance_dosis_1:any= {
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2",
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2",
+      "VACUNADOSCovidFast.dosis_3",
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.fechaNacimiento": "asc"
+      "VACUNADOSCovidFast.fechaNacimiento": "asc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
         
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
          
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
      
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
       
@@ -149,45 +152,45 @@ export class CuboCoberturasService {
 
   query_avance_hoy:any= {
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2",
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2",
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.fechaNacimiento": "asc"
+      "VACUNADOSCovidFast.fechaNacimiento": "asc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
         
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
          
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
      
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
       
         ]
       },
       {
-        "member": "VACUNADOSCovid.fechaVacunacion",
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
         "operator": "equals",
         "values": [
           moment(new Date()).format('yyyy-MM-DD')
@@ -276,40 +279,40 @@ export class CuboCoberturasService {
 
   query_avance_stack:any={
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2",
+      "VACUNADOSCovidFast.dosis_3"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.dosis_1": "desc"
+      "VACUNADOSCovidFast.dosis_1": "desc"
     },
     "dimensions": [
-      "VACUNADOSCovid.provinciaEstablecimiento"
+      "VACUNADOSCovidFast.provinciaEstablecimiento"
     ],
     "filters": [
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
-        "values": [
-  
+        "values": [  
         ]
       },
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
    
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
      
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
         
@@ -320,13 +323,13 @@ export class CuboCoberturasService {
 
   devolver_total_dosis_1(){
 
-console.log(this.query_avance_dosis_1)
+
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_dosis_1));
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
   devolver_meta_dosis(){
-    console.log(this.query_meta_dosis)
+    
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_dosis));
     return this.http.get<any>(environment.url_cubo, { params })
   }

@@ -1,0 +1,57 @@
+<p-dialog [visible]="visible">
+  <form [formGroup]="fg">
+    <div class="card" style="width: 60rem">
+      <div class="card-title"><h5 class="card-title">NUEVO USUARIO</h5></div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label"
+            >NUMERO DE DOCUMENTO</label
+          >
+          <input formControlName="NUMERO_DOCUMENTO" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >NOMBRES</label
+          >
+          <input formControlName="NOMBRES" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >APELLIDO_PATERNO</label
+          >
+          <input class="form-control" formControlName="APELLIDO_PATERNO" />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >APELLIDO_MATERNO</label
+          >
+          <input class="form-control" formControlName="APELLIDO_MATERNO" />
+        </div>
+
+        <div class="mb-3">
+          <app-roles-selector
+            (selecciono)="selecciono_roles($event)"
+            formControlName="ROL"
+          ></app-roles-selector>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >EMAIL</label
+          >
+          <input class="form-control" formControlName="EMAIL" />
+        </div>
+
+        <div class="mb-3">
+          <app-ambito-selector #ambito_select formControlName="AMBITO" (selecciono)="selecciono_ambito($event)" ></app-ambito-selector>
+        </div>
+        <div class="mb-3">
+          <a class="btn btn-primary" (click)="GUARDAR()">GUARDAR</a>
+          <a class="btn btn-primary" (click)="CANCELAR()">CANCELAR</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>

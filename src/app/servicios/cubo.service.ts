@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { map, tap } from 'rxjs/operators'
+import { from } from 'rxjs';
 var moment = require('moment'); // require
 
 
@@ -9,7 +11,7 @@ var moment = require('moment'); // require
 })
 export class CuboService {
 
-  query_meta_cobertura_fil_ambito:any={
+  query_meta_cobertura_fil_ambito: any = {
     "measures": [
       "DISTRIBUCIONGeograficaMeta.meta"
     ],
@@ -21,65 +23,73 @@ export class CuboService {
         "member": "DISTRIBUCIONGeograficaMeta.provincia",
         "operator": "contains",
         "values": [
-     
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.distrito",
         "operator": "contains",
         "values": [
-   
+
         ]
       }
     ]
   }
 
+  
 
-  query_avance_cobertura_por_ambito:any={
+  query_avance_cobertura_por_ambito: any = {
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.dosis_1": "desc"
+      "VACUNADOSCovidFast.dosis_1": "desc"
     },
     "dimensions": [
-      "VACUNADOSCovid.provinciaEstablecimiento"
+      "VACUNADOSCovidFast.provinciaEstablecimiento"
     ],
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
-        "operator": "contains",
-        "values": [
-    
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.grupo_edad",
-        "operator": "contains",
-        "values": [
- 
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.gruporiesgo",
-        "operator": "contains",
-        "values": [
-       
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.grupo_edad",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.gruporiesgo",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fabricante",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
         ]
       }
     ]
   }
 
-  query_meta_cobertura:any={
+  query_meta_cobertura: any = {
     "measures": [
       "DISTRIBUCIONGeograficaMeta.meta"
     ],
@@ -97,26 +107,26 @@ export class CuboService {
         "member": "DISTRIBUCIONGeograficaMeta.grupoMeta",
         "operator": "contains",
         "values": [
-        
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.grupoRiesgo",
         "operator": "contains",
         "values": [
-        
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.distrito",
         "operator": "contains",
         "values": [
-         
+
         ]
       }
     ]
   }
-  query_meta:any={
+  query_meta: any = {
     "measures": [
       "DISTRIBUCIONGeograficaMeta.meta"
     ],
@@ -125,129 +135,159 @@ export class CuboService {
       "DISTRIBUCIONGeograficaMeta.meta": "desc"
     },
     "dimensions": [
-     
+
     ],
     "filters": [
       {
         "member": "DISTRIBUCIONGeograficaMeta.grupoRiesgo",
         "operator": "contains",
         "values": [
-     
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.grupoMeta",
         "operator": "contains",
         "values": [
-     
+
         ]
       },
       {
         "member": "DISTRIBUCIONGeograficaMeta.provincia",
         "operator": "contains",
         "values": [
-   
+
         ]
       }
+      
     ]
   }
 
-  query_time_line:any = {
+  query_time_line: any = {
     "measures": [
-      "VACUNADOSCovid.dosis_1",
-      "VACUNADOSCovid.dosis_2"
+      "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_2"
     ],
     "timeDimensions": [
       {
-        "dimension": "VACUNADOSCovid.fechaVacunacion",
+        "dimension": "VACUNADOSCovidFast.fechaVacunacion",
         "granularity": "day"
       }
     ],
     "order": {
-      "VACUNADOSCovid.fechaVacunacion": "asc"
+      "VACUNADOSCovidFast.fechaVacunacion": "asc"
     },
     "dimensions": [],
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
-        "operator": "contains",
-        "values": [
-     
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.grupo_edad",
-        "operator": "contains",
-        "values": [
-     
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.fabricante",
-        "operator": "contains",
-        "values": [
-       
-        ]
-      },
-      {
-        "member": "VACUNADOSCovid.gruporiesgo",
-        "operator": "contains",
-        "values": [
-       
-        ]
-      }
-    ]
-  }
-  query_vacunados_hoy = {
-    "measures": [
-      "VACUNADOSCovid.count"
-    ],
-    "timeDimensions": [],
-    "order": {
-      "VACUNADOSCovid.fechaNacimiento": "asc"
-    },
-    "filters": [
-      {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fechaVacunacion",
+        "member": "VACUNADOSCovidFast.grupo_edad",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fabricante",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.gruporiesgo",
+        "operator": "contains",
+        "values": [
+
+        ]
+      }, {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.urbanidad",
+        "operator": "contains",
+        "values": [
+          
+        ]
+      }
+
+    ]
+  }
+  query_vacunados_hoy = {
+    "measures": [
+      "VACUNADOSCovidFast.count"
+    ],
+    "timeDimensions": [],
+    "order": {
+      "VACUNADOSCovidFast.fechaNacimiento": "asc"
+    },
+    "filters": [
+      {
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
+        "operator": "contains",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
         "operator": "contains",
         "values": [
           moment(new Date()).format('yyyy-MM-DD')
         ]
       },
       {
-        "member": "VACUNADOSCovid.dosisAplicada",
+        "member": "VACUNADOSCovidFast.dosisAplicada",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
-         
+
         ]
       }, {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.urbanidad",
+      "operator": "contains",
+      "values": [
+     
+      ]
       }
+
 
 
     ]
@@ -255,17 +295,17 @@ export class CuboService {
 
   query_grupo_vacunacion = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "filters": [
 
     ],
     "dimensions": [
-      "VACUNADOSCovid.grupo_vacunacion"
+      "VACUNADOSCovidFast.grupo_vacunacion"
     ]
   }
 
@@ -287,134 +327,172 @@ export class CuboService {
 
   query_dosis: any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
 
     "dimensions": [],
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.dosisAplicada",
+        "member": "VACUNADOSCovidFast.dosisAplicada",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
         ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.urbanidad",
+      "operator": "contains",
+      "values": [
+     
+      ]
       }
+
 
     ]
   }
 
   query_dosis_grupo_riesgo: any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "dimensions": [
-      "VACUNADOSCovid.gruporiesgo"
+      "VACUNADOSCovidFast.gruporiesgo"
     ],
     "filters": [
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.dosisAplicada",
+        "member": "VACUNADOSCovidFast.dosisAplicada",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2021-02-01', '2022-12-30'
+        ]
+      },
+      {
+
+        "member": "VACUNADOSCovidFast.urbanidad",
+        "operator": "contains",
+        "values": [
+          
         ]
       }
+     
     ]
   }
 
 
   query_stack: any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "dimensions": [
-      "VACUNADOSCovid.provinciaEstablecimiento",
-      "VACUNADOSCovid.dosisAplicada"
+      "VACUNADOSCovidFast.provinciaEstablecimiento",
+      "VACUNADOSCovidFast.dosisAplicada"
     ],
     "filters": [
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
+        "operator": "equals",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
-        "operator": "contains",
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
         "values": [
-
+          '2020-06-01', '2022-12-30'
         ]
       }
 
@@ -426,105 +504,148 @@ export class CuboService {
 
   query_stack_distritos: any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
+        "operator": "equals",
+        "values": [
+
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
-        "operator": "contains",
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
         "values": [
-
+          '2021-02-01', '2022-12-30'
         ]
       }
+
     ],
     "dimensions": [
-      "VACUNADOSCovid.distritoEstablecimiento",
-      "VACUNADOSCovid.dosisAplicada"
+      "VACUNADOSCovidFast.distritoEstablecimiento",
+      "VACUNADOSCovidFast.dosisAplicada"
     ]
   }
 
   query_stack_general: any = {
     "measures": [
-      "VACUNADOSCovid.count"
+      "VACUNADOSCovidFast.count"
     ],
     "timeDimensions": [],
     "order": {
-      "VACUNADOSCovid.count": "desc"
+      "VACUNADOSCovidFast.count": "desc"
     },
     "filters": [
       {
-        "member": "VACUNADOSCovid.grupo_edad",
+        "member": "VACUNADOSCovidFast.grupo_edad",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.fabricante",
+        "member": "VACUNADOSCovidFast.fabricante",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.grupo_vacunacion",
+        "member": "VACUNADOSCovidFast.grupo_vacunacion",
         "operator": "contains",
         "values": [
 
         ]
       },
       {
-        "member": "VACUNADOSCovid.provinciaEstablecimiento",
+        "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
         "operator": "contains",
         "values": [
 
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.fechaVacunacion",
+        "operator": "inDateRange",
+        "values": [
+          '2020-01-01', '2030-12-30'
+        ]
+      },
+      {
+        "member": "VACUNADOSCovidFast.urbanidad",
+        "operator": "contains",
+        "values": [
+          
         ]
       }
     ],
     "dimensions": [
-      "VACUNADOSCovid.distritoEstablecimiento",
-      "VACUNADOSCovid.dosisAplicada"
+      "VACUNADOSCovidFast.distritoEstablecimiento",
+      "VACUNADOSCovidFast.dosisAplicada"
     ]
   }
 
 
+  query_vacunados_fuera: any = {
+    "measures": [
+      "VACUNADOSFueraPadronResumen.dosis_1",
+      "VACUNADOSFueraPadronResumen.dosis_2"
+    ],
+    "timeDimensions": [],
+    "order": {},
+    "filters": [
+      {
+        "member": "VACUNADOSFueraPadronResumen.provincia",
+        "operator": "contains",
+        "values": [
+          "CHOTA"
+        ]
+      },
+      {
+        "member": "VACUNADOSFueraPadronResumen.distrito",
+        "operator": "contains",
+        "values": [
+          "CHOTA"
+        ]
+      }
+    ],
+    "dimensions": []
+  }
   constructor(private http: HttpClient) {
 
   }
 
   devolver_total_por_dosis(dosis: any) {
-
     this.query_dosis.filters[1].values = dosis
-
-
     let params = new HttpParams().set('query', JSON.stringify(this.query_dosis));
     return this.http.get<any>(environment.url_cubo, { params })
-
   }
 
 
@@ -535,23 +656,23 @@ export class CuboService {
 
     let query: any = {
       "measures": [
-        "VACUNADOSCovid.count"
+        "VACUNADOSCovidFast.count"
       ],
       "timeDimensions": [],
       "order": {
-        "VACUNADOSCovid.fechaNacimiento": "asc"
+        "VACUNADOSCovidFast.fechaNacimiento": "asc"
       },
       "dimensions": [],
       "filters": [
         {
-          "member": "VACUNADOSCovid.provinciaEstablecimiento",
+          "member": "VACUNADOSCovidFast.provinciaEstablecimiento",
           "operator": "contains",
           "values": [
             "CHOTA"
           ]
         },
         {
-          "member": "VACUNADOSCovid.dosisAplicada",
+          "member": "VACUNADOSCovidFast.dosisAplicada",
           "operator": "contains",
           "values": [
             "1ª dosis"
@@ -560,7 +681,7 @@ export class CuboService {
       ]
     }
 
-    
+
     let params = new HttpParams().set('query', JSON.stringify(query));
     return this.http.get<any>(environment.url_cubo, { params })
   }
@@ -582,7 +703,14 @@ export class CuboService {
 
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_vacunados_hoy));
-    return this.http.get<any>(environment.url_cubo, { params })
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(map((data)=>{if(data.data[0]['VACUNADOSCovidFast.count']==null){
+
+return 0
+    }else {
+      return data.data[0]['VACUNADOSCovidFast.count']
+    }
+  
+  }))
   }
 
   devolver_maestro_provincias() {
@@ -611,16 +739,23 @@ export class CuboService {
 
     if (provincia == 'TODOS') {
 
-      this.query_stack_general.dimensions[0] = 'VACUNADOSCovid.provinciaEstablecimiento'
+      this.query_stack_general.dimensions[0] = 'VACUNADOSCovidFast.provinciaEstablecimiento'
       this.query_stack_general.filters[3].values = []
+      this.query_vacunados_fuera.filters[0].values=[]
+
     } else {
-      this.query_stack_general.dimensions[0] = 'VACUNADOSCovid.distritoEstablecimiento'
+      this.query_stack_general.dimensions[0] = 'VACUNADOSCovidFast.distritoEstablecimiento'
       this.query_stack_general.filters[3].values = [provincia]
+      this.query_vacunados_fuera.filters[0].values=[provincia]
     }
 
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_general));
-    return this.http.get<any>(environment.url_cubo, { params })
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(dato=>{console.log(dato)
+
+
+    
+    }))
   }
 
 
@@ -640,19 +775,34 @@ export class CuboService {
   }
 
 
-  devolver_meta_ambitos_fil(){
+  devolver_meta_ambitos_fil() {
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_cobertura_fil_ambito));
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
-  devolver_avances_ambitos(){
+  devolver_avances_ambitos() {
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_cobertura_por_ambito));
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
 
+  devolver_vacunados_fuera() {
+    let params = new HttpParams().set('query', JSON.stringify(this.query_vacunados_fuera));
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(),map(data=>{
+      return data.data
+    }))
+
   }
+
+  devolver_urbanidades() {
+
+    return [{name:"A2 CIUDADES INTERMEDIAS"},{name:"RURAL"},{name:"A2.1 CAPITALES PROVINCIAS"},{name:"RESTO URBANO"}]
+    
+  
+  }
+
+}
 
 
 

@@ -1,0 +1,311 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <span class="brand-text font-weight-light">GESTION DE LA INFORMACION </span>
+  </a>
+
+  <!-- Sidebar -->
+  <div
+    class="
+      sidebar
+      os-host
+      os-theme-light
+      os-host-overflow
+      os-host-overflow-y
+      os-host-resize-disabled
+      os-host-scrollbar-horizontal-hidden
+      os-host-transition
+    "
+  >
+    <div class="os-resize-observer-host observed">
+      <div class="os-resize-observer" style="left: 0px; right: auto"></div>
+    </div>
+    <div
+      class="os-size-auto-observer observed"
+      style="height: calc(100% + 1px); float: left"
+    >
+      <div class="os-resize-observer"></div>
+    </div>
+    <div class="os-padding">
+      <div
+        class="os-viewport os-viewport-native-scrollbars-invisible"
+        style="overflow-y: scroll"
+      >
+        <div
+          class="os-content"
+          style="padding: 0px 8px; height: 100%; width: 100%"
+        >
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image"></div>
+            <div class="info">
+              <a href="#" class="d-block"
+                >GESTION DE LA INFORMACION</a
+              >
+            </div>
+          </div>
+
+
+     
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item has-treeview">
+                <a
+                  [routerLink]="['centro-vacunacion']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-envelope"></i>
+                  <p>
+                    REGISTRO DE LA GESTION DE INFORMACION DIARIA
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item has-treeview">
+                <a
+                  [routerLink]="['reporte-registro-diario-centro']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-envelope"></i>
+                  <p>
+                    REPORTE DE REGISTRO DE LA INFORMACION DIARIA
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['problemas']"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                  REGISTROS DE CASOS
+                 
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
+            <div class="image"></div>
+            <div class="info">
+              <a href="#" class="d-block">MODULO DE DISTRIBUCION DE VACUNAS</a>
+            </div>
+          </div>
+
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a
+                  [routerLink]="['recepcion-almacen-especial']"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                    RECEPCION ALMACEN
+                      </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['estrategia-red']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    DISTRIBUCION DE VACUNAS DE ESTRATEGIA A ALMACEN
+                    ESPECIALIZADO
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['almacen-red']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    DISTRIBUCION DE VACUNAS DE ALMACEN ESPECIALIZADO A REDES DE
+                    SALUD
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item has-treeview">
+                <a
+                  [routerLink]="['red-ipress']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-envelope"></i>
+                  <p>
+                    DISTRIBUCION DE RED A MICRORED/IPRESS
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item has-treeview">
+                <a
+                  [routerLink]="['micored-ipress']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-envelope"></i>
+                  <p>
+                    DISTRIBUCION DE (MICRORED/IPRESS) A IPRESS
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION' AND login.TIPO_AMBITO!='RED'">
+              <div class="image"></div>
+              <div class="info">
+                <a href="#" class="d-block"
+                  >MODULO DE CADENO DE FRIO</a
+                >
+              </div>
+            </div>
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION' AND login.TIPO_AMBITO!='RED'">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+            
+              <li class="nav-item">
+                <a
+                  [routerLink]="['recepcion-anexos']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>REGISTRO DE ANEXOS DE CADENA DE FRIO</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-header">MODULOS DE REPORTES</li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['comparacion-almacen-red']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>CUADRO DE COMPARACION ALMACEN RED</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  [routerLink]="['distribucion-vacunas-cenares']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>DISTRIBUCION DE VACUNAS POR CENARES</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="['stock-disponible-redes']"
+                  class="nav-link"
+                  routerLinkActive="active"
+                >
+                  <i class="nav-icon far fa-image"></i>
+                  <p>REPORTE STOCK DISPONIBLE</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+
+          <nav class="mt-2" *ngIf="login.TIPO_AMBITO!='CENTRO_VACUNACION'">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-header">MODULO DE ADMINISTRACION DE USUARIOS</li>
+              
+
+              <li class="nav-item">
+                <a
+                  [routerLink]="['admin-user']"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                   ADMINISTRACION DE USUARIOS
+                 
+                  </p>
+                </a>
+              </li>
+            
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div
+      class="
+        os-scrollbar
+        os-scrollbar-horizontal
+        os-scrollbar-unusable
+        os-scrollbar-auto-hidden
+      "
+    >
+      <div class="os-scrollbar-track">
+        <div
+          class="os-scrollbar-handle"
+          style="width: 100%; transform: translate(0px, 0px)"
+        ></div>
+      </div>
+    </div>
+    <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
+      <div class="os-scrollbar-track">
+        <div
+          class="os-scrollbar-handle"
+          style="height: 65.4213%; transform: translate(0px, 0px)"
+        ></div>
+      </div>
+    </div>
+    <div class="os-scrollbar-corner"></div>
+  </div>
+  <!-- /.sidebar -->
+</aside>

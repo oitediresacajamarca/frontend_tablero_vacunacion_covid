@@ -1,0 +1,67 @@
+<div class="login-page">
+<div class="login-box">
+    <div class="login-logo">
+      <b></b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+
+        <div class="row">
+          <div class="col-2"><img src="../../../assets/logo.png" alt="" width="80px"></div>
+          <div class="col-8 titulo">  <p class="login-box-msg">
+            SISTEMA DE GESTION DE LA INFORMACION VACUNACION COVID 19
+          </p></div>
+          <div class="col-2"><img src="../../../assets/logo_gore.png" alt="" width="80px"></div>
+        </div>
+      
+        
+  
+        <form  [formGroup]="formg">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Usuario" formControlName="login">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" formControlName="clave">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember">
+                <label for="remember">
+             Recordarme
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block" (click)="iniciar_sesion()">Iniciar Sesion</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+  
+ 
+        <!-- /.social-auth-links -->
+  
+        <p class="mb-1">
+          <a href="forgot-password.html">Olvide mi contrase;a</a>
+        </p>
+        <p class="mb-0">
+          <a href="register.html" class="text-center">Registre nuevo usuario</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+</div>

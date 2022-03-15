@@ -1,0 +1,27 @@
+<h1>REPORTE DISTRIBUCION DE VACUNAS POR CENARES</h1>
+
+<table class="table">
+
+
+    <thead>
+        <tr>
+          <th scope="col">FABRICANTE</th>
+          <th scope="col">DOSIS ASIGNADAS A IPRESS</th>
+          <th scope="col">DOSIS DISTRIBUIDAS POR CENARES </th>
+          <th scope="col">DOSIS DIFERENCIA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dato of datos_reporte">
+          <th scope="row">{{dato.fabricante}}</th>
+          
+          <td>{{dato.CANTIDAD_DOSIS_DISTRIBUIDAS}}</td>
+          <td>{{dato.CANTIDAD_DOSIS_CENARES}}</td>
+          <td>{{dato.DIFERENCIA_DOSIS}}</td>
+        </tr>
+        
+       
+      </tbody>
+
+
+</table>

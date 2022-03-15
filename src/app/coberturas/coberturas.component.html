@@ -1,5 +1,3 @@
-
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -14,7 +12,7 @@
             <div class="info-box-content">
               <span class="info-box-text">COBERTURA PRIMERA DOSIS</span>
               <span class="info-box-number">
-                <h3>{{ total_1_dosis | percent: "1.2-2" }}</h3>
+                <h3>{{ total_1_dosis | percent: "1.1-1" }}</h3>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -31,7 +29,7 @@
             <div class="info-box-content">
               <span class="info-box-text">COBERTURA SEGUNDA DOSIS</span>
               <span class="info-box-number">
-                <h3>{{ total_2_dosis | percent: "1.2-2" }}</h3>
+                <h3>{{ total_2_dosis | percent: "1.1-1" }}</h3>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -50,9 +48,9 @@
             ></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">COBERTURA TOTAL</span>
+              <span class="info-box-text">COBERTURA TERCERA DOSIS</span>
               <span class="info-box-number">
-                <h3>{{ total_dosis | percent: "1.2-2" }}</h3>
+                <h3>{{ total_3_dosis | percent: "1.1-1" }}</h3>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -112,6 +110,7 @@
             >
               <option value="TODOS">TODOS</option>
               <option value="PFIZER">PFIZER</option>
+              <option value="PFIZE PEDIATRICA">PFIZER PEDIATRICA</option>
               <option
                 value="VACUNA CONTRA SARS COV-2 INACTIVADA BEIJING INSTITUTE OF BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA"
               >
@@ -119,6 +118,7 @@
                 BIOLOGICAL PRODUCTS Co Ltd. (BIBP) CHINA
               </option>
               <option value="SINOPHARM">SINOPHARM</option>
+              <option value="ASTRAZENECA">ASTRAZENECA</option>
             </select>
           </div>
         </div>
@@ -134,30 +134,22 @@
               <option value="TODOS">TODOS</option>
               <option value="1ª dosis">1ª dosis</option>
               <option value="2ª dosis">2ª dosis</option>
+              <option value="3ª dosis">3ª dosis</option>
             </select>
           </div>
         </div>
 
         <div class="col-12 col-sm-6 col-md-2">
           <div class="form-group">
-            <label>GRUPO DE EDAD</label>
+      
 
-            <select
-              class="form-control"
-              [(ngModel)]="grupo_edad_seleccionado"
-              (change)="selecciono_edad()"
-            >
-              <option value="TODOS">TODOS</option>
-              <option value="0-9">18-19</option>
-              <option value="10-19">19-20</option>
-              <option value="20-29">20-29</option>
-              <option value="30-39">30-39</option>
-              <option value="40-49">40-49</option>
-              <option value="50-59">50-59</option>
-              <option value="60-69">60-69</option>
-              <option value="70-79">70-79</option>
-              <option value="80 a mas">80 a mas</option>
-            </select>
+            <label>GRUPO DE EDAD</label>
+            <p-multiSelect   [options]="grupos_etareos"  optionLabel="name" optionValue="value" 
+            defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
+            width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
+            (onChange)="selecciono_edad()" [(ngModel)]="grupo_edad_seleccionado" #etareo_selector></p-multiSelect> 
+
+
           </div>
         </div>
 
@@ -230,7 +222,7 @@
                     ></app-departamento-cajamarca>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="card caja-p">
                     <div [chart]="chart"></div>
                   </div>
@@ -238,7 +230,7 @@
                   <!-- /.chart-responsive -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3">
+                <div class="col-md-5">
                   <div class="card caja-p">
                     <table class="table table-striped table-sm caja-p">
                       <thead>
@@ -246,6 +238,7 @@
                           <th scope="col" class="display-6">AMBITO</th>
                           <th class="display-6">PRIMERA DOSIS</th>
                           <th class="display-6">SEGUNDA DOSIS</th>
+                          <th class="display-6">TERCERA DOSIS</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -261,6 +254,9 @@
                           <td class="display-6 text-center">
                             {{ lugar.segunda_dosis | number: "1.2-2" }}
                           </td>
+                          <td class="display-6 text-center">
+                            {{ lugar.tercera_dosis | number: "1.2-2" }}
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -269,7 +265,7 @@
                   <!-- /.progress-group -->
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="card caja-p">
                     <p class="text-center">
                       <strong>VACUNOMETRO</strong>
