@@ -53,12 +53,9 @@ export class DetalleDistribucionAlmacenRedSismedComponent implements OnInit {
 
   seleccciono_provincia(e: any) {
 
-
-
-
     this.NOMBRE_RED = e.NOMBRE
-
-    this.cargar_movimientos_sismed()
+    this.cargar_movimientos_filtros({FABRICANTE:e})
+   
   }
 
   seleccciono_fabricante(e:any){

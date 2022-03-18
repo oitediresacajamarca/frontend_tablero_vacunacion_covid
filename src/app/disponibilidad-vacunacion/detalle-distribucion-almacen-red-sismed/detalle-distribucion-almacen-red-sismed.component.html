@@ -6,7 +6,7 @@
       <div class="col-3"><app-provincia-selector (selecciono)="seleccciono_provincia($event)"></app-provincia-selector></div>
       <div class="col-3"><app-fabricante (selecciono)="seleccciono_fabricante($event)"></app-fabricante></div>
       <div class="col-3"></div>
-      <div class="col-3"></div>
+      <div class="col-3 ">Fuente SISMED</div>
     </div>
 
     <div class="row">
@@ -45,6 +45,11 @@
               <th pSortableColumn="CANTIDAD_DOSIS">
                 CANTIDAD DOSIS <p-sortIcon field="CANTIDAD_DOSIS"></p-sortIcon>
               </th>
+              <th pSortableColumn="MEDFECHVTO">
+                FECHA VENCIMIENTO <p-sortIcon field="MEDFECHVTO"></p-sortIcon>
+              </th>
+
+  
               <th pSortableColumn="TIPO MOVIMIENTO">
                 TIPO MOVIMIENTO <p-sortIcon field="TIPO_MOV"></p-sortIcon>
               </th>
@@ -77,6 +82,9 @@
               <td>{{ distris.MOVCANTID }}</td>
               <td>
                 {{ distris.CANTIDAD_DOSIS }}
+              </td>
+              <td>
+                {{ distris.MEDFECHVTO|date:'dd/MM/yyyy' }}
               </td>
               <td>
                 {{ distris.MOVCODITIP }}
