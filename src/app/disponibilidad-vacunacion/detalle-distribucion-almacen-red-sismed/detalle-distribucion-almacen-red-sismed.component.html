@@ -23,6 +23,14 @@
               <th pSortableColumn="FECHA">
                 FECHA <p-sortIcon field="code"></p-sortIcon>
               </th>
+              <th pSortableColumn="TIPO MOVIMIENTO">
+                TIPO MOVIMIENTO <p-sortIcon field="TIPO_MOV"></p-sortIcon>
+              </th>
+              <th pSortableColumn="MOVNUMEDCO">
+               NUMERO DE DOCUMENTO <p-sortIcon field="MOVNUMEDCO"></p-sortIcon>
+              </th>
+
+              
               <th pSortableColumn="NOMBRE">
                 ORIGEN <p-sortIcon field="PROVINCIA"></p-sortIcon>
               </th>
@@ -48,11 +56,12 @@
               <th pSortableColumn="MEDFECHVTO">
                 FECHA VENCIMIENTO <p-sortIcon field="MEDFECHVTO"></p-sortIcon>
               </th>
+              <th pSortableColumn="MOVCODITIP">
+             TIPO MOVIMIENTO <p-sortIcon field="MOVCODITIP"></p-sortIcon>
+              </th>
 
   
-              <th pSortableColumn="TIPO MOVIMIENTO">
-                TIPO MOVIMIENTO <p-sortIcon field="TIPO_MOV"></p-sortIcon>
-              </th>
+          
               <th >
                 ACCION <p-sortIcon ></p-sortIcon>
               </th>
@@ -64,10 +73,17 @@
                 {{ distris.MOVFECHREG | date: "dd-MM-yyyy" }}
               </td>
               <td>
-                {{ distris.almdes }}
+                {{ distris.tipcctdsc}}
               </td>
               <td>
-                {{ distris.IPRESS_DESTINO }}
+                {{ distris.MOVNUMEDCO}}
+              </td>
+              
+              <td>
+                {{ distris.ALMCODIORG+'-'+distris.almdes }}
+              </td>
+              <td>
+                {{distris.ALMCODIDST+'-'+ distris.IPRESS_DESTINO }}
               </td>
               <td>
                 {{ distris.FABRICANTE }}
@@ -86,6 +102,7 @@
               <td>
                 {{ distris.MEDFECHVTO|date:'dd/MM/yyyy' }}
               </td>
+          
               <td>
                 {{ distris.MOVCODITIP }}
               </td>

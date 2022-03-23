@@ -32,7 +32,7 @@ export class DetalleDistribucionAlmacenRedSismedComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.cargar_movimientos_sismed()
+   // this.cargar_movimientos_sismed()
   }
 
   cargar_movimientos_sismed() {
