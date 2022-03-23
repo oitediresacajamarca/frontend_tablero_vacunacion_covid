@@ -32,7 +32,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
       { name: 'ALMACEN ESPECIALIZADO CHOTA', code: '060401',almcod:'010A01' },
       { name: 'ALMACEN ESPECIALIZADO CUTERVO', code: '060601',almcod:'012A01' },
     ];
-    this.cargar_movimientos()
+   // this.cargar_movimientos()
   }
 
 
@@ -51,7 +51,7 @@ export class RecepcionAlmacenEspecialComponent implements OnInit {
 
 
   buscar() {
-    console.log(this.form.value)
+
      this.movimientos.cargar_movimientos_vacunas_almacenes_especializados(this.form.value).subscribe(data=>{
       this.movimientos_sismed=data;
     })

@@ -53,24 +53,28 @@
         <tr>
           <th>FECHA DE MOVIMIENTO</th>
           <th>ORIGEN</th>
+          <th>DESTINO</th>
 
           <th>TIPO DE DOCUMENTO</th>
           <th>NUMERO DE DOCUMENTO</th>
           <th>LOTE</th>
           <th>FABRICANTE</th>
+          <th>FECHA VENCIMIENTO</th>
           <th>CANTIDAD EN VIALES</th>
-          <th>CATIDAD EN DOSIS</th>
+          <th>CANTIDAD EN DOSIS</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{ product.MOVFECHREG | date: "dd-MM-yyyy" }}</td>
-          <td>{{ product.almdes }}</td>
+          <td>{{product.ALMCODIORG+'-'+ product.almdes }}</td>
+          <td>{{product.ALMCODIDST+'-'+ product.IPRESS_DESTINO }}</td>
 
           <td>{{ product.DOCDESTINO }}</td>
           <td>{{ product.MOVNUMEDCO }}</td>
           <td>{{ product.MEDLOTE }}</td>
           <td>{{ product.FABRICANTE }}</td>
+          <td>{{ product.MEDFECHVTO }}</td>
           <td>{{ product.MOVCANTID }}</td>
           <td>{{ product.CANTIDAD_DOSIS }}</td>
         </tr>
