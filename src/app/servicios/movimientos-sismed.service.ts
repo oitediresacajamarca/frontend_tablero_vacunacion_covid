@@ -46,6 +46,11 @@ export class MovimientosSismedService {
     return this.http.get<MovimientoSismed[]>(environment.url__backend_base+'movimientos-vacunas-sismed/distribuciones_red/'+CODIGO_RED)
    }
 
+
+   cargar_movimientos_distribuciones_de_red_ipres_filtro(CODIGO_RED:string,filtro:any){
+    return this.http.post<MovimientoSismed[]>(environment.url__backend_base+'movimientos-vacunas-sismed/distribuciones_red_ipress_filtro/'+CODIGO_RED,filtro)
+   }
+
    cargar_movimientos_vacunas_almacenes_especializados(filtro:any){
  
      return this.http.post<MovimientoSismed[]>(environment.url__backend_base+'movimientos-vacunas-sismed/movimientos_sismed_almacen_especializado/'+   filtro.almacen.almcod,filtro)

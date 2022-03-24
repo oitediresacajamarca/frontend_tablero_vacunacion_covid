@@ -19,7 +19,7 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   red: string = ''
 
 
-
+  filtro: any = {}
 
 
   ngOnInit(): void {
@@ -56,19 +56,35 @@ export class DetalleDistribucionPorIpressComponent implements OnInit {
   }
 
   selecciono_red(e: any) {
-    console.log(e)
-    this.red = e.ID_PROVINCIA
-    this.cargar_movimientos_red()
 
+    this.red = e.ID_PROVINCIA
+    this.cargar_movimientos_red_filtro()
+
+  }
+
+  seleccciono_fabricante(e: any) {
+    console.log(e)
+    this.filtro.fabricante = e
+    this.cargar_movimientos_red_filtro()
   }
 
   cargar_movimientos_red() {
     this.movimientos_vac.cargar_movimientos_distribuciones_de_red(this.red).subscribe(data => {
 
       this.salidas_sismed = data
-      console.log(data)
+
     })
   }
+  cargar_movimientos_red_filtro() {
+
+    this.movimientos_vac.cargar_movimientos_distribuciones_de_red_ipres_filtro(this.red, {}).subscribe(data => {
+
+      this.salidas_sismed = data
+
+    })
+
+  }
+
 
   MODIFICAR(distris: any) {
 

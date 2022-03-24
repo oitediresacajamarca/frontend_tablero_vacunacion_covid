@@ -166,7 +166,8 @@ export class CuboService {
   query_time_line: any = {
     "measures": [
       "VACUNADOSCovidFast.dosis_1",
-      "VACUNADOSCovidFast.dosis_2"
+      "VACUNADOSCovidFast.dosis_2",
+      "VACUNADOSCovidFast.dosis_3"
     ],
     "timeDimensions": [
       {

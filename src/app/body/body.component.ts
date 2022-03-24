@@ -10,11 +10,9 @@ declare const $: any;
 
 
 import Tabulator from 'tabulator-tables';
-import { Dropdown } from 'primeng/dropdown';
 import { MultiSelect } from 'primeng/multiselect';
 interface City {
   name: string
-
 }
 
 @Component({
@@ -151,6 +149,13 @@ export class BodyComponent implements OnInit {
       name: '2 dosis',
       data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8],
       color: '#0000ff',
+      lineWidth: 4,
+
+    },
+    {
+      name: '3 dosis',
+      data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8],
+      color: '#32CD32',
       lineWidth: 4,
 
     }]
@@ -360,21 +365,21 @@ export class BodyComponent implements OnInit {
   }
 
   async cargar_1ra_dosis() {
-  let respuesta=await  this.cubo.devolver_total_por_dosis(['1ª dosis']).toPromise()
+    let respuesta = await this.cubo.devolver_total_por_dosis(['1ª dosis']).toPromise()
 
-  this.total_1_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
+    this.total_1_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
 
   async cargar_2da_dosis() {
-    let respuesta=await  this.cubo.devolver_total_por_dosis(['2ª dosis']).toPromise()
+    let respuesta = await this.cubo.devolver_total_por_dosis(['2ª dosis']).toPromise()
 
     this.total_2_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
   async cargar_3ra_dosis() {
 
-    let respuesta=await  this.cubo.devolver_total_por_dosis(['3ª dosis']).toPromise()
+    let respuesta = await this.cubo.devolver_total_por_dosis(['3ª dosis']).toPromise()
 
     this.total_3_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
@@ -382,7 +387,7 @@ export class BodyComponent implements OnInit {
   async cargar_dosis_total() {
 
 
-    let respuesta=await  this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).toPromise()
+    let respuesta = await this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).toPromise()
 
     this.total_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
@@ -411,17 +416,18 @@ export class BodyComponent implements OnInit {
 
 
   cargar_linea_tiempo() {
-    let datos: any[] = []
+
     let dosis_1: any[] = []
     let dosis_2: any[] = []
+    let dosis_3: any[] = []
     let axis: any[] = []
 
 
     this.cubo.devolver_linea_tiempo().subscribe(respuesta => {
 
       let dat: any[] = respuesta.data
-
-
+    
+      console.log(dat)
       axis = dat.map(resp => {
 
         return moment(new Date(resp['VACUNADOSCovidFast.fechaVacunacion.day'])).format('DD/MM/YYYY');
@@ -439,10 +445,16 @@ export class BodyComponent implements OnInit {
         return resp['VACUNADOSCovidFast.dosis_2']
 
       })
+      dosis_3 = dat.map(resp => {
+
+        return resp['VACUNADOSCovidFast.dosis_3']
+
+      })
 
       this.opciones_linea_tiempo.xAxis.categories = axis
       this.opciones_linea_tiempo.series[0].data = dosis_1
       this.opciones_linea_tiempo.series[1].data = dosis_2
+      this.opciones_linea_tiempo.series[2].data = dosis_3
 
       this.linea_tiempo = new Chart(this.opciones_linea_tiempo)
 
@@ -465,7 +477,7 @@ export class BodyComponent implements OnInit {
       let
         datos: any[] = respuesta.data
 
-     
+
 
 
 
@@ -504,7 +516,7 @@ export class BodyComponent implements OnInit {
 
 
 
-        
+
         tercera_dosis.push(datos.filter((tres) => {
 
           return tres['VACUNADOSCovidFast.provinciaEstablecimiento'] == depa && tres['VACUNADOSCovidFast.dosisAplicada'] == '3ª dosis'
@@ -801,10 +813,10 @@ export class BodyComponent implements OnInit {
 
 
     this.cubo.query_dosis.filters[4].values = filtro
-   await this.cargar_1ra_dosis()
-   await this.cargar_2da_dosis()
-   await this.cargar_3ra_dosis()
-   await this.cargar_dosis_total()
+    await this.cargar_1ra_dosis()
+    await this.cargar_2da_dosis()
+    await this.cargar_3ra_dosis()
+    await this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[5].values = filtro
     this.cargar_vacunacion_hoy()
     this.cubo.query_dosis_grupo_riesgo.filters[4].values = filtro
@@ -841,7 +853,7 @@ export class BodyComponent implements OnInit {
     let data: any[] = this.opciones.xAxis.categories
     this.datos_tablas = data.map((dato, index) => {
 
-      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0],tercera_dosis:this.opciones.series[2].data[index][0] }
+      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0], tercera_dosis: this.opciones.series[2].data[index][0] }
     })
 
     /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
@@ -929,9 +941,9 @@ export class BodyComponent implements OnInit {
     let filtro = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
 
     this.cubo.query_dosis.filters[5].values = [e.start.format('YYYY-MM-DD'), e.end.format('YYYY-MM-DD')]
- await   this.cargar_1ra_dosis()
-   await this.cargar_2da_dosis()
-   await   this.cargar_3ra_dosis()
+    await this.cargar_1ra_dosis()
+    await this.cargar_2da_dosis()
+    await this.cargar_3ra_dosis()
     this.cargar_dosis_total()
 
 
