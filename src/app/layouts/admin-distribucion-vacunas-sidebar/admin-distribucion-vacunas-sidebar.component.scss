@@ -7,3 +7,8 @@
 .os-viewport{
     height: 100vh;
 }
+
+
+.main-sidebar .main-sidebar::before{
+    width: 40% !important;
+}

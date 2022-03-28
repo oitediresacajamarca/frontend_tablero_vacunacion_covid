@@ -10,6 +10,8 @@ var moment = require('moment'); // require
   providedIn: 'root'
 })
 export class CuboService {
+  cubo=""
+  VACUNADOSCovidFast:any
 
   query_meta_cobertura_fil_ambito: any = {
     "measures": [
@@ -40,7 +42,7 @@ export class CuboService {
 
   query_avance_cobertura_por_ambito: any = {
     "measures": [
-      "VACUNADOSCovidFast.dosis_1",
+    "VACUNADOSCovidFast.dosis_1",
       "VACUNADOSCovidFast.dosis_2"
     ],
     "timeDimensions": [],
@@ -691,6 +693,7 @@ export class CuboService {
   devolver_dosis_provincia() {
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack));
+    console.log(JSON.stringify(params))
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
@@ -779,11 +782,13 @@ return 0
   devolver_meta_ambitos_fil() {
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_cobertura_fil_ambito));
+    
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
   devolver_avances_ambitos() {
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_cobertura_por_ambito));
+  console.log(JSON.stringify(params))
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
