@@ -116,7 +116,6 @@ export class CuboService {
         "member": "DISTRIBUCIONGeograficaMeta.grupoRiesgo",
         "operator": "contains",
         "values": [
-
         ]
       },
       {
@@ -756,9 +755,7 @@ return 0
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_general));
     return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(dato=>{console.log(dato)
-
-
-    
+   
     }))
   }
 

@@ -178,19 +178,20 @@
                         <option value="1ª dosis">1ª dosis</option>
                         <option value="2ª dosis">2ª dosis</option>
                         <option value="3ª dosis">3ª dosis</option>
+                        <option value="4ª dosis">4ª dosis</option>
+                        <option value="Dosis Revacunado">Dosis Revacunado</option>
                       </select>
                     </div>
                   </div>
           
                   <div class="col-12 col-sm-6 col-md-3">
                     <div class="form-group">
-  
-  
+   
                       <label>GRUPO DE EDAD</label>
                       <p-multiSelect   [options]="grupos_etareos"  optionLabel="name" optionValue="value" 
                       defaultLabel="Seleccione Grupo de Vacunacion" style=" min-width: 15rem; 
                       width: 18rem; "  scrollHeight="315px" [virtualScroll]="true"
-                      (onChange)="selecciono_edad()" [(ngModel)]="grupo_edad_seleccionado" #etareo_selector></p-multiSelect>           
+                      (onChange)="selecciono_edad()" [(ngModel)]="grupo_edad_seleccionado" #etareo_selector></p-multiSelect>      
           
                     
                     </div>

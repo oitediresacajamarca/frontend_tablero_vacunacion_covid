@@ -222,6 +222,11 @@ export class BodyComponent implements OnInit {
         name: 'TERCERA DOSIS',
         data: [],
         color: '#064ea6'
+      },
+      {
+        name: 'CUARTA DOSIS',
+        data: [],
+        color: '#B0E0E6'
       }
     ]
   }
@@ -323,6 +328,22 @@ export class BodyComponent implements OnInit {
         },
         {
           title: "TERCERA DOSIS", field: "tercera_dosis", hozAlign: "center", formatter: function (cell: any, formatterParams: any) {
+            var value = cell.getValue();
+            if (value != undefined) {
+
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+            }
+            else {
+              value = 0
+
+              return "<span style=' font-weight:bold;font-size:13px;'>" + value + "</span>";
+
+            }
+
+          }
+        },
+        {
+          title: "CUARTA DOSIS", field: "cuarta_dosis", hozAlign: "center", formatter: function (cell: any, formatterParams: any) {
             var value = cell.getValue();
             if (value != undefined) {
 
@@ -468,6 +489,7 @@ export class BodyComponent implements OnInit {
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
     let tercera_dosis: any[] = []
+    let cuarta_dosis: any[] = []
 
 
     await this.cubo.devolver_dosis_ambito('TODOS').subscribe(respuesta => {
@@ -478,7 +500,7 @@ export class BodyComponent implements OnInit {
         datos: any[] = respuesta.data
 
 
-
+console.log(datos)
 
 
       this.opciones.title.text = 'DOSIS APLICADAS POR PROVINCIA'
@@ -525,15 +547,24 @@ export class BodyComponent implements OnInit {
           return fil['VACUNADOSCovidFast.count']
         }))
 
+        cuarta_dosis.push(datos.filter((cuatro) => {
+
+          return cuatro['VACUNADOSCovidFast.provinciaEstablecimiento'] == depa && cuatro['VACUNADOSCovidFast.dosisAplicada'] == '4ª dosis'
+
+        }).map(fil => {
+          return fil['VACUNADOSCovidFast.count']
+        }))
+
 
 
       })
 
 
-
-      this.opciones.series[1].data = segunda_dosis
       this.opciones.series[0].data = primeras_dosis
+      this.opciones.series[1].data = segunda_dosis
+    
       this.opciones.series[2].data = tercera_dosis
+      this.opciones.series[3].data = cuarta_dosis
 
 
 
@@ -555,6 +586,7 @@ export class BodyComponent implements OnInit {
     let primeras_dosis: any[] = []
     let segunda_dosis: any[] = []
     let tercera_dosis: any[] = []
+    let cuarta_dosis: any[] = []
 
     this.opciones.title.text = 'DOSIS APLICADAS POR DISTRITO'
 
@@ -607,6 +639,14 @@ export class BodyComponent implements OnInit {
           return fil['VACUNADOSCovidFast.count']
         }))
 
+        cuarta_dosis.push(datos.filter((dos) => {
+
+          return dos['VACUNADOSCovidFast.distritoEstablecimiento'] == depa && dos['VACUNADOSCovidFast.dosisAplicada'] == '4ª dosis'
+
+        }).map(fil => {
+          return fil['VACUNADOSCovidFast.count']
+        }))
+
 
       })
 
@@ -645,7 +685,7 @@ export class BodyComponent implements OnInit {
 
   cargar_vacunacion_hoy() {
     this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {
-      console.log(respuesta)
+    
       this.vacunados_hoy = respuesta
     })
   }
@@ -698,12 +738,9 @@ export class BodyComponent implements OnInit {
     let filtro: any[] = []
     if (this.dosis_selecionada != 'TODOS') {
       filtro = [this.dosis_selecionada]
-
     } else {
       filtro = []
     }
-
-
     this.cubo.query_vacunados_hoy.filters[2].values = filtro
     this.cargar_vacunacion_hoy()
     this.cubo.query_dosis_grupo_riesgo.filters[1].values = filtro
@@ -851,26 +888,20 @@ export class BodyComponent implements OnInit {
   async cargar_datos_tabla() {
 
     let data: any[] = this.opciones.xAxis.categories
+  
     this.datos_tablas = data.map((dato, index) => {
 
-      return { ambito: dato, primera_dosis: this.opciones.series[0].data[index][0], segunda_dosis: this.opciones.series[1].data[index][0], tercera_dosis: this.opciones.series[2].data[index][0] }
+      return { 
+        ambito: dato, 
+        primera_dosis: this.opciones.series[0].data[index][0],
+         segunda_dosis: this.opciones.series[1].data[index][0], 
+         tercera_dosis: this.opciones.series[2].data[index][0],
+         cuarta_dosis: this.opciones.series[3].data[index][0] 
+        }
     })
 
-    /* this.cubo.devolver_vacunados_fuera().subscribe((vacunados_fuera) =>{
- 
-       console.log(vacunados_fuera)
-       this.datos_tablas.map(elemento=>{
- 
-         return{...elemento,otros_campos:}
-       })
-    
-     }
- 
-     
-     )
- */
-
-
+    console.log(this.datos_tablas)
+   
     this.table.setData(this.datos_tablas)
 
 

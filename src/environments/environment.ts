@@ -4,17 +4,17 @@
 
 export const environment = {
   production: false,
- // url_cubo:'http://192.168.144.129:4000/cubejs-api/v1/load',
-  url_cubo:'http://sir.diresacajamarca.gob.pe:8089/cubejs-api/v1/load',
-  url__backend:'http://localhost:8003/distribucion-vacunas/',
-  url__backend_base:'http://localhost:8003/'
+  // url_cubo:'http://192.168.144.129:4000/cubejs-api/v1/load',
+  url_cubo: 'http://sir.diresacajamarca.gob.pe:8089/cubejs-api/v1/load',
+  url__backend: 'http://localhost:8003/distribucion-vacunas/',
+  url__backend_base: 'http://localhost:8003/'
 
   //url__backend_base:'  http://sir.diresacajamarca.gob.pe:8003/'
 
 
 
 
-  
+
 };
 
 /*
