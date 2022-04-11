@@ -650,11 +650,11 @@ console.log(datos)
 
       })
 
-
-
-      this.opciones.series[1].data = segunda_dosis
       this.opciones.series[0].data = primeras_dosis
+      this.opciones.series[1].data = segunda_dosis
+    
       this.opciones.series[2].data = tercera_dosis
+      this.opciones.series[3].data = cuarta_dosis
 
 
 
