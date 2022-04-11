@@ -29,6 +29,7 @@ export class BodyComponent implements OnInit {
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
   total_3_dosis: number = 0;
+  total_4_dosis:number=0;
   total_dosis: number = 0;
   vacunados_hoy: number = 0;
   Highcharts: typeof Highcharts = Highcharts;
@@ -370,6 +371,7 @@ export class BodyComponent implements OnInit {
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_3ra_dosis()
+    this.cargar_4ta_dosis()
     this.cargar_dosis_total()
     this.cargar_vacunacion_hoy()
     this.cargar_provincias()
@@ -403,6 +405,12 @@ export class BodyComponent implements OnInit {
     let respuesta = await this.cubo.devolver_total_por_dosis(['3ª dosis']).toPromise()
 
     this.total_3_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
+  }
+  async cargar_4ta_dosis() {
+
+    let respuesta = await this.cubo.devolver_total_por_dosis(['4ª dosis']).toPromise()
+
+    this.total_4_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
 
   async cargar_dosis_total() {
@@ -718,6 +726,7 @@ console.log(datos)
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_3ra_dosis()
+    this.cargar_4ta_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[0].values = filtro
     this.cargar_vacunacion_hoy()
@@ -768,6 +777,7 @@ console.log(datos)
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_3ra_dosis()
+    this.cargar_4ta_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[3].values = filtro
     this.cargar_vacunacion_hoy()
@@ -802,6 +812,7 @@ console.log(datos)
     this.cargar_1ra_dosis()
     this.cargar_2da_dosis()
     this.cargar_3ra_dosis()
+    this.cargar_4ta_dosis()
     this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[4].values = filtro
     this.cargar_vacunacion_hoy()
@@ -853,6 +864,7 @@ console.log(datos)
     await this.cargar_1ra_dosis()
     await this.cargar_2da_dosis()
     await this.cargar_3ra_dosis()
+    await this.cargar_4ta_dosis()
     await this.cargar_dosis_total()
     this.cubo.query_vacunados_hoy.filters[5].values = filtro
     this.cargar_vacunacion_hoy()
@@ -975,6 +987,7 @@ console.log(datos)
     await this.cargar_1ra_dosis()
     await this.cargar_2da_dosis()
     await this.cargar_3ra_dosis()
+    await this.cargar_4ta_dosis()
     this.cargar_dosis_total()
 
 
