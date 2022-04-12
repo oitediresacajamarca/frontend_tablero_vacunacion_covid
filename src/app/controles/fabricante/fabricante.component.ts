@@ -47,7 +47,7 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor,AfterVi
   selecciono = new EventEmitter()
 
   FABRICANTES: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' },
-   { NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' }]
+   { NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' },{NOMBRE: 'MODERNA'}]
   FABRICANTE: any;
 
   @Input('INFL')
