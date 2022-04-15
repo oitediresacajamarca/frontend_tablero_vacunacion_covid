@@ -69,6 +69,6 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor,AfterVi
     this.selecciono.emit(event.value.NOMBRE)
   }
   FABRICANTES_ADD: any[] = [{ NOMBRE: 'SINOPHARM' }, { NOMBRE: 'PFIZER' }, { NOMBRE: 'PFIZER PEDIATRICA' }, { NOMBRE: 'ASTRAZENECA' },
-  { NOMBRE: 'INFLUENZA ADULTO' }]
+  { NOMBRE: 'INFLUENZA ADULTO' },{ NOMBRE: 'MODERNA' }]
 
 }
