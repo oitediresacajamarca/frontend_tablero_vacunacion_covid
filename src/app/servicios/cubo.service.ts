@@ -10,8 +10,8 @@ var moment = require('moment'); // require
   providedIn: 'root'
 })
 export class CuboService {
-  cubo=""
-  VACUNADOSCovidFast:any
+  cubo = ""
+  VACUNADOSCovidFast: any
 
   query_meta_cobertura_fil_ambito: any = {
     "measures": [
@@ -38,11 +38,11 @@ export class CuboService {
     ]
   }
 
-  
+
 
   query_avance_cobertura_por_ambito: any = {
     "measures": [
-    "VACUNADOSCovidFast.dosis_1",
+      "VACUNADOSCovidFast.dosis_1",
       "VACUNADOSCovidFast.dosis_2"
     ],
     "timeDimensions": [],
@@ -160,7 +160,7 @@ export class CuboService {
 
         ]
       }
-      
+
     ]
   }
 
@@ -219,7 +219,7 @@ export class CuboService {
         "member": "VACUNADOSCovidFast.urbanidad",
         "operator": "contains",
         "values": [
-          
+
         ]
       }
 
@@ -284,10 +284,10 @@ export class CuboService {
       },
       {
         "member": "VACUNADOSCovidFast.urbanidad",
-      "operator": "contains",
-      "values": [
-     
-      ]
+        "operator": "contains",
+        "values": [
+
+        ]
       }
 
 
@@ -379,10 +379,10 @@ export class CuboService {
       },
       {
         "member": "VACUNADOSCovidFast.urbanidad",
-      "operator": "contains",
-      "values": [
-     
-      ]
+        "operator": "contains",
+        "values": [
+
+        ]
       }
 
 
@@ -448,10 +448,10 @@ export class CuboService {
         "member": "VACUNADOSCovidFast.urbanidad",
         "operator": "contains",
         "values": [
-          
+
         ]
       }
-     
+
     ]
   }
 
@@ -604,7 +604,7 @@ export class CuboService {
         "member": "VACUNADOSCovidFast.urbanidad",
         "operator": "contains",
         "values": [
-          
+
         ]
       }
     ],
@@ -706,14 +706,15 @@ export class CuboService {
 
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_vacunados_hoy));
-    return this.http.get<any>(environment.url_cubo, { params }).pipe(map((data)=>{if(data.data[0]['VACUNADOSCovidFast.count']==null){
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(map((data) => {
+      if (data.data[0]['VACUNADOSCovidFast.count'] == null) {
 
-return 0
-    }else {
-      return data.data[0]['VACUNADOSCovidFast.count']
-    }
-  
-  }))
+        return 0
+      } else {
+        return data.data[0]['VACUNADOSCovidFast.count']
+      }
+
+    }))
   }
 
   devolver_maestro_provincias() {
@@ -736,32 +737,48 @@ return 0
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_distritos));
     return this.http.get<any>(environment.url_cubo, { params })
   }
-
-
   devolver_dosis_ambito(provincia: string) {
 
     if (provincia == 'TODOS') {
 
       this.query_stack_general.dimensions[0] = 'VACUNADOSCovidFast.provinciaEstablecimiento'
       this.query_stack_general.filters[3].values = []
-      this.query_vacunados_fuera.filters[0].values=[]
+      this.query_vacunados_fuera.filters[0].values = []
 
     } else {
       this.query_stack_general.dimensions[0] = 'VACUNADOSCovidFast.distritoEstablecimiento'
       this.query_stack_general.filters[3].values = [provincia]
-      this.query_vacunados_fuera.filters[0].values=[provincia]
+      this.query_vacunados_fuera.filters[0].values = [provincia]
     }
-
-
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_general));
-    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(dato=>{console.log(dato)
-   
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(dato => {
+      console.log(dato)
+
     }))
   }
 
 
-  devolver_meta() {
+  devolver_meta(dosis:any=[]) {
+    
 
+  
+
+    let filtros_gr: any[] = this.query_meta.filters[1].values;
+let res=this.query_meta.filters[1].values
+
+   if(filtros_gr.length==0){
+
+    filtros_gr=['5 a 7','8 a 9','10 a 11','12-19','20-29','30-39','40-49','50-59','60 a mas']
+   }
+    if (dosis == '3ª dosis' || dosis == '4ª dosis') {
+     res=  filtros_gr.filter((filtro) => {
+        return filtro!='5 a 7' && filtro!='8 a 9' && filtro!='10 a 11'
+      })
+   
+    }
+
+    this.query_meta.filters[1].values=res
+  
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta));
     return this.http.get<any>(environment.url_cubo, { params })
@@ -779,20 +796,20 @@ return 0
   devolver_meta_ambitos_fil() {
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_cobertura_fil_ambito));
-    
+
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
   devolver_avances_ambitos() {
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_cobertura_por_ambito));
-  console.log(JSON.stringify(params))
+    console.log(JSON.stringify(params))
     return this.http.get<any>(environment.url_cubo, { params })
 
   }
 
   devolver_vacunados_fuera() {
     let params = new HttpParams().set('query', JSON.stringify(this.query_vacunados_fuera));
-    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(),map(data=>{
+    return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(), map(data => {
       return data.data
     }))
 
@@ -800,9 +817,9 @@ return 0
 
   devolver_urbanidades() {
 
-    return [{name:"A2 CIUDADES INTERMEDIAS"},{name:"RURAL"},{name:"A2.1 CAPITALES PROVINCIAS"},{name:"RESTO URBANO"}]
-    
-  
+    return [{ name: "A2 CIUDADES INTERMEDIAS" }, { name: "RURAL" }, { name: "A2.1 CAPITALES PROVINCIAS" }, { name: "RESTO URBANO" }]
+
+
   }
 
 }

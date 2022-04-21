@@ -930,7 +930,8 @@ console.log(datos)
 
 
   cargar_cobertura() {
-    this.cubo.devolver_meta().subscribe(respuesta => {
+
+    this.cubo.devolver_meta(this.dosis_selecionada).subscribe(respuesta => {
 
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
@@ -950,6 +951,10 @@ console.log(datos)
       }
       if (this.dosis_selecionada == '3ª dosis') {
         this.avance = this.total_3_dosis
+      }
+
+      if (this.dosis_selecionada == '4ª dosis') {
+        this.avance = this.total_4_dosis
       }
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
 
