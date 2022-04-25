@@ -758,27 +758,25 @@ export class CuboService {
   }
 
 
-  devolver_meta(dosis:any=[]) {
-    
+  devolver_meta(dosis: any = []) {
 
-  
 
     let filtros_gr: any[] = this.query_meta.filters[1].values;
-let res=this.query_meta.filters[1].values
+    let res = this.query_meta.filters[1].values
 
-   if(filtros_gr.length==0){
+    if (filtros_gr.length == 0) {
 
-    filtros_gr=['5 a 7','8 a 9','10 a 11','12-19','20-29','30-39','40-49','50-59','60 a mas']
-   }
+      filtros_gr = ['5 a 7', '8 a 9', '10 a 11', '12-19', '20-29', '30-39', '40-49', '50-59', '60 a mas']
+    }
     if (dosis == '3ª dosis' || dosis == '4ª dosis') {
-     res=  filtros_gr.filter((filtro) => {
-        return filtro!='5 a 7' && filtro!='8 a 9' && filtro!='10 a 11'
+      res = filtros_gr.filter((filtro) => {
+        return filtro != '5 a 7' && filtro != '8 a 9' && filtro != '10 a 11'
       })
-   
+
     }
 
-    this.query_meta.filters[1].values=res
-  
+    this.query_meta.filters[1].values = res
+
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta));
     return this.http.get<any>(environment.url_cubo, { params })

@@ -328,7 +328,7 @@ export class CuboCoberturasService {
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
-  devolver_meta_dosis(){
+  devolver_meta_dosis(dosis:string){
     
     let params = new HttpParams().set('query', JSON.stringify(this.query_meta_dosis));
     return this.http.get<any>(environment.url_cubo, { params })

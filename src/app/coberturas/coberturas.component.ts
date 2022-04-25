@@ -373,14 +373,13 @@ export class CoberturasComponent implements OnInit {
 
         this.cubo.query_meta_dosis.filters[0].values = this.filtro
 
+    
 
-        this.cubo.devolver_meta_dosis().subscribe(respuesta_meta => {
+
+        this.cubo.devolver_meta_dosis(this.dosis_selecionada).subscribe(respuesta_meta => {
 
 
           let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-
-
-
           this.total_1_dosis = avance_1 / meta;
           this.total_2_dosis = avance_2 / meta;
           this.total_3_dosis = avance_3 / meta;
@@ -410,7 +409,7 @@ export class CoberturasComponent implements OnInit {
   
       this.avance_hoy_1 = respuesta.data[0]['VACUNADOSCovidFast.dosis_1']
       this.avance_hoy_2 = respuesta.data[0]['VACUNADOSCovidFast.dosis_2']
-      this.cubo.devolver_meta_dosis().subscribe(met => {
+      this.cubo.devolver_meta_dosis(this.dosis_selecionada).subscribe(met => {
         let meta = met.data[0]['DISTRIBUCIONGeograficaMeta.meta']
 
       })
@@ -693,7 +692,7 @@ export class CoberturasComponent implements OnInit {
     let linea = await this.cubo.devolver_linea_tiempo_avance().toPromise()
     let avances: any[] = linea.data
 
-    let resp = await this.cubo.devolver_meta_dosis().toPromise()
+    let resp = await this.cubo.devolver_meta_dosis(this.dosis_selecionada).toPromise()
     let meta = resp.data[0]['DISTRIBUCIONGeograficaMeta.meta']
 
     let categorias = avances.map(avance => {
