@@ -310,7 +310,7 @@ export class CoberturasComponent implements OnInit {
       { name: 'menor 5', value: 'menor 5' },
       { name: '5 a 7', value: '5 a 7' },
       { name: '8 a 9', value: '8 a 9' },
-      { name: '10 a 11', value: '10 a 11' },     
+      { name: '10 a 11', value: '10 a 11' },
       { name: '12-19', value: '12-19' },
       { name: '20-29', value: '20-29' },
       { name: '30-39', value: '30-39' },
@@ -318,8 +318,6 @@ export class CoberturasComponent implements OnInit {
       { name: '50-59', value: '50-59' },
       { name: '60 a mas', value: '60 a mas' }
     ]
-
-
 
     this.cargar_dosis()
     this.cargar_vacunacion_hoy()
@@ -331,7 +329,7 @@ export class CoberturasComponent implements OnInit {
 
     this.cargarDatosPie()
     this.cargar_linea_tiempo()
-    //  this.cargar_cobertura()
+   
 
 
 
@@ -342,7 +340,7 @@ export class CoberturasComponent implements OnInit {
 
 
     this.cubo.devolver_total_dosis_1().subscribe(
-      respuesta => {
+      async respuesta => {
 
         let dimension: string = 'VACUNADOSCovidFast.provinciaEstablecimiento'
         if (this.provincia_selecionada == 'TODOS' || this.provincia_selecionada == '') {
@@ -359,7 +357,7 @@ export class CoberturasComponent implements OnInit {
         let avance_3 = respuesta.data[0]['VACUNADOSCovidFast.dosis_3']
 
         let tot = respuesta.data[0]['VACUNADOSCovidFast.count']
-      
+
 
         this.avance_1 = avance_1;
         this.avance_2 = avance_2;
@@ -367,44 +365,37 @@ export class CoberturasComponent implements OnInit {
 
         this.cubo.query_meta_dosis.filters[0].values = this.filtro
 
-    
+     this.cubo.query_meta_dosis.filters[2].values = this.grupo_edad_seleccionado
+
+        let respuesta_meta_3: any = {}
+        respuesta_meta_3 = await this.cubo.devolver_meta_dosis('3ra dosis').toPromise()
+
+       let meta = respuesta_meta_3.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+        this.total_3_dosis = avance_3 / meta;
+
+        this.cubo.query_meta_dosis.filters[2].values = this.grupo_edad_seleccionado
+        let respuesta_meta_1: any = {}
+
+        respuesta_meta_1 = await this.cubo.devolver_meta_dosis('1ra dosis').toPromise()
+
+         meta = respuesta_meta_1.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+        this.total_1_dosis = avance_1 / meta;
+        this.cubo.query_meta_dosis.filters[2].values = this.grupo_edad_seleccionado
+
+        let respuesta_meta_2: any = {}
+
+        respuesta_meta_2 = await this.cubo.devolver_meta_dosis('2da dosis').toPromise()
+
+        meta = respuesta_meta_2.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+        this.total_2_dosis = avance_2 / meta;
+        this.total_dosis = this.total_2_dosis
+        this.jeringa.setCobertura(this.total_dosis)
+        this.meta = meta
 
 
-        this.cubo.devolver_meta_dosis('1ra dosis').subscribe(respuesta_meta => {
-
-       
-          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-          this.total_1_dosis = avance_1 / meta;
-        })
-
-        this.cubo.devolver_meta_dosis('2da dosis').subscribe(respuesta_meta => {
-
-       
-          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-
-          this.total_2_dosis = avance_2 / meta; 
-          this.total_dosis=this.total_2_dosis
-          this.jeringa.setCobertura(this.total_dosis)
-          this.meta=meta
-
-        })
-
-        
-        this.cubo.devolver_meta_dosis('3ra dosis').subscribe(respuesta_meta => {
-
-       
-          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-
-          this.total_3_dosis = avance_3 / meta;  
-
-
-        })
-
-
-
-
-
-
+      
 
 
       }
@@ -418,13 +409,10 @@ export class CoberturasComponent implements OnInit {
 
   cargar_vacunacion_hoy() {
     this.cubo.devolver_dosis_hoy().subscribe(respuesta => {
-  
+
       this.avance_hoy_1 = respuesta.data[0]['VACUNADOSCovidFast.dosis_1']
       this.avance_hoy_2 = respuesta.data[0]['VACUNADOSCovidFast.dosis_2']
-      this.cubo.devolver_meta_dosis(this.dosis_selecionada).subscribe(met => {
-        let meta = met.data[0]['DISTRIBUCIONGeograficaMeta.meta']
-
-      })
+ 
 
 
     })
@@ -510,7 +498,7 @@ export class CoberturasComponent implements OnInit {
       fabri = [this.fabricante_selecionado]
     }
 
-    if (this.grupo_edad_seleccionado == [] ) {
+    if (this.grupo_edad_seleccionado == []) {
       grupo_edad = []
     }
     else {
@@ -598,7 +586,7 @@ export class CoberturasComponent implements OnInit {
 
     })
     let tercera_dosis
-    
+
     tercera_dosis = datos.map(dato => {
 
 
@@ -835,9 +823,9 @@ export class CoberturasComponent implements OnInit {
   selecciono_edad() {
 
     let filtro_provinica: any
-    
 
- 
+
+
 
     let filtro: any[] = []
     if (this.grupo_edad_seleccionado == []) {

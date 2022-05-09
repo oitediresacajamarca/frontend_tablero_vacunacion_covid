@@ -323,13 +323,16 @@ export class CuboCoberturasService {
 
   devolver_total_dosis_1() {
 
-
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_dosis_1));
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
   devolver_meta_dosis(dosis: string) {
     let fitros: any[] = []
+    let fitros_ant: any[] = []
+    fitros_ant = this.query_meta_dosis.filters[2].values;
+
+    console.log(dosis)
     if (dosis == '3ra dosis') {
       fitros = this.query_meta_dosis.filters[2].values;
       if (fitros.length == 0) {
@@ -340,8 +343,8 @@ export class CuboCoberturasService {
           return dat != '5 a 7' && dat != '8 a 9' && dat != '10 a 11'
         })
       }
-
-
+    }else{
+      
     }
 
 
