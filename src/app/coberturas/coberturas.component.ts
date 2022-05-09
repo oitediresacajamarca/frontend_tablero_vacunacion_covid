@@ -377,6 +377,7 @@ export class CoberturasComponent implements OnInit {
 
 
         this.cubo.devolver_meta_dosis(this.dosis_selecionada).subscribe(respuesta_meta => {
+          console.log(respuesta_meta)
 
 
           let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']

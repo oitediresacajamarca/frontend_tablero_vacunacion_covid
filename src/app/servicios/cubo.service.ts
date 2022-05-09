@@ -692,7 +692,7 @@ export class CuboService {
   devolver_dosis_provincia() {
 
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack));
-    console.log(JSON.stringify(params))
+
     return this.http.get<any>(environment.url_cubo, { params })
   }
 
@@ -752,7 +752,7 @@ export class CuboService {
     }
     let params = new HttpParams().set('query', JSON.stringify(this.query_stack_general));
     return this.http.get<any>(environment.url_cubo, { params }).pipe(tap(dato => {
-      console.log(dato)
+   
 
     }))
   }
@@ -800,7 +800,7 @@ export class CuboService {
   }
   devolver_avances_ambitos() {
     let params = new HttpParams().set('query', JSON.stringify(this.query_avance_cobertura_por_ambito));
-    console.log(JSON.stringify(params))
+
     return this.http.get<any>(environment.url_cubo, { params })
 
   }

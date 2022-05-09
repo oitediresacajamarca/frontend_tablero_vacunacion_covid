@@ -72,11 +72,6 @@ export class BodyComponent implements OnInit {
   tipo_ambito_seleccionado = 'PROVINCIA'
 
 
-
-
-
-
-
   //eventos
 
   @Output() seleciono_provincia = new EventEmitter<string>()
@@ -456,7 +451,7 @@ export class BodyComponent implements OnInit {
 
       let dat: any[] = respuesta.data
     
-      console.log(dat)
+
       axis = dat.map(resp => {
 
         return moment(new Date(resp['VACUNADOSCovidFast.fechaVacunacion.day'])).format('DD/MM/YYYY');
@@ -506,10 +501,6 @@ export class BodyComponent implements OnInit {
       let categorias = []
       let
         datos: any[] = respuesta.data
-
-
-console.log(datos)
-
 
       this.opciones.title.text = 'DOSIS APLICADAS POR PROVINCIA'
 
@@ -606,7 +597,6 @@ console.log(datos)
         datos: any[] = respuesta.data
 
 
-
       categorias = datos.map(data => {
 
         return data['VACUNADOSCovidFast.distritoEstablecimiento']
@@ -692,15 +682,13 @@ console.log(datos)
 
 
   cargar_vacunacion_hoy() {
-    this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {
-    
+    this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {    
       this.vacunados_hoy = respuesta
     })
   }
 
   cargar_provincias() {
     this.cubo.devolver_maestro_provincias().subscribe(respuesta => {
-
       let prov: any[] = respuesta.data
       this.provincias = prov.map(p => {
         return p['DISTRIBUCIONGeografica.provincia']
@@ -735,11 +723,8 @@ console.log(datos)
     this.cargar_stacked()
     this.cubo.query_meta.filters[2].values = filtro
     this.cargar_cobertura()
-
     this.cubo.query_time_line.filters[0].values = filtro
-
     this.cargar_linea_tiempo()
-
 
   }
 
@@ -764,9 +749,8 @@ console.log(datos)
 
 
   selecciono_edad() {
-
-
     let filtro: any[] = []
+    
     if (this.grupo_edad_seleccionado == []) {
       filtro = []
     } else {
@@ -798,12 +782,9 @@ console.log(datos)
 
     let filtro: any[] = []
     if (this.fabricante_selecionado == 'TODOS' || this.fabricante_selecionado == '') {
-
       filtro = []
     } else {
-
       filtro = [this.fabricante_selecionado]
-
     }
 
 
@@ -846,7 +827,7 @@ console.log(datos)
 
   }
   async seleciono_grupo_vacunacion() {
-    console.log(this.grupo_vacunacion_selecionado)
+  
 
     let filtro: any[] = []
     if (this.grupo_vacunacion_selecionado == [] || this.grupo_vacunacion_selecionado == ['']) {
@@ -912,7 +893,7 @@ console.log(datos)
         }
     })
 
-    console.log(this.datos_tablas)
+
    
     this.table.setData(this.datos_tablas)
 
@@ -931,12 +912,10 @@ console.log(datos)
 
   cargar_cobertura() {
 
-    this.cubo.devolver_meta(this.dosis_selecionada).subscribe(respuesta => {
+    this.cubo.devolver_meta(this.dosis_selecionada).subscribe(respuesta => {   
 
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {
-        //    this.meta = this.meta * 2
-
       }
 
 
@@ -970,8 +949,6 @@ console.log(datos)
         this.cobertura = '0'
         this.jeringa.setCobertura(parseFloat('0'))
       }
-
-
     })
 
   }
