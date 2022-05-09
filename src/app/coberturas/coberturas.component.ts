@@ -19,7 +19,6 @@ export class CoberturasComponent implements OnInit {
 
   @ViewChild('mapa_cajamarca')
   mapa_cajamarca!: DepartamentoCajamarcaComponent;
-
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
   total_3_dosis: number = 0;
@@ -70,9 +69,7 @@ export class CoberturasComponent implements OnInit {
 
   }
 
-  update() {
 
-  }
 
   linea_tiempo: any
 
@@ -326,13 +323,10 @@ export class CoberturasComponent implements OnInit {
 
     this.cargar_dosis()
     this.cargar_vacunacion_hoy()
-
-
-
     this.cargar_provincias()
     this.cargar_grupos_vacunacion()
 
-    await this.selecciono_provincia()
+     this.selecciono_provincia()
 
 
     this.cargarDatosPie()
@@ -376,21 +370,38 @@ export class CoberturasComponent implements OnInit {
     
 
 
-        this.cubo.devolver_meta_dosis(this.dosis_selecionada).subscribe(respuesta_meta => {
-          console.log(respuesta_meta)
+        this.cubo.devolver_meta_dosis('1ra dosis').subscribe(respuesta_meta => {
 
-
+       
           let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
           this.total_1_dosis = avance_1 / meta;
-          this.total_2_dosis = avance_2 / meta;
-          this.total_3_dosis = avance_3 / meta;
-          this.total_dosis = tot / (meta * 2);
-          this.meta = meta
+        })
 
-          this.jeringa.setCobertura(this.total_dosis * 100)
+        this.cubo.devolver_meta_dosis('2da dosis').subscribe(respuesta_meta => {
+
+       
+          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+          this.total_2_dosis = avance_2 / meta; 
+          this.total_dosis=this.total_2_dosis
+          this.jeringa.setCobertura(this.total_dosis)
+          this.meta=meta
+
+        })
+
+        
+        this.cubo.devolver_meta_dosis('3ra dosis').subscribe(respuesta_meta => {
+
+       
+          let meta = respuesta_meta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
+
+          this.total_3_dosis = avance_3 / meta;  
 
 
         })
+
+
+
 
 
 
@@ -481,18 +492,6 @@ export class CoberturasComponent implements OnInit {
     this.chart = new Chart(this.opciones)
 
     await this.cargar_datos_tabla()
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 
@@ -838,7 +837,7 @@ export class CoberturasComponent implements OnInit {
     let filtro_provinica: any
     
 
-    console.log(this.grupo_edad_seleccionado)
+ 
 
     let filtro: any[] = []
     if (this.grupo_edad_seleccionado == []) {
