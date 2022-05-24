@@ -34,6 +34,7 @@ import { ReporteCabeceraRegionalComponent } from './disponibilidad-vacunacion/re
 import { AdminDistribucionVacunasComponent } from './layouts/admin-distribucion-vacunas/admin-distribucion-vacunas.component';
 import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-distribucion-vacunas-cenares/reporte-distribucion-vacunas-cenares.component';
 import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
+import { SeguimientoVacunacionComponent } from './seguimiento-vacunacion/seguimiento-vacunacion.component';
 import { AdminComponent } from './usuarios/admin/admin.component';
 import { LoginComponent } from './usuarios/login/login.component';
 
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: 'detalle/envio-red', component: DetalleEnvioRedComponent },
   { path: 'detalle/envio-red/:id', component: DetalleEnvioRedComponent },
   { path: 'recepcion-almacen-especial', component: RecepcionAlmacenEspecialComponent },
+  {path:'seguimiento',component:SeguimientoVacunacionComponent},
   {
     path: 'admin-distribucion', component: AdminDistribucionVacunasComponent,
     children: [

@@ -43,6 +43,8 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-distribucion-vacunas-cenares/reporte-distribucion-vacunas-cenares.component';
 import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
+import { SeguimientoVacunacionComponent } from './seguimiento-vacunacion/seguimiento-vacunacion.component';
+import { DetallePadronComponent } from './seguimiento-vacunacion/detalle-padron/detalle-padron.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-
     ConteoRapidoComponent,
     ReporteDistribucionVacunasCenaresComponent,
     ReporteStockDisponiblePorProvinciaComponent,
+    SeguimientoVacunacionComponent,
+    DetallePadronComponent,
 
   
  

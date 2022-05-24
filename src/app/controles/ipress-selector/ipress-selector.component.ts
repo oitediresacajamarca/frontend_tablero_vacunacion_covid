@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IpressService } from 'src/app/servicios/ipress.service';
 
@@ -15,6 +15,8 @@ import { IpressService } from 'src/app/servicios/ipress.service';
 export class IpressSelectorComponent implements OnInit, ControlValueAccessor {
 
   constructor(private ipressserv: IpressService) { }
+  @Output('selecciono')
+  selecciono: EventEmitter<any> = new EventEmitter();
 
 
   ngOnInit(): void {
@@ -37,14 +39,14 @@ export class IpressSelectorComponent implements OnInit, ControlValueAccessor {
   cargar_establecimeintos_por_id_microred() {
     this.ipressserv.cargar_ipress_por_cod_microred(this.ID_MICRORED).subscribe((data) => {
 
-      console.log(data)
+
 
       this.ESTABLECIMIENTOS = data
     })
   }
 
   seleccionoiPRESS(e: any) {
-
+    this.selecciono.emit(e.value)
   }
 
 

@@ -1,0 +1,7 @@
+
+<div class="row p-5">
+    <div class="col-4"> <app-red-selector (selecciono)="cargar_microredes($event)" ></app-red-selector>  </div>
+    <div class="col-4"> <app-microred-selector #MICRORED (selecciono)="cargar_establecimiento($event)" ></app-microred-selector>  </div>
+    <div class="col-4">  <app-ipress-selector #ESTABLECIMIENTO (selecciono)="selecciono_establec($event)"></app-ipress-selector> </div>
+    <div class="col-4">   </div>
+</div>

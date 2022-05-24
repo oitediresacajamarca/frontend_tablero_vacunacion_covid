@@ -29,7 +29,7 @@ export class BodyComponent implements OnInit {
   total_1_dosis: number = 0;
   total_2_dosis: number = 0;
   total_3_dosis: number = 0;
-  total_4_dosis:number=0;
+  total_4_dosis: number = 0;
   total_dosis: number = 0;
   vacunados_hoy: number = 0;
   Highcharts: typeof Highcharts = Highcharts;
@@ -233,7 +233,9 @@ export class BodyComponent implements OnInit {
 
 
   constructor(private cubo: CuboService) {
-
+    this.provincia_selecionada = this.cubo.query_dosis.filters[0].values;
+    this.fabricante_selecionado = this.cubo.query_dosis.filters[3].values;
+    this.grupo_edad_seleccionado = this.cubo.query_dosis.filters[2].values;
   }
   tabledata = [
 
@@ -450,7 +452,7 @@ export class BodyComponent implements OnInit {
     this.cubo.devolver_linea_tiempo().subscribe(respuesta => {
 
       let dat: any[] = respuesta.data
-    
+
 
       axis = dat.map(resp => {
 
@@ -561,7 +563,7 @@ export class BodyComponent implements OnInit {
 
       this.opciones.series[0].data = primeras_dosis
       this.opciones.series[1].data = segunda_dosis
-    
+
       this.opciones.series[2].data = tercera_dosis
       this.opciones.series[3].data = cuarta_dosis
 
@@ -650,7 +652,7 @@ export class BodyComponent implements OnInit {
 
       this.opciones.series[0].data = primeras_dosis
       this.opciones.series[1].data = segunda_dosis
-    
+
       this.opciones.series[2].data = tercera_dosis
       this.opciones.series[3].data = cuarta_dosis
 
@@ -682,7 +684,7 @@ export class BodyComponent implements OnInit {
 
 
   cargar_vacunacion_hoy() {
-    this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {    
+    this.cubo.devolver_vacunados_hoy().subscribe(respuesta => {
       this.vacunados_hoy = respuesta
     })
   }
@@ -750,7 +752,7 @@ export class BodyComponent implements OnInit {
 
   selecciono_edad() {
     let filtro: any[] = []
-    
+
     if (this.grupo_edad_seleccionado == []) {
       filtro = []
     } else {
@@ -827,7 +829,7 @@ export class BodyComponent implements OnInit {
 
   }
   async seleciono_grupo_vacunacion() {
-  
+
 
     let filtro: any[] = []
     if (this.grupo_vacunacion_selecionado == [] || this.grupo_vacunacion_selecionado == ['']) {
@@ -881,20 +883,20 @@ export class BodyComponent implements OnInit {
   async cargar_datos_tabla() {
 
     let data: any[] = this.opciones.xAxis.categories
-  
+
     this.datos_tablas = data.map((dato, index) => {
 
-      return { 
-        ambito: dato, 
+      return {
+        ambito: dato,
         primera_dosis: this.opciones.series[0].data[index][0],
-         segunda_dosis: this.opciones.series[1].data[index][0], 
-         tercera_dosis: this.opciones.series[2].data[index][0],
-         cuarta_dosis: this.opciones.series[3].data[index][0] 
-        }
+        segunda_dosis: this.opciones.series[1].data[index][0],
+        tercera_dosis: this.opciones.series[2].data[index][0],
+        cuarta_dosis: this.opciones.series[3].data[index][0]
+      }
     })
 
 
-   
+
     this.table.setData(this.datos_tablas)
 
 
@@ -912,7 +914,7 @@ export class BodyComponent implements OnInit {
 
   cargar_cobertura() {
 
-    this.cubo.devolver_meta(this.dosis_selecionada).subscribe(respuesta => {   
+    this.cubo.devolver_meta(this.dosis_selecionada).subscribe(respuesta => {
 
       this.meta = respuesta.data[0]['DISTRIBUCIONGeograficaMeta.meta']
       if (this.dosis_selecionada == 'TODOS' || this.dosis_selecionada == '') {

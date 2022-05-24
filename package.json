@@ -37,6 +37,8 @@
     "highcharts": "^9.1.1",
     "highcharts-angular": "^2.10.0",
     "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.23",
     "litepicker": "^2.0.11",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
@@ -50,6 +52,7 @@
     "tabulator-tables": "^4.9.3",
     "tiny-date-picker": "^4.0.0-beta3",
     "tslib": "^2.0.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -57,6 +60,7 @@
     "@angular/cli": "~12.1.4",
     "@angular/compiler-cli": "~12.1.4",
     "@angular/localize": "^12.1.4",
+    "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.20.15",
     "@types/tabulator": "^0.1.0",

@@ -1,0 +1,55 @@
+<p-table #dt [columns]="cols" [value]="data" selectionMode="multiple" 
+responsiveLayout="scroll" [exportHeader]="'customExportHeader'" 
+[paginator]="true" [rows]="100" [showCurrentPageReport]="true" 
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+        [globalFilterFields]="['Nombres','Apellido_Paterno','Apellido_Materno','Numero_Doc']">>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+        </div>
+        <div class="flex right ">
+        
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <th>SEGUIMIENTO</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+           
+            <td>{{rowData['Tipo_Doc']}}</td>
+            <td>{{rowData['Documento']}}</td>
+            <td>{{rowData['Numero_Doc']}}</td>
+            <td>{{rowData['Nombres']}}</td>
+            <td>{{rowData['Apellido_Paterno']}}</td>
+            <td>{{rowData['Apellido_Materno']}}</td>
+            <td>{{rowData['Edad']}}</td>
+            <td>{{rowData['Celular']}}</td>
+            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_1']==1?'vacunados':'novacunados'">
+                {{rowData['Dosis_1']==1?'Vacunados':'No Vacunados'}}</td>
+            <td>{{rowData['Fabricante_1']}}</td>
+            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_2']==1?'vacunados':'novacunados'">
+                {{rowData['Dosis_2']==1?'Vacunado':'No Vacunado'}}</td>
+   
+            <td>{{rowData['Fabricante_2']}}</td>
+            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_3']==1?'vacunados':'novacunados'">
+                {{rowData['Dosis_3']==1?'Vacunado':'No Vacunado'}}</td>
+            <td>{{rowData['Fabricante_3']}}</td>
+            <td>{{rowData['Dosis_4']}}</td>
+            <td>{{rowData['Fabricante_4']}}</td>
+            <td><button pButton type="button" icon="pi pi-check" iconPos="left" label="seguimientos" (click)="abrir_seguimientos(rowData['Numero_Doc'])"></button></td>
+        </tr>
+    </ng-template>
+</p-table>
