@@ -2,4 +2,7 @@
 
 <app-filtros-seguimiento (seleciono_establec)="cargar_data($event)"></app-filtros-seguimiento>
 
-<app-detalle-padron #detalle_padron></app-detalle-padron>
+<app-detalle-padron #detalle_padron (iniciar_nuevo)="abrir_nuevo($event)"></app-detalle-padron>
+<app-nuevo [style]="{height:'100%'}" #nuevo_seguimiento></app-nuevo>
+
+

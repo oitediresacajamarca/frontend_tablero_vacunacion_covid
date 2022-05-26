@@ -20,7 +20,7 @@ export class FabricanteComponent implements OnInit, ControlValueAccessor,AfterVi
   onChange = (_: any) => { }
   constructor() { }
   ngAfterViewInit(): void {
-    console.log( this.INFL )
+ 
     if (this.INFL == true) {
       this.FABRICANTES = this.FABRICANTES_ADD;
     }

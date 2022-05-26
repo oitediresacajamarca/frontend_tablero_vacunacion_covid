@@ -1,0 +1,50 @@
+
+
+<p-dialog header="Nuevo Seguimiento" [(visible)]="visible" [contentStyle]="{height:'100%'}" 
+[style]="{width: '50vw',height:'80vw'}">
+    <div class="row p-5" >
+        <div class="col-4">FECHA DE SEGUIMIENTO</div>
+        <div class="col-4" >
+            <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="FECHA_SEGUIMIENTO"></p-calendar>
+          
+        </div>
+    </div>
+    <div class="row p-5">
+        <div class="col-4">MOTIVO DE SEGUIMIENTO</div>
+        <div class="col-4"><textarea pInputTextarea [rows]="10" [cols]="50" [(ngModel)]="MOTIVO_SEGUIMIENTO"></textarea></div>
+
+    </div>
+    <div class="row">
+        <div class="col-3">TIPO DE SEGUIMIENTO</div>
+        <div class="col-3"><p-dropdown [options]="TIPOS_SEGUIMIENTO" [(ngModel)]="TIPO_SEGUIMIENTO" optionLabel="name"></p-dropdown></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3">kkkk</div>
+        <div class="col-3"></div>
+    </div>
+
+    <div class="row">
+
+    </div>
+
+  
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="Guardar()" label="GUARDAR" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

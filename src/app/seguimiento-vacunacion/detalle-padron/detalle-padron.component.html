@@ -37,19 +37,26 @@ responsiveLayout="scroll" [exportHeader]="'customExportHeader'"
             <td>{{rowData['Apellido_Materno']}}</td>
             <td>{{rowData['Edad']}}</td>
             <td>{{rowData['Celular']}}</td>
+            <td>{{rowData['Direccion']}}</td>
             <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_1']==1?'vacunados':'novacunados'">
                 {{rowData['Dosis_1']==1?'Vacunados':'No Vacunados'}}</td>
+
             <td>{{rowData['Fabricante_1']}}</td>
+            <td>{{rowData['Fecha_Dosis_1']}}</td>
             <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_2']==1?'vacunados':'novacunados'">
                 {{rowData['Dosis_2']==1?'Vacunado':'No Vacunado'}}</td>
    
             <td>{{rowData['Fabricante_2']}}</td>
+            <td>{{rowData['Fecha_Dosis_2']}}</td>
             <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_3']==1?'vacunados':'novacunados'">
                 {{rowData['Dosis_3']==1?'Vacunado':'No Vacunado'}}</td>
             <td>{{rowData['Fabricante_3']}}</td>
+            <td>{{rowData['Fecha_Dosis_3']}}</td>
             <td>{{rowData['Dosis_4']}}</td>
             <td>{{rowData['Fabricante_4']}}</td>
-            <td><button pButton type="button" icon="pi pi-check" iconPos="left" label="seguimientos" (click)="abrir_seguimientos(rowData['Numero_Doc'])"></button></td>
+            <td>{{rowData['Fecha_Dosis_4']}}</td>
+            <td></td>
+
         </tr>
     </ng-template>
 </p-table>

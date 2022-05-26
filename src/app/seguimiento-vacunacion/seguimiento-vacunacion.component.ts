@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DetallePadronComponent } from './detalle-padron/detalle-padron.component';
+import { NuevoComponent } from './seguimiento-persona/nuevo/nuevo.component';
 
 @Component({
   selector: 'app-seguimiento-vacunacion',
@@ -20,5 +21,14 @@ export class SeguimientoVacunacionComponent implements OnInit {
     this.detalle_padron.RENIPRESS=e.COD_IPRESS
     this.detalle_padron.cargar_detalle_padron()
   }
+  @ViewChild('nuevo_seguimiento')
+  nuevo_seguimiento!:NuevoComponent
+
+
+  abrir_nuevo(e:any){
+    this.nuevo_seguimiento.visible=true
+  }
+
+
 
 }

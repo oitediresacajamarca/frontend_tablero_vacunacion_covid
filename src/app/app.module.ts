@@ -45,6 +45,8 @@ import { ReporteDistribucionVacunasCenaresComponent } from './reportes/reporte-d
 import { ReporteStockDisponiblePorProvinciaComponent } from './reportes/reporte-stock-disponible-por-provincia/reporte-stock-disponible-por-provincia.component';
 import { SeguimientoVacunacionComponent } from './seguimiento-vacunacion/seguimiento-vacunacion.component';
 import { DetallePadronComponent } from './seguimiento-vacunacion/detalle-padron/detalle-padron.component';
+import { NuevoComponent } from './seguimiento-vacunacion/seguimiento-persona/nuevo/nuevo.component';
+import { DetalleSeguimientoPersonaComponent } from './seguimiento-vacunacion/seguimiento-persona/detalle-seguimiento-persona/detalle-seguimiento-persona.component';
 
 
 @NgModule({
@@ -63,6 +65,8 @@ import { DetallePadronComponent } from './seguimiento-vacunacion/detalle-padron/
     ReporteStockDisponiblePorProvinciaComponent,
     SeguimientoVacunacionComponent,
     DetallePadronComponent,
+    NuevoComponent,
+    DetalleSeguimientoPersonaComponent,
 
   
  
