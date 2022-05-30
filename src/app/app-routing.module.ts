@@ -10,6 +10,7 @@ import { ContenerdorTableroComponent } from './contenerdor-tablero/contenerdor-t
 import { ConteoRapidoNhisComponent } from './conteo-rapido/conteo-rapido-nhis/conteo-rapido-nhis.component';
 import { ConteoRapidoComponent } from './conteo-rapido/conteo-rapido.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
+import { FiltrosSeguimientoAdicionalesComponent } from './controles/filtros-seguimiento-adicionales/filtros-seguimiento-adicionales.component';
 import { ReporteRegistroCentroVacunacionComponent } from './disponibilidad-vacunacion/centro-vacunacion/reporte-registro-centro-vacunacion/reporte-registro-centro-vacunacion.component';
 
 import { CuadroComparacionAlmacenRedComponent } from './disponibilidad-vacunacion/cuadro-comparacion-almacen-red/cuadro-comparacion-almacen-red.component';
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'detalle/envio-red/:id', component: DetalleEnvioRedComponent },
   { path: 'recepcion-almacen-especial', component: RecepcionAlmacenEspecialComponent },
   {path:'seguimiento',component:SeguimientoVacunacionComponent},
+  {path:'hoy',component:FiltrosSeguimientoAdicionalesComponent},
   {
     path: 'admin-distribucion', component: AdminDistribucionVacunasComponent,
     children: [

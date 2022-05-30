@@ -29,6 +29,25 @@ export class SeguimientoVacunacionComponent implements OnInit {
     this.nuevo_seguimiento.visible=true
   }
 
+  seleciono_vacunados_ho(e:any[]){
+    console.log(e)
+   console.log( e.findIndex(data=>{
+     return data=='hoy'
+    }))
+
+
+if(e.findIndex(data=>{
+  return data=='hoy'
+})>=0){
+  
+  console.log(e)
+  
+  this.detalle_padron.cargar_detalle_padron_vacunar_hoy()}
+
+
+
+  }
+
 
 
 }

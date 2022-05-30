@@ -1,8 +1,10 @@
-
-
-<app-filtros-seguimiento (seleciono_establec)="cargar_data($event)"></app-filtros-seguimiento>
-
+<div class="card p-5">
+  <div class="card"> <app-filtros-seguimiento (seleciono_establec)="cargar_data($event)"></app-filtros-seguimiento>
+    <app-filtros-seguimiento-adicionales (selecciono_vacunados_hoy)="seleciono_vacunados_ho($event)"></app-filtros-seguimiento-adicionales></div> 
 <app-detalle-padron #detalle_padron (iniciar_nuevo)="abrir_nuevo($event)"></app-detalle-padron>
 <app-nuevo [style]="{height:'100%'}" #nuevo_seguimiento></app-nuevo>
+</div>
+
+
 
 

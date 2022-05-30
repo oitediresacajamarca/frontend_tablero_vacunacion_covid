@@ -50,7 +50,15 @@ export class DetallePadronComponent implements OnInit {
   cargar_detalle_padron() {
     this.data = []
     this.padronserv.cargar_padron(this.RENIPRESS).subscribe((data) => {
-      console.log(data)
+    
+      this.data = data
+    })
+  }
+
+  cargar_detalle_padron_vacunar_hoy() {
+    this.data = []
+    this.padronserv.cargar_padron_hoy(this.RENIPRESS).subscribe((data) => {
+   
       this.data = data
     })
   }

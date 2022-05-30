@@ -12,4 +12,9 @@ export class PadronesServiceService {
   cargar_padron(renipress: string) {
     return this.http.get<PadronInterface[]>(environment.url__backend_base + 'afiliados-sis/padrones/' + renipress)
   }
+
+  cargar_padron_hoy(renipress: string){
+    return this.http.post<PadronInterface[]>(environment.url__backend_base + 'afiliados-sis/padrones/' + renipress,{hoy:true})
+
+  }
 }
