@@ -22,8 +22,8 @@ export class SeguimientoVacunacionComponent implements OnInit {
   cargar_data(e: any) {
 
     this.detalle_padron.RENIPRESS = e.COD_IPRESS
-    if (this.filtros_adic.opciones[0] == 'hoy') { this.detalle_padron.filtro = { hoy: 'true' } }
-    else { this.detalle_padron.filtro = { hoy: 'false' } }
+    if (this.filtros_adic.opciones[0] == 'hoy') { this.detalle_padron.filtro = { hoy: true } }
+    else { this.detalle_padron.filtro = { hoy: false } }
 
 
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
