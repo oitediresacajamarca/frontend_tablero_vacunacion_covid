@@ -24,14 +24,10 @@ export class SeguimientoVacunacionComponent implements OnInit {
     this.detalle_padron.RENIPRESS = e.COD_IPRESS
     if (this.filtros_adic.opciones[0] == 'hoy') { this.detalle_padron.filtro = { hoy: true } }
     else { this.detalle_padron.filtro = { hoy: false } }
-
-
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
   }
   @ViewChild('nuevo_seguimiento')
   nuevo_seguimiento!: NuevoComponent
-
-
   abrir_nuevo(e: any) {
     this.nuevo_seguimiento.visible = true
   }
@@ -51,6 +47,21 @@ export class SeguimientoVacunacionComponent implements OnInit {
       this.detalle_padron.filtro = { hoy: false }
     }
 
+    this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
+  }
+
+  cambio_filtro_general(e:any){
+   
+    this.detalle_padron.RENIPRESS=e.COD_IPRESS
+    console.log(this.detalle_padron.filtro)
+    this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
+  }
+
+
+
+  cambio_filtros(e:any){
+
+    this.detalle_padron.filtro=e
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
   }
 

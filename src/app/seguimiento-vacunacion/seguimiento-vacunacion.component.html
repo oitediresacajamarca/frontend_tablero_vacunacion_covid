@@ -1,11 +1,21 @@
 <div class="card p-5">
-  <div class="card">  <h1 class="p-5 titulo">SEGUIMIENTO NOMINAL DE VACUNACION COVID REGION CAJAMARCA</h1></div>
-  <div class="card"> <app-filtros-seguimiento (seleciono_establec)="cargar_data($event)"></app-filtros-seguimiento>
-    <app-filtros-seguimiento-adicionales (selecciono_vacunados_hoy)="seleciono_vacunados_ho($event)" #filtros_adic></app-filtros-seguimiento-adicionales></div> 
-<app-detalle-padron #detalle_padron (iniciar_nuevo)="abrir_nuevo($event)"></app-detalle-padron>
-<app-nuevo [style]="{height:'100%'}" #nuevo_seguimiento></app-nuevo>
+  <div class="card">
+    <h1 class="p-5 titulo">
+      SEGUIMIENTO NOMINAL DE VACUNACION COVID REGION CAJAMARCA
+    </h1>
+  </div>
+  <div class="card">
+    <app-filtros-seguimiento
+      (seleciono_establec)="cambio_filtro_general($event)"
+    ></app-filtros-seguimiento>
+    <app-filtros-seguimiento-adicionales
+     (cambio_filtros)="cambio_filtros($event)"
+      #filtros_adic
+    ></app-filtros-seguimiento-adicionales>
+  </div>
+  <app-detalle-padron
+    #detalle_padron
+    (iniciar_nuevo)="abrir_nuevo($event)"
+  ></app-detalle-padron>
+  <app-nuevo [style]="{ height: '100%' }" #nuevo_seguimiento></app-nuevo>
 </div>
-
-
-
-

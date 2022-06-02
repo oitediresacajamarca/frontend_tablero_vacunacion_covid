@@ -19,6 +19,7 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
 import {ChipsModule} from 'primeng/chips';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 
 
@@ -28,11 +29,11 @@ import {ChipsModule} from 'primeng/chips';
     CommonModule, PanelModule, CalendarModule, InputNumberModule,
      InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,DialogModule,
      DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule,ToolbarModule,
-     RadioButtonModule,TagModule,ChipsModule
+     RadioButtonModule,TagModule,ChipsModule,SelectButtonModule
   ], exports: [PanelModule, CalendarModule, InputNumberModule,
      InputTextareaModule, ConfirmDialogModule,TableModule,InputTextModule,
      DialogModule,DropdownModule,CardModule,FileUploadModule,MessagesModule,MessageModule,ToolbarModule,
-     RadioButtonModule,TagModule,ChipsModule
+     RadioButtonModule,TagModule,ChipsModule,SelectButtonModule
      ,
     ]
 })

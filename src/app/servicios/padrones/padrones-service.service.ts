@@ -20,7 +20,7 @@ export class PadronesServiceService {
 
   cargar_padron_filtro(renipress: string,filtro:any){
     console.log(filtro)
-    return this.http.post<PadronInterface[]>(environment.url__backend_base + 'afiliados-sis/padrones/' + renipress,{hoy:filtro.hoy})
+    return this.http.post<PadronInterface[]>(environment.url__backend_base + 'afiliados-sis/padrones/' + renipress,{...filtro})
 
   }
 }

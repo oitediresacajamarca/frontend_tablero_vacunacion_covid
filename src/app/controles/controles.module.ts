@@ -19,6 +19,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FiltrosSeguimientoComponent } from './filtros-seguimiento/filtros-seguimiento.component';
 import { FiltrosSeguimientoAdicionalesComponent } from './filtros-seguimiento-adicionales/filtros-seguimiento-adicionales.component';
 import {CheckboxModule} from 'primeng/checkbox';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import {CheckboxModule} from 'primeng/checkbox';
     FormsModule,
     ButtonModule,
     CalendarModule,
-    CheckboxModule
+    CheckboxModule,SelectButtonModule
   ],exports:[DistritoSelectorComponent,ProvinciaSelectorComponent,ButtonModule,FabricanteComponent,EstablecimientosSelectorComponent,
     RedSelectorComponent,MicroredSelectorComponent,IpressSelectorComponent,SemaforoComponent,RolesSelectorComponent,AmbitoSelectorComponent,
   EstrategiaVacunacionSelectorComponent,FechaSelectorComponent,FiltrosSeguimientoComponent,FiltrosSeguimientoAdicionalesComponent]

@@ -14,7 +14,8 @@ export class DetallePadronComponent implements OnInit {
   @Output('iniciar_nuevo')
   iniciar_nuevo: EventEmitter<any> = new EventEmitter()
 
-  filtro:any
+  filtro:any={hoy:true,dosis_seleccionadas:[],incluye_rezagados:2}
+ 
 
   constructor(private padronserv: PadronesServiceService) { }
   cols!: any[];
@@ -67,6 +68,7 @@ export class DetallePadronComponent implements OnInit {
 
   cargar_detalle_padron_vacunar_filtro() {
     this.data = []
+    
     this.padronserv.cargar_padron_filtro(this.RENIPRESS,this.filtro).subscribe((data) => {
    
       this.data = data

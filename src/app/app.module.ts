@@ -29,10 +29,6 @@ import {TranslateModule} from '@ngx-translate/core'
 import {DialogModule} from 'primeng/dialog';
 
 
-
-
-
-
 import { NgxDateRangeModule } from 'ngx-daterange';
 import { ProvinciaSelectorComponent } from './controles/provincia-selector/provincia-selector.component';
 import { DistritoSelectorComponent } from './controles/distrito-selector/distrito-selector.component';
