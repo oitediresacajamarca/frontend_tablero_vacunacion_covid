@@ -413,7 +413,7 @@ export class BodyComponent implements OnInit {
   async cargar_dosis_total() {
 
 
-    let respuesta = await this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis']).toPromise()
+    let respuesta = await this.cubo.devolver_total_por_dosis(['2ª dosis', '1ª dosis', '3ª dosis','4ª dosis']).toPromise()
 
     this.total_dosis = respuesta.data[0]['VACUNADOSCovidFast.count']
   }
