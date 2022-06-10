@@ -1,63 +1,95 @@
-<p-table #dt [columns]="cols" [value]="data" selectionMode="multiple" 
-responsiveLayout="scroll" [exportHeader]="'customExportHeader'" 
-[paginator]="true" [rows]="100" [showCurrentPageReport]="true" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-        [globalFilterFields]="['Nombres','Apellido_Paterno','Apellido_Materno','Numero_Doc']">>
-    <ng-template pTemplate="caption">
-        <div class="flex">
-            <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
-           
-         
-        </div>
-        <div class=" ">
-        
-            <span class="p-input-icon-left ml-rigth">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Ingrese texto a buscar" />
-            </span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-            <th>SEGUIMIENTO</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-           
-            <td>{{rowData['Tipo_Doc']}}</td>
-            <td>{{rowData['Documento']}}</td>
-            <td>{{rowData['Numero_Doc']}}</td>
-            <td>{{rowData['Nombres']}}</td>
-            <td>{{rowData['Apellido_Paterno']}}</td>
-            <td>{{rowData['Apellido_Materno']}}</td>
-            <td>{{rowData['Edad']}}</td>
-            <td>{{rowData['Celular']}}</td>
-            <td>{{rowData['Direccion']}}</td>
-            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_1']==1?'vacunados':'novacunados'">
-                {{rowData['Dosis_1']==1?'Vacunado':'No Vacunado'}}</td>
 
-            <td>{{rowData['Fabricante_1']}}</td>
-            <td>{{rowData['Fecha_Dosis_1']}}</td>
-            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_2']==1?'vacunados':'novacunados'">
-                {{rowData['Dosis_2']==1?'Vacunado':'No Vacunado'}}</td>
-   
-            <td>{{rowData['Fabricante_2']}}</td>
-            <td>{{rowData['Fecha_Dosis_2']}}</td>
-            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_3']==1?'vacunados':'novacunados'">
-                {{rowData['Dosis_3']==1?'Vacunado':'No Vacunado'}}</td>
-            <td>{{rowData['Fabricante_3']}}</td>
-            <td>{{rowData['Fecha_Dosis_3']}}</td>
-            <td [class]="'customer-badge'" [ngClass]="rowData['Dosis_4']==1?'vacunados':'novacunados'">
-                {{rowData['Dosis_4']==1?'Vacunado':'No Vacunado'}}</td>
-            <td>{{rowData['Fabricante_4']}}</td>
-            <td>{{rowData['Fecha_Dosis_4']}}</td>
-            <td></td>
+<div class="card">
+    <p-table responsiveLayout="stack" [scrollable]="true"  scrollHeight="600px" scrollDirection="both"
+  #dt
+  [columns]="cols"
+  [value]="data"
+  selectionMode="multiple"
+  responsiveLayout="scroll"
+  [exportHeader]="'customExportHeader'"
+  [paginator]="true"
+  [rows]="100"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [globalFilterFields]="[
+    'Nombres',
+    'Apellido_Paterno',
+    'Apellido_Materno',
+    'Numero_Doc'
+  ]"
+  >>
+  <ng-template pTemplate="caption">
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        label="DESCARGAR A EXCEL"
+        pButton
+        pRipple
+        icon="pi pi-file-excel"
+        (click)="exportExcel()"
+        class="p-button-success mr-2"
+        pTooltip="XLS"
+        tooltipPosition="bottom"
+      ></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{ col.header }}
+      </th>
+      <th>SEGUIMIENTO</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td>{{ rowData["Tipo_Doc"] }}</td>
+      <td>{{ rowData["Documento"] }}</td>
+      <td>{{ rowData["Numero_Doc"] }}</td>
+      <td>{{ rowData["Nombres"] }}</td>
+      <td>{{ rowData["Apellido_Paterno"] }}</td>
+      <td>{{ rowData["Apellido_Materno"] }}</td>
+      <td>{{ rowData["Edad"] }}</td>
+      <td>{{ rowData["Celular"] }}</td>
+      <td>{{ rowData["Direccion"] }}</td>
+      <td
+        [class]="'customer-badge'"
+        [ngClass]="rowData['Dosis_1'] == 1 ? 'vacunados' : 'novacunados'"
+      >
+        {{ rowData["Dosis_1"] == 1 ? "Vacunado" : "No Vacunado" }}
+      </td>
 
-        </tr>
-    </ng-template>
+      <td>{{ rowData["Fabricante_1"] }}</td>
+      <td>{{ rowData["Fecha_Dosis_1"] }}</td>
+      <td
+        [class]="'customer-badge'"
+        [ngClass]="rowData['Dosis_2'] == 1 ? 'vacunados' : 'novacunados'"
+      >
+        {{ rowData["Dosis_2"] == 1 ? "Vacunado" : "No Vacunado" }}
+      </td>
+
+      <td>{{ rowData["Fabricante_2"] }}</td>
+      <td>{{ rowData["Fecha_Dosis_2"] }}</td>
+      <td
+        [class]="'customer-badge'"
+        [ngClass]="rowData['Dosis_3'] == 1 ? 'vacunados' : 'novacunados'"
+      >
+        {{ rowData["Dosis_3"] == 1 ? "Vacunado" : "No Vacunado" }}
+      </td>
+      <td>{{ rowData["Fabricante_3"] }}</td>
+      <td>{{ rowData["Fecha_Dosis_3"] }}</td>
+      <td
+        [class]="'customer-badge'"
+        [ngClass]="rowData['Dosis_4'] == 1 ? 'vacunados' : 'novacunados'"
+      >
+        {{ rowData["Dosis_4"] == 1 ? "Vacunado" : "No Vacunado" }}
+      </td>
+      <td>{{ rowData["Fabricante_4"] }}</td>
+      <td>{{ rowData["Fecha_Dosis_4"] }}</td>
+      <td></td>
+    </tr>
+  </ng-template>
 </p-table>
+</div>
+

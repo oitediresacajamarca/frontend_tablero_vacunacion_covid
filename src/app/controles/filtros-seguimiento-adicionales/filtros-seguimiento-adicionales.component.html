@@ -1,9 +1,36 @@
 <div class="row p-5">
-    <div class="col-3"><h4>Mostrar solo poblacion con dosis pendientes</h4></div>
-    <div class="col-3"><p-checkbox name="groupname" value="hoy" [(ngModel)]="opciones" (onChange)="cambio_opcion()"></p-checkbox></div>
-    <div class="col-3"><h5>Numero de Dosis</h5>
-    <p-selectButton [options]="dosis" [(ngModel)]="dosis_seleccionadas" [multiple]="true" optionLabel="name" optionValue="value" (onChange)="cambio_filtros_adic()"></p-selectButton></div>
-    <div class="col-3"><h5>Incluir rezagados</h5>
-    <p-selectButton [options]="stateOptions" [(ngModel)]="incluye_rezagados" optionLabel="name" optionValue="value" (onChange)="cambio_filtros_adic()"></p-selectButton></div>
-</div>
+  <div class="col-2"><h4>Por vacunar hoy</h4></div>
+  <div class="col-2">
+    <p-checkbox
+      name="groupname"
+      value="hoy"
+      [(ngModel)]="opciones"
+      (onChange)="selecciono_hoy($event); cambio_filtros_adic()"
+    ></p-checkbox>
+  </div>
 
+  <div class="col-3" *ngIf="visualizar_alt">
+    <h5>Incluir rezagados</h5>
+    <p-selectButton
+      [options]="stateOptions"
+      [(ngModel)]="incluye_rezagados"
+      optionLabel="name"
+      optionValue="value"
+      (onChange)="cambio_filtros_adic()"
+    ></p-selectButton>
+  </div>
+  <div class="col-3" >
+    <div class=" ">
+      <h5>Buscar</h5>
+      <span class="p-input-icon-left ml-rigth">
+        <input
+          pInputText
+          type="text"
+          placeholder="Ingrese texto a buscar"
+          [(ngModel)]="texto_fil"
+          (input)="filtra($any($event.target).value)"
+        />
+      </span>
+    </div>
+  </div>
+</div>

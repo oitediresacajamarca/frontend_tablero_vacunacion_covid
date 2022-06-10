@@ -50,19 +50,23 @@ export class SeguimientoVacunacionComponent implements OnInit {
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
   }
 
-  cambio_filtro_general(e:any){
-   
-    this.detalle_padron.RENIPRESS=e.COD_IPRESS
-    console.log(this.detalle_padron.filtro)
+  cambio_filtro_general(e: any) {
+
+    this.detalle_padron.RENIPRESS = e.COD_IPRESS
+
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
   }
 
 
 
-  cambio_filtros(e:any){
+  cambio_filtros(e: any) {
 
-    this.detalle_padron.filtro=e
+    this.detalle_padron.filtro = e
     this.detalle_padron.cargar_detalle_padron_vacunar_filtro()
+  }
+
+  fitrar_texto(e: any) {
+    this.detalle_padron.dt.filterGlobal(e, 'contains')
   }
 
 

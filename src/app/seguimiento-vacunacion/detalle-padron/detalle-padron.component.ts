@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PadronesServiceService } from 'src/app/servicios/padrones/padrones-service.service';
 import { PadronInterface } from '../padron-interface';
 import * as FileSaver from 'file-saver'
+import { Table } from 'primeng/table';
 
 
 @Component({
@@ -13,6 +14,9 @@ export class DetallePadronComponent implements OnInit {
 
   @Output('iniciar_nuevo')
   iniciar_nuevo: EventEmitter<any> = new EventEmitter()
+
+  @ViewChild('dt')
+  dt!:Table
 
   filtro:any={hoy:true,dosis_seleccionadas:[],incluye_rezagados:2}
  
@@ -68,11 +72,15 @@ export class DetallePadronComponent implements OnInit {
 
   cargar_detalle_padron_vacunar_filtro() {
     this.data = []
-    
-    this.padronserv.cargar_padron_filtro(this.RENIPRESS,this.filtro).subscribe((data) => {
+
+    if(this.RENIPRESS ==undefined){alert('DEBE DE SELECIONAR PRIMERO UN ESTABLECIMIENTO')}
+    else{
+      this.padronserv.cargar_padron_filtro(this.RENIPRESS,this.filtro).subscribe((data) => {
    
-      this.data = data
-    })
+        this.data = data
+      })
+    }
+   
   }
   exportPdf() {
     /*  import("jspdf").then(jsPDF => {
